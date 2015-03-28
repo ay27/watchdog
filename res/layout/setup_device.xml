@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <include layout="@layout/toolbar"
+             android:id="@+id/device_toolbar" />
+
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:orientation="horizontal">
+        <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:text="nfc"
+                  android:padding="16dp"
+                  android:textSize="18sp"
+                  android:layout_weight="1"
+                />
+        <Switch android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:id="@+id/device_nfc_switch"
+                android:padding="16dp"/>
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:gravity="center"
+                  android:clickable="true"
+                  android:id="@+id/device_bind_watch"
+                  android:background="@drawable/list_item_bg">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="绑定手表"
+                  android:padding="16dp"
+                  android:textSize="18sp"
+                  android:layout_weight="1"
+                  android:textColor="@color/text_darker_gray_default_selector"
+                />
+        <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                   android:src="@drawable/ic_action_next_item"
+                   android:adjustViewBounds="true"
+                   android:scaleType="fitCenter"
+                   android:layout_marginRight="16dp"
+                />
+    </LinearLayout>
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="手表状态："
+            android:padding="16dp"/>
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="null"
+            android:padding="16dp"
+            android:id="@+id/device_watch_status_txv"/>
+
+</LinearLayout>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+        >
+
+    <include layout="@layout/toolbar"
+             android:id="@+id/main_toolbar" />
+
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:gravity="center"
+                  android:clickable="true"
+                  android:id="@+id/main_login"
+                  android:background="@drawable/list_item_bg">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="登录"
+                  android:padding="16dp"
+                  android:textSize="18sp"
+                  android:layout_weight="1"
+                  android:textColor="@color/text_darker_gray_default_selector"
+                />
+        <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                   android:src="@drawable/ic_action_next_item"
+                   android:adjustViewBounds="true"
+                   android:scaleType="fitCenter"
+                   android:layout_marginRight="16dp"
+                />
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:gravity="center"
+                  android:clickable="true"
+                  android:id="@+id/main_set_watch"
+                  android:background="@drawable/list_item_bg">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="手表设定"
+                  android:padding="16dp"
+                  android:textSize="18sp"
+                  android:layout_weight="1"
+                  android:textColor="@color/text_darker_gray_default_selector"
+                />
+        <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                   android:src="@drawable/ic_action_next_item"
+                   android:adjustViewBounds="true"
+                   android:scaleType="fitCenter"
+                   android:layout_marginRight="16dp"
+                />
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:gravity="center"
+                  android:clickable="true"
+                  android:id="@+id/main_set_passwd"
+                  android:background="@drawable/list_item_bg">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="密码设定"
+                  android:padding="16dp"
+                  android:textSize="18sp"
+                  android:layout_weight="1"
+                  android:textColor="@color/text_darker_gray_default_selector"
+                />
+        <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                   android:src="@drawable/ic_action_next_item"
+                   android:adjustViewBounds="true"
+                   android:scaleType="fitCenter"
+                   android:layout_marginRight="16dp"
+                />
+    </LinearLayout>
+
+</LinearLayout>
+

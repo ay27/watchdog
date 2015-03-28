@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
+    <file url="file://$PROJECT_DIR$/res/color/text_darker_gray_default_selector.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/res/drawable/list_item_bg.xml" charset="UTF-8" />
+  </component>
+</project>
