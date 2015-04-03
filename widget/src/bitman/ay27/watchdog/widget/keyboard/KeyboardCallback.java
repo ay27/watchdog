@@ -1,4 +1,4 @@
-package bitman.ay27.watchdog.widget;
+package bitman.ay27.watchdog.widget.keyboard;
 
 /**
  * Proudly to user Intellij IDEA.
