@@ -7,7 +7,7 @@ package bitman.ay27.watchdog.processor;
 public class Segment {
 
     public static final double PRECISION_THRESHOLD = 0.00001;
-    public double segment_length = 120.0;
+    public final double segment_length;
 
     private Curve curve;
     /// y = ax+b, slope = a
@@ -28,24 +28,8 @@ public class Segment {
         return curve;
     }
 
-    /**
-     * check if the point is in this segment, use the segment_length to judge.
-     */
-    boolean contain(RhythmPoint point) {
-        if (curve.size() < 1)
-            return true;
 
-        for (RhythmPoint p : curve.getPoints()) {
-            double dis = Utils.get_distance(p, point);
-            if (dis - segment_length >= PRECISION_THRESHOLD) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
-    public boolean contain(RhythmPoint point, double segment_length) {
+    public boolean if_in_range(RhythmPoint point) {
         if (curve.size() < 2)
             return true;
 
@@ -60,7 +44,7 @@ public class Segment {
     }
 
     /**
-     * use Least squares to fit a line.
+     * 最小二乘法计算直线的解析式
      * y = ax+b
      * a = sum((Xi-avgX)*(Yi-avgY)) / sum((Xi-avgX)^2)
      * b = avgY - a*avgX
@@ -75,6 +59,8 @@ public class Segment {
         average_x = average_x / (double) curve.size();
         average_y = average_y / (double) curve.size();
 
+        // molecular : 分子
+        // denominator : 分母
         double molecular = 0.0, denominator = 0.0;
         for (RhythmPoint point : curve.getPoints()) {
             molecular += (point.x - average_x) * (point.y - average_y);
@@ -124,4 +110,9 @@ public class Segment {
     }
 
 
+    public void add(RhythmPoint point) {
+        if (point == null)
+            return;
+        curve.add(point);
+    }
 }
