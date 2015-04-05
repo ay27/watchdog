@@ -42,7 +42,7 @@ public class DrawingCanvas extends View {
     }
 
     private void init() {
-        this.setBackground(getResources().getDrawable(R.drawable.image1));
+//        this.setBackground(getResources().getDrawable(R.drawable.image1));
         setPaint();
         curves = new ArrayList<Curve>();
         newestCurve = new Curve();

@@ -122,7 +122,7 @@ public class RandomNumericKeyboard extends FrameLayout implements View.OnClickLi
                 return;
             }
             for (KeyboardCallback callback : callbacks) {
-                callback.onInputFinshed(passwdTxt);
+                callback.onInputFinished(passwdTxt);
             }
         } else if (v.getId() == R.id.key_btn_cancel) {
             passwdEdt.setText(passwdTxt = "");

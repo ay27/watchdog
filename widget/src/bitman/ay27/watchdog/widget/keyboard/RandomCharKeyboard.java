@@ -131,7 +131,7 @@ public class RandomCharKeyboard extends FrameLayout implements View.OnClickListe
                 return;
             }
             for (KeyboardCallback callback : callbacks) {
-                callback.onInputFinshed(passwdTxt);
+                callback.onInputFinished(passwdTxt);
             }
         } else if (v.getId() == R.id.button_cancel) {
             passwdEdt.setText(passwdTxt = "");

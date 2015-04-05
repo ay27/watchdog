@@ -17,12 +17,21 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".ui.activity.KeyguardActivity"
+                  android:launchMode="singleTask"
+                  android:excludeFromRecents="true"
+                  android:exported="true"
+                >
+        </activity>
+
         <receiver android:name=".service.OnBootReceiver"
                   android:exported="true">
             <intent-filter android:priority="2147483647">
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
         </receiver>
+
+        <service android:name=".service.KeyguardService" />
 
     </application>
 
