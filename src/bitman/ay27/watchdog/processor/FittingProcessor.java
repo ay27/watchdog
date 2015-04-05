@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Proudly to user Intellij IDEA.
  * Created by ay27 on 15/4/4.
  */
-public class FittingProcessor {
+class FittingProcessor {
 
     public static final double FIT_DOT_THRESHOLD = 16.0;
     public static final double FIT_DOT_TIME_THRESHOLD = 50.0;

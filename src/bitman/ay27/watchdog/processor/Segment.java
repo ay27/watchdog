@@ -4,9 +4,12 @@ package bitman.ay27.watchdog.processor;
  * Proudly to user Intellij IDEA.
  * Created by ay27 on 15/3/31.
  */
-public class Segment {
 
-    public static final double PRECISION_THRESHOLD = 0.00001;
+/**
+ * 拟合夹角链码时的中间表示
+ */
+class Segment {
+
     public final double segment_length;
 
     private Curve curve;
@@ -35,7 +38,7 @@ public class Segment {
 
         for (RhythmPoint p : curve.getPoints()) {
             double dis = Utils.get_distance(p, point);
-            if (dis - segment_length >= PRECISION_THRESHOLD) {
+            if (dis - segment_length >= Utils.PRECISION_THRESHOLD) {
                 return false;
             }
         }

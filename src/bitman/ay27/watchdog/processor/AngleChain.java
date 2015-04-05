@@ -39,6 +39,26 @@ public class AngleChain {
         time_lines.add(time);
     }
 
+    public ArrayList<Double> getAngles() {
+        return angles;
+    }
+
+    public int getNum_of_segments() {
+        return num_of_segments;
+    }
+
+    public double getSegment_length() {
+        return segment_length;
+    }
+
+    public RhythmPoint getStart_point() {
+        return start_point;
+    }
+
+    public ArrayList<Double> getTime_lines() {
+        return time_lines;
+    }
+
     @Override
     public String toString() {
         String str = "";

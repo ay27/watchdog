@@ -6,9 +6,9 @@ import java.util.ArrayList;
  * Proudly to user Intellij IDEA.
  * Created by ay27 on 15/3/31.
  */
-public class Utils {
+class Utils {
 
-    private static final double PRECISION_THRESHOLD = 0.000001;
+    public static final double PRECISION_THRESHOLD = 0.000001;
     private static final double DEFAULT_SEGMENT_LENGTH = 120.0;
 
     private Utils() {
