@@ -1,10 +1,12 @@
 package bitman.ay27.watchdog.processor;
 
+import java.io.Serializable;
+
 /**
  * Proudly to user Intellij IDEA.
  * Created by ay27 on 15/3/31.
  */
-public class RhythmPoint {
+public class RhythmPoint implements Serializable {
     public int x, y;
     public long timestamp;
 

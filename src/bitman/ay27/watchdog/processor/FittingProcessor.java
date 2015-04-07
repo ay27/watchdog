@@ -1,5 +1,7 @@
 package bitman.ay27.watchdog.processor;
 
+import bitman.ay27.watchdog.db.model.AngleChain;
+
 import java.util.ArrayList;
 
 /**

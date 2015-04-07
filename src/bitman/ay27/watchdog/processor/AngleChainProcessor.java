@@ -1,5 +1,7 @@
 package bitman.ay27.watchdog.processor;
 
+import bitman.ay27.watchdog.db.model.AngleChain;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +15,7 @@ public class AngleChainProcessor {
 
     private ArrayList<AngleChain> patternChains;
     private ArrayList<Curve> matchingCurves;
+    private ArrayList<AngleChain> matchingChains;
 
     public AngleChainProcessor(ArrayList<AngleChain> patternCurves, ArrayList<Curve> matchingCurves) {
         this.patternChains = patternCurves;
@@ -37,12 +40,18 @@ public class AngleChainProcessor {
     }
 
     private List<AngleChain> fit_all() {
-        ArrayList<AngleChain> chains = new ArrayList<AngleChain>();
+        matchingChains = new ArrayList<AngleChain>();
         for (Curve curve : matchingCurves) {
             FittingProcessor processor = new FittingProcessor(curve);
-            chains.add(processor.fit());
+            matchingChains.add(processor.fit());
         }
 
-        return chains;
+        return matchingChains;
+    }
+
+    public void updatePattern() {
+        for (int i = 0; i < matchingChains.size(); i++) {
+            patternChains.get(i).bind(matchingChains.get(i));
+        }
     }
 }

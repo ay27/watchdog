@@ -5,6 +5,7 @@ import bitman.ay27.watchdog.WatchdogApplication;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -34,6 +35,11 @@ public class DbManager {
         return dao.queryForAll();
     }
 
+    public Object query(Class cls, long id) {
+        RuntimeExceptionDao dao = helper.getRuntimeExceptionDao(cls);
+        return dao.queryForId(id);
+    }
+
     public List query(Class cls, String columnName, boolean ascending) throws SQLException {
         RuntimeExceptionDao dao = helper.getRuntimeExceptionDao(cls);
         return dao.queryBuilder().orderBy(columnName, ascending).query();
@@ -42,6 +48,12 @@ public class DbManager {
     public int insert(Class cls, Object obj) {
         RuntimeExceptionDao dao = helper.getRuntimeExceptionDao(cls);
         return dao.create(obj);
+    }
+
+    public void updateList(Class cls, List list) {
+        for (Object obj : list) {
+            update(cls, obj);
+        }
     }
 
     public int update(Class cls, Object obj) {

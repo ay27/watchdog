@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -13,6 +14,8 @@ import bitman.ay27.watchdog.widget.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Proudly to user Intellij IDEA.
@@ -21,10 +24,19 @@ import java.util.List;
 public class DrawingCanvas extends View {
     private static final String TAG = "DrawingCanvas";
     private static final int DEFAULT_WIDTH = 8;
+    private static final long CLEAN_CANVAS_TIME_DELAY = 3000;
     private Paint paint;
     private Curve newestCurve;
     private ArrayList<Curve> curves;
     private long init_time = -1;
+    private Timer timer = new Timer();
+    private TimerTask task = new TimerTask() {
+        @Override
+        public void run() {
+            cleanCanvas();
+        }
+    };
+    private DrawingCallback callback;
 
     public DrawingCanvas(Context context) {
         super(context);
@@ -42,10 +54,10 @@ public class DrawingCanvas extends View {
     }
 
     private void init() {
-//        this.setBackground(getResources().getDrawable(R.drawable.image1));
         setPaint();
         curves = new ArrayList<Curve>();
         newestCurve = new Curve();
+        init_time = -1;
     }
 
     private void setPaint() {
@@ -56,8 +68,17 @@ public class DrawingCanvas extends View {
         paint.setStyle(Paint.Style.STROKE);
     }
 
+    private void cleanCanvas() {
+        init();
+        this.invalidate();
+    }
+
+    public void setOnDrawFinishedListener(DrawingCallback callback) {
+        this.callback = callback;
+    }
+
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
+    public boolean onTouchEvent(@NonNull MotionEvent event) {
         if (init_time == -1) {
             init_time = System.currentTimeMillis();
         }
@@ -74,6 +95,13 @@ public class DrawingCanvas extends View {
             case MotionEvent.ACTION_UP:
                 curves.add(newestCurve);
                 newestCurve = new Curve();
+                timer.schedule(task, CLEAN_CANVAS_TIME_DELAY);
+                if (callback != null) {
+                    callback.onDrawPause(curves);
+                }
+                break;
+            case MotionEvent.ACTION_DOWN:
+                timer.cancel();
                 break;
         }
 
@@ -96,7 +124,6 @@ public class DrawingCanvas extends View {
             }
         }
 
-
         if (newestCurve != null && newestCurve.size() > 0) {
             drawCurve(canvas, newestCurve);
         }
@@ -117,6 +144,10 @@ public class DrawingCanvas extends View {
             path.lineTo(points.get(i).x, points.get(i).y);
         }
         canvas.drawPath(path, paint);
+    }
+
+    public static interface DrawingCallback {
+        public void onDrawPause(ArrayList<Curve> rawCurves);
     }
 
 }

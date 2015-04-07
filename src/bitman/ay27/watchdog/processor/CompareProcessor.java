@@ -1,5 +1,7 @@
 package bitman.ay27.watchdog.processor;
 
+import bitman.ay27.watchdog.db.model.AngleChain;
+
 import java.util.ArrayList;
 
 /**
@@ -48,11 +50,11 @@ class CompareProcessor {
      * @return
      */
     public boolean comp() {
-        boolean result = comp_start_point(chain1.getStart_point(), chain2.getStart_point());
+        boolean result = comp_start_point(chain1.start_point, chain2.start_point);
         if (!result)
             return false;
 
-        result = comp_segment_param(chain1.getNum_of_segments(), chain1.getSegment_length(), chain2.getNum_of_segments(), chain2.getSegment_length());
+        result = comp_segment_param(chain1.num_of_segments, chain1.num_of_segments, chain2.num_of_segments, chain2.num_of_segments);
         if (!result)
             return false;
 
@@ -69,10 +71,10 @@ class CompareProcessor {
     private boolean comp_angle() {
         double deviation = 0.0;
 
-        ArrayList<Double> angles1 = chain1.getAngles(), angels2 = chain2.getAngles();
-        ArrayList<Double> tl1 = chain1.getTime_lines(), tl2 = chain2.getTime_lines();
+        ArrayList<Double> angles1 = chain1.angles, angels2 = chain2.angles;
+        ArrayList<Double> tl1 = chain1.time_lines, tl2 = chain2.time_lines;
 
-        for (int i = 0; i < chain1.getNum_of_segments(); i++) {
+        for (int i = 0; i < chain1.num_of_segments; i++) {
             // 角度差距太大，拒绝
             if (ANGLE_THRESHOLD - Math.abs(angles1.get(i) - angels2.get(i)) <= Utils.PRECISION_THRESHOLD) {
                 return false;
