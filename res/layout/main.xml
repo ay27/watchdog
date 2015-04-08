@@ -1,75 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-        >
+              android:layout_height="fill_parent">
 
     <include layout="@layout/toolbar"
-             android:id="@+id/main_toolbar" />
+             android:id="@+id/main_toolbar"/>
 
-    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
-                  android:orientation="horizontal"
-                  android:gravity="center"
-                  android:clickable="true"
-                  android:id="@+id/main_login"
-                  android:background="@drawable/list_item_bg">
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                  android:text="登录"
-                  android:padding="16dp"
-                  android:textSize="18sp"
-                  android:layout_weight="1"
-                  android:textColor="@color/text_darker_gray_default_selector"
-                />
-        <ImageView android:layout_width="24dp" android:layout_height="24dp"
-                   android:src="@drawable/ic_action_next_item"
-                   android:adjustViewBounds="true"
-                   android:scaleType="fitCenter"
-                   android:layout_marginRight="16dp"
-                />
-    </LinearLayout>
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                      android:orientation="vertical"
+                      android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                >
 
-    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
-                  android:orientation="horizontal"
-                  android:gravity="center"
-                  android:clickable="true"
-                  android:id="@+id/main_set_watch"
-                  android:background="@drawable/list_item_bg">
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                  android:text="手表设定"
-                  android:padding="16dp"
-                  android:textSize="18sp"
-                  android:layout_weight="1"
-                  android:textColor="@color/text_darker_gray_default_selector"
-                />
-        <ImageView android:layout_width="24dp" android:layout_height="24dp"
-                   android:src="@drawable/ic_action_next_item"
-                   android:adjustViewBounds="true"
-                   android:scaleType="fitCenter"
-                   android:layout_marginRight="16dp"
-                />
-    </LinearLayout>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:text="账号"
+                      style="@style/PreferenceCatalog"
+                    />
+            <include layout="@layout/divider_large"/>
 
-    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
-                  android:orientation="horizontal"
-                  android:gravity="center"
-                  android:clickable="true"
-                  android:id="@+id/main_set_passwd"
-                  android:background="@drawable/list_item_bg">
-        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                  android:text="密码设定"
-                  android:padding="16dp"
-                  android:textSize="18sp"
-                  android:layout_weight="1"
-                  android:textColor="@color/text_darker_gray_default_selector"
-                />
-        <ImageView android:layout_width="24dp" android:layout_height="24dp"
-                   android:src="@drawable/ic_action_next_item"
-                   android:adjustViewBounds="true"
-                   android:scaleType="fitCenter"
-                   android:layout_marginRight="16dp"
-                />
-    </LinearLayout>
+            <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                          style="@style/PreferencePanel"
+                    android:id="@+id/main_login_panel">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:text="用户名"
+                          style="@style/PreferenceFirstText"
+                        android:id="@+id/main_user_name"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:text="请登录"
+                          style="@style/PreferenceSecondText"
+                          android:id="@+id/main_user_summer"
+                        />
+            </LinearLayout>
 
+            <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      style="@style/PreferenceCatalog"
+                      android:text="刷机锁和SD卡加密"/>
+            <include layout="@layout/divider_large"/>
+            <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                              style="@style/PreferencePanel"
+                              android:layout_alignParentTop="true"
+                              android:layout_alignParentStart="true"
+                              android:clickable="false">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                              style="@style/PreferenceFirstText"
+                              android:text="刷机锁"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                              style="@style/PreferenceSecondText"
+                              android:text="刷机已被关闭"
+                            android:id="@+id/main_boot_loader_summer"/>
+                </LinearLayout>
+                <com.kyleduo.switchbutton.SwitchButton
+                        android:id="@+id/main_boot_loader_lock_switch"
+                        style="@style/MaterialDesignStyle"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="16dp"
+                        android:layout_centerVertical="true"
+                        />
+            </RelativeLayout>
+
+            <include layout="@layout/divider_small" />
+            <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                              style="@style/PreferencePanel"
+                              android:layout_alignParentTop="true"
+                              android:layout_alignParentStart="true"
+                              android:clickable="false">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                              style="@style/PreferenceFirstText"
+                              android:text="SD卡加密"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                              style="@style/PreferenceSecondText"
+                              android:text="已开启"
+                            android:id="@+id/main_sd_encrypt_summer"/>
+                </LinearLayout>
+                <com.kyleduo.switchbutton.SwitchButton
+                        android:id="@+id/main_sd_encrypt_switch"
+                        style="@style/MaterialDesignStyle"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="16dp"
+                        android:layout_centerVertical="true"
+                        />
+            </RelativeLayout>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:text="密码设定"
+                      style="@style/PreferenceCatalog"
+                    />
+            <include layout="@layout/divider_large"/>
+            <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                          style="@style/PreferencePanel"
+                    android:id="@+id/main_draw_panel">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:text="绘图密码"
+                          style="@style/PreferenceFirstText"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:text="首选密码"
+                          style="@style/PreferenceSecondText"/>
+            </LinearLayout>
+
+            <include layout="@layout/divider_small"/>
+
+            <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                          style="@style/PreferencePanel"
+                    android:id="@+id/main_sec_passwd_panel">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:text="第二密码"
+                          style="@style/PreferenceFirstText"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:text="备用密码"
+                          style="@style/PreferenceSecondText"/>
+            </LinearLayout>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      style="@style/PreferenceCatalog"
+                      android:text="外部设备"/>
+            <include layout="@layout/divider_large"/>
+            <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                          style="@style/PreferencePanel"
+                    android:id="@+id/main_bind_watch_panel">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          style="@style/PreferenceFirstText"
+                          android:text="换绑手表"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          style="@style/PreferenceSecondText"
+                          android:text="当前没有绑定手表"
+                        android:id="@+id/main_bind_watch_summer"/>
+            </LinearLayout>
+            <include layout="@layout/divider_small"/>
+            <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                          style="@style/PreferencePanel"
+                    android:id="@+id/main_bind_nfc_panel">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          style="@style/PreferenceFirstText"
+                          android:text="绑定NFC卡"
+                        />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          style="@style/PreferenceSecondText"
+                          android:text="当前没有绑定NFC卡"
+                        android:id="@+id/main_bind_nfc_summer"/>
+            </LinearLayout>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      style="@style/PreferenceCatalog"
+                      android:text="关于"/>
+            <include layout="@layout/divider_large"/>
+            <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                          style="@style/PreferencePanel"
+                    android:id="@+id/main_about_panel">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          style="@style/PreferenceText"
+                          android:text="关于"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 </LinearLayout>
-

@@ -1,68 +1,45 @@
 package bitman.ay27.watchdog.ui.activity;
 
-import android.content.Intent;
+import android.app.AlertDialog;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.preference.PreferenceActivity;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import bitman.ay27.watchdog.R;
+import bitman.ay27.watchdog.ui.LoginDialog;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnClick;
 
-public class MainActivity extends PreferenceActivity {
+public class MainActivity extends ActionBarActivity {
 
-//    @InjectView(R.id.main_toolbar)
-//    Toolbar toolbar;
-//    @InjectView(R.id.main_login)
-//    View loginPanel;
-//    @InjectView(R.id.main_set_watch)
-//    View setWatchPanel;
-//    @InjectView(R.id.main_set_passwd)
-//    View setPasswdPanel;
-
+    @InjectView(R.id.main_toolbar)
+    Toolbar toolbar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        addPreferencesFromResource(R.xml.preference);
+        setContentView(R.layout.main);
 
-//        setContentView(R.layout.main);
-
-//        ButterKnife.inject(this);
-//        toolbar.setTitleTextColor(Color.WHITE);
-//        setSupportActionBar(toolbar);
-//
-//        FragmentManager fragmentManager = getSupportFragmentManager();
-//        fragmentManager.beginTransaction().replace(R.id.drawer_activity_content_frame, fragment).commit();
-
-//        loginPanel.setOnClickListener(this);
+        ButterKnife.inject(this);
+        toolbar.setTitleTextColor(Color.WHITE);
+        setSupportActionBar(toolbar);
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    @OnClick(R.id.main_login_panel)
+    public void loginClick(View view) {
+        new LoginDialog(this).show();
     }
 
-//    @Override
-//    public void onClick(View v) {
-//        Intent intent = new Intent();
-//        if (v.getId() == loginPanel.getId()) {
-//            intent.setClass(this, LoginActivity.class);
-//        }
-//        else if (v.getId() == setWatchPanel.getId()) {
-//            intent.setClass(this, SetWatchActivity.class);
-//        }
-//        else if (v.getId() == setPasswdPanel.getId()) {
-//            intent.setClass(this, SetDrawPasswdActivity.class);
-//        }
-//        else {
-//            return;
-//        }
-//
-//        startActivity(intent);
-//    }
+    @OnClick(R.id.main_about_panel)
+    public void aboutClick(View view) {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.about)
+                .setMessage(R.string.about_content)
+                .setPositiveButton(R.string.ok, null)
+                .create()
+                .show();
+    }
 }
