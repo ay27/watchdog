@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="账号">
+        <Preference android:title="用户名"
+                    android:key="preference_user_name"
+                    android:summary="点击登录"
+                />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="密码设定">
+        <Preference android:title="绘图密码"
+                    android:summary="首选的解锁密码">
+            <intent android:targetClass="bitman.ay27.watchdog.ui.activity.SetDrawPasswdActivity"
+                    android:targetPackage="bitman.ay27.watchdog"
+                    />
+        </Preference>
+        <PreferenceScreen android:title="第二密码"
+                          android:summary="备用的密码，当设备丢失时，需要同时使用绘图密码和第二密码进行解锁">
+            <ListPreference android:title="密码类型" android:summary="当前类型"
+                            android:entries="@array/PasswdType"
+                            android:entryValues="@array/PasswdType"
+                            android:key="preference_passwd_type"
+                    />
+            <Preference android:title="密码设置" >
+                <intent android:targetPackage="bitman.ay27.watchdog"
+                        android:targetClass="bitman.ay27.watchdog.ui.activity.SetPasswdActivity"/>
+            </Preference>
+
+        </PreferenceScreen>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="设备设定">
+        <Preference android:title="换绑手表"
+                    android:key="preference_change_watch"
+                    android:summary="当前没有绑定手表">
+            <intent android:targetPackage="bitman.ay27.watchdog"
+                    android:targetClass="bitman.ay27.watchdog.ui.activity.BindWatchActivity"/>
+        </Preference>
+
+        <Preference android:title="绑定NFC卡"
+                    android:summary="当前没有绑定NFC卡">
+            <intent android:targetPackage="bitman.ay27.watchdog"
+                    android:targetClass="bitman.ay27.watchdog.ui.activity.BindNfcActivity"/>
+        </Preference>
+    </PreferenceCategory>
+
+    <bitman.ay27.watchdog.widget.preference_support.MyDialogPreference android:title="关于"
+                android:key="preference_about"
+            android:dialogLayout="@layout/about">
+    </bitman.ay27.watchdog.widget.preference_support.MyDialogPreference>
+</PreferenceScreen>

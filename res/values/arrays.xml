@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="PasswdType">
+        <item>数字密码</item>
+        <item>混合密码</item>
+    </string-array>
+</resources>

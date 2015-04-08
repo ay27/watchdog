@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content">
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="About"
+            android:textSize="24sp"/>
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:layout_margin="16dp"
+              android:text="2014 年 6 月 11 日更新
+2014 年 7 月 31 日生效
+
+感谢您选择 Microsoft！
+
+本协议是您与 Microsoft 之间（根据您的居住地，也可能是您与其子公司之间）缔结的协议，协议规定了您使用第 1.1 节中所示软件和服务的权利。 为了便于您理解，我方以问答的形式陈述本协议的某些条款。 您应该阅读整个协议，因为所有条款都非常重要，并且共同构成了法律协议，一旦您接受这些条款，该协议即对您生效。"
+              />
+
+</LinearLayout>
