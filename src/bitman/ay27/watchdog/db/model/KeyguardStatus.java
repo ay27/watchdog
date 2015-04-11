@@ -27,10 +27,6 @@ public class KeyguardStatus {
     @DatabaseField(canBeNull = false)
     public PasswdType unlockType;
 
-    public static enum PasswdType {
-        img, numeric, character
-    }
-
     public KeyguardStatus() {
     }
 
@@ -39,5 +35,9 @@ public class KeyguardStatus {
         this.numericPasswd = numericPasswd;
         this.patternAngelChainIds = patternAngelChainIds;
         this.unlockType = type;
+    }
+
+    public static enum PasswdType {
+        img, numeric, character
     }
 }

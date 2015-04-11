@@ -21,4 +21,10 @@ public class RhythmPoint implements Serializable {
         this.y = (int) y;
         this.timestamp = timestamp;
     }
+
+    public RhythmPoint(double x, double y, int timestamp) {
+        this.x = (int) x;
+        this.y = (int) y;
+        this.timestamp = timestamp;
+    }
 }

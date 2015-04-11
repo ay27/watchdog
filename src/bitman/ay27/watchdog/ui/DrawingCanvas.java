@@ -2,6 +2,7 @@ package bitman.ay27.watchdog.ui;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.os.Handler;
@@ -9,6 +10,7 @@ import android.os.Message;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import bitman.ay27.watchdog.db.model.AngleChain;
 import bitman.ay27.watchdog.processor.Curve;
 import bitman.ay27.watchdog.processor.RhythmPoint;
 import bitman.ay27.watchdog.widget.R;
@@ -164,6 +166,33 @@ public class DrawingCanvas extends View {
         }
         canvas.drawPath(path, paint);
     }
+
+    public void drawChain(AngleChain chain) {
+        cleanCanvas();
+
+        Paint old = new Paint(paint);
+
+        paint.setColor(Color.RED);
+
+        curves = new ArrayList<Curve>();
+        Curve curve = new Curve();
+        curve.add(chain.start_point);
+        double x1 = chain.start_point.x, x2, y2;
+        for (int i = 0; i < chain.angles.size(); i++) {
+            x2 = x1 + (chain.segment_length / (chain.angles.get(i)+1.0));
+            y2 = x2 * chain.angles.get(i);
+            curve.add(new RhythmPoint(x2, y2, 0));
+
+            x1 = x2;
+        }
+
+        curves.add(curve);
+
+        invalidate();
+
+//        this.paint = old;
+    }
+
 
     public static interface DrawingCallback {
         public void onDrawPause(ArrayList<Curve> rawCurves);

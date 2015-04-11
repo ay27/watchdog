@@ -12,6 +12,7 @@ import java.util.List;
 public class AngleChainProcessor {
 
     private static final String TAG = "AngleChainProcessor";
+    private static final int DEFAULT_NUM_OF_SEGMENTS = 15;
 
     private ArrayList<AngleChain> patternChains;
     private ArrayList<Curve> matchingCurves;
@@ -24,6 +25,10 @@ public class AngleChainProcessor {
 
     public AngleChainProcessor(ArrayList<Curve> matchingCurves) {
         this.matchingCurves = matchingCurves;
+    }
+
+    public ArrayList<AngleChain> getMatchingChains() {
+        return matchingChains;
     }
 
     public boolean compare() {
@@ -45,9 +50,21 @@ public class AngleChainProcessor {
 
     public List<AngleChain> fit_matching_curves() {
         matchingChains = new ArrayList<AngleChain>();
-        for (Curve curve : matchingCurves) {
-            FittingProcessor processor = new FittingProcessor(curve);
-            matchingChains.add(processor.fit());
+        for (int i = 0; i < matchingCurves.size(); i++) {
+            FittingProcessor processor = new FittingProcessor(matchingCurves.get(i));
+            if (patternChains == null) {
+                if (matchingCurves.get(i).size() / 3 >= DEFAULT_NUM_OF_SEGMENTS) {
+                    matchingChains.add(processor.fit(DEFAULT_NUM_OF_SEGMENTS));
+                } else {
+                    matchingChains.add(processor.fit(matchingCurves.get(i).size() / 3));
+                }
+            } else {
+                if (patternChains.size() <= i) {
+                    matchingChains.add(processor.fit(DEFAULT_NUM_OF_SEGMENTS));
+                } else {
+                    matchingChains.add(processor.fit(patternChains.get(i).num_of_segments));
+                }
+            }
         }
 
         return matchingChains;

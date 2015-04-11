@@ -1,10 +1,8 @@
 package bitman.ay27.watchdog.ui.activity;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.ContentResolver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -14,6 +12,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.Toast;
 import bitman.ay27.watchdog.R;
 import bitman.ay27.watchdog.db.DbManager;
 import bitman.ay27.watchdog.db.model.AngleChain;
@@ -69,16 +68,27 @@ public class SetDrawPasswdActivity extends Activity {
 //        chooseImg();
     }
 
+    @OnClick(R.id.set_draw_passwd_comp)
+    public void compClick(View view) {
+        List<AngleChain> exists = DbManager.getInstance().query(AngleChain.class);
+        AngleChainProcessor processor = new AngleChainProcessor(new ArrayList<AngleChain>(exists), curves);
+        boolean flag = processor.compare();
+        Toast.makeText(this, "" + flag, Toast.LENGTH_SHORT).show();
+//        canvas.drawChain(processor.getMatchingChains().get(0));
+    }
+
     @OnClick(R.id.set_draw_passwd_save)
     public void saveClick(View view) {
         AngleChainProcessor processor = new AngleChainProcessor(curves);
         List<AngleChain> chains = processor.fit_matching_curves();
         DbManager manager = DbManager.getInstance();
         List exists = manager.query(AngleChain.class);
-        if (exists!=null && exists.size()>=1) {
+        if (exists != null && exists.size() >= 1) {
             manager.bulkDelete(AngleChain.class, exists);
         }
         manager.bulkInsert(AngleChain.class, chains);
+
+//        canvas.drawChain(chains.get(0));
     }
 
     @Override
@@ -151,23 +161,6 @@ public class SetDrawPasswdActivity extends Activity {
 //            canvas.setBackground(decodeSource(this, photoUri, getResources().getDisplayMetrics().widthPixels));
         }
     }
-
-//    private void chooseImg() {
-//        new AlertDialog.Builder(this)
-//                .setTitle(R.string.choose_img_source)
-//                .setItems(getResources().getStringArray(R.array.img_source), new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        if (which == 0) {
-//                            takePhoto();
-//                        } else {
-//                            chooseImage();
-//                        }
-//                    }
-//                })
-//                .setNegativeButton(R.string.cancel, null)
-//                .show();
-//    }
 
     private void chooseImage() {
         Intent intent = new Intent();

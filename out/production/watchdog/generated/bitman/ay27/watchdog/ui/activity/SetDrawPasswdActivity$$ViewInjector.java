@@ -31,6 +31,15 @@ public class SetDrawPasswdActivity$$ViewInjector {
           target.saveClick(p0);
         }
       });
+    view = finder.findRequiredView(source, 2131427474, "method 'compClick'");
+    view.setOnClickListener(
+      new android.view.View.OnClickListener() {
+        @Override public void onClick(
+          android.view.View p0
+        ) {
+          target.compClick(p0);
+        }
+      });
   }
 
   public static void reset(bitman.ay27.watchdog.ui.activity.SetDrawPasswdActivity target) {
