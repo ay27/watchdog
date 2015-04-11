@@ -22,8 +22,12 @@ public class AngleChainProcessor {
         this.matchingCurves = matchingCurves;
     }
 
+    public AngleChainProcessor(ArrayList<Curve> matchingCurves) {
+        this.matchingCurves = matchingCurves;
+    }
+
     public boolean compare() {
-        return do_compare(fit_all());
+        return do_compare(fit_matching_curves());
     }
 
     private boolean do_compare(List<AngleChain> chains) {
@@ -39,7 +43,7 @@ public class AngleChainProcessor {
         return true;
     }
 
-    private List<AngleChain> fit_all() {
+    public List<AngleChain> fit_matching_curves() {
         matchingChains = new ArrayList<AngleChain>();
         for (Curve curve : matchingCurves) {
             FittingProcessor processor = new FittingProcessor(curve);

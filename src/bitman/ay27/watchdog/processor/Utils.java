@@ -1,5 +1,7 @@
 package bitman.ay27.watchdog.processor;
 
+import bitman.ay27.watchdog.db.model.AngleChain;
+
 import java.util.ArrayList;
 
 /**
@@ -18,20 +20,25 @@ class Utils {
         return Math.sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
     }
 
-    public static void de_noise(Curve curve, final double FIT_DOT_THRESHOLD, final double FIT_TIME_THRESHOLD) {
+    public static Curve de_noise(Curve curve, final double FIT_DOT_THRESHOLD, final double FIT_TIME_THRESHOLD) {
+
+        Curve result = new Curve();
 
         RhythmPoint lastOne = curve.first();
+        result.add(lastOne);
 
         for (int i = 1; i < curve.size(); i++) {
-            if (get_distance(lastOne, curve.get(i)) - FIT_DOT_THRESHOLD <= PRECISION_THRESHOLD
-                    && Math.abs(lastOne.timestamp - curve.get(i).timestamp) - FIT_TIME_THRESHOLD <= PRECISION_THRESHOLD) {
+            if ((get_distance(lastOne, curve.get(i)) - FIT_DOT_THRESHOLD <= PRECISION_THRESHOLD)
+                    && (Math.abs(lastOne.timestamp - curve.get(i).timestamp) - FIT_TIME_THRESHOLD <= PRECISION_THRESHOLD)) {
                 RhythmPoint tmp = Utils.bind_dot(lastOne, curve.get(i));
-                curve.rm(lastOne);
-                curve.add(lastOne = tmp);
+                result.rm(lastOne);
+                result.add(lastOne = tmp);
             } else {
-                curve.add(lastOne = curve.get(i));
+                result.add(lastOne = curve.get(i));
             }
         }
+
+        return result;
     }
 
     public static RhythmPoint bind_dot(RhythmPoint p1, RhythmPoint p2) {
@@ -45,10 +52,13 @@ class Utils {
      * @param num_of_segments
      * @return
      */
-    public static double split_curve(Curve curve, ArrayList<Segment> result, final int num_of_segments) {
+    public static AngleChain split_curve(Curve curve, final int num_of_segments) {
         double left = 1.0, right = 2 * DEFAULT_SEGMENT_LENGTH, mid = DEFAULT_SEGMENT_LENGTH;
-        while ((left <= right) && (result = _split_one_curve(curve, mid)).size() != num_of_segments) {
-            if (result.size() > num_of_segments) {
+
+        ArrayList<Segment> segments = null;
+
+        while ((left <= right) && (segments = _split_one_curve(curve, mid)).size() != num_of_segments) {
+            if (segments.size() > num_of_segments) {
                 left = mid;
                 mid = (right + mid) / 2 + 1;
             } else {
@@ -57,7 +67,16 @@ class Utils {
             }
         }
 
-        return mid;
+        if (segments == null) {
+            return null;
+        }
+
+        AngleChain chain = new AngleChain(curve.first(), mid, num_of_segments);
+        for (Segment segment : segments) {
+            chain.add_sgm(segment.getA(), segment.getLeftTime());
+        }
+
+        return chain;
     }
 
     /**

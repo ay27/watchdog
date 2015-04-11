@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.os.Handler;
+import android.os.Message;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -29,12 +31,13 @@ public class DrawingCanvas extends View {
     private ArrayList<Curve> curves;
     private long init_time = -1;
     private Timer timer = new Timer();
-    private TimerTask task = new TimerTask() {
+    private Handler uiHandler = new Handler() {
         @Override
-        public void run() {
+        public void handleMessage(Message msg) {
             cleanCanvas();
         }
     };
+
     private DrawingCallback callback;
 
     public DrawingCanvas(Context context) {
@@ -72,6 +75,15 @@ public class DrawingCanvas extends View {
         this.invalidate();
     }
 
+    private TimerTask generateTask() {
+        return new TimerTask() {
+            @Override
+            public void run() {
+                uiHandler.obtainMessage(1).sendToTarget();
+            }
+        };
+    }
+
     public void setOnDrawFinishedListener(DrawingCallback callback) {
         this.callback = callback;
     }
@@ -94,13 +106,21 @@ public class DrawingCanvas extends View {
             case MotionEvent.ACTION_UP:
                 curves.add(newestCurve);
                 newestCurve = new Curve();
-                timer.schedule(task, CLEAN_CANVAS_TIME_DELAY);
+                timer = new Timer();
+                timer.schedule(generateTask(), CLEAN_CANVAS_TIME_DELAY);
                 if (callback != null) {
                     callback.onDrawPause(curves);
+                    callback.onActionUp();
                 }
                 break;
             case MotionEvent.ACTION_DOWN:
-                timer.cancel();
+                if (timer != null) {
+                    timer.cancel();
+                    timer = null;
+                }
+                if (callback != null) {
+                    callback.onActionDown();
+                }
                 break;
         }
 
@@ -147,6 +167,10 @@ public class DrawingCanvas extends View {
 
     public static interface DrawingCallback {
         public void onDrawPause(ArrayList<Curve> rawCurves);
+
+        public void onActionDown();
+
+        public void onActionUp();
     }
 
 }

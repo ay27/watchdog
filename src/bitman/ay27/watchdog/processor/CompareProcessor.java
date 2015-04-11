@@ -50,7 +50,7 @@ class CompareProcessor {
      * @return
      */
     public boolean comp() {
-        boolean result = comp_start_point(chain1.start_point, chain2.start_point);
+        boolean result = comp_start_point(chain1.getStart_point(), chain2.getStart_point());
         if (!result)
             return false;
 

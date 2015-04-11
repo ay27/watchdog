@@ -33,6 +33,8 @@ public class KeyguardActivity extends Activity {
     private WindowManager wm;
     private KeyboardCallback callback;
 
+    private View view;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +73,7 @@ public class KeyguardActivity extends Activity {
             finish();
         }
 
-        final View view = getLayoutInflater().inflate(R.layout.keyguard_keyboard, null);
+        view = getLayoutInflater().inflate(R.layout.keyguard_keyboard, null);
         numericKeyboard = (RandomNumericKeyboard) view.findViewById(R.id.keyguard_numeric);
         charKeyboard = (RandomCharKeyboard) view.findViewById(R.id.keyguard_char);
 
@@ -98,7 +100,7 @@ public class KeyguardActivity extends Activity {
             finish();
         }
 
-        final View view = getLayoutInflater().inflate(R.layout.keyguard_keyboard, null);
+        view = getLayoutInflater().inflate(R.layout.keyguard_keyboard, null);
         numericKeyboard = (RandomNumericKeyboard) view.findViewById(R.id.keyguard_numeric);
         charKeyboard = (RandomCharKeyboard) view.findViewById(R.id.keyguard_char);
 
@@ -124,7 +126,7 @@ public class KeyguardActivity extends Activity {
             finish();
         }
 
-        final View view = getLayoutInflater().inflate(R.layout.keyguard_img, null);
+        view = getLayoutInflater().inflate(R.layout.keyguard_img, null);
         dCanvas = (DrawingCanvas) view.findViewById(R.id.keyguard_img);
 
         final ArrayList<AngleChain> patterns = new ArrayList<AngleChain>();
@@ -147,6 +149,16 @@ public class KeyguardActivity extends Activity {
                     removeStaticView(view);
                     finish();
                 }
+            }
+
+            @Override
+            public void onActionDown() {
+                // do nothing
+            }
+
+            @Override
+            public void onActionUp() {
+                // do nothing
             }
         });
 

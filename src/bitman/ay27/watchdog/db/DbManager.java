@@ -50,6 +50,13 @@ public class DbManager {
         return dao.create(obj);
     }
 
+    public void bulkInsert(Class cls, List list) {
+        RuntimeExceptionDao dao = helper.getRuntimeExceptionDao(cls);
+        for (Object aList : list) {
+            dao.create(aList);
+        }
+    }
+
     public void updateList(Class cls, List list) {
         for (Object obj : list) {
             update(cls, obj);
@@ -64,5 +71,12 @@ public class DbManager {
     public int delete(Class cls, Object obj) {
         RuntimeExceptionDao dao = helper.getRuntimeExceptionDao(cls);
         return dao.delete(obj);
+    }
+
+    public void bulkDelete(Class cls, List list) {
+        RuntimeExceptionDao dao = helper.getRuntimeExceptionDao(cls);
+        for (Object obj : list) {
+            dao.delete(obj);
+        }
     }
 }

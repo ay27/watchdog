@@ -1,5 +1,6 @@
 package bitman.ay27.watchdog.db.model;
 
+import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
@@ -15,7 +16,7 @@ public class KeyguardStatus {
     @DatabaseField(generatedId = true)
     public long id;
 
-    @DatabaseField
+    @DatabaseField(dataType = DataType.SERIALIZABLE)
     public ArrayList<Long> patternAngelChainIds;
 
     @DatabaseField
