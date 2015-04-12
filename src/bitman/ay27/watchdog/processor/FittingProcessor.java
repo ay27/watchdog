@@ -19,7 +19,11 @@ class FittingProcessor {
 
     public AngleChain fit(final int num_of_segments) {
         curve_wait_for_fitting = Utils.de_noise(curve_wait_for_fitting, FIT_DOT_THRESHOLD, FIT_DOT_TIME_THRESHOLD);
-        return Utils.split_curve(curve_wait_for_fitting, num_of_segments);
+        if (num_of_segments == 0) {
+            return Utils.split_curve(curve_wait_for_fitting, curve_wait_for_fitting.size() / 3 == 0 ? 1 : curve_wait_for_fitting.size() / 3);
+        } else {
+            return Utils.split_curve(curve_wait_for_fitting, num_of_segments);
+        }
     }
 
 }

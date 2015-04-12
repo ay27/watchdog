@@ -72,7 +72,7 @@ public class DrawingCanvas extends View {
         paint.setStyle(Paint.Style.STROKE);
     }
 
-    private void cleanCanvas() {
+    public void cleanCanvas() {
         init();
         this.invalidate();
     }

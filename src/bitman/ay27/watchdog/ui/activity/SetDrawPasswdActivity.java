@@ -74,6 +74,7 @@ public class SetDrawPasswdActivity extends Activity {
         AngleChainProcessor processor = new AngleChainProcessor(new ArrayList<AngleChain>(exists), curves);
         boolean flag = processor.compare();
         Toast.makeText(this, "" + flag, Toast.LENGTH_SHORT).show();
+        canvas.cleanCanvas();
 //        canvas.drawChain(processor.getMatchingChains().get(0));
     }
 
@@ -88,6 +89,7 @@ public class SetDrawPasswdActivity extends Activity {
         }
         manager.bulkInsert(AngleChain.class, chains);
 
+        canvas.cleanCanvas();
 //        canvas.drawChain(chains.get(0));
     }
 

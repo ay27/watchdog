@@ -79,7 +79,7 @@ class Segment {
         for (int i = curve.size() / 2; i < curve.size(); i++) {
             this.rightTime += curve.get(i).timestamp;
         }
-        this.rightTime = rightTime / ((double) curve.size() / 2.0);
+        this.rightTime = rightTime / (double) (curve.size() - curve.size() / 2);
 
         hasDone = true;
     }

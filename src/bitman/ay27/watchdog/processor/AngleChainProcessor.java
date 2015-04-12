@@ -53,14 +53,15 @@ public class AngleChainProcessor {
         for (int i = 0; i < matchingCurves.size(); i++) {
             FittingProcessor processor = new FittingProcessor(matchingCurves.get(i));
             if (patternChains == null) {
-                if (matchingCurves.get(i).size() / 3 >= DEFAULT_NUM_OF_SEGMENTS) {
-                    matchingChains.add(processor.fit(DEFAULT_NUM_OF_SEGMENTS));
-                } else {
-                    matchingChains.add(processor.fit(matchingCurves.get(i).size() / 3));
-                }
+                matchingChains.add(processor.fit(0));
+//                if (matchingCurves.get(i).size() / 3 >= DEFAULT_NUM_OF_SEGMENTS) {
+//                    matchingChains.add(processor.fit(DEFAULT_NUM_OF_SEGMENTS));
+//                } else {
+//                    matchingChains.add(processor.fit(matchingCurves.get(i).size() / 3));
+//                }
             } else {
                 if (patternChains.size() <= i) {
-                    matchingChains.add(processor.fit(DEFAULT_NUM_OF_SEGMENTS));
+                    matchingChains.add(processor.fit(0));
                 } else {
                     matchingChains.add(processor.fit(patternChains.get(i).num_of_segments));
                 }
