@@ -5,7 +5,7 @@
               android:layout_height="match_parent">
 
     <bitman.ay27.watchdog.ui.DrawingCanvas android:layout_width="match_parent" android:layout_height="match_parent"
-            android:background="@drawable/image1"
-            android:id="@+id/keyguard_img"/>
+                                           android:background="@drawable/image1"
+                                           android:id="@+id/keyguard_img"/>
 
 </LinearLayout>

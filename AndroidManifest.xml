@@ -24,11 +24,10 @@
                 >
         </activity>
 
-        <activity android:name=".ui.activity.AboutActivity"/>
         <activity android:name=".ui.activity.BindNfcActivity"/>
+        <activity android:name=".ui.activity.SetPasswdActivity"/>
         <activity android:name=".ui.activity.BindWatchActivity"/>
         <activity android:name=".ui.activity.SetDrawPasswdActivity"/>
-        <activity android:name=".ui.activity.SetPasswdActivity"/>
         <activity android:name=".ui.activity.SetWatchActivity"/>
 
         <receiver android:name=".service.OnBootReceiver"
