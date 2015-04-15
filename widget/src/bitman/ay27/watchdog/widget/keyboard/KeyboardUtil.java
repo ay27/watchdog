@@ -23,6 +23,8 @@ public class KeyboardUtil {
     private Keyboard charBoard;// 字母键盘
     private Keyboard numericBoard;// 数字键盘
     private EditText bindEdt;
+    private KeyboardCallback callback;
+
     private KeyboardView.OnKeyboardActionListener listener = new KeyboardView.OnKeyboardActionListener() {
         @Override
         public void onPress(int primaryCode) {
@@ -38,6 +40,7 @@ public class KeyboardUtil {
             int start = bindEdt.getSelectionStart();
             if (primaryCode == Keyboard.KEYCODE_DONE) {// 完成
                 hideKeyboard();
+                callback.onInputFinished(bindEdt.getText().toString());
             } else if (primaryCode == Keyboard.KEYCODE_DELETE) {// 回退
                 if (editable != null && editable.length() > 0) {
                     if (start > 0) {
@@ -85,10 +88,11 @@ public class KeyboardUtil {
         }
     };
 
-    public KeyboardUtil(Context context, KeyboardView keyboardView, EditText bindEdt) {
+    public KeyboardUtil(Context context, KeyboardView keyboardView, EditText bindEdt, KeyboardCallback callback) {
         this.context = context;
         this.keyboardView = keyboardView;
         this.bindEdt = bindEdt;
+        this.callback = callback;
         init();
     }
 

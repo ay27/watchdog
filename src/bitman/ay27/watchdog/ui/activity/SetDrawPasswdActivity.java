@@ -71,6 +71,9 @@ public class SetDrawPasswdActivity extends Activity {
     @OnClick(R.id.set_draw_passwd_comp)
     public void compClick(View view) {
         List<AngleChain> exists = DbManager.getInstance().query(AngleChain.class);
+        if (exists == null || exists.size() == 0) {
+            return;
+        }
         AngleChainProcessor processor = new AngleChainProcessor(new ArrayList<AngleChain>(exists), curves);
         boolean flag = processor.compare();
         Toast.makeText(this, "" + flag, Toast.LENGTH_SHORT).show();

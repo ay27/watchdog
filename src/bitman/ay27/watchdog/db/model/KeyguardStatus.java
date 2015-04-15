@@ -4,6 +4,7 @@ import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -12,7 +13,7 @@ import java.util.ArrayList;
  */
 
 @DatabaseTable
-public class KeyguardStatus {
+public class KeyguardStatus implements Serializable {
     @DatabaseField(generatedId = true)
     public long id;
 
@@ -20,9 +21,7 @@ public class KeyguardStatus {
     public ArrayList<Long> patternAngelChainIds;
 
     @DatabaseField
-    public String numericPasswd;
-    @DatabaseField
-    public String charPasswd;
+    public String passwd;
 
     @DatabaseField(canBeNull = false)
     public PasswdType unlockType;
@@ -30,14 +29,13 @@ public class KeyguardStatus {
     public KeyguardStatus() {
     }
 
-    public KeyguardStatus(String charPasswd, String numericPasswd, ArrayList<Long> patternAngelChainIds, PasswdType type) {
-        this.charPasswd = charPasswd;
-        this.numericPasswd = numericPasswd;
+    public KeyguardStatus(String passwd, ArrayList<Long> patternAngelChainIds, PasswdType type) {
+        this.passwd = passwd;
         this.patternAngelChainIds = patternAngelChainIds;
         this.unlockType = type;
     }
 
     public static enum PasswdType {
-        img, numeric, character
+        keyboard, image
     }
 }

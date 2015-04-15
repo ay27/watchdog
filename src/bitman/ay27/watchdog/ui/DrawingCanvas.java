@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.os.Handler;
 import android.os.Message;
+import android.util.ArrayMap;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,10 +16,7 @@ import bitman.ay27.watchdog.processor.Curve;
 import bitman.ay27.watchdog.processor.RhythmPoint;
 import bitman.ay27.watchdog.widget.R;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 /**
  * Proudly to user Intellij IDEA.
@@ -114,6 +112,7 @@ public class DrawingCanvas extends View {
                     callback.onDrawPause(curves);
                     callback.onActionUp();
                 }
+                init_time = -1;
                 break;
             case MotionEvent.ACTION_DOWN:
                 if (timer != null) {

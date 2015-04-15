@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.IBinder;
-import bitman.ay27.watchdog.ui.activity.KeyguardActivity;
+import bitman.ay27.watchdog.ui.KeyguardManager;
 
 /**
  * Proudly to user Intellij IDEA.
@@ -26,9 +26,7 @@ public class KeyguardService extends Service {
     private BroadcastReceiver screenOffReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Intent intent1 = new Intent(KeyguardService.this, KeyguardActivity.class);
-            intent1.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent1);//跳转到主界面
+            new KeyguardManager(context).launchKeyguard();
         }
     };
 

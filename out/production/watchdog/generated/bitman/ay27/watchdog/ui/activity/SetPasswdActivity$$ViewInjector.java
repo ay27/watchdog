@@ -7,17 +7,17 @@ import butterknife.ButterKnife.Finder;
 public class SetPasswdActivity$$ViewInjector {
   public static void inject(Finder finder, final bitman.ay27.watchdog.ui.activity.SetPasswdActivity target, Object source) {
     View view;
-    view = finder.findRequiredView(source, 2131493011, "field 'toolbar'");
+    view = finder.findRequiredView(source, 2131493012, "field 'toolbar'");
     target.toolbar = (android.support.v7.widget.Toolbar) view;
-    view = finder.findRequiredView(source, 2131493013, "field 'newPasswdEdt'");
+    view = finder.findRequiredView(source, 2131493014, "field 'newPasswdEdt'");
     target.newPasswdEdt = (android.widget.EditText) view;
-    view = finder.findRequiredView(source, 2131493012, "field 'oldPasswdEdt'");
+    view = finder.findRequiredView(source, 2131493013, "field 'oldPasswdEdt'");
     target.oldPasswdEdt = (android.widget.EditText) view;
-    view = finder.findRequiredView(source, 2131493014, "field 'confirmEdt'");
+    view = finder.findRequiredView(source, 2131493015, "field 'confirmEdt'");
     target.confirmEdt = (android.widget.EditText) view;
-    view = finder.findRequiredView(source, 2131493015, "field 'okBtn'");
+    view = finder.findRequiredView(source, 2131493016, "field 'okBtn'");
     target.okBtn = (android.widget.Button) view;
-    view = finder.findRequiredView(source, 2131493016, "field 'keyboardView'");
+    view = finder.findRequiredView(source, 2131492927, "field 'keyboardView'");
     target.keyboardView = (android.inputmethodservice.KeyboardView) view;
   }
 

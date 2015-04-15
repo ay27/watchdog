@@ -110,6 +110,12 @@ class Utils {
                 sgm.fitting();
                 result.add(sgm);
             }
+            else if (sgm.getCurve().size() == 1) {
+                result.add(sgm);
+            }
+            else {
+                return null;
+            }
         }
 
         return result;

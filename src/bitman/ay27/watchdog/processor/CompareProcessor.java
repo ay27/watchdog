@@ -13,12 +13,12 @@ class CompareProcessor {
 
     public static final double ANGLE_CHAIN_THRESHOLD1 = Math.tan(Math.PI / 6.0);
     public static final double ANGLE_CHAIN_THRESHOLD2 = Math.tan(Math.PI / 3.0);
-    public static final double CHAIN_MATCHING_TOLERANCE = 10.0;
+    public static final double CHAIN_MATCHING_TOLERANCE = 5.0;
     private static final String TAG = "CompareProcessor";
     /**
      * 起点位置误差100px
      */
-    private static final double START_POSITION_THRESHOLD = 100.0;
+    private static final double START_POSITION_THRESHOLD = 48.0;
     /**
      * 每个直线段的时间误差500ms
      */
@@ -83,15 +83,34 @@ class CompareProcessor {
             return false;
         }
 
-        for (int i = 0; i < chain1.num_of_segments; i++) {
-            double angle_tmp = Math.abs(angles1.get(i) - angles2.get(i));
-            if (angle_tmp - ANGLE_CHAIN_THRESHOLD1 <= Utils.PRECISION_THRESHOLD) {
-                deviationTolerance = Math.max(0.0, deviationTolerance - 1.0);
-            } else if (angle_tmp - ANGLE_CHAIN_THRESHOLD2 <= Utils.PRECISION_THRESHOLD) {
-                deviationTolerance += 1.0;
-            } else {
-                deviationTolerance += 2.0;
+        for (int i = 0; i < angles1.size(); i++) {
+            double angle_tmp = angles1.get(i) - angles2.get(i);
+            if (Math.abs(angle_tmp) - ANGLE_CHAIN_THRESHOLD1 <= Utils.PRECISION_THRESHOLD) {
+                if (angle_tmp<Utils.PRECISION_THRESHOLD) {
+                    deviationTolerance -= 1.0;
+                }
+                else deviationTolerance += 1.0;
             }
+            else if (Math.abs(angle_tmp) - ANGLE_CHAIN_THRESHOLD2 <= Utils.PRECISION_THRESHOLD) {
+                if (angle_tmp < Utils.PRECISION_THRESHOLD) {
+                    deviationTolerance -= 2.0;
+                }
+                else deviationTolerance +=2.0;
+            }
+            else {
+                if (angle_tmp < Utils.PRECISION_THRESHOLD) {
+                    deviationTolerance -= 3.0;
+                }
+                else deviationTolerance += 3.0;
+            }
+//            if (angle_tmp - ANGLE_CHAIN_THRESHOLD1 <= Utils.PRECISION_THRESHOLD) {
+//
+//                deviationTolerance = Math.max(0.0, deviationTolerance - 1.0);
+//            } else if (angle_tmp - ANGLE_CHAIN_THRESHOLD2 <= Utils.PRECISION_THRESHOLD) {
+//                deviationTolerance += 1.0;
+//            } else {
+//                deviationTolerance += 2.5;
+//            }
 
             if (deviationTolerance - CHAIN_MATCHING_TOLERANCE >= Utils.PRECISION_THRESHOLD) {
                 Log.i(TAG, "deviation tolerance : "+deviationTolerance);
