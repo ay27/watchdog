@@ -16,6 +16,7 @@ import java.util.Random;
  * Created by ay27 on 15/4/14.
  */
 public class KeyboardUtil {
+    private static final int[] numericCodes = new int[]{48, 49, 50, 51, 52, 53, 54, 55, 56, 57};
     public boolean is_num = true;// 是否数据键盘
     public boolean is_upper = false;// 是否大写
     private Context context;
@@ -24,7 +25,6 @@ public class KeyboardUtil {
     private Keyboard numericBoard;// 数字键盘
     private EditText bindEdt;
     private KeyboardCallback callback;
-
     private KeyboardView.OnKeyboardActionListener listener = new KeyboardView.OnKeyboardActionListener() {
         @Override
         public void onPress(int primaryCode) {
@@ -40,7 +40,9 @@ public class KeyboardUtil {
             int start = bindEdt.getSelectionStart();
             if (primaryCode == Keyboard.KEYCODE_DONE) {// 完成
                 hideKeyboard();
-                callback.onInputFinished(bindEdt.getText().toString());
+                if (callback != null) {
+                    callback.onInputFinished(bindEdt.getText().toString());
+                }
             } else if (primaryCode == Keyboard.KEYCODE_DELETE) {// 回退
                 if (editable != null && editable.length() > 0) {
                     if (start > 0) {
@@ -61,8 +63,7 @@ public class KeyboardUtil {
                 }
             } else if (primaryCode == -6) {
                 bindEdt.setText("");
-            }
-            else {
+            } else {
                 editable.insert(start, Character.toString((char) primaryCode));
             }
         }
@@ -96,30 +97,6 @@ public class KeyboardUtil {
         init();
     }
 
-    private void init() {
-        charBoard = new Keyboard(context, R.xml.qwerty);
-        numericBoard = new Keyboard(context, R.xml.symbols);
-        keyboardView.setKeyboard(numericBoard);
-        keyboardView.setEnabled(true);
-        keyboardView.setPreviewEnabled(true);
-        keyboardView.setOnKeyboardActionListener(listener);
-        random();
-    }
-
-    private static final int[] numericCodes = new int[]{48, 49, 50, 51, 52, 53, 54, 55, 56, 57};
-
-    private void random() {
-        List<Keyboard.Key> keys = numericBoard.getKeys();
-        int[] random = getRandomSequence(numericCodes.length);
-        for (int i = 0; i < keys.size(); i++) {
-            Keyboard.Key key = keys.get(i);
-            if (key.codes[0]>=numericCodes[0] && key.codes[0]<=numericCodes[numericCodes.length-1]) {
-                key.codes[0] = numericCodes[random[key.codes[0]-48]];
-                key.label = new String(Character.toChars(key.codes[0]));
-            }
-        }
-    }
-
     private static int[] getRandomSequence(int total) {
         int[] sequence = new int[total];
         int[] output = new int[total];
@@ -139,6 +116,28 @@ public class KeyboardUtil {
         }
 
         return output;
+    }
+
+    private void init() {
+        charBoard = new Keyboard(context, R.xml.qwerty);
+        numericBoard = new Keyboard(context, R.xml.symbols);
+        keyboardView.setKeyboard(numericBoard);
+        keyboardView.setEnabled(true);
+        keyboardView.setPreviewEnabled(true);
+        keyboardView.setOnKeyboardActionListener(listener);
+        random();
+    }
+
+    private void random() {
+        List<Keyboard.Key> keys = numericBoard.getKeys();
+        int[] random = getRandomSequence(numericCodes.length);
+        for (int i = 0; i < keys.size(); i++) {
+            Keyboard.Key key = keys.get(i);
+            if (key.codes[0] >= numericCodes[0] && key.codes[0] <= numericCodes[numericCodes.length - 1]) {
+                key.codes[0] = numericCodes[random[key.codes[0] - 48]];
+                key.label = new String(Character.toChars(key.codes[0]));
+            }
+        }
     }
 
     /**

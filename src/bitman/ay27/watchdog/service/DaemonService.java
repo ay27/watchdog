@@ -1,6 +1,8 @@
 package bitman.ay27.watchdog.service;
 
 import android.app.Service;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 
@@ -10,11 +12,12 @@ import android.os.IBinder;
  */
 public class DaemonService extends Service {
     private ServiceManager manager;
+    private BroadcastReceiver keyguardStatusChangedReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
 
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
-    }
+        }
+    };
 
     @Override
     public void onCreate() {
@@ -44,5 +47,10 @@ public class DaemonService extends Service {
         super.onDestroy();
 
         startService(new Intent(this, DaemonService.class));
+    }
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
     }
 }

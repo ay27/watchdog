@@ -2,6 +2,8 @@ package bitman.ay27.watchdog;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
+import bitman.ay27.watchdog.service.DaemonService;
 
 /**
  * Proudly to user Intellij IDEA.
@@ -14,6 +16,9 @@ public class WatchdogApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
+
+        Intent intent = new Intent(this, DaemonService.class);
+        startService(intent);
     }
 
     public static Context getContext() {

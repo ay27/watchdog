@@ -17,4 +17,6 @@
     <string name="sd_encrypt_summer_false">SD卡加密已关闭</string>
     <string name="choose_img_source">选择图片来源</string>
     <string name="cancel">取消</string>
+    <string name="keyguard_disable">屏幕锁定已关闭</string>
+    <string name="keyguard_enable">屏幕锁定已开启</string>
 </resources>

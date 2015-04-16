@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 import bitman.ay27.watchdog.R;
+import bitman.ay27.watchdog.service.KeyguardService;
+import bitman.ay27.watchdog.service.ServiceManager;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnCheckedChanged;
@@ -23,6 +25,8 @@ public class MainActivity extends ActionBarActivity {
     TextView bootLoaderSummer;
     @InjectView(R.id.main_sd_encrypt_summer)
     TextView sdEncryptSummer;
+    @InjectView(R.id.main_keyguard_summer)
+    TextView keyguardSummer;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,6 +59,18 @@ public class MainActivity extends ActionBarActivity {
             sdEncryptSummer.setText(R.string.sd_encrypt_summer_true);
         } else {
             sdEncryptSummer.setText(R.string.sd_encrypt_summer_false);
+        }
+    }
+
+    @OnCheckedChanged(R.id.main_keyguard_switch)
+    public void keyguardCheckChanged(CompoundButton buttonView, boolean isChecked) {
+        ServiceManager manager = ServiceManager.getInstance();
+        if (isChecked) {
+            manager.addService(KeyguardService.class);
+            keyguardSummer.setText(R.string.keyguard_enable);
+        } else {
+            manager.removeService(KeyguardService.class);
+            keyguardSummer.setText(R.string.keyguard_disable);
         }
     }
 

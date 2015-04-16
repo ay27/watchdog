@@ -13,6 +13,8 @@ public class MainActivity$$ViewInjector {
     target.bootLoaderSummer = (android.widget.TextView) view;
     view = finder.findRequiredView(source, 2131492944, "field 'sdEncryptSummer'");
     target.sdEncryptSummer = (android.widget.TextView) view;
+    view = finder.findRequiredView(source, 2131492946, "field 'keyguardSummer'");
+    target.keyguardSummer = (android.widget.TextView) view;
     view = finder.findRequiredView(source, 2131492943, "method 'bootLoaderCheckChanged'");
     ((android.widget.CompoundButton) view).setOnCheckedChangeListener(
       new android.widget.CompoundButton.OnCheckedChangeListener() {
@@ -33,6 +35,16 @@ public class MainActivity$$ViewInjector {
           target.sdEncryptCheckChanged(p0, p1);
         }
       });
+    view = finder.findRequiredView(source, 2131492947, "method 'keyguardCheckChanged'");
+    ((android.widget.CompoundButton) view).setOnCheckedChangeListener(
+      new android.widget.CompoundButton.OnCheckedChangeListener() {
+        @Override public void onCheckedChanged(
+          android.widget.CompoundButton p0,
+          boolean p1
+        ) {
+          target.keyguardCheckChanged(p0, p1);
+        }
+      });
     view = finder.findRequiredView(source, 2131492939, "method 'loginClick'");
     view.setOnClickListener(
       new android.view.View.OnClickListener() {
@@ -42,7 +54,7 @@ public class MainActivity$$ViewInjector {
           target.loginClick(p0);
         }
       });
-    view = finder.findRequiredView(source, 2131492946, "method 'drawPanelClick'");
+    view = finder.findRequiredView(source, 2131492948, "method 'drawPanelClick'");
     view.setOnClickListener(
       new android.view.View.OnClickListener() {
         @Override public void onClick(
@@ -51,7 +63,7 @@ public class MainActivity$$ViewInjector {
           target.drawPanelClick(p0);
         }
       });
-    view = finder.findRequiredView(source, 2131492947, "method 'secPasswdPanelClick'");
+    view = finder.findRequiredView(source, 2131492949, "method 'secPasswdPanelClick'");
     view.setOnClickListener(
       new android.view.View.OnClickListener() {
         @Override public void onClick(
@@ -60,7 +72,7 @@ public class MainActivity$$ViewInjector {
           target.secPasswdPanelClick(p0);
         }
       });
-    view = finder.findRequiredView(source, 2131492952, "method 'aboutClick'");
+    view = finder.findRequiredView(source, 2131492954, "method 'aboutClick'");
     view.setOnClickListener(
       new android.view.View.OnClickListener() {
         @Override public void onClick(
@@ -75,5 +87,6 @@ public class MainActivity$$ViewInjector {
     target.toolbar = null;
     target.bootLoaderSummer = null;
     target.sdEncryptSummer = null;
+    target.keyguardSummer = null;
   }
 }

@@ -59,11 +59,10 @@ public class SetPasswdActivity extends ActionBarActivity {
                     int old = edt.getInputType();
                     edt.setInputType(InputType.TYPE_NULL);
 //                    edt.setFocusable(true);
-                    new KeyboardUtil(SetPasswdActivity.this, keyboardView, edt).showKeyboard();
+                    new KeyboardUtil(SetPasswdActivity.this, keyboardView, edt, null).showKeyboard();
                     edt.setInputType(old);
                     edt.setSelection(edt.getText().length());
-                }
-                else if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                } else if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     edt.requestFocus();
                 }
                 return true;

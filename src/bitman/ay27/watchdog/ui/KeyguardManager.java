@@ -2,10 +2,13 @@ package bitman.ay27.watchdog.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import bitman.ay27.watchdog.db.DbManager;
 import bitman.ay27.watchdog.db.model.KeyguardStatus;
 import bitman.ay27.watchdog.ui.activity.KeyguardImgActivity;
 import bitman.ay27.watchdog.ui.activity.KeyguardKeyboardActivity;
+
+import java.util.List;
 
 /**
  * Proudly to user Intellij IDEA.
@@ -13,12 +16,18 @@ import bitman.ay27.watchdog.ui.activity.KeyguardKeyboardActivity;
  */
 public class KeyguardManager {
 
+    private static final String TAG = "KeyguardManager";
     private KeyguardStatus status;
     private Context context;
 
     public KeyguardManager(Context context) {
         this.context = context;
-        status = (KeyguardStatus) DbManager.getInstance().query(KeyguardStatus.class).get(0);
+        List list = DbManager.getInstance().query(KeyguardStatus.class);
+        if (list == null || list.size()==0) {
+            Log.e(TAG, "can not read keyguard status from DB");
+            return;
+        }
+        status = (KeyguardStatus) list.get(0);
     }
 
     public void launchKeyguard() {

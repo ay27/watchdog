@@ -39,7 +39,7 @@
 
             <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
                       style="@style/PreferenceCatalog"
-                      android:text="刷机锁和SD卡加密"/>
+                      android:text="开关"/>
             <include layout="@layout/divider_large"/>
             <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
                 <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
                               android:text="刷机锁"/>
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                               style="@style/PreferenceSecondText"
-                              android:text="刷机已被关闭"
+                              android:text="@string/boot_loader_summer_false"
                               android:id="@+id/main_boot_loader_summer"/>
                 </LinearLayout>
                 <com.kyleduo.switchbutton.SwitchButton
@@ -76,7 +76,7 @@
                               android:text="SD卡加密"/>
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                               style="@style/PreferenceSecondText"
-                              android:text="已开启"
+                              android:text="@string/sd_encrypt_summer_false"
                               android:id="@+id/main_sd_encrypt_summer"/>
                 </LinearLayout>
                 <com.kyleduo.switchbutton.SwitchButton
@@ -87,6 +87,31 @@
                         android:layout_centerVertical="true"
                         />
             </RelativeLayout>
+
+            <include layout="@layout/divider_small"/>
+            <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                              style="@style/PreferencePanel"
+                              android:layout_alignParentTop="true"
+                              android:layout_alignParentStart="true"
+                              android:clickable="false">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                              style="@style/PreferenceFirstText"
+                              android:text="屏幕锁定"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                              style="@style/PreferenceSecondText"
+                              android:text="@string/keyguard_disable"
+                              android:id="@+id/main_keyguard_summer"/>
+                </LinearLayout>
+                <com.kyleduo.switchbutton.SwitchButton
+                        android:id="@+id/main_keyguard_switch"
+                        style="@style/MaterialDesignStyle"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="16dp"
+                        android:layout_centerVertical="true"
+                        />
+            </RelativeLayout>
+
 
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                       android:text="密码设定"
@@ -145,6 +170,7 @@
                           android:text="当前没有绑定NFC卡"
                           android:id="@+id/main_bind_nfc_summer"/>
             </LinearLayout>
+
 
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                       style="@style/PreferenceCatalog"
