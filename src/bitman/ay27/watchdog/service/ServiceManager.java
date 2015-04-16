@@ -36,11 +36,12 @@ public class ServiceManager {
         DbManager manager = DbManager.getInstance();
         List<ServiceStatus> statuses = manager.query(ServiceStatus.class);
 
-        ClassLoader loader = ClassLoader.getSystemClassLoader();
+//        ClassLoader loader = ClassLoader.getSystemClassLoader();
+//        Thread.currentThread().setContextClassLoader(loader);
 
         for (ServiceStatus status : statuses) {
             try {
-                packs.add(new Pack(loader.loadClass(status.serviceClassName), status));
+                packs.add(new Pack(Class.forName(status.serviceClassName), status));
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
                 Log.e(TAG, e.toString());

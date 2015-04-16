@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.graphics.PixelFormat;
 import android.inputmethodservice.KeyboardView;
 import android.os.Bundle;
+import android.text.InputType;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -12,6 +14,7 @@ import bitman.ay27.watchdog.R;
 import bitman.ay27.watchdog.db.model.KeyguardStatus;
 import bitman.ay27.watchdog.widget.keyboard.KeyboardCallback;
 import bitman.ay27.watchdog.widget.keyboard.KeyboardUtil;
+import butterknife.ButterKnife;
 import butterknife.InjectView;
 
 /**
@@ -44,6 +47,9 @@ public class KeyguardKeyboardActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        view = getLayoutInflater().inflate(R.layout.keyguard_keyboard, null);
+        ButterKnife.inject(this, view);
+
         wm = (WindowManager) getApplicationContext().getSystemService("window");
 
         status = (KeyguardStatus) getIntent().getSerializableExtra("Status");
@@ -51,8 +57,6 @@ public class KeyguardKeyboardActivity extends Activity {
             Toast.makeText(this, "keyguard status error", Toast.LENGTH_SHORT).show();
             finish();
         }
-
-        view = getLayoutInflater().inflate(R.layout.keyguard_keyboard, null);
 
         setupKeyboard();
     }
@@ -66,6 +70,22 @@ public class KeyguardKeyboardActivity extends Activity {
     }
 
     private void setupKeyboard() {
+        inputEdt.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    int old = inputEdt.getInputType();
+                    inputEdt.setInputType(InputType.TYPE_NULL);
+//                    edt.setFocusable(true);
+                    new KeyboardUtil(KeyguardKeyboardActivity.this, keyboardView, inputEdt, finishCallback).showKeyboard();
+                    inputEdt.setInputType(old);
+                    inputEdt.setSelection(inputEdt.getText().length());
+                } else if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    inputEdt.requestFocus();
+                }
+                return true;
+            }
+        });
         new KeyboardUtil(this, keyboardView, inputEdt, finishCallback).showKeyboard();
         addStaticView(view);
         staticViewAdded = true;

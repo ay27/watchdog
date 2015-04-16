@@ -19,4 +19,7 @@
     <string name="cancel">取消</string>
     <string name="keyguard_disable">屏幕锁定已关闭</string>
     <string name="keyguard_enable">屏幕锁定已开启</string>
+    <string name="save_ok">保存成功</string>
+    <string name="change_passwd_ok">密码更改成功</string>
+    <string name="unlock_failed">解锁失败</string>
 </resources>

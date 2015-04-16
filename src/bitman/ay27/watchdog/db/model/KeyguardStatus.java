@@ -27,6 +27,7 @@ public class KeyguardStatus implements Serializable {
     public PasswdType unlockType;
 
     public KeyguardStatus() {
+        unlockType = PasswdType.image;
     }
 
     public KeyguardStatus(String passwd, ArrayList<Long> patternAngelChainIds, PasswdType type) {

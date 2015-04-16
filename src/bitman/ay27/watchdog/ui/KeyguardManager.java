@@ -23,7 +23,7 @@ public class KeyguardManager {
     public KeyguardManager(Context context) {
         this.context = context;
         List list = DbManager.getInstance().query(KeyguardStatus.class);
-        if (list == null || list.size()==0) {
+        if (list == null || list.size() == 0) {
             Log.e(TAG, "can not read keyguard status from DB");
             return;
         }
@@ -31,7 +31,11 @@ public class KeyguardManager {
     }
 
     public void launchKeyguard() {
-        if (status == null || status.unlockType == KeyguardStatus.PasswdType.keyboard) {
+        if (status == null) {
+            Log.e(TAG, "without status, can not launch keyguard");
+            return;
+        }
+        if (status.unlockType == KeyguardStatus.PasswdType.keyboard) {
             Intent intent = new Intent(context, KeyguardKeyboardActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);

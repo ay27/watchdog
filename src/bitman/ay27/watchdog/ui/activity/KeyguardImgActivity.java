@@ -90,6 +90,9 @@ public class KeyguardImgActivity extends Activity {
                     manager.updateList(AngleChain.class, patterns);
                     finish();
                 }
+                else {
+                    Toast.makeText(KeyguardImgActivity.this, R.string.unlock_failed, Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override

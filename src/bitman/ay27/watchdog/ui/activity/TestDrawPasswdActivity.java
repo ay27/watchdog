@@ -16,7 +16,6 @@ import android.widget.Toast;
 import bitman.ay27.watchdog.R;
 import bitman.ay27.watchdog.db.DbManager;
 import bitman.ay27.watchdog.db.model.AngleChain;
-import bitman.ay27.watchdog.db.model.KeyguardStatus;
 import bitman.ay27.watchdog.processor.AngleChainProcessor;
 import bitman.ay27.watchdog.processor.Curve;
 import bitman.ay27.watchdog.ui.DrawingCanvas;
@@ -33,19 +32,19 @@ import java.util.List;
 
 /**
  * Proudly to user Intellij IDEA.
- * Created by ay27 on 15/4/16.
+ * Created by ay27 on 15/4/7.
  */
-public class SetDrawPasswdActivity extends Activity {
+public class TestDrawPasswdActivity extends Activity {
 
     private static final int GET_PICTURE = 0x1;
     private static final int TAKE_PHOTO = 0x2;
-    @InjectView(R.id.set_draw_passwd_canvas)
+    @InjectView(R.id.set_draw_passwd_test_canvas)
     DrawingCanvas canvas;
-    @InjectView(R.id.set_draw_passwd_widget)
+    @InjectView(R.id.set_draw_passwd_test_widget)
     View widgetView;
-    @InjectView(R.id.set_draw_passwd_change_img)
+    @InjectView(R.id.set_draw_passwd_test_change_img)
     Button changeImgBtn;
-    @InjectView(R.id.set_draw_passwd_save)
+    @InjectView(R.id.set_draw_passwd_test_save)
     Button saveBtn;
 
     private Uri photoUri;
@@ -63,26 +62,26 @@ public class SetDrawPasswdActivity extends Activity {
         return null;
     }
 
-    @OnClick(R.id.set_draw_passwd_change_img)
+    @OnClick(R.id.set_draw_passwd_test_change_img)
     public void changeImgClick(View view) {
         chooseImage();
 //        chooseImg();
     }
-//
-//    @OnClick(R.id.set_draw_passwd_comp)
-//    public void compClick(View view) {
-//        List<AngleChain> exists = DbManager.getInstance().query(AngleChain.class);
-//        if (exists == null || exists.size() == 0) {
-//            return;
-//        }
-//        AngleChainProcessor processor = new AngleChainProcessor(new ArrayList<AngleChain>(exists), curves);
-//        boolean flag = processor.compare();
-//        Toast.makeText(this, "" + flag, Toast.LENGTH_SHORT).show();
-//        canvas.cleanCanvas();
-////        canvas.drawChain(processor.getMatchingChains().get(0));
-//    }
 
-    @OnClick(R.id.set_draw_passwd_save)
+    @OnClick(R.id.set_draw_passwd_test_comp)
+    public void compClick(View view) {
+        List<AngleChain> exists = DbManager.getInstance().query(AngleChain.class);
+        if (exists == null || exists.size() == 0) {
+            return;
+        }
+        AngleChainProcessor processor = new AngleChainProcessor(new ArrayList<AngleChain>(exists), curves);
+        boolean flag = processor.compare();
+        Toast.makeText(this, "" + flag, Toast.LENGTH_SHORT).show();
+        canvas.cleanCanvas();
+//        canvas.drawChain(processor.getMatchingChains().get(0));
+    }
+
+    @OnClick(R.id.set_draw_passwd_test_save)
     public void saveClick(View view) {
         AngleChainProcessor processor = new AngleChainProcessor(curves);
         List<AngleChain> chains = processor.fit_matching_curves();
@@ -92,25 +91,8 @@ public class SetDrawPasswdActivity extends Activity {
             manager.bulkDelete(AngleChain.class, exists);
         }
         manager.bulkInsert(AngleChain.class, chains);
-        chains = manager.query(AngleChain.class);
-        ArrayList<Long> ids = new ArrayList<Long>();
-        for (AngleChain chain : chains) {
-            ids.add(chain.id);
-        }
-
-        List tmp = manager.query(KeyguardStatus.class);
-        if (tmp == null || tmp.size() == 0) {
-            KeyguardStatus status = new KeyguardStatus(null, ids, KeyguardStatus.PasswdType.image);
-            manager.insert(KeyguardStatus.class, status);
-        } else {
-            KeyguardStatus status = (KeyguardStatus) tmp.get(0);
-            status.patternAngelChainIds = ids;
-            manager.update(KeyguardStatus.class, status);
-        }
 
         canvas.cleanCanvas();
-
-        Toast.makeText(this, R.string.save_ok, Toast.LENGTH_SHORT).show();
 //        canvas.drawChain(chains.get(0));
     }
 
@@ -118,7 +100,7 @@ public class SetDrawPasswdActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.set_draw_passwd);
+        setContentView(R.layout.set_draw_passwd_test);
         ButterKnife.inject(this);
 
         canvas.setOnDrawFinishedListener(new DrawingCanvas.DrawingCallback() {
@@ -129,7 +111,7 @@ public class SetDrawPasswdActivity extends Activity {
 
             @Override
             public void onActionDown() {
-                Animation animation = AnimationUtils.loadAnimation(SetDrawPasswdActivity.this, R.anim.abc_fade_out);
+                Animation animation = AnimationUtils.loadAnimation(TestDrawPasswdActivity.this, R.anim.abc_fade_out);
                 animation.setAnimationListener(new Animation.AnimationListener() {
                     @Override
                     public void onAnimationStart(Animation animation) {
@@ -152,7 +134,7 @@ public class SetDrawPasswdActivity extends Activity {
 
             @Override
             public void onActionUp() {
-                Animation animation = AnimationUtils.loadAnimation(SetDrawPasswdActivity.this, R.anim.abc_fade_in);
+                Animation animation = AnimationUtils.loadAnimation(TestDrawPasswdActivity.this, R.anim.abc_fade_in);
                 animation.setAnimationListener(new Animation.AnimationListener() {
                     @Override
                     public void onAnimationStart(Animation animation) {
