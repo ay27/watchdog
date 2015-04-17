@@ -98,9 +98,9 @@ public class KeyguardKeyboardActivity extends Activity {
          *以下都是WindowManager.LayoutParams的相关属性
          * 具体用途请参考SDK文档
          */
-        final int PARAMS = WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD; // | WindowManager.LayoutParams.FLAG_FULLSCREEN
-//                | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
-//                | WindowManager.LayoutParams.FLAG_LAYOUT_INSET_DECOR;
+        final int PARAMS = WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD // | WindowManager.LayoutParams.FLAG_FULLSCREEN
+                | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
+                | WindowManager.LayoutParams.FLAG_LAYOUT_INSET_DECOR;
 
         wmParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ERROR;   //这里是关键，你也可以试试2003
         wmParams.format = PixelFormat.OPAQUE;

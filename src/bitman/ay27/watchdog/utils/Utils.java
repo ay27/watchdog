@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -43,20 +42,20 @@ public class Utils {
         return BitmapFactory.decodeStream(cr.openInputStream(picUri), null, o2);
     }
 
-    public static String getDiskCacheDir(Context context) {
-        String cachePath;
+    public static String getExternalStorageDir(Context context) {
+        String path;
         if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())
                 || !Environment.isExternalStorageRemovable()) {
-            cachePath = context.getExternalCacheDir().getPath();
+            path = Environment.getExternalStorageDirectory().getPath();
         } else {
-            cachePath = context.getCacheDir().getPath();
+            path = Environment.getDataDirectory().getPath();
         }
-        return cachePath;
+        return path;
     }
 
-    public static String write2cache(Context context, Bitmap data) throws IOException {
-        String cachePath = getDiskCacheDir(context);
-        File file = new File(cachePath, "" + System.currentTimeMillis() + ".png");
+    public static String write2Storage(Context context, Bitmap data) throws IOException {
+        String path = getExternalStorageDir(context);
+        File file = new File(path, "" + System.currentTimeMillis() + ".png");
 
         FileOutputStream outputStream = new FileOutputStream(file);
         ByteArrayOutputStream bos = new ByteArrayOutputStream();

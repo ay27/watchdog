@@ -19,6 +19,8 @@ public class KeyguardStatus implements Serializable {
 
     @DatabaseField(dataType = DataType.SERIALIZABLE)
     public ArrayList<Long> patternAngelChainIds;
+    @DatabaseField
+    public String imagePath;
 
     @DatabaseField
     public String passwd;

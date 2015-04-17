@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+             android:orientation="vertical"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
 
     <bitman.ay27.watchdog.ui.DrawingCanvas android:layout_width="match_parent" android:layout_height="match_parent"
                                            android:background="@drawable/image1"
@@ -15,5 +15,17 @@
             android:layout_gravity="end|top"
             android:layout_margin="16dp"
             android:background="#88ffffff"/>
+
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="解锁失败"
+                  android:textColor="@color/white"
+                  android:padding="16dp"
+                  android:layout_marginBottom="96dp"
+                  android:background="@drawable/toast_background_standard_gray" android:layout_alignParentBottom="true"
+                  android:layout_centerHorizontal="true"
+                android:id="@+id/keyguard_img_error_toast"
+                android:visibility="gone"/>
+    </RelativeLayout>
 
 </FrameLayout>

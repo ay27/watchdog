@@ -105,8 +105,8 @@ public class TestDrawPasswdActivity extends Activity {
 
         canvas.setOnDrawFinishedListener(new DrawingCanvas.DrawingCallback() {
             @Override
-            public void onDrawPause(ArrayList<Curve> rawCurves) {
-                curves = rawCurves;
+            public void onDrawPause() {
+
             }
 
             @Override
@@ -133,7 +133,10 @@ public class TestDrawPasswdActivity extends Activity {
             }
 
             @Override
-            public void onActionUp() {
+            public void onActionUp(ArrayList<Curve> rawCurves) {
+
+                curves = rawCurves;
+
                 Animation animation = AnimationUtils.loadAnimation(TestDrawPasswdActivity.this, R.anim.abc_fade_in);
                 animation.setAnimationListener(new Animation.AnimationListener() {
                     @Override
@@ -178,8 +181,8 @@ public class TestDrawPasswdActivity extends Activity {
         Intent intent = new Intent();
         intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
 
-        String cacheDir = Utils.getDiskCacheDir(this);
-        photoFile = new File(cacheDir, "" + System.currentTimeMillis() + ".jpg");
+        String dir = Utils.getExternalStorageDir(this);
+        photoFile = new File(dir, "" + System.currentTimeMillis() + ".jpg");
         photoUri = Uri.fromFile(photoFile);
 
         intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);

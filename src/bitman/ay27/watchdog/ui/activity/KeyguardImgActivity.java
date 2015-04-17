@@ -3,7 +3,9 @@ package bitman.ay27.watchdog.ui.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.PixelFormat;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -33,6 +35,8 @@ public class KeyguardImgActivity extends Activity {
     DrawingCanvas dCanvas;
     @InjectView(R.id.keyguard_change_btn)
     Button changeModeBtn;
+    @InjectView(R.id.keyguard_img_error_toast)
+    View errorToast;
 
     private WindowManager wm;
     private KeyguardStatus status;
@@ -55,6 +59,10 @@ public class KeyguardImgActivity extends Activity {
         }
 
         setupCanvas();
+
+        if (status.imagePath != null) {
+            dCanvas.setBackground(Drawable.createFromPath(status.imagePath));
+        }
     }
 
     @Override
@@ -83,16 +91,50 @@ public class KeyguardImgActivity extends Activity {
 
         dCanvas.setOnDrawFinishedListener(new DrawingCanvas.DrawingCallback() {
             @Override
-            public void onDrawPause(ArrayList<Curve> rawCurves) {
-                AngleChainProcessor processor = new AngleChainProcessor(patterns, rawCurves);
-                if (processor.compare()) {
-                    processor.updatePattern();
-                    manager.updateList(AngleChain.class, patterns);
-                    finish();
-                }
-                else {
-                    Toast.makeText(KeyguardImgActivity.this, R.string.unlock_failed, Toast.LENGTH_SHORT).show();
-                }
+            public void onDrawPause() {
+                Animation animation = AnimationUtils.loadAnimation(KeyguardImgActivity.this, R.anim.abc_fade_in);
+                animation.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        errorToast.setVisibility(View.VISIBLE);
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                errorToast.setVisibility(View.VISIBLE);
+                                Animation fadeout = AnimationUtils.loadAnimation(KeyguardImgActivity.this, R.anim.abc_fade_out);
+                                fadeout.setAnimationListener(new Animation.AnimationListener() {
+                                    @Override
+                                    public void onAnimationStart(Animation animation) {
+
+                                    }
+
+                                    @Override
+                                    public void onAnimationEnd(Animation animation) {
+                                        errorToast.setVisibility(View.GONE);
+                                    }
+
+                                    @Override
+                                    public void onAnimationRepeat(Animation animation) {
+
+                                    }
+                                });
+                                errorToast.startAnimation(fadeout);
+                            }
+                        }, 1500);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
+                errorToast.startAnimation(animation);
             }
 
             @Override
@@ -118,9 +160,9 @@ public class KeyguardImgActivity extends Activity {
             }
 
             @Override
-            public void onActionUp() {
-                Animation animation = AnimationUtils.loadAnimation(KeyguardImgActivity.this, R.anim.abc_fade_in);
-                animation.setAnimationListener(new Animation.AnimationListener() {
+            public void onActionUp(ArrayList<Curve> rawCurves) {
+                Animation fadein = AnimationUtils.loadAnimation(KeyguardImgActivity.this, R.anim.abc_fade_in);
+                fadein.setAnimationListener(new Animation.AnimationListener() {
                     @Override
                     public void onAnimationStart(Animation animation) {
                     }
@@ -134,7 +176,15 @@ public class KeyguardImgActivity extends Activity {
                     public void onAnimationRepeat(Animation animation) {
                     }
                 });
-                changeModeBtn.startAnimation(animation);
+                changeModeBtn.startAnimation(fadein);
+
+
+                AngleChainProcessor processor = new AngleChainProcessor(patterns, rawCurves);
+                if (processor.compare()) {
+                    processor.updatePattern();
+                    manager.updateList(AngleChain.class, patterns);
+                    finish();
+                }
             }
         });
 
@@ -158,9 +208,9 @@ public class KeyguardImgActivity extends Activity {
          *以下都是WindowManager.LayoutParams的相关属性
          * 具体用途请参考SDK文档
          */
-        final int PARAMS = WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD; // | WindowManager.LayoutParams.FLAG_FULLSCREEN
-//                | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
-//                | WindowManager.LayoutParams.FLAG_LAYOUT_INSET_DECOR;
+        final int PARAMS = WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD // | WindowManager.LayoutParams.FLAG_FULLSCREEN
+                | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
+                | WindowManager.LayoutParams.FLAG_LAYOUT_INSET_DECOR;
 
         wmParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ERROR;   //这里是关键，你也可以试试2003
         wmParams.format = PixelFormat.OPAQUE;

@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -20,6 +21,7 @@ import bitman.ay27.watchdog.db.model.KeyguardStatus;
 import bitman.ay27.watchdog.processor.AngleChainProcessor;
 import bitman.ay27.watchdog.processor.Curve;
 import bitman.ay27.watchdog.ui.DrawingCanvas;
+import bitman.ay27.watchdog.utils.ImageDecodeUtils;
 import bitman.ay27.watchdog.utils.Utils;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -27,6 +29,7 @@ import butterknife.OnClick;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +42,7 @@ public class SetDrawPasswdActivity extends Activity {
 
     private static final int GET_PICTURE = 0x1;
     private static final int TAKE_PHOTO = 0x2;
+    private static final String TAG = "SetDrawPasswdActivity";
     @InjectView(R.id.set_draw_passwd_canvas)
     DrawingCanvas canvas;
     @InjectView(R.id.set_draw_passwd_widget)
@@ -51,6 +55,9 @@ public class SetDrawPasswdActivity extends Activity {
     private Uri photoUri;
     private File photoFile;
     private ArrayList<Curve> curves;
+    private String filePath;
+    private KeyguardStatus status;
+    private boolean statusInDB = false;
 
     private static Drawable decodeSource(Context context, Uri photoUri, int widthPixels) {
         ContentResolver cr = context.getContentResolver();
@@ -98,14 +105,12 @@ public class SetDrawPasswdActivity extends Activity {
             ids.add(chain.id);
         }
 
-        List tmp = manager.query(KeyguardStatus.class);
-        if (tmp == null || tmp.size() == 0) {
-            KeyguardStatus status = new KeyguardStatus(null, ids, KeyguardStatus.PasswdType.image);
-            manager.insert(KeyguardStatus.class, status);
-        } else {
-            KeyguardStatus status = (KeyguardStatus) tmp.get(0);
-            status.patternAngelChainIds = ids;
+        status.patternAngelChainIds = ids;
+        status.unlockType = KeyguardStatus.PasswdType.image;
+        if (statusInDB) {
             manager.update(KeyguardStatus.class, status);
+        } else {
+            manager.insert(KeyguardStatus.class, status);
         }
 
         canvas.cleanCanvas();
@@ -121,10 +126,22 @@ public class SetDrawPasswdActivity extends Activity {
         setContentView(R.layout.set_draw_passwd);
         ButterKnife.inject(this);
 
+        List tmp = DbManager.getInstance().query(KeyguardStatus.class);
+        if (tmp == null || tmp.size() == 0) {
+            status = new KeyguardStatus();
+            statusInDB = false;
+        } else {
+            status = (KeyguardStatus) tmp.get(0);
+            statusInDB = true;
+        }
+        if (status.imagePath != null) {
+            canvas.setBackground(Drawable.createFromPath(status.imagePath));
+        }
+
         canvas.setOnDrawFinishedListener(new DrawingCanvas.DrawingCallback() {
             @Override
-            public void onDrawPause(ArrayList<Curve> rawCurves) {
-                curves = rawCurves;
+            public void onDrawPause() {
+
             }
 
             @Override
@@ -151,7 +168,10 @@ public class SetDrawPasswdActivity extends Activity {
             }
 
             @Override
-            public void onActionUp() {
+            public void onActionUp(ArrayList<Curve> rawCurves) {
+
+                curves = rawCurves;
+
                 Animation animation = AnimationUtils.loadAnimation(SetDrawPasswdActivity.this, R.anim.abc_fade_in);
                 animation.setAnimationListener(new Animation.AnimationListener() {
                     @Override
@@ -178,7 +198,23 @@ public class SetDrawPasswdActivity extends Activity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == GET_PICTURE && resultCode == RESULT_OK) {
             photoUri = data.getData();
+
             canvas.setBackground(decodeSource(this, photoUri, getResources().getDisplayMetrics().widthPixels));
+            try {
+                filePath = Utils.write2Storage(this, ImageDecodeUtils.decodeSource(this, photoUri, getResources().getDisplayMetrics().widthPixels));
+            } catch (IOException e) {
+                e.printStackTrace();
+                Log.e(TAG, "save picture error");
+            }
+            if (filePath != null) {
+                status.imagePath = filePath;
+                if (statusInDB) {
+                    DbManager.getInstance().update(KeyguardStatus.class, status);
+                } else {
+                    DbManager.getInstance().insert(KeyguardStatus.class, status);
+                }
+            }
+
         } else if (requestCode == TAKE_PHOTO && resultCode == RESULT_OK) {
             canvas.setBackground(Drawable.createFromPath(photoFile.getAbsolutePath()));
 //            canvas.setBackground(decodeSource(this, photoUri, getResources().getDisplayMetrics().widthPixels));
@@ -196,8 +232,8 @@ public class SetDrawPasswdActivity extends Activity {
         Intent intent = new Intent();
         intent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
 
-        String cacheDir = Utils.getDiskCacheDir(this);
-        photoFile = new File(cacheDir, "" + System.currentTimeMillis() + ".jpg");
+        String dir = Utils.getExternalStorageDir(this);
+        photoFile = new File(dir, "" + System.currentTimeMillis() + ".jpg");
         photoUri = Uri.fromFile(photoFile);
 
         intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);

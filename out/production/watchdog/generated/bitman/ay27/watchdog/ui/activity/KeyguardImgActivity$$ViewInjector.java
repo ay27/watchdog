@@ -19,10 +19,13 @@ public class KeyguardImgActivity$$ViewInjector {
           target.changeClick(p0);
         }
       });
+    view = finder.findRequiredView(source, 2131492930, "field 'errorToast'");
+    target.errorToast = view;
   }
 
   public static void reset(bitman.ay27.watchdog.ui.activity.KeyguardImgActivity target) {
     target.dCanvas = null;
     target.changeModeBtn = null;
+    target.errorToast = null;
   }
 }

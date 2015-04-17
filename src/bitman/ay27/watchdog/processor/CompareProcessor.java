@@ -13,16 +13,16 @@ class CompareProcessor {
 
     public static final double ANGLE_CHAIN_THRESHOLD1 = Math.tan(Math.PI / 6.0);
     public static final double ANGLE_CHAIN_THRESHOLD2 = Math.tan(Math.PI / 3.0);
-    public static final double CHAIN_MATCHING_TOLERANCE = 5.0;
+    public static final double CHAIN_MATCHING_TOLERANCE = 8.0;
     private static final String TAG = "CompareProcessor";
     /**
      * 起点位置误差100px
      */
-    private static final double START_POSITION_THRESHOLD = 48.0;
+    private static final double START_POSITION_THRESHOLD = 100.0;
     /**
      * 每个直线段的时间误差500ms
      */
-    private static final double TIME_THRESHOLD = 500.0;
+    private static final double TIME_THRESHOLD = 1000.0;
     /**
      * 每个直线段长度误差20px
      */

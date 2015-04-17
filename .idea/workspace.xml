@@ -28,53 +28,60 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="28777324-ed83-4814-ba7a-bf7f7af243bb" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/res/layout/set_draw_passwd.xml" afterPath="$PROJECT_DIR$/res/layout/set_draw_passwd_test.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/SetDrawPasswdActivity.java" afterPath="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/TestDrawPasswdActivity.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/bitman/ay27/watchdog/utils/ImageDecodeUtils.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/res/drawable/toast_background_standard_gray.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/processor/CompareProcessor.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/processor/CompareProcessor.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/DrawingCanvas$1.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/DrawingCanvas$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/DrawingCanvas$2.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/DrawingCanvas$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/DrawingCanvas$DrawingCallback.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/DrawingCanvas$DrawingCallback.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/DrawingCanvas.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/DrawingCanvas.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/KeyguardImgActivity$$ViewInjector.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/KeyguardImgActivity$$ViewInjector.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/KeyguardImgActivity$1$1.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/KeyguardImgActivity$1$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/KeyguardImgActivity$1$2.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/KeyguardImgActivity$1$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/KeyguardImgActivity$1.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/KeyguardImgActivity$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/KeyguardImgActivity.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/KeyguardImgActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/KeyguardKeyboardActivity$1.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/KeyguardKeyboardActivity$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/KeyguardKeyboardActivity$$ViewInjector.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/KeyguardKeyboardActivity$$ViewInjector.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/KeyguardKeyboardActivity.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/KeyguardKeyboardActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/KeyguardManager.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/KeyguardManager.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/db/model/KeyguardStatus$PasswdType.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/db/model/KeyguardStatus$PasswdType.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/db/model/KeyguardStatus.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/db/model/KeyguardStatus.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/LoginDialog$1.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/LoginDialog$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/LoginDialog.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/LoginDialog.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/MainActivity$$ViewInjector.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/MainActivity$$ViewInjector.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/MainActivity.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/MainActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/R$drawable.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/R$drawable.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/R$id.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/R$id.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/widget/R$id.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/widget/R$id.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/R$integer.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/R$integer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/android/support/v7/appcompat/R$layout.class" afterPath="$PROJECT_DIR$/out/production/watchdog/android/support/v7/appcompat/R$layout.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/R$layout.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/R$layout.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/R$string.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/R$string.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/R$style.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/R$style.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/R$styleable.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/R$styleable.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/R$xml.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/R$xml.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/R.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/R.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/service/ServiceManager$Pack.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/service/ServiceManager$Pack.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/service/ServiceManager.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/service/ServiceManager.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/SetDrawPasswdActivity$$ViewInjector.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/SetDrawPasswdActivity$$ViewInjector.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/SetDrawPasswdActivity$1$1.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/SetDrawPasswdActivity$1$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/SetDrawPasswdActivity$1$2.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/SetDrawPasswdActivity$1$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/SetDrawPasswdActivity$1.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/SetDrawPasswdActivity$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/SetDrawPasswdActivity.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/SetDrawPasswdActivity.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/SetPasswdActivity$$ViewInjector.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/SetPasswdActivity$$ViewInjector.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/SetPasswdActivity$1.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/SetPasswdActivity$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/SetPasswdActivity.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/SetPasswdActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/utils/Utils.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/utils/Utils.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/watchdog.apk" afterPath="$PROJECT_DIR$/out/production/watchdog/watchdog.apk" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/watchdog.unaligned.apk" afterPath="$PROJECT_DIR$/out/production/watchdog/watchdog.unaligned.apk" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bitman/ay27/watchdog/processor/CompareProcessor.java" afterPath="$PROJECT_DIR$/src/bitman/ay27/watchdog/processor/CompareProcessor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/DrawingCanvas.java" afterPath="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/DrawingCanvas.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/generated/bitman/ay27/watchdog/ui/activity/KeyguardImgActivity$$ViewInjector.java" afterPath="$PROJECT_DIR$/out/production/watchdog/generated/bitman/ay27/watchdog/ui/activity/KeyguardImgActivity$$ViewInjector.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/KeyguardImgActivity.java" afterPath="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/KeyguardImgActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/generated/bitman/ay27/watchdog/ui/activity/KeyguardKeyboardActivity$$ViewInjector.java" afterPath="$PROJECT_DIR$/out/production/watchdog/generated/bitman/ay27/watchdog/ui/activity/KeyguardKeyboardActivity$$ViewInjector.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/KeyguardKeyboardActivity.java" afterPath="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/KeyguardKeyboardActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/KeyguardManager.java" afterPath="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/KeyguardManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bitman/ay27/watchdog/db/model/KeyguardStatus.java" afterPath="$PROJECT_DIR$/src/bitman/ay27/watchdog/db/model/KeyguardStatus.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/ServiceManager.java" afterPath="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/ServiceManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/generated/bitman/ay27/watchdog/ui/activity/MainActivity$$ViewInjector.java" afterPath="$PROJECT_DIR$/out/production/watchdog/generated/bitman/ay27/watchdog/ui/activity/MainActivity$$ViewInjector.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/generated/bitman/ay27/watchdog/ui/activity/SetDrawPasswdActivity$$ViewInjector.java" afterPath="$PROJECT_DIR$/out/production/watchdog/generated/bitman/ay27/watchdog/ui/activity/SetDrawPasswdActivity$$ViewInjector.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/SetDrawPasswdActivity.java" afterPath="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/SetDrawPasswdActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/generated/bitman/ay27/watchdog/ui/activity/SetPasswdActivity$$ViewInjector.java" afterPath="$PROJECT_DIR$/out/production/watchdog/generated/bitman/ay27/watchdog/ui/activity/SetPasswdActivity$$ViewInjector.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/SetPasswdActivity.java" afterPath="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/SetPasswdActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/keyguard_keyboard.xml" afterPath="$PROJECT_DIR$/res/layout/keyguard_keyboard.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/set_draw_passwd.xml" afterPath="$PROJECT_DIR$/res/layout/set_draw_passwd.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/set_passwd.xml" afterPath="$PROJECT_DIR$/res/layout/set_passwd.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/TestDrawPasswdActivity.java" afterPath="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/TestDrawPasswdActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bitman/ay27/watchdog/utils/Utils.java" afterPath="$PROJECT_DIR$/src/bitman/ay27/watchdog/utils/Utils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/keyguard_img.xml" afterPath="$PROJECT_DIR$/res/layout/keyguard_img.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="watchdog.iws" />
@@ -101,111 +108,118 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="KeyguardStatus.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/db/model/KeyguardStatus.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="990">
+              <caret line="20" column="48" selection-start-line="20" selection-start-column="48" selection-end-line="20" selection-end-column="48" />
+              <folding>
+                <element signature="e#729#730#0" expanded="true" />
+                <element signature="e#774#775#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SetDrawPasswdActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/SetDrawPasswdActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5456">
+              <caret line="242" column="0" selection-start-line="242" selection-start-column="0" selection-end-line="242" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#3674#3680#0" expanded="true" />
+                <element signature="e#4102#4118#0" expanded="true" />
+                <element signature="e#5472#5473#0" expanded="true" />
+                <element signature="e#5555#5556#0" expanded="true" />
+                <element signature="e#6322#6323#0" expanded="true" />
+                <element signature="e#6408#6409#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TestDrawPasswdActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/TestDrawPasswdActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="2363" max-vertical-offset="3630">
+              <caret line="137" column="35" selection-start-line="137" selection-start-column="35" selection-end-line="137" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="KeyguardImgActivity.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/KeyguardImgActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.3786611" vertical-offset="1332" max-vertical-offset="4532">
+              <caret line="100" column="0" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
+              <folding>
+                <element signature="e#3493#4649#0" expanded="true" />
+                <element signature="e#4648#4649#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DrawingCanvas.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/DrawingCanvas.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="276" max-vertical-offset="4136">
+              <caret line="40" column="37" selection-start-line="40" selection-start-column="37" selection-end-line="40" selection-end-column="37" />
+              <folding>
+                <element signature="e#1140#1355#0" expanded="true" />
+                <element signature="e#1354#1355#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CompareProcessor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/processor/CompareProcessor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="220" max-vertical-offset="3872">
+              <caret line="26" column="20" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="abc_fade_in.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/appcompat/res/anim/abc_fade_in.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-14.08" vertical-offset="0" max-vertical-offset="550">
+              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="19" selection-end-column="67" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="abc_fade_out.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/appcompat/res/anim/abc_fade_out.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-14.08" vertical-offset="0" max-vertical-offset="550">
+              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="19" selection-end-column="67" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="KeyguardKeyboardActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/KeyguardKeyboardActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="830" max-vertical-offset="2310">
-              <caret line="86" column="13" selection-start-line="86" selection-start-column="13" selection-end-line="86" selection-end-column="13" />
-              <folding>
-                <element signature="e#2119#2899#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="keyguard_keyboard.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/keyguard_keyboard.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.563637" vertical-offset="68" max-vertical-offset="836">
-              <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="KeyboardUtil.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/widget/src/bitman/ay27/watchdog/widget/keyboard/KeyboardUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2356" max-vertical-offset="4092">
-              <caret line="128" column="5" selection-start-line="128" selection-start-column="5" selection-end-line="128" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1288" max-vertical-offset="2244">
+              <caret line="103" column="0" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SetDrawPasswdActivity.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/SetDrawPasswdActivity.java">
+      <file leaf-file-name="BindWatchActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/BindWatchActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.4742267" vertical-offset="2194" max-vertical-offset="4532">
-              <caret line="193" column="0" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Keyboard.java" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/android-sdk-macosx/sources/android-21/android/inputmethodservice/Keyboard.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2356" max-vertical-offset="18304">
-              <caret line="144" column="0" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ServiceManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/ServiceManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="618" max-vertical-offset="2420">
-              <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SetPasswdActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/SetPasswdActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1470" max-vertical-offset="2310">
-              <caret line="104" column="16" selection-start-line="104" selection-start-column="16" selection-end-line="114" selection-end-column="28" />
-              <folding>
-                <element signature="e#3458#4186#0" expanded="true" />
-                <element signature="e#4185#4186#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="KeyguardService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/KeyguardService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="398" max-vertical-offset="1100">
-              <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="KeyguardImgActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/KeyguardImgActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="346" max-vertical-offset="3476">
-              <caret line="146" column="46" selection-start-line="146" selection-start-column="46" selection-end-line="146" selection-end-column="46" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DbManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/db/DbManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="706" max-vertical-offset="1760">
-              <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="352">
+              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -224,11 +238,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/res/layout/login_dialog.xml" />
-        <option value="$PROJECT_DIR$/res/layout/login.xml" />
-        <option value="$PROJECT_DIR$/res/layout/sign_up.xml" />
         <option value="$PROJECT_DIR$/res/values/arrays.xml" />
-        <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/utils/Utils.java" />
         <option value="$PROJECT_DIR$/res/anim/test.xml" />
         <option value="$PROJECT_DIR$/res/anim/fade_out.xml" />
         <option value="$PROJECT_DIR$/res/anim/fade_in.xml" />
@@ -245,10 +255,7 @@
         <option value="$PROJECT_DIR$/res/layout/keyboard_key_preview.xml" />
         <option value="$PROJECT_DIR$/widget/res/xml/qwerty.xml" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/processor/Utils.java" />
-        <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/processor/CompareProcessor.java" />
         <option value="$PROJECT_DIR$/widget/res/layout/keyboard.xml" />
-        <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/DrawingCanvas.java" />
-        <option value="$PROJECT_DIR$/res/layout/keyguard_img.xml" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/KeyguardActivity.java" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/KeyguardService.java" />
         <option value="$PROJECT_DIR$/widget/src/bitman/ay27/watchdog/widget/keyboard/KeyboardUtil.java" />
@@ -258,23 +265,30 @@
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/DaemonService.java" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/WatchdogApplication.java" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/KeyguardManager.java" />
-        <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/TestDrawPasswdActivity.java" />
-        <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/MainActivity.java" />
         <option value="$PROJECT_DIR$/res/layout/set_draw_passwd_test.xml" />
         <option value="$PROJECT_DIR$/res/layout/set_draw_passwd.xml" />
-        <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/SetDrawPasswdActivity.java" />
         <option value="$PROJECT_DIR$/res/drawable/edt_background.xml" />
         <option value="$PROJECT_DIR$/res/drawable/edt_background_focus.xml" />
         <option value="$PROJECT_DIR$/res/drawable/edt_background_selector.xml" />
         <option value="$PROJECT_DIR$/res/drawable/edt_background_normal.xml" />
         <option value="$PROJECT_DIR$/res/layout/set_passwd.xml" />
-        <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/db/model/KeyguardStatus.java" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/SetPasswdActivity.java" />
-        <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/KeyguardImgActivity.java" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/ServiceManager.java" />
-        <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/KeyguardKeyboardActivity.java" />
         <option value="$PROJECT_DIR$/res/layout/keyguard_keyboard.xml" />
+        <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/db/model/KeyguardStatus.java" />
+        <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/utils/ImageDecodeUtils.java" />
+        <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/utils/Utils.java" />
+        <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/processor/CompareProcessor.java" />
+        <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/MainActivity.java" />
+        <option value="$PROJECT_DIR$/res/layout/keyguard_img.xml" />
+        <option value="$PROJECT_DIR$/res/anim/toast_fade_in.xml" />
+        <option value="$PROJECT_DIR$/res/anim/toast_fade_out.xml" />
+        <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/KeyguardKeyboardActivity.java" />
+        <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/DrawingCanvas.java" />
+        <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/KeyguardImgActivity.java" />
+        <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/TestDrawPasswdActivity.java" />
+        <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/SetDrawPasswdActivity.java" />
       </list>
     </option>
   </component>
@@ -282,8 +296,8 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="width" value="1440" />
-    <option name="height" value="900" />
+    <option name="width" value="1920" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -383,6 +397,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="utils" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="watchdog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="watchdog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="watchdog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="ui" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -431,7 +467,55 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="service" />
+              <option name="myItemId" value="processor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="watchdog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="watchdog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="watchdog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="db" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="watchdog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="watchdog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="watchdog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="db" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -467,6 +551,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="watchdog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="watchdog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="drawable" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="PackagesPane" />
@@ -490,7 +592,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="257c9e55" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="0149A8CC1700601C" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Nexus_5_API_19" />
     <property name="options.lastSelected" value="reference.projectsettings.compiler.annotationProcessors" />
     <property name="options.splitter.main.proportions" value="0.3" />
@@ -504,8 +606,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="bitman.ay27.watchdog.widget.keyboard" />
       <recent name="bitman.ay27.watchdog.utils" />
+      <recent name="bitman.ay27.watchdog.widget.keyboard" />
       <recent name="bitman.ay27.watchdog.widget" />
       <recent name="bitman.ay27.watchdog.processor" />
       <recent name="bitman.ay27.watchdog.db" />
@@ -522,18 +624,18 @@
       <recent name="bitman.ay27.watchdog.ui.keyguard" />
       <recent name="bitman.ay27.watchdog.service" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/widget/res/layout" />
-      <recent name="$PROJECT_DIR$/widget/res/drawable" />
-      <recent name="$PROJECT_DIR$/res/drawable" />
-      <recent name="$PROJECT_DIR$/res/values" />
-    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="bitman.ay27" />
       <recent name="bitman.ay27.watchdog.widget" />
       <recent name="org.bitman.watchdog" />
       <recent name="org.bitman" />
       <recent name="org.bitman.watchdog.widget" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/widget/res/layout" />
+      <recent name="$PROJECT_DIR$/widget/res/drawable" />
+      <recent name="$PROJECT_DIR$/res/drawable" />
+      <recent name="$PROJECT_DIR$/res/values" />
     </key>
   </component>
   <component name="RunManager" selected="Android Application.watchdog">
@@ -854,15 +956,15 @@
       <workItem from="1429172744442" duration="3849000" />
       <workItem from="1429178466565" duration="2408000" />
       <workItem from="1429185246593" duration="1508000" />
-      <workItem from="1429196909994" duration="2395000" />
+      <workItem from="1429196909994" duration="9861000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="178586000" />
+    <option name="totallyTimeSpent" value="186052000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -877,17 +979,17 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21101573" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32462686" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.157082" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32418698" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Memory Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23819743" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39800996" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23801917" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39735773" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32711443" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4863184" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3262195" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3902439" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24920128" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -919,13 +1021,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/TestDrawPasswdActivity.java</url>
-          <line>181</line>
+          <line>184</line>
           <properties />
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/TestDrawPasswdActivity.java</url>
-          <line>164</line>
+          <line>167</line>
           <properties />
           <option name="timeStamp" value="6" />
         </line-breakpoint>
@@ -948,22 +1050,10 @@
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/bitman/ay27/watchdog/processor/AngleChainProcessor.java</url>
-          <line>38</line>
-          <properties />
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/SetPasswdActivity.java</url>
           <line>106</line>
           <properties />
           <option name="timeStamp" value="29" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$USER_HOME$/android-sdk-macosx/sources/android-21/android/inputmethodservice/KeyboardView.java</url>
-          <line>903</line>
-          <properties />
-          <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/SetPasswdActivity.java</url>
@@ -972,28 +1062,16 @@
           <option name="timeStamp" value="38" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/widget/src/bitman/ay27/watchdog/widget/keyboard/KeyboardUtil.java</url>
-          <line>55</line>
-          <properties />
-          <option name="timeStamp" value="39" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/widget/src/bitman/ay27/watchdog/widget/keyboard/KeyboardUtil.java</url>
-          <line>132</line>
-          <properties />
-          <option name="timeStamp" value="40" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/SetPasswdActivity.java</url>
           <line>83</line>
           <properties />
           <option name="timeStamp" value="43" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/KeyguardKeyboardActivity.java</url>
-          <line>54</line>
+          <url>file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/SetDrawPasswdActivity.java</url>
+          <line>102</line>
           <properties />
-          <option name="timeStamp" value="45" />
+          <option name="timeStamp" value="48" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-field">
           <url>file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/SetPasswdActivity.java</url>
@@ -1002,15 +1080,11 @@
           <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="48" />
+      <option name="time" value="53" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="watchdog">
-        <watch expression="chain1" language="JAVA" custom="" />
-        <watch expression="chain2" language="JAVA" custom="" />
-        <watch expression="mPreviewText" language="JAVA" custom="" />
-        <watch expression="inflate.inflate(previewLayout, null)" language="JAVA" custom="" />
-        <watch expression="intent" language="JAVA" custom="" />
+        <watch expression="chains" language="JAVA" custom="" />
       </configuration>
     </watches-manager>
   </component>
@@ -1019,75 +1093,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/processor/FittingProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="271" max-vertical-offset="726">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/processor/Utils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="440" max-vertical-offset="2816">
-          <caret line="116" column="28" selection-start-line="116" selection-start-column="28" selection-end-line="116" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/processor/CompareProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="315" max-vertical-offset="3872">
-          <caret line="34" column="15" selection-start-line="34" selection-start-column="15" selection-end-line="34" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/SetWatchActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="352">
-          <caret line="8" column="45" selection-start-line="8" selection-start-column="45" selection-end-line="8" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/widget/res/drawable/btn_keyboard_key.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="943">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/drawable/keyguard_edit_text.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="776">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/drawable/transparent_item_bg.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="776">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/widget/res/layout/keyboard_key_preview.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.6" vertical-offset="0" max-vertical-offset="330">
-          <caret line="4" column="42" selection-start-line="4" selection-start-column="42" selection-end-line="4" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/android-sdk-macosx/sources/android-21/java/util/AbstractMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16237113" vertical-offset="292" max-vertical-offset="10010">
-          <caret line="34" column="22" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/android-sdk-macosx/sources/android-21/java/util/HashMap.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5025773" vertical-offset="424" max-vertical-offset="20922">
@@ -1102,14 +1107,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/DrawingCanvas.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1706" max-vertical-offset="4004">
-          <caret line="125" column="9" selection-start-line="125" selection-start-column="9" selection-end-line="125" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/android-sdk-macosx/sources/android-21/android/text/InputType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="154" max-vertical-offset="8184">
@@ -1117,35 +1114,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/keyguard_img.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.6" vertical-offset="0" max-vertical-offset="550">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/android-sdk-macosx/sources/android-21/android/view/WindowManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.40167364" vertical-offset="1310" max-vertical-offset="42944">
           <caret line="105" column="16" selection-start-line="105" selection-start-column="16" selection-end-line="105" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/utils/TaskUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="550">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/utils/Utils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3344">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1215,14 +1187,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/db/model/AngleChain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="264" max-vertical-offset="2288">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/db/model/ServiceStatus.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="836">
@@ -1248,14 +1212,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="484">
           <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1936">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1314,22 +1270,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/TestDrawPasswdActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3520">
-          <caret line="176" column="16" selection-start-line="176" selection-start-column="16" selection-end-line="176" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="66" max-vertical-offset="1650">
-          <caret line="24" column="19" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/widget/res/layout/keyboard.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.0" vertical-offset="0" max-vertical-offset="484">
@@ -1353,25 +1293,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="156" max-vertical-offset="836">
           <caret line="24" column="48" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/db/model/KeyguardStatus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="324" max-vertical-offset="946">
-          <caret line="29" column="38" selection-start-line="29" selection-start-column="38" selection-end-line="29" selection-end-column="38" />
-          <folding>
-            <element signature="e#681#682#0" expanded="true" />
-            <element signature="e#726#727#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/db/DbManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="706" max-vertical-offset="1760">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -1400,22 +1321,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/widget/src/bitman/ay27/watchdog/widget/keyboard/KeyboardUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2356" max-vertical-offset="4092">
-          <caret line="128" column="5" selection-start-line="128" selection-start-column="5" selection-end-line="128" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/KeyguardImgActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2458" max-vertical-offset="3476">
-          <caret line="146" column="46" selection-start-line="146" selection-start-column="46" selection-end-line="146" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/SetPasswdActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1470" max-vertical-offset="2310">
@@ -1423,16 +1328,6 @@
           <folding>
             <element signature="e#3458#4186#0" expanded="true" />
             <element signature="e#4185#4186#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/KeyguardKeyboardActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="830" max-vertical-offset="2310">
-          <caret line="86" column="13" selection-start-line="86" selection-start-column="13" selection-end-line="86" selection-end-column="13" />
-          <folding>
-            <element signature="e#2119#2899#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1448,12 +1343,206 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/db/model/AngleChain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="264" max-vertical-offset="2288">
+          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/utils/TaskUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="550">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/utils/ImageDecodeUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="12" max-vertical-offset="968">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/utils/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="484" max-vertical-offset="3344">
+          <caret line="55" column="32" selection-start-line="55" selection-start-column="32" selection-end-line="55" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="694" max-vertical-offset="1650">
+          <caret line="61" column="61" selection-start-line="61" selection-start-column="61" selection-end-line="61" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="850" max-vertical-offset="1936">
+          <caret line="78" column="44" selection-start-line="78" selection-start-column="44" selection-end-line="78" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/db/DbManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="382" max-vertical-offset="1760">
+          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/processor/AngleChainProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="450" max-vertical-offset="1672">
+          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/drawable/toast_background_standard_gray.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-20.24" vertical-offset="0" max-vertical-offset="660">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/keyguard_img.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.8" vertical-offset="0" max-vertical-offset="814">
+          <caret line="27" column="40" selection-start-line="27" selection-start-column="40" selection-end-line="27" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/android-sdk-macosx/sources/android-21/android/inputmethodservice/KeyboardView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="18204" max-vertical-offset="32626">
+          <caret line="903" column="0" selection-start-line="903" selection-start-column="0" selection-end-line="903" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/widget/src/bitman/ay27/watchdog/widget/keyboard/KeyboardUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="828" max-vertical-offset="4092">
+          <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/db/model/KeyguardStatus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="990">
+          <caret line="20" column="48" selection-start-line="20" selection-start-column="48" selection-end-line="20" selection-end-column="48" />
+          <folding>
+            <element signature="e#729#730#0" expanded="true" />
+            <element signature="e#774#775#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appcompat/res/anim/abc_fade_out.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.08" vertical-offset="0" max-vertical-offset="550">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="19" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appcompat/res/anim/abc_fade_in.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.08" vertical-offset="0" max-vertical-offset="550">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="19" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/android-sdk-macosx/sources/android-21/android/widget/Toast.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33216783" vertical-offset="756" max-vertical-offset="8866">
+          <caret line="76" column="28" selection-start-line="76" selection-start-column="28" selection-end-line="76" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/BindWatchActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="352">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/DrawingCanvas.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="276" max-vertical-offset="4136">
+          <caret line="40" column="37" selection-start-line="40" selection-start-column="37" selection-end-line="40" selection-end-column="37" />
+          <folding>
+            <element signature="e#1140#1355#0" expanded="true" />
+            <element signature="e#1354#1355#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/processor/CompareProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="220" max-vertical-offset="3872">
+          <caret line="26" column="20" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/TestDrawPasswdActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2363" max-vertical-offset="3630">
+          <caret line="137" column="35" selection-start-line="137" selection-start-column="35" selection-end-line="137" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/SetDrawPasswdActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.4742267" vertical-offset="2194" max-vertical-offset="4532">
-          <caret line="193" column="0" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5456">
+          <caret line="242" column="0" selection-start-line="242" selection-start-column="0" selection-end-line="242" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#3674#3680#0" expanded="true" />
+            <element signature="e#4102#4118#0" expanded="true" />
+            <element signature="e#5472#5473#0" expanded="true" />
+            <element signature="e#5555#5556#0" expanded="true" />
+            <element signature="e#6322#6323#0" expanded="true" />
+            <element signature="e#6408#6409#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/KeyguardKeyboardActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1288" max-vertical-offset="2244">
+          <caret line="103" column="0" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/KeyguardImgActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3786611" vertical-offset="1332" max-vertical-offset="4532">
+          <caret line="100" column="0" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
+          <folding>
+            <element signature="e#3493#4649#0" expanded="true" />
+            <element signature="e#4648#4649#0" expanded="true" />
           </folding>
         </state>
       </provider>

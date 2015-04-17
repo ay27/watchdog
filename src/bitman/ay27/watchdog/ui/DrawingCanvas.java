@@ -7,7 +7,6 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.os.Handler;
 import android.os.Message;
-import android.util.ArrayMap;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -16,7 +15,10 @@ import bitman.ay27.watchdog.processor.Curve;
 import bitman.ay27.watchdog.processor.RhythmPoint;
 import bitman.ay27.watchdog.widget.R;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Proudly to user Intellij IDEA.
@@ -31,14 +33,16 @@ public class DrawingCanvas extends View {
     private ArrayList<Curve> curves;
     private long init_time = -1;
     private Timer timer = new Timer();
+    private DrawingCallback callback;
     private Handler uiHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
+            if (callback != null) {
+                callback.onDrawPause();
+            }
             cleanCanvas();
         }
     };
-
-    private DrawingCallback callback;
 
     public DrawingCanvas(Context context) {
         super(context);
@@ -109,10 +113,9 @@ public class DrawingCanvas extends View {
                 timer = new Timer();
                 timer.schedule(generateTask(), CLEAN_CANVAS_TIME_DELAY);
                 if (callback != null) {
-                    callback.onDrawPause(curves);
-                    callback.onActionUp();
+                    callback.onActionUp(curves);
                 }
-                init_time = -1;
+//                init_time = -1;
                 break;
             case MotionEvent.ACTION_DOWN:
                 if (timer != null) {
@@ -178,7 +181,7 @@ public class DrawingCanvas extends View {
         curve.add(chain.start_point);
         double x1 = chain.start_point.x, x2, y2;
         for (int i = 0; i < chain.angles.size(); i++) {
-            x2 = x1 + (chain.segment_length / (chain.angles.get(i)+1.0));
+            x2 = x1 + (chain.segment_length / (chain.angles.get(i) + 1.0));
             y2 = x2 * chain.angles.get(i);
             curve.add(new RhythmPoint(x2, y2, 0));
 
@@ -194,11 +197,11 @@ public class DrawingCanvas extends View {
 
 
     public static interface DrawingCallback {
-        public void onDrawPause(ArrayList<Curve> rawCurves);
+        public void onDrawPause();
 
         public void onActionDown();
 
-        public void onActionUp();
+        public void onActionUp(ArrayList<Curve> rawCurves);
     }
 
 }
