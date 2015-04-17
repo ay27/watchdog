@@ -112,6 +112,30 @@
                         />
             </RelativeLayout>
 
+            <include layout="@layout/divider_small"/>
+            <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                              style="@style/PreferencePanel"
+                              android:layout_alignParentTop="true"
+                              android:layout_alignParentStart="true"
+                              android:clickable="false">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                              style="@style/PreferenceFirstText"
+                              android:text="USB调试"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                              style="@style/PreferenceSecondText"
+                              android:text="@string/usb_disable"
+                              android:id="@+id/main_usb_summer"/>
+                </LinearLayout>
+                <com.kyleduo.switchbutton.SwitchButton
+                        android:id="@+id/main_usb_switch"
+                        style="@style/MaterialDesignStyle"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="16dp"
+                        android:layout_centerVertical="true"
+                        />
+            </RelativeLayout>
+
 
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                       android:text="密码设定"

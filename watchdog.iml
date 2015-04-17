@@ -63,5 +63,6 @@
     <orderEntry type="module" module-name="appcompat" />
     <orderEntry type="module" module-name="widget" />
     <orderEntry type="module" module-name="SwitchButton-adt" />
+    <orderEntry type="module" module-name="libwatchcat" />
   </component>
 </module>

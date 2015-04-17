@@ -22,4 +22,7 @@
     <string name="save_ok">保存成功</string>
     <string name="change_passwd_ok">密码更改成功</string>
     <string name="unlock_failed">解锁失败</string>
+    <string name="usb_disable">USB调试已关闭</string>
+    <string name="change_usb_error">无法更改USB调试状态</string>
+    <string name="usb_enable">USB调试已开启</string>
 </resources>

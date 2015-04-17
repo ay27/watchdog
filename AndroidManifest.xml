@@ -27,7 +27,7 @@
                   android:launchMode="singleTask"
                   android:excludeFromRecents="true"
                   android:exported="true"
-                  />
+                />
 
         <activity android:name=".ui.activity.BindNfcActivity"/>
         <activity android:name=".ui.activity.SetPasswdActivity"/>

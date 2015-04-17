@@ -8,7 +8,6 @@ import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.os.Environment;
 import android.provider.MediaStore;
 
 import java.io.*;
@@ -44,12 +43,13 @@ public class Utils {
 
     public static String getExternalStorageDir(Context context) {
         String path;
-        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())
-                || !Environment.isExternalStorageRemovable()) {
-            path = Environment.getExternalStorageDirectory().getPath();
-        } else {
-            path = Environment.getDataDirectory().getPath();
-        }
+        path = context.getFilesDir().getPath();
+//        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())
+//                || !Environment.isExternalStorageRemovable()) {
+//            path = Environment.getExternalStorageDirectory().getPath();
+//        } else {
+//            path = Environment.getDataDirectory().getPath();
+//        }
         return path;
     }
 
@@ -68,7 +68,6 @@ public class Utils {
 
     public static String getPathFromUri(Context context, Uri uri) {
         String fileName = null;
-        Uri filePathUri = uri;
         if (uri != null) {
             if (uri.getScheme().toString().compareTo("content") == 0) {
                 Cursor cursor = context.getContentResolver().query(uri, null, null, null, null);
@@ -78,7 +77,7 @@ public class Utils {
                     cursor.close();
                 }
             } else if (uri.getScheme().compareTo("file") == 0) {
-                fileName = filePathUri.toString().replace("file://", "");
+                fileName = uri.toString().replace("file://", "");
             }
         }
         return Uri.decode(fileName);

@@ -6,7 +6,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.IBinder;
+import bitman.ay27.watchdog.db.DbManager;
+import bitman.ay27.watchdog.db.model.ServiceStatus;
 import bitman.ay27.watchdog.ui.KeyguardManager;
+
+import java.util.List;
 
 /**
  * Proudly to user Intellij IDEA.
@@ -49,6 +53,20 @@ public class KeyguardService extends Service {
 
         unregisterReceiver(screenOnReceiver);
         unregisterReceiver(screenOffReceiver);
+
+        List<ServiceStatus> tmp = DbManager.getInstance().query(ServiceStatus.class);
+        if (tmp == null || tmp.size() == 0) {
+            return;
+        }
+        for (ServiceStatus status : tmp) {
+            if (status.serviceClassName.equals(getClass().getName())) {
+                if (status.autoOpen) {
+                    startService(new Intent(this, KeyguardService.class));
+                }
+                break;
+            }
+        }
+
     }
 
     @Override
