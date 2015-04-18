@@ -7,11 +7,9 @@ import butterknife.ButterKnife.Finder;
 public class MainActivity$$ViewInjector {
   public static void inject(Finder finder, final bitman.ay27.watchdog.ui.activity.MainActivity target, Object source) {
     View view;
-    view = finder.findRequiredView(source, 2131492939, "field 'toolbar'");
+    view = finder.findRequiredView(source, 2131492943, "field 'toolbar'");
     target.toolbar = (android.support.v7.widget.Toolbar) view;
-    view = finder.findRequiredView(source, 2131492943, "field 'bootLoaderSummer'");
-    target.bootLoaderSummer = (android.widget.TextView) view;
-    view = finder.findRequiredView(source, 2131492944, "field 'bootLoaderSwitch' and method 'bootLoaderCheckChanged'");
+    view = finder.findRequiredView(source, 2131492947, "field 'bootLoaderSwitch' and method 'bootLoaderCheckChanged'");
     target.bootLoaderSwitch = (com.kyleduo.switchbutton.SwitchButton) view;
     ((android.widget.CompoundButton) view).setOnCheckedChangeListener(
       new android.widget.CompoundButton.OnCheckedChangeListener() {
@@ -22,9 +20,7 @@ public class MainActivity$$ViewInjector {
           target.bootLoaderCheckChanged(p0, p1);
         }
       });
-    view = finder.findRequiredView(source, 2131492945, "field 'sdEncryptSummer'");
-    target.sdEncryptSummer = (android.widget.TextView) view;
-    view = finder.findRequiredView(source, 2131492946, "field 'sdEncryptSwitch' and method 'sdEncryptCheckChanged'");
+    view = finder.findRequiredView(source, 2131492948, "field 'sdEncryptSwitch' and method 'sdEncryptCheckChanged'");
     target.sdEncryptSwitch = (com.kyleduo.switchbutton.SwitchButton) view;
     ((android.widget.CompoundButton) view).setOnCheckedChangeListener(
       new android.widget.CompoundButton.OnCheckedChangeListener() {
@@ -35,9 +31,7 @@ public class MainActivity$$ViewInjector {
           target.sdEncryptCheckChanged(p0, p1);
         }
       });
-    view = finder.findRequiredView(source, 2131492947, "field 'keyguardSummer'");
-    target.keyguardSummer = (android.widget.TextView) view;
-    view = finder.findRequiredView(source, 2131492948, "field 'keyguardSwitch' and method 'keyguardCheckChanged'");
+    view = finder.findRequiredView(source, 2131492949, "field 'keyguardSwitch' and method 'keyguardCheckChanged'");
     target.keyguardSwitch = (com.kyleduo.switchbutton.SwitchButton) view;
     ((android.widget.CompoundButton) view).setOnCheckedChangeListener(
       new android.widget.CompoundButton.OnCheckedChangeListener() {
@@ -48,8 +42,6 @@ public class MainActivity$$ViewInjector {
           target.keyguardCheckChanged(p0, p1);
         }
       });
-    view = finder.findRequiredView(source, 2131492949, "field 'usbSummer'");
-    target.usbSummer = (android.widget.TextView) view;
     view = finder.findRequiredView(source, 2131492950, "field 'usbSwitch' and method 'usbCheckChanged'");
     target.usbSwitch = (com.kyleduo.switchbutton.SwitchButton) view;
     ((android.widget.CompoundButton) view).setOnCheckedChangeListener(
@@ -61,7 +53,7 @@ public class MainActivity$$ViewInjector {
           target.usbCheckChanged(p0, p1);
         }
       });
-    view = finder.findRequiredView(source, 2131492940, "method 'loginClick'");
+    view = finder.findRequiredView(source, 2131492944, "method 'loginClick'");
     view.setOnClickListener(
       new android.view.View.OnClickListener() {
         @Override public void onClick(
@@ -88,6 +80,15 @@ public class MainActivity$$ViewInjector {
           target.setPasswdPanelClick(p0);
         }
       });
+    view = finder.findRequiredView(source, 2131492955, "method 'nfcPanelClick'");
+    view.setOnClickListener(
+      new android.view.View.OnClickListener() {
+        @Override public void onClick(
+          android.view.View p0
+        ) {
+          target.nfcPanelClick(p0);
+        }
+      });
     view = finder.findRequiredView(source, 2131492957, "method 'aboutClick'");
     view.setOnClickListener(
       new android.view.View.OnClickListener() {
@@ -101,13 +102,9 @@ public class MainActivity$$ViewInjector {
 
   public static void reset(bitman.ay27.watchdog.ui.activity.MainActivity target) {
     target.toolbar = null;
-    target.bootLoaderSummer = null;
     target.bootLoaderSwitch = null;
-    target.sdEncryptSummer = null;
     target.sdEncryptSwitch = null;
-    target.keyguardSummer = null;
     target.keyguardSwitch = null;
-    target.usbSummer = null;
     target.usbSwitch = null;
   }
 }

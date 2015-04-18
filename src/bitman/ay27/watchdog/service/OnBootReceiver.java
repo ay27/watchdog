@@ -12,7 +12,7 @@ public class OnBootReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Intent newIntent = new Intent(context, DaemonService.class);
-        newIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        newIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startService(newIntent);
     }
 }

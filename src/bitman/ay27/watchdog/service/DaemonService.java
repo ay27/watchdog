@@ -12,12 +12,6 @@ import android.os.IBinder;
  */
 public class DaemonService extends Service {
     private ServiceManager manager;
-    private BroadcastReceiver keyguardStatusChangedReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-
-        }
-    };
 
     @Override
     public void onCreate() {

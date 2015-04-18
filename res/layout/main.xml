@@ -42,7 +42,7 @@
                       android:text="开关"/>
             <include layout="@layout/divider_large"/>
             <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
-                <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                <LinearLayout android:layout_width="270dp" android:layout_height="wrap_content"
                               style="@style/PreferencePanel"
                               android:layout_alignParentTop="true"
                               android:layout_alignParentStart="true"
@@ -50,10 +50,10 @@
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                               style="@style/PreferenceFirstText"
                               android:text="刷机锁"/>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                              style="@style/PreferenceSecondText"
-                              android:text="@string/boot_loader_summer_false"
-                              android:id="@+id/main_boot_loader_summer"/>
+                    <!--<TextView android:layout_width="wrap_content" android:layout_height="wrap_content"-->
+                              <!--style="@style/PreferenceSecondText"-->
+                              <!--android:text="保护机器不被恶意刷机"-->
+                              <!--android:id="@+id/main_boot_loader_summer"/>-->
                 </LinearLayout>
                 <com.kyleduo.switchbutton.SwitchButton
                         android:id="@+id/main_boot_loader_lock_switch"
@@ -66,7 +66,7 @@
 
             <include layout="@layout/divider_small"/>
             <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
-                <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                <LinearLayout android:layout_width="270dp" android:layout_height="wrap_content"
                               style="@style/PreferencePanel"
                               android:layout_alignParentTop="true"
                               android:layout_alignParentStart="true"
@@ -74,10 +74,10 @@
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                               style="@style/PreferenceFirstText"
                               android:text="SD卡加密"/>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                              style="@style/PreferenceSecondText"
-                              android:text="@string/sd_encrypt_summer_false"
-                              android:id="@+id/main_sd_encrypt_summer"/>
+                    <!--<TextView android:layout_width="wrap_content" android:layout_height="wrap_content"-->
+                              <!--style="@style/PreferenceSecondText"-->
+                              <!--android:text="加密SD卡"-->
+                              <!--android:id="@+id/main_sd_encrypt_summer"/>-->
                 </LinearLayout>
                 <com.kyleduo.switchbutton.SwitchButton
                         android:id="@+id/main_sd_encrypt_switch"
@@ -90,7 +90,7 @@
 
             <include layout="@layout/divider_small"/>
             <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
-                <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                <LinearLayout android:layout_width="270dp" android:layout_height="wrap_content"
                               style="@style/PreferencePanel"
                               android:layout_alignParentTop="true"
                               android:layout_alignParentStart="true"
@@ -98,10 +98,10 @@
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                               style="@style/PreferenceFirstText"
                               android:text="屏幕锁定"/>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                              style="@style/PreferenceSecondText"
-                              android:text="@string/keyguard_disable"
-                              android:id="@+id/main_keyguard_summer"/>
+                    <!--<TextView android:layout_width="wrap_content" android:layout_height="wrap_content"-->
+                              <!--style="@style/PreferenceSecondText"-->
+                              <!--android:text="@string/keyguard_disable"-->
+                              <!--android:id="@+id/main_keyguard_summer"/>-->
                 </LinearLayout>
                 <com.kyleduo.switchbutton.SwitchButton
                         android:id="@+id/main_keyguard_switch"
@@ -114,7 +114,7 @@
 
             <include layout="@layout/divider_small"/>
             <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
-                <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                <LinearLayout android:layout_width="270dp" android:layout_height="wrap_content"
                               style="@style/PreferencePanel"
                               android:layout_alignParentTop="true"
                               android:layout_alignParentStart="true"
@@ -122,10 +122,10 @@
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                               style="@style/PreferenceFirstText"
                               android:text="USB调试"/>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                              style="@style/PreferenceSecondText"
-                              android:text="@string/usb_disable"
-                              android:id="@+id/main_usb_summer"/>
+                    <!--<TextView android:layout_width="wrap_content" android:layout_height="wrap_content"-->
+                              <!--style="@style/PreferenceSecondText"-->
+                              <!--android:text="@string/usb_disable"-->
+                              <!--android:id="@+id/main_usb_summer"/>-->
                 </LinearLayout>
                 <com.kyleduo.switchbutton.SwitchButton
                         android:id="@+id/main_usb_switch"

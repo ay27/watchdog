@@ -17,7 +17,7 @@ import java.util.List;
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     public static final String DB_NAME = "bitman.ay27.watchdog.db";
-    public static final int DB_VERSION = 1;
+    public static final int DB_VERSION = 2;
 
     public static final String MODEL_PACKAGE_NAME = "bitman.ay27.watchdog.db.model";
     private static List<Class> allModels = ClassUtils.getClassesFromPackage(MODEL_PACKAGE_NAME);

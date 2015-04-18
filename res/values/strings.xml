@@ -25,4 +25,9 @@
     <string name="usb_disable">USB调试已关闭</string>
     <string name="change_usb_error">无法更改USB调试状态</string>
     <string name="usb_enable">USB调试已开启</string>
+    <string name="no_nfc_card">没有绑定任何NFC卡</string>
+    <string name="ask_delete_card">是否需要删除此卡？</string>
+    <string name="delete_success">删除成功</string>
+    <string name="not_support_nfc">不支持NFC设备</string>
+    <string name="update_ok">更新成功</string>
 </resources>

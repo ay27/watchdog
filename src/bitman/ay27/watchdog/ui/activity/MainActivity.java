@@ -18,6 +18,8 @@ import bitman.ay27.watchdog.R;
 import bitman.ay27.watchdog.service.KeyguardService;
 import bitman.ay27.watchdog.service.ServiceManager;
 import bitman.ay27.watchdog.utils.UpgradeSystemPermission;
+import bitman.s117.libwatchcat.WatchCat_Controller;
+import bitman.s117.libwatchcat.WatchCat_Controller_Impl;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnCheckedChanged;
@@ -35,20 +37,20 @@ public class MainActivity extends ActionBarActivity {
 
     @InjectView(R.id.main_toolbar)
     Toolbar toolbar;
-    @InjectView(R.id.main_boot_loader_summer)
-    TextView bootLoaderSummer;
+//    @InjectView(R.id.main_boot_loader_summer)
+//    TextView bootLoaderSummer;
     @InjectView(R.id.main_boot_loader_lock_switch)
     SwitchButton bootLoaderSwitch;
-    @InjectView(R.id.main_sd_encrypt_summer)
-    TextView sdEncryptSummer;
+//    @InjectView(R.id.main_sd_encrypt_summer)
+//    TextView sdEncryptSummer;
     @InjectView(R.id.main_sd_encrypt_switch)
     SwitchButton sdEncryptSwitch;
-    @InjectView(R.id.main_keyguard_summer)
-    TextView keyguardSummer;
+//    @InjectView(R.id.main_keyguard_summer)
+//    TextView keyguardSummer;
     @InjectView(R.id.main_keyguard_switch)
     SwitchButton keyguardSwitch;
-    @InjectView(R.id.main_usb_summer)
-    TextView usbSummer;
+//    @InjectView(R.id.main_usb_summer)
+//    TextView usbSummer;
     @InjectView(R.id.main_usb_switch)
     SwitchButton usbSwitch;
 
@@ -73,6 +75,8 @@ public class MainActivity extends ActionBarActivity {
         }
 
         init();
+
+        wc_ctl = new WatchCat_Controller_Impl();
     }
 
     private void init() {
@@ -94,11 +98,11 @@ public class MainActivity extends ActionBarActivity {
     @OnCheckedChanged(R.id.main_usb_switch)
     public void usbCheckChanged(CompoundButton buttonView, boolean isChecked) {
 
-        if (isChecked) {
-            usbSummer.setText(R.string.usb_enable);
-        } else {
-            usbSummer.setText(R.string.usb_disable);
-        }
+//        if (isChecked) {
+//            usbSummer.setText(R.string.usb_enable);
+//        } else {
+//            usbSummer.setText(R.string.usb_disable);
+//        }
 
         if (usbReEnter) {
             usbReEnter = false;
@@ -120,24 +124,31 @@ public class MainActivity extends ActionBarActivity {
         new LoginDialog(this).show();
     }
 
+    private WatchCat_Controller wc_ctl;
+
     @OnCheckedChanged(R.id.main_boot_loader_lock_switch)
     public void bootLoaderCheckChanged(CompoundButton buttonView, boolean isChecked) {
         pref.edit().putBoolean(KEY_BOOT_LOADER_LOCK, isChecked).apply();
+
         if (isChecked) {
-            bootLoaderSummer.setText(R.string.boot_loader_summer_true);
-        } else {
-            bootLoaderSummer.setText(R.string.boot_loader_summer_false);
+            wc_ctl.loadFsProtector();
+            wc_ctl.enableBootloaderWriteProtect();
         }
+//        if (isChecked) {
+//            bootLoaderSummer.setText(R.string.boot_loader_summer_true);
+//        } else {
+//            bootLoaderSummer.setText(R.string.boot_loader_summer_false);
+//        }
     }
 
     @OnCheckedChanged(R.id.main_sd_encrypt_switch)
     public void sdEncryptCheckChanged(CompoundButton buttonView, boolean isChecked) {
         pref.edit().putBoolean(KEY_SD_ENCRYPT, isChecked).apply();
-        if (isChecked) {
-            sdEncryptSummer.setText(R.string.sd_encrypt_summer_true);
-        } else {
-            sdEncryptSummer.setText(R.string.sd_encrypt_summer_false);
-        }
+//        if (isChecked) {
+//            sdEncryptSummer.setText(R.string.sd_encrypt_summer_true);
+//        } else {
+//            sdEncryptSummer.setText(R.string.sd_encrypt_summer_false);
+//        }
     }
 
     @OnCheckedChanged(R.id.main_keyguard_switch)
@@ -146,10 +157,10 @@ public class MainActivity extends ActionBarActivity {
         ServiceManager manager = ServiceManager.getInstance();
         if (isChecked) {
             manager.addService(KeyguardService.class);
-            keyguardSummer.setText(R.string.keyguard_enable);
+//            keyguardSummer.setText(R.string.keyguard_enable);
         } else {
             manager.removeService(KeyguardService.class);
-            keyguardSummer.setText(R.string.keyguard_disable);
+//            keyguardSummer.setText(R.string.keyguard_disable);
         }
     }
 
@@ -162,6 +173,12 @@ public class MainActivity extends ActionBarActivity {
     @OnClick(R.id.main_sec_passwd_panel)
     public void setPasswdPanelClick(View view) {
         Intent intent = new Intent(this, SetPasswdActivity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.main_bind_nfc_panel)
+    public void nfcPanelClick(View view) {
+        Intent intent = new Intent(this, BindNfcActivity.class);
         startActivity(intent);
     }
 

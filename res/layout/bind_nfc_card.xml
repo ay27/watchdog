@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent">
+
+    <include layout="@layout/toolbar"
+             android:id="@+id/bind_nfc_toolbar"/>
+
+    <!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="fill_parent">-->
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                      android:orientation="vertical"
+                      android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                >
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:text="目前已绑定的NFC卡片"
+                      style="@style/PreferenceCatalog"
+                      android:id="@+id/bind_nfc_hint"
+                    />
+            <!--<include layout="@layout/divider_large"/>-->
+
+            <ListView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                    android:id="@+id/bind_nfc_list"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:footerDividersEnabled="true"
+                    >
+            </ListView>
+
+            <Button android:layout_width="fill_parent" android:layout_height="wrap_content"
+                    android:background="@drawable/transparent_item_bg"
+                    android:text="绑定新卡"
+                    android:id="@+id/bind_nfc_new_card"/>
+
+        </LinearLayout>
+
+    <!--</ScrollView>-->
+</LinearLayout>
