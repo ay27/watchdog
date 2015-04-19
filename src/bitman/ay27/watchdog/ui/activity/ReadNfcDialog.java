@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.Window;
 import android.widget.*;
 import bitman.ay27.watchdog.R;
-import bitman.ay27.watchdog.db.DbManager;
 import bitman.ay27.watchdog.db.model.NfcCard;
 import bitman.ay27.watchdog.utils.Utils;
 
@@ -33,14 +32,27 @@ public class ReadNfcDialog extends Dialog implements NfcAdapter.ReaderCallback {
     private Activity activity;
     private String cardCode;
     private FoundNfcCallback callback;
-    public interface FoundNfcCallback {
-        public void onNfcFound(NfcCard card);
-    }
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            findingPanel.setVisibility(View.GONE);
+            foundPanel.setVisibility(View.VISIBLE);
+
+            codeTxv.setText(cardCode);
+            saveCardBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    callback.onNfcFound(new NfcCard(nameEdt.getText().toString(), cardCode));
+                    finish();
+                }
+            });
+        }
+    };
 
     public ReadNfcDialog(Context context, Activity activity, FoundNfcCallback callback) {
         super(context);
         this.activity = activity;
-        this.callback  =callback;
+        this.callback = callback;
     }
 
     @Override
@@ -81,25 +93,12 @@ public class ReadNfcDialog extends Dialog implements NfcAdapter.ReaderCallback {
         handler.sendMessage(new Message());
     }
 
-    private Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            findingPanel.setVisibility(View.GONE);
-            foundPanel.setVisibility(View.VISIBLE);
-
-            codeTxv.setText(cardCode);
-            saveCardBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    callback.onNfcFound(new NfcCard(nameEdt.getText().toString(), cardCode));
-                    finish();
-                }
-            });
-        }
-    };
-
     private void finish() {
         adapter.disableReaderMode(activity);
         dismiss();
+    }
+
+    public interface FoundNfcCallback {
+        public void onNfcFound(NfcCard card);
     }
 }
