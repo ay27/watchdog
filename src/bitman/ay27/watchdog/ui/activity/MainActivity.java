@@ -12,7 +12,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
-import android.widget.TextView;
 import android.widget.Toast;
 import bitman.ay27.watchdog.R;
 import bitman.ay27.watchdog.service.KeyguardService;
@@ -37,25 +36,26 @@ public class MainActivity extends ActionBarActivity {
 
     @InjectView(R.id.main_toolbar)
     Toolbar toolbar;
-//    @InjectView(R.id.main_boot_loader_summer)
+    //    @InjectView(R.id.main_boot_loader_summer)
 //    TextView bootLoaderSummer;
     @InjectView(R.id.main_boot_loader_lock_switch)
     SwitchButton bootLoaderSwitch;
-//    @InjectView(R.id.main_sd_encrypt_summer)
+    //    @InjectView(R.id.main_sd_encrypt_summer)
 //    TextView sdEncryptSummer;
     @InjectView(R.id.main_sd_encrypt_switch)
     SwitchButton sdEncryptSwitch;
-//    @InjectView(R.id.main_keyguard_summer)
+    //    @InjectView(R.id.main_keyguard_summer)
 //    TextView keyguardSummer;
     @InjectView(R.id.main_keyguard_switch)
     SwitchButton keyguardSwitch;
-//    @InjectView(R.id.main_usb_summer)
+    //    @InjectView(R.id.main_usb_summer)
 //    TextView usbSummer;
     @InjectView(R.id.main_usb_switch)
     SwitchButton usbSwitch;
 
     private SharedPreferences pref;
     private boolean usbReEnter = false;
+    private WatchCat_Controller wc_ctl;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -123,8 +123,6 @@ public class MainActivity extends ActionBarActivity {
     public void loginClick(View view) {
         new LoginDialog(this).show();
     }
-
-    private WatchCat_Controller wc_ctl;
 
     @OnCheckedChanged(R.id.main_boot_loader_lock_switch)
     public void bootLoaderCheckChanged(CompoundButton buttonView, boolean isChecked) {

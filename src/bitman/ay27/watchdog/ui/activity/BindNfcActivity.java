@@ -2,6 +2,8 @@ package bitman.ay27.watchdog.ui.activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.nfc.NfcManager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -12,6 +14,8 @@ import android.widget.*;
 import bitman.ay27.watchdog.R;
 import bitman.ay27.watchdog.db.DbManager;
 import bitman.ay27.watchdog.db.model.NfcCard;
+import bitman.ay27.watchdog.db.model.ServiceStatus;
+import bitman.ay27.watchdog.service.ServiceManager;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -46,6 +50,20 @@ public class BindNfcActivity extends ActionBarActivity {
         init();
     }
 
+//    private void checkService() {
+//        List<ServiceStatus> tmp = DbManager.getInstance().query(ServiceStatus.class);
+//        if (tmp == null || tmp.size() == 0) {
+//            ServiceManager.getInstance().addService(NfcScannerService.class);
+//            return;
+//        }
+//        for (ServiceStatus status : tmp) {
+//            if (status.serviceClassName.equals(NfcScannerService.class.getName())) {
+//                return;
+//            }
+//        }
+//        ServiceManager.getInstance().addService(NfcScannerService.class);
+//    }
+
     private void init() {
         List<NfcCard> tmp = DbManager.getInstance().query(NfcCard.class);
         if (tmp == null || tmp.size() == 0) {
@@ -71,6 +89,8 @@ public class BindNfcActivity extends ActionBarActivity {
                         .show();
             }
         });
+
+//        checkService();
     }
 
     @OnClick(R.id.bind_nfc_new_card)
@@ -88,7 +108,6 @@ public class BindNfcActivity extends ActionBarActivity {
                             Toast.makeText(BindNfcActivity.this, R.string.update_ok, Toast.LENGTH_SHORT).show();
 
                             init();
-
                             return;
                         }
                     }

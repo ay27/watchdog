@@ -16,7 +16,7 @@ public class ServiceStatus {
     @DatabaseField(canBeNull = false)
     public String servicePackageName;
 
-    @DatabaseField(canBeNull = false)
+    @DatabaseField(canBeNull = false, unique = true)
     public String serviceClassName;
 
     @DatabaseField(canBeNull = false)

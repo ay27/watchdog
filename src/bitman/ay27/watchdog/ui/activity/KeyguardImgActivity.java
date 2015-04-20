@@ -4,8 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
+import android.nfc.NfcAdapter;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
@@ -19,6 +22,9 @@ import bitman.ay27.watchdog.db.model.KeyguardStatus;
 import bitman.ay27.watchdog.processor.AngleChainProcessor;
 import bitman.ay27.watchdog.processor.Curve;
 import bitman.ay27.watchdog.ui.DrawingCanvas;
+import bitman.ay27.watchdog.ui.NfcScanner;
+import bitman.ay27.watchdog.utils.TaskUtils;
+import bitman.ay27.watchdog.utils.Utils;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -63,6 +69,16 @@ public class KeyguardImgActivity extends Activity {
         if (status.imagePath != null) {
             dCanvas.setBackground(Drawable.createFromPath(status.imagePath));
         }
+
+        NfcAdapter adapter = NfcAdapter.getDefaultAdapter(this);
+        adapter.enableReaderMode(this, new NfcAdapter.ReaderCallback() {
+            @Override
+            public void onTagDiscovered(Tag tag) {
+                Log.i("NFC", "found : "+ Utils.ByteArrayToHexString(tag.getId()));
+            }
+        }, NfcAdapter.FLAG_READER_NFC_A, null);
+
+//        TaskUtils.executeAsyncTask(new NfcScanner(this));
     }
 
     @Override
@@ -208,9 +224,9 @@ public class KeyguardImgActivity extends Activity {
          *以下都是WindowManager.LayoutParams的相关属性
          * 具体用途请参考SDK文档
          */
-        final int PARAMS = WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD // | WindowManager.LayoutParams.FLAG_FULLSCREEN
-                | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
-                | WindowManager.LayoutParams.FLAG_LAYOUT_INSET_DECOR;
+        final int PARAMS = WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD; // | WindowManager.LayoutParams.FLAG_FULLSCREEN
+//                | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
+//                | WindowManager.LayoutParams.FLAG_LAYOUT_INSET_DECOR;
 
         wmParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ERROR;   //这里是关键，你也可以试试2003
         wmParams.format = PixelFormat.OPAQUE;

@@ -3,11 +3,15 @@
           package="bitman.ay27.watchdog"
           android:versionCode="1"
           android:versionName="1.0">
-    <uses-sdk android:minSdkVersion="19"/>
+    <uses-sdk
+            android:minSdkVersion="19"
+            />
+
     <application android:label="@string/app_name" android:icon="@drawable/ic_launcher"
                  android:persistent="true"
                  android:name=".WatchdogApplication"
-                 android:theme="@style/AppBaseTheme">
+                 android:theme="@style/AppBaseTheme"
+                 android:allowBackup="true">
         <activity android:name=".ui.activity.MainActivity"
                   android:label="@string/app_name"
                 >
@@ -16,6 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
 
         <activity android:name=".ui.activity.KeyguardImgActivity"
                   android:launchMode="singleTask"
@@ -31,11 +36,15 @@
 
         <activity android:name=".ui.activity.BindNfcActivity">
             <intent-filter>
-                <action android:name="android.nfc.action.TECH_DISCOVERED" />
+                <!--<action android:name="android.nfc.action.TECH_DISCOVERED" />-->
+                <action android:name="android.nfc.action.TAG_DISCOVERED"/>
             </intent-filter>
             <meta-data
                     android:name="android.nfc.action.TECH_DISCOVERED"
-                    android:resource="@xml/nfc_tech_filter" />
+                    android:resource="@xml/nfc_tech_filter"/>
+            <meta-data
+                    android:name="android.nfc.action.TAG_DISCOVERED"
+                    android:resource="@xml/nfc_tech_filter"/>
         </activity>
         <activity android:name=".ui.activity.SetPasswdActivity"/>
         <activity android:name=".ui.activity.BindWatchActivity"/>
@@ -50,8 +59,44 @@
             </intent-filter>
         </receiver>
 
+        <!--<receiver android:name=".service.NfcLostReceiver"-->
+        <!-->-->
+        <!--<intent-filter android:priority="10000">-->
+        <!--<action android:name="android.nfc.action.TAG_LOST" />-->
+        <!--</intent-filter>-->
+        <!--</receiver>-->
+
+        <!--<receiver android:name=".service.NfcFoundReceiver">-->
+        <!--<intent-filter android:priority="10000">-->
+        <!--<action android:name="android.nfc.action.TAG_DISCOVERED"/>-->
+        <!--</intent-filter>-->
+        <!--</receiver>-->
+
+        <!--<receiver android:name=".service.NfcIntentReciever" >-->
+        <!--<intent-filter>-->
+        <!--<action android:name="android.nfc.action.NDEF_DISCOVERED" />-->
+        <!--&lt;!&ndash; <action android:name="android.intent.action.VIEW" /> &ndash;&gt;-->
+        <!--<category android:name="android.intent.category.DEFAULT" />-->
+
+        <!--<data android:mimeType="text/plain" />-->
+
+        <!--</intent-filter>-->
+
+        <!--</receiver>-->
+
         <service android:name=".service.KeyguardService"/>
         <service android:name=".service.DaemonService"/>
+
+
+        <meta-data
+                android:name="xposedmodule"
+                android:value="true"/>
+        <meta-data
+                android:name="xposedminversion"
+                android:value="2.0*"/>
+        <meta-data
+                android:name="xposeddescription"
+                android:value="Using the NFC LockScreenOff Enabler application, you can choose whether NFC is enabled additionally on your lockscreen or when the screen is off."/>
 
     </application>
 
@@ -71,10 +116,10 @@
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.NFC" />
-    <uses-permission android:name="android.permission.BIND_NFC_SERVICE" />
+    <uses-permission android:name="android.permission.NFC"/>
+    <uses-permission android:name="android.permission.BIND_NFC_SERVICE"/>
 
-    <uses-feature android:name="android.hardware.nfc" android:required="true" />
+    <uses-feature android:name="android.hardware.nfc" android:required="true"/>
     <uses-feature android:name="android.hardware.camera" android:required="true"/>
     <uses-feature android:name="android.hardware.camera.autofocus"/>
 

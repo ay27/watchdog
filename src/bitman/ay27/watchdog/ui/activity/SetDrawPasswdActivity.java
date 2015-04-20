@@ -111,6 +111,7 @@ public class SetDrawPasswdActivity extends Activity {
             manager.update(KeyguardStatus.class, status);
         } else {
             manager.insert(KeyguardStatus.class, status);
+            statusInDB = true;
         }
 
         canvas.cleanCanvas();
@@ -212,6 +213,7 @@ public class SetDrawPasswdActivity extends Activity {
                     DbManager.getInstance().update(KeyguardStatus.class, status);
                 } else {
                     DbManager.getInstance().insert(KeyguardStatus.class, status);
+                    statusInDB = true;
                 }
             }
 

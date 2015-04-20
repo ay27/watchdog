@@ -64,5 +64,16 @@
     <orderEntry type="module" module-name="widget" />
     <orderEntry type="module" module-name="SwitchButton-adt" />
     <orderEntry type="module" module-name="libwatchcat" />
+    <orderEntry type="module-library" scope="PROVIDED">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/XposedBridgeApi.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/libs/XposedBridgeApi.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
 </module>

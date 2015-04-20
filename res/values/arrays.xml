@@ -8,4 +8,17 @@
         <item>拍照</item>
         <item>相册</item>
     </string-array>
+    <string-array name="pref_sounds_to_play_values">
+        <item>sound_start</item>
+        <item>sound_end</item>
+        <item>sound_error</item>
+        <item>sound_taglost</item>
+    </string-array>
+
+    <string-array name="card_uuid">
+        <item>A5B8C061</item>
+    </string-array>
+    <string-array name="card_name">
+        <item>fanka</item>
+    </string-array>
 </resources>

@@ -65,6 +65,11 @@ public class ServiceManager {
     }
 
     public void addService(Class serviceCls) {
+        for (Pack pack : packs) {
+            if (pack.service.getName().equals(serviceCls.getName())) {
+                return;
+            }
+        }
         Pack pack;
         packs.add(pack = new Pack(serviceCls, new ServiceStatus(serviceCls.getPackage().getName(), serviceCls.getName(), true)));
         updateDB();

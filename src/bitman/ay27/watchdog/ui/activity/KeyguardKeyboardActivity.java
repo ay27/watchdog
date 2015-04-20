@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 import bitman.ay27.watchdog.R;
 import bitman.ay27.watchdog.db.model.KeyguardStatus;
+import bitman.ay27.watchdog.ui.NfcScanner;
+import bitman.ay27.watchdog.utils.TaskUtils;
 import bitman.ay27.watchdog.widget.keyboard.KeyboardCallback;
 import bitman.ay27.watchdog.widget.keyboard.KeyboardUtil;
 import butterknife.ButterKnife;
@@ -59,6 +61,8 @@ public class KeyguardKeyboardActivity extends Activity {
         }
 
         setupKeyboard();
+
+        TaskUtils.executeAsyncTask(new NfcScanner(this));
     }
 
     @Override
@@ -98,9 +102,9 @@ public class KeyguardKeyboardActivity extends Activity {
          *以下都是WindowManager.LayoutParams的相关属性
          * 具体用途请参考SDK文档
          */
-        final int PARAMS = WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD // | WindowManager.LayoutParams.FLAG_FULLSCREEN
-                | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
-                | WindowManager.LayoutParams.FLAG_LAYOUT_INSET_DECOR;
+        final int PARAMS = WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD; // | WindowManager.LayoutParams.FLAG_FULLSCREEN
+//                | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
+//                | WindowManager.LayoutParams.FLAG_LAYOUT_INSET_DECOR;
 
         wmParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ERROR;   //这里是关键，你也可以试试2003
         wmParams.format = PixelFormat.OPAQUE;

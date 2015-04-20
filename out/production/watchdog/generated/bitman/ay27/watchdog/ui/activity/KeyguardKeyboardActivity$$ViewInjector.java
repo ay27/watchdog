@@ -7,9 +7,9 @@ import butterknife.ButterKnife.Finder;
 public class KeyguardKeyboardActivity$$ViewInjector {
   public static void inject(Finder finder, final bitman.ay27.watchdog.ui.activity.KeyguardKeyboardActivity target, Object source) {
     View view;
-    view = finder.findRequiredView(source, 2131492935, "field 'inputEdt'");
+    view = finder.findRequiredView(source, 2131558471, "field 'inputEdt'");
     target.inputEdt = (android.widget.EditText) view;
-    view = finder.findRequiredView(source, 2131492931, "field 'keyboardView'");
+    view = finder.findRequiredView(source, 2131558467, "field 'keyboardView'");
     target.keyboardView = (android.inputmethodservice.KeyboardView) view;
   }
 
