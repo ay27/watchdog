@@ -22,8 +22,6 @@ import bitman.ay27.watchdog.db.model.KeyguardStatus;
 import bitman.ay27.watchdog.processor.AngleChainProcessor;
 import bitman.ay27.watchdog.processor.Curve;
 import bitman.ay27.watchdog.ui.DrawingCanvas;
-import bitman.ay27.watchdog.ui.NfcScanner;
-import bitman.ay27.watchdog.utils.TaskUtils;
 import bitman.ay27.watchdog.utils.Utils;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -74,11 +72,10 @@ public class KeyguardImgActivity extends Activity {
         adapter.enableReaderMode(this, new NfcAdapter.ReaderCallback() {
             @Override
             public void onTagDiscovered(Tag tag) {
-                Log.i("NFC", "found : "+ Utils.ByteArrayToHexString(tag.getId()));
+                Log.i("NFC", "found : " + Utils.ByteArrayToHexString(tag.getId()));
             }
         }, NfcAdapter.FLAG_READER_NFC_A, null);
 
-//        TaskUtils.executeAsyncTask(new NfcScanner(this));
     }
 
     @Override

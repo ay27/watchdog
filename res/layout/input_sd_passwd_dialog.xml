@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="300dp"
+              android:layout_height="match_parent"
+        android:padding="16dp">
+
+    <EditText
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:hint="输入SD卡密钥"
+            android:id="@+id/input_sd_passwd_dialog_pass_edt" android:layout_weight="1"/>
+    <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="装载"
+            android:id="@+id/input_sd_passwd_dialog_btn"
+            android:background="@drawable/transparent_item_bg"/>
+</LinearLayout>

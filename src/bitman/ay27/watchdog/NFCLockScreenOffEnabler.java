@@ -24,6 +24,11 @@ import java.util.Set;
 
 import static de.robv.android.xposed.XposedHelpers.*;
 
+
+/**
+ * This class must place in **root package**, otherwise it will works abnormal.
+ */
+
 public class NFCLockScreenOffEnabler implements IXposedHookZygoteInit, IXposedHookLoadPackage {
     // Thanks to Tungstwenty for the preferences code, which I have taken from his Keyboard42DictInjector and made a bad job of it
     private static final String MY_PACKAGE_NAME = NFCLockScreenOffEnabler.class.getPackage().getName();
@@ -95,6 +100,43 @@ public class NFCLockScreenOffEnabler implements IXposedHookZygoteInit, IXposedHo
 
     @Override
     public void handleLoadPackage(LoadPackageParam lpparam) throws Throwable {
+
+        try {
+            Class<?> MountService = findClass("com.android.server.MountService", lpparam.classLoader);
+            findAndHookMethod(MountService, "unmountVolume", String.class, boolean.class, boolean.class, new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                    XposedBridge.log("unmount volume "+param.args[0]+" "+param.args[1]+" "+param.args[2]);
+                }
+            });
+
+            XposedBridge.hookAllConstructors(MountService, new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                    mContext = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
+                    IntentFilter filter = new IntentFilter(Common.ACTION_UNMOUNT);
+                    mContext.registerReceiver(new BroadcastReceiver() {
+                        @Override
+                        public void onReceive(Context context, Intent intent) {
+                            XposedBridge.log("receive unmount");
+                            XposedHelpers.callMethod(param.thisObject, "unmountVolume", "/storage/usbdisk", true, false);
+                            XposedBridge.log("after call method");
+                            try {
+                                Thread.sleep(5000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            mContext.sendBroadcast(new Intent(Common.ACTION_UNMOUNT_SUCCESS));
+                        }
+                    }, filter);
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+            XposedBridge.log("unmount volume error : "+e.toString());
+        }
+
+
         if (lpparam.packageName.equals(Common.PACKAGE_NFC)) {
             modRes = XModuleResources.createInstance(MODULE_PATH, null);
             reloadSoundsToPlayList();
@@ -459,6 +501,7 @@ public class NFCLockScreenOffEnabler implements IXposedHookZygoteInit, IXposedHo
     private void registerNfcUnlockReceivers(Context context) {
         if (context == null)
             return;
+
 
         // *facepalm* previous versions probably leaked memory right here in this very method.
         if (mBroadcastReceiverRegistered)

@@ -7,9 +7,9 @@ import butterknife.ButterKnife.Finder;
 public class MainActivity$$ViewInjector {
   public static void inject(Finder finder, final bitman.ay27.watchdog.ui.activity.MainActivity target, Object source) {
     View view;
-    view = finder.findRequiredView(source, 2131558479, "field 'toolbar'");
+    view = finder.findRequiredView(source, 2131558481, "field 'toolbar'");
     target.toolbar = (android.support.v7.widget.Toolbar) view;
-    view = finder.findRequiredView(source, 2131558483, "field 'bootLoaderSwitch' and method 'bootLoaderCheckChanged'");
+    view = finder.findRequiredView(source, 2131558488, "field 'bootLoaderSwitch' and method 'bootLoaderCheckChanged'");
     target.bootLoaderSwitch = (com.kyleduo.switchbutton.SwitchButton) view;
     ((android.widget.CompoundButton) view).setOnCheckedChangeListener(
       new android.widget.CompoundButton.OnCheckedChangeListener() {
@@ -20,18 +20,11 @@ public class MainActivity$$ViewInjector {
           target.bootLoaderCheckChanged(p0, p1);
         }
       });
-    view = finder.findRequiredView(source, 2131558484, "field 'sdEncryptSwitch' and method 'sdEncryptCheckChanged'");
-    target.sdEncryptSwitch = (com.kyleduo.switchbutton.SwitchButton) view;
-    ((android.widget.CompoundButton) view).setOnCheckedChangeListener(
-      new android.widget.CompoundButton.OnCheckedChangeListener() {
-        @Override public void onCheckedChanged(
-          android.widget.CompoundButton p0,
-          boolean p1
-        ) {
-          target.sdEncryptCheckChanged(p0, p1);
-        }
-      });
-    view = finder.findRequiredView(source, 2131558485, "field 'keyguardSwitch' and method 'keyguardCheckChanged'");
+    view = finder.findRequiredView(source, 2131558486, "field 'sdTitle'");
+    target.sdTitle = (android.widget.TextView) view;
+    view = finder.findRequiredView(source, 2131558487, "field 'sdSummer'");
+    target.sdSummer = (android.widget.TextView) view;
+    view = finder.findRequiredView(source, 2131558489, "field 'keyguardSwitch' and method 'keyguardCheckChanged'");
     target.keyguardSwitch = (com.kyleduo.switchbutton.SwitchButton) view;
     ((android.widget.CompoundButton) view).setOnCheckedChangeListener(
       new android.widget.CompoundButton.OnCheckedChangeListener() {
@@ -42,7 +35,7 @@ public class MainActivity$$ViewInjector {
           target.keyguardCheckChanged(p0, p1);
         }
       });
-    view = finder.findRequiredView(source, 2131558486, "field 'usbSwitch' and method 'usbCheckChanged'");
+    view = finder.findRequiredView(source, 2131558490, "field 'usbSwitch' and method 'usbCheckChanged'");
     target.usbSwitch = (com.kyleduo.switchbutton.SwitchButton) view;
     ((android.widget.CompoundButton) view).setOnCheckedChangeListener(
       new android.widget.CompoundButton.OnCheckedChangeListener() {
@@ -53,7 +46,7 @@ public class MainActivity$$ViewInjector {
           target.usbCheckChanged(p0, p1);
         }
       });
-    view = finder.findRequiredView(source, 2131558480, "method 'loginClick'");
+    view = finder.findRequiredView(source, 2131558482, "method 'loginClick'");
     view.setOnClickListener(
       new android.view.View.OnClickListener() {
         @Override public void onClick(
@@ -62,7 +55,16 @@ public class MainActivity$$ViewInjector {
           target.loginClick(p0);
         }
       });
-    view = finder.findRequiredView(source, 2131558487, "method 'drawPanelClick'");
+    view = finder.findRequiredView(source, 2131558485, "method 'sdPanelClick'");
+    view.setOnClickListener(
+      new android.view.View.OnClickListener() {
+        @Override public void onClick(
+          android.view.View p0
+        ) {
+          target.sdPanelClick(p0);
+        }
+      });
+    view = finder.findRequiredView(source, 2131558491, "method 'drawPanelClick'");
     view.setOnClickListener(
       new android.view.View.OnClickListener() {
         @Override public void onClick(
@@ -71,7 +73,7 @@ public class MainActivity$$ViewInjector {
           target.drawPanelClick(p0);
         }
       });
-    view = finder.findRequiredView(source, 2131558488, "method 'setPasswdPanelClick'");
+    view = finder.findRequiredView(source, 2131558492, "method 'setPasswdPanelClick'");
     view.setOnClickListener(
       new android.view.View.OnClickListener() {
         @Override public void onClick(
@@ -80,7 +82,7 @@ public class MainActivity$$ViewInjector {
           target.setPasswdPanelClick(p0);
         }
       });
-    view = finder.findRequiredView(source, 2131558491, "method 'nfcPanelClick'");
+    view = finder.findRequiredView(source, 2131558495, "method 'nfcPanelClick'");
     view.setOnClickListener(
       new android.view.View.OnClickListener() {
         @Override public void onClick(
@@ -89,7 +91,7 @@ public class MainActivity$$ViewInjector {
           target.nfcPanelClick(p0);
         }
       });
-    view = finder.findRequiredView(source, 2131558493, "method 'aboutClick'");
+    view = finder.findRequiredView(source, 2131558497, "method 'aboutClick'");
     view.setOnClickListener(
       new android.view.View.OnClickListener() {
         @Override public void onClick(
@@ -103,7 +105,8 @@ public class MainActivity$$ViewInjector {
   public static void reset(bitman.ay27.watchdog.ui.activity.MainActivity target) {
     target.toolbar = null;
     target.bootLoaderSwitch = null;
-    target.sdEncryptSwitch = null;
+    target.sdTitle = null;
+    target.sdSummer = null;
     target.keyguardSwitch = null;
     target.usbSwitch = null;
   }

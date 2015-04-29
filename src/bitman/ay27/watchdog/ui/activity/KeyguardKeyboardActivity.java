@@ -12,8 +12,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 import bitman.ay27.watchdog.R;
 import bitman.ay27.watchdog.db.model.KeyguardStatus;
-import bitman.ay27.watchdog.ui.NfcScanner;
-import bitman.ay27.watchdog.utils.TaskUtils;
 import bitman.ay27.watchdog.widget.keyboard.KeyboardCallback;
 import bitman.ay27.watchdog.widget.keyboard.KeyboardUtil;
 import butterknife.ButterKnife;
@@ -62,7 +60,7 @@ public class KeyguardKeyboardActivity extends Activity {
 
         setupKeyboard();
 
-        TaskUtils.executeAsyncTask(new NfcScanner(this));
+//        TaskUtils.executeAsyncTask(new NfcScanner(this));
     }
 
     @Override

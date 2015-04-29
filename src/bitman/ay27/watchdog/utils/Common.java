@@ -2,6 +2,7 @@ package bitman.ay27.watchdog.utils;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.nfc.NfcAdapter;
 import android.os.UserHandle;
 import de.robv.android.xposed.XposedHelpers;
@@ -50,6 +51,8 @@ public class Common {
 
 	/* Used by ACTION_TAG_CHANGED, Boolean extra */
 	public static final String EXTRA_TAG_PRESENT = "tag_present";
+	public static final String ACTION_UNMOUNT = "bitman.ay27.watchdog.unmount";
+	public static final String ACTION_UNMOUNT_SUCCESS = "bitman.ay27.watchdog.unmount_success";
 
 	// Converting byte[] to hex string, used to convert NFC UUID to String
 	public static String byteArrayToHexString(byte [] inarray) {
