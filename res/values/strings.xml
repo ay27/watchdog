@@ -30,8 +30,8 @@
     <string name="delete_success">删除成功</string>
     <string name="not_support_nfc">不支持NFC设备</string>
     <string name="update_ok">更新成功</string>
-    <string name="sd_no_sd_card">没有加密的SD卡</string>
-    <string name="sd_no_sd_card_summer">点击加密SD卡</string>
+    <string name="sd_no_sd_card">没有SD卡</string>
+    <string name="sd_no_sd_card_summer">若要使用此功能，请插入SD卡</string>
     <string name="lock_success">锁定成功</string>
     <string name="lock_failed">锁定失败</string>
     <string name="bootloader_unlock_failed">解除锁定失败</string>
@@ -44,4 +44,7 @@
     <string name="remove_sd_failed">卸载SD卡失败，请重试</string>
     <string name="remove_sd_success">卸载SD卡成功</string>
     <string name="bcpt_enable_failed">装载SD卡失败，请检测密钥是否错误</string>
+    <string name="rejecting_sd_card">正在卸载SD卡，请等待</string>
+    <string name="format_failed">格式化失败，请重试</string>
+    <string name="format_success">格式化成功</string>
 </resources>

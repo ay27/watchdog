@@ -19,9 +19,11 @@ public interface WatchCat_Controller {
     public void loadBCPT();
     public void unloadBCPT();
     public boolean queryEncryption();
-    public void enableEncryption(String cipher);
+    // AES - mode=0, BLOWFISL - mode=1
+    public void enableEncryption(String cipher, int mode);
     public void disableEncryption();
     public void formatEncryptionDisk();
+    public boolean isSDCardExist();
 
 
     //Watch Flash Lock Part

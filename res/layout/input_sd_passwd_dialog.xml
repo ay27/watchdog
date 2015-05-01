@@ -11,7 +11,35 @@
             android:inputType="textPassword"
             android:ems="10"
             android:hint="输入SD卡密钥"
-            android:id="@+id/input_sd_passwd_dialog_pass_edt" android:layout_weight="1"/>
+            android:id="@+id/input_sd_passwd_dialog_pass_edt"/>
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="选择加密方式"
+                android:layout_gravity="center"/>
+        <RadioGroup
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="4dp"
+                android:id="@+id/input_sd_passwd_dialog_radio_group"
+                >
+            <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="AES"
+                    android:id="@+id/input_sd_passwd_dialog_radio_btn_0"
+                    android:checked="true"
+                    android:padding="4dp"/>
+            <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="blowfish"
+                    android:padding="4dp"
+                    android:checked="false"
+                    android:id="@+id/input_sd_passwd_dialog_radio_btn_1"/>
+        </RadioGroup>
+    </LinearLayout>
     <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

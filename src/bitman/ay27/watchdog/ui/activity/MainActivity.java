@@ -1,6 +1,7 @@
 package bitman.ay27.watchdog.ui.activity;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.*;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -25,8 +26,6 @@ import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import com.kyleduo.switchbutton.SwitchButton;
 
-import java.io.IOException;
-
 public class MainActivity extends ActionBarActivity {
 
     public static final String TAG = "MainActivity";
@@ -37,6 +36,7 @@ public class MainActivity extends ActionBarActivity {
     public static final String KEY_USB = "usb_debug";
     public static final String KEY_SD_STATUS = "sd_status";
     public static final String KEY_SD_PASSWD = "sd_passwd";
+    public static final String KEY_ENCRYPT_TYPE = "sd_encrypt_type";
 
     @InjectView(R.id.main_toolbar)
     Toolbar toolbar;
@@ -63,6 +63,13 @@ public class MainActivity extends ActionBarActivity {
     @InjectView(R.id.main_usb_switch)
     SwitchButton usbSwitch;
 
+    @InjectView(R.id.main_sd_format_panel)
+    View formatPanel;
+    @InjectView(R.id.main_sd_format_title)
+    TextView formatTitle;
+    @InjectView(R.id.main_sd_format_summer)
+    TextView formatSummer;
+
     private SharedPreferences pref;
     private boolean usbReEnter = false;
     private SharedPreferences.OnSharedPreferenceChangeListener sdStatusChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
@@ -74,17 +81,44 @@ public class MainActivity extends ActionBarActivity {
                     case 0:     // nothing
                         sdTitle.setText(R.string.sd_no_sd_card);
                         sdSummer.setText(R.string.sd_no_sd_card_summer);
+                        enableFormatPanel(false);
                         break;
                     case 1:     // found sd card
                         sdTitle.setText(R.string.sd_wait_to_enable);
                         sdSummer.setText(R.string.sd_wait_to_enable_summer);
+                        enableFormatPanel(false);
                         break;
                     case 2:
                         sdTitle.setText(R.string.sd_can_be_remove);
                         sdSummer.setText(R.string.sd_can_be_remove_summer);
+                        enableFormatPanel(true);
                         break;
                 }
             }
+        }
+    };
+    private ProgressDialog pd;
+    private BroadcastReceiver unmountSuccessReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            WatchCat_Controller wc_ctl = new WatchCat_Controller_Impl();
+            try {
+                wc_ctl.disableEncryption();
+                wc_ctl.unloadBCPT();
+                if (wc_ctl.isBcptLoaded() || wc_ctl.queryEncryption()) {
+                    Toast.makeText(MainActivity.this, R.string.remove_sd_failed, Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MainActivity.this, R.string.remove_sd_success, Toast.LENGTH_SHORT).show();
+                    pref.edit().putInt(KEY_SD_STATUS, 0).apply();
+                }
+            } catch (Exception e) {
+                Log.e(TAG, e.toString());
+                Toast.makeText(MainActivity.this, R.string.remove_sd_failed, Toast.LENGTH_SHORT).show();
+            }
+            if (pd != null && pd.isShowing())
+                pd.dismiss();
+
+            unregisterReceiver(unmountSuccessReceiver);
         }
     };
 
@@ -109,6 +143,12 @@ public class MainActivity extends ActionBarActivity {
 
         pref.registerOnSharedPreferenceChangeListener(sdStatusChangeListener);
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        pref.unregisterOnSharedPreferenceChangeListener(sdStatusChangeListener);
     }
 
     private void init() {
@@ -173,45 +213,91 @@ public class MainActivity extends ActionBarActivity {
             case 0:     // nothing
                 break;
             case 1:     // found sd card
-                wc_ctl.loadBCPT();
+
+                if (!checkSDCardExist()) {
+                    return;
+                }
+
                 new InputSdPasswdDialog(this, new InputSdPasswdDialog.InputFinishedCallback() {
                     @Override
-                    public void finished(String passwd) {
+                    public void finished(String passwd, int mode) {
+
+                        if (!checkSDCardExist()) {
+                            return;
+                        }
+
                         try {
-                            wc_ctl.enableEncryption(passwd);
-                            if (wc_ctl.isBcptLoaded() && wc_ctl.queryEncryption()) {
-                                Toast.makeText(MainActivity.this, R.string.bcpt_enable_success, Toast.LENGTH_SHORT).show();
-                                pref.edit().putInt(KEY_SD_STATUS, 2).commit();
-                                pref.edit().putString(KEY_SD_PASSWD, passwd).commit();
-                            } else {
-                                Toast.makeText(MainActivity.this, R.string.bcpt_enable_failed, Toast.LENGTH_SHORT).show();
-                            }
+                            wc_ctl.loadBCPT();
+                            wc_ctl.enableEncryption(passwd, mode);
                         } catch (Exception e) {
                             Log.e(TAG, e.toString());
+                            Toast.makeText(MainActivity.this, R.string.bcpt_enable_failed, Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        if (wc_ctl.isBcptLoaded() && wc_ctl.queryEncryption()) {
+                            Toast.makeText(MainActivity.this, R.string.bcpt_enable_success, Toast.LENGTH_SHORT).show();
+
+                            enableFormatPanel(true);
+
+                            pref.edit().putInt(KEY_SD_STATUS, 2).apply();
+                            pref.edit().putString(KEY_SD_PASSWD, passwd).apply();
+                            pref.edit().putInt(KEY_ENCRYPT_TYPE, mode).apply();
+                        } else {
                             Toast.makeText(MainActivity.this, R.string.bcpt_enable_failed, Toast.LENGTH_SHORT).show();
                         }
                     }
                 }).show();
                 break;
             case 2:
-                sendBroadcast(new Intent(Common.ACTION_UNMOUNT));
-                this.registerReceiver(new BroadcastReceiver() {
-                    @Override
-                    public void onReceive(Context context, Intent intent) {
-                        wc_ctl.disableEncryption();
-                        wc_ctl.unloadBCPT();
-                        if (wc_ctl.isBcptLoaded() || wc_ctl.queryEncryption()) {
-                            Toast.makeText(MainActivity.this, R.string.remove_sd_failed, Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(MainActivity.this, R.string.remove_sd_success, Toast.LENGTH_SHORT).show();
-                            pref.edit().putInt(KEY_SD_STATUS, 0).commit();
-                        }
+                if (!checkSDCardExist()) {
+                    return;
+                }
 
-                    }
-                }, new IntentFilter(Common.ACTION_UNMOUNT_SUCCESS));
+                sendBroadcast(new Intent(Common.ACTION_UNMOUNT));
+                pd = new ProgressDialog(MainActivity.this);
+                pd.setMessage(getResources().getString(R.string.rejecting_sd_card));
+                pd.setProgress(0);
+                pd.show();
+                registerReceiver(unmountSuccessReceiver, new IntentFilter(Common.ACTION_UNMOUNT_SUCCESS));
                 break;
         }
     }
+
+    private boolean checkSDCardExist() {
+        WatchCat_Controller wc_ctl = new WatchCat_Controller_Impl();
+        if (!wc_ctl.isSDCardExist()) {
+            Toast.makeText(MainActivity.this, R.string.sd_no_sd_card, Toast.LENGTH_SHORT).show();
+            try {
+                wc_ctl.disableEncryption();
+                wc_ctl.unloadBCPT();
+                pref.edit().putInt(KEY_SD_STATUS, 0).apply();
+            } catch (Exception e) {
+                Log.e(TAG, e.toString());
+            }
+            return false;
+        }
+        return true;
+    }
+
+    private void enableFormatPanel(boolean value) {
+        formatPanel.setClickable(value);
+        formatTitle.setEnabled(value);
+        formatSummer.setEnabled(value);
+    }
+
+    @OnClick(R.id.main_sd_format_panel)
+    public void formatPanelClick(View view) {
+        WatchCat_Controller wc_ctl = new WatchCat_Controller_Impl();
+        try {
+            wc_ctl.formatEncryptionDisk();
+            Toast.makeText(this, R.string.format_success, Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Log.e(TAG, e.toString());
+            Toast.makeText(this, R.string.format_failed, Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
     @OnCheckedChanged(R.id.main_boot_loader_lock_switch)
     public void bootLoaderCheckChanged(CompoundButton buttonView, boolean isChecked) {
@@ -220,11 +306,11 @@ public class MainActivity extends ActionBarActivity {
         WatchCat_Controller wc_ctl = new WatchCat_Controller_Impl();
 
         if (isChecked) {
-            wc_ctl.loadFsProtector();
-            wc_ctl.enableBootloaderWriteProtect();
             try {
                 wc_ctl.lockFlashLock();
-            } catch (IOException e) {
+                wc_ctl.loadFsProtector();
+                wc_ctl.enableBootloaderWriteProtect();
+            } catch (Exception e) {
                 e.printStackTrace();
                 Toast.makeText(this, "lock failed", Toast.LENGTH_SHORT).show();
             }
@@ -234,10 +320,10 @@ public class MainActivity extends ActionBarActivity {
                 Toast.makeText(this, R.string.lock_failed, Toast.LENGTH_SHORT).show();
             }
         } else {
-            wc_ctl.disableBootloaderWriteProtect();
             try {
+                wc_ctl.disableBootloaderWriteProtect();
                 wc_ctl.unlockFlashLock();
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             if (wc_ctl.queryBootloaderWriteProtect() || wc_ctl.queryFlashLockEnable()) {

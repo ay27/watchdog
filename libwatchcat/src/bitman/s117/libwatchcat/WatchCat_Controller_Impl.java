@@ -27,9 +27,10 @@ public class WatchCat_Controller_Impl implements WatchCat_Controller {
     public static final String CMD_WC_CTL_CRYPT_TAG_TARGET = "__TARGET__";
     public static final String CMD_WC_CTL_CRYPT_TAG_CPTKEY = "__CPTKEY__";
     public static final String CMD_WC_CTL_CRYPT_TAG_NAME = "__NAME__";
+    public static final String CMD_WC_CTL_CRYPT_TAG_CRYPT_ALGR= "__CRYPTALGR__";
     public static final String CMD_WC_CTL_CRYPT_TARGET_PATH_PERFIX = "/dev/block/";
     public static final String CMD_WC_CTL_CRYPT_MAPPED_NAME_PERFIX = "c_";
-    public static final String CMD_WC_CTL_CRYPT = "wc_ctl crypt " + CMD_WC_CTL_CRYPT_TAG_TARGET + " " + CMD_WC_CTL_CRYPT_TAG_CPTKEY + " " + CMD_WC_CTL_CRYPT_TAG_NAME;
+    public static final String CMD_WC_CTL_CRYPT = "wc_ctl crypt " + CMD_WC_CTL_CRYPT_TAG_TARGET + " " + CMD_WC_CTL_CRYPT_TAG_CPTKEY + " " + CMD_WC_CTL_CRYPT_TAG_NAME + " " + CMD_WC_CTL_CRYPT_TAG_CRYPT_ALGR;
     public static final String CMD_DMSETUP_LS = "dmsetup ls";
     public static final String CMD_DMSETUP_REMOVE_ALL_F = "dmsetup remove_all --force";
     public static final String CMD_MKFS_EXFAT_TAG_TARGET = "__TARGET__";
@@ -164,7 +165,7 @@ public class WatchCat_Controller_Impl implements WatchCat_Controller {
         return sys_bootup_cmdline;
     }
 
-    public static String FetchEquPair(String content, String key) {
+    protected static String fetchEquPair(String content, String key) {
         Pattern equPattern = Pattern.compile("(\\p{Space}|^)+" + key + "=(.*?)(\\p{Space}|$)+");
         Matcher equMatcher = equPattern.matcher(content);
         if (equMatcher.find())
@@ -193,6 +194,15 @@ public class WatchCat_Controller_Impl implements WatchCat_Controller {
                 return (filterMatcher.find());
             }
         });
+    }
+
+    protected static String extractDeviceName(String path) {
+        Pattern equPattern = Pattern.compile("\\\\?([a-zA-Z]+?)\\d*?$");
+        Matcher equMatcher = equPattern.matcher(path);
+        if (equMatcher.find())
+            return equMatcher.group(1);
+        else
+            return null;
     }
 
     @Override
@@ -287,7 +297,7 @@ public class WatchCat_Controller_Impl implements WatchCat_Controller {
             else
                 throw new IllegalStateException("unknow error encounter, detail: " + invoker.getStderr());
         }
-        String fl_enlock = FetchEquPair(invoker.getStdout(), "fl_enlock");
+        String fl_enlock = fetchEquPair(invoker.getStdout(), "fl_enlock");
         return fl_enlock.equals("1");
     }
 
@@ -396,8 +406,9 @@ public class WatchCat_Controller_Impl implements WatchCat_Controller {
         return !invoker.getStdout().contains("No devices found");
     }
 
+    // AES - mode=0, BLOWFISL - mode=1
     @Override
-    public void enableEncryption(String cipher) {
+    public void enableEncryption(String cipher, int mode){
         CmdLineInvoker invoker;
         if (!isBcptLoaded())
             throw new IllegalStateException("BCPT module haven't load");
@@ -407,16 +418,30 @@ public class WatchCat_Controller_Impl implements WatchCat_Controller {
         invoker = new CmdLineInvoker("", true);
 
         File[] devList = findFileUnderDir("/dev/block", "sd*");
+        String firstDevName;
         if (devList.length == 0) {
             throw new IllegalStateException("no original block device detected");
-        } else if (devList.length != 1) {
-            throw new IllegalStateException("multiple original block device, you need specify which one");
+        } else if (devList.length >= 1) {
+            firstDevName = extractDeviceName(devList[0].getName());
+            for(int i = 1;i < devList.length;i++){
+                if(!firstDevName.equals(devList[i]))
+                    throw new IllegalStateException("multiple original block device, you need specify which one");
+            }
+        } else{
+            throw new IllegalStateException("unexpected status happened when fetch device info, detail: devList.length == " + devList.length +
+                    ", please feedback the issue to our.");
         }
 
         String cmd = CMD_WC_CTL_CRYPT.
                 replace(CMD_WC_CTL_CRYPT_TAG_TARGET, devList[0].getAbsolutePath()).
                 replace(CMD_WC_CTL_CRYPT_TAG_CPTKEY, bytesToHexString(MD5(cipher))).
-                replace(CMD_WC_CTL_CRYPT_TAG_NAME, CMD_WC_CTL_CRYPT_MAPPED_NAME_PERFIX + devList[0].getName());
+                replace(CMD_WC_CTL_CRYPT_TAG_NAME, CMD_WC_CTL_CRYPT_MAPPED_NAME_PERFIX + firstDevName);
+        if(mode == 0){
+            cmd = cmd.replace(CMD_WC_CTL_CRYPT_TAG_CRYPT_ALGR, "aes");
+        } else {
+            cmd = cmd.replace(CMD_WC_CTL_CRYPT_TAG_CRYPT_ALGR, "blowfish");
+        }
+
         invoker.setCmd(cmd, true);
         if (invoker.run() != 0)
             throw new IllegalStateException("fail when invoke \"" + cmd + "\".");
@@ -452,6 +477,12 @@ public class WatchCat_Controller_Impl implements WatchCat_Controller {
             throw new IllegalStateException("fail when invoke \"" + cmd + "\".");
         if (invoker.getExitno() != 0)
             throw new IllegalStateException("mkfs fail, format undone");
+    }
+
+    @Override
+    public boolean isSDCardExist(){
+        File[] devList = findFileUnderDir("/dev/block", "sd*");
+        return devList.length != 0;
     }
 
 

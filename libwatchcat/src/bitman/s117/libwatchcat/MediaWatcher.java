@@ -39,7 +39,7 @@ public class MediaWatcher extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Toast.makeText(context, intent.getAction() + " mData: " + intent.getDataString(), Toast.LENGTH_LONG).show();
+        Toast.makeText(context, intent.getAction() + " mData: " + intent.getDataString(), Toast.LENGTH_SHORT).show();
 //        if (intent.getAction().equals("android.intent.action.MEDIA_MOUNTED")) //SD卡已经成功挂载
 //        {
 //            //imagepath = android.os.Environment.getExternalStorageDirectory();//你的SD卡路径

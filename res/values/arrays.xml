@@ -21,4 +21,8 @@
     <string-array name="card_name">
         <item>fanka</item>
     </string-array>
+    <string-array name="sd_actions">
+        <item>格式化</item>
+        <item>挂载</item>
+    </string-array>
 </resources>
