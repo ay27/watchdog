@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.*;
 import android.graphics.Color;
+import android.hardware.usb.UsbManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
@@ -134,14 +135,12 @@ public class MainActivity extends ActionBarActivity {
 
         pref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
 
-        boolean result = UpgradeSystemPermission.upgradeRootPermission();
-        if (!result) {
-            usbSwitch.setEnabled(false);
-        }
+        pref.registerOnSharedPreferenceChangeListener(sdStatusChangeListener);
 
         init();
 
-        pref.registerOnSharedPreferenceChangeListener(sdStatusChangeListener);
+        boolean flag = Settings.Global.putInt(this.getContentResolver(), Settings.Global.USB_MASS_STORAGE_ENABLED, 1);
+        Toast.makeText(this, "put ok? "+flag, Toast.LENGTH_SHORT).show();
 
     }
 
@@ -149,6 +148,15 @@ public class MainActivity extends ActionBarActivity {
     protected void onDestroy() {
         super.onDestroy();
         pref.unregisterOnSharedPreferenceChangeListener(sdStatusChangeListener);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        WatchCat_Controller wc_ctl = new WatchCat_Controller_Impl();
+        if (!wc_ctl.isSDCardExist()) {
+            pref.edit().putInt(KEY_SD_STATUS, 0).apply();
+        }
     }
 
     private void init() {
@@ -189,10 +197,16 @@ public class MainActivity extends ActionBarActivity {
             usbReEnter = false;
             return;
         }
+        boolean result = UpgradeSystemPermission.upgradeRootPermission();
+        if (!result) {
+            usbSwitch.setEnabled(false);
+            usbReEnter = true;
+            return;
+        }
 
         UpgradeSystemPermission.grantSystemPermission(UpgradeSystemPermission.PERMISSION_WRITE_SECURE_SETTINGS);
 
-        boolean result = Settings.Global.putInt(this.getContentResolver(), Settings.Global.ADB_ENABLED, isChecked ? 1 : 0);
+        result = Settings.Global.putInt(this.getContentResolver(), Settings.Global.ADB_ENABLED, isChecked ? 1 : 0);
         if (!result) {
             usbReEnter = true;
             Toast.makeText(this, R.string.change_usb_error, Toast.LENGTH_SHORT).show();
@@ -281,7 +295,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void enableFormatPanel(boolean value) {
-        formatPanel.setClickable(value);
+        formatPanel.setEnabled(value);
         formatTitle.setEnabled(value);
         formatSummer.setEnabled(value);
     }
@@ -374,13 +388,19 @@ public class MainActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
+    @OnClick(R.id.main_bind_watch_panel)
+    public void bindWatchClick(View v) {
+        Intent intent = new Intent(this, BindWatchActivity.class);
+        startActivity(intent);
+    }
+
     @OnClick(R.id.main_bind_nfc_panel)
     public void nfcPanelClick(View view) {
         Intent intent = new Intent(this, BindNfcActivity.class);
         startActivity(intent);
     }
 
-    @OnClick(R.id.main_about_panel)
+    //    @OnClick(R.id.main_about_panel)
     public void aboutClick(View view) {
         new AlertDialog.Builder(this)
                 .setTitle(R.string.about)

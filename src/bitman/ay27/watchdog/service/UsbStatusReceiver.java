@@ -1,9 +1,6 @@
 package bitman.ay27.watchdog.service;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
+import android.content.*;
 import android.util.Log;
 import bitman.ay27.watchdog.ui.activity.MainActivity;
 import bitman.ay27.watchdog.utils.Common;
@@ -18,6 +15,18 @@ public class UsbStatusReceiver extends BroadcastReceiver {
 
     private WatchCat_Controller wc_ctl = new WatchCat_Controller_Impl();
     private SharedPreferences pref;
+    private BroadcastReceiver unmountSuccessReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            try {
+                wc_ctl.disableEncryption();
+                wc_ctl.unloadBCPT();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            context.unregisterReceiver(unmountSuccessReceiver);
+        }
+    };
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -30,12 +39,7 @@ public class UsbStatusReceiver extends BroadcastReceiver {
         }
         else if (intent.getAction().equals(Intent.ACTION_MEDIA_REMOVED)) {
             context.sendBroadcast(new Intent(Common.ACTION_UNMOUNT));
-            try {
-                wc_ctl.disableEncryption();
-                wc_ctl.unloadBCPT();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            context.registerReceiver(unmountSuccessReceiver, new IntentFilter(Common.ACTION_UNMOUNT_SUCCESS));
         }
     }
 }

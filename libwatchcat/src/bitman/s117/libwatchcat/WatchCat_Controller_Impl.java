@@ -46,7 +46,7 @@ public class WatchCat_Controller_Impl implements WatchCat_Controller {
 
     private static String sys_bootup_cmdline = null;
 
-    private String mMappedName = null;
+    //private String mMappedName = null;
 
     protected static String bytesToHexString(byte[] src) {
         StringBuilder stringBuilder = new StringBuilder("");
@@ -204,6 +204,20 @@ public class WatchCat_Controller_Impl implements WatchCat_Controller {
         else
             return null;
     }
+
+    protected static String getFirstCryptedDeviceName(){
+        CmdLineInvoker invoker = new CmdLineInvoker(CMD_DMSETUP_LS, true);
+        if (invoker.run() != 0)
+            throw new IllegalStateException("fail when invoke \"" + CMD_DMSETUP_LS + "\".");
+        Pattern equPattern = Pattern.compile("^(\\S+?)\\s+\\(");
+        Matcher equMatcher = equPattern.matcher(invoker.getStdout());
+        if (equMatcher.find())
+            return equMatcher.group(1);
+        else
+            return null;
+    }
+
+
 
     @Override
     public boolean isFsProtectorLoaded() throws IllegalStateException {
@@ -446,7 +460,7 @@ public class WatchCat_Controller_Impl implements WatchCat_Controller {
         if (invoker.run() != 0)
             throw new IllegalStateException("fail when invoke \"" + cmd + "\".");
         if (invoker.getStderr().equals("")) {
-            this.mMappedName = CMD_WC_CTL_CRYPT_MAPPED_NAME_PERFIX + devList[0].getName();
+            //this.mMappedName = CMD_WC_CTL_CRYPT_MAPPED_NAME_PERFIX + devList[0].getName();
             return;
         } else if (invoker.getStderr().contains("can not open device")) {
             throw new IllegalStateException("cannot open original block device: " + CMD_WC_CTL_CRYPT_TARGET_PATH_PERFIX + devList[0].getAbsolutePath());
@@ -468,7 +482,7 @@ public class WatchCat_Controller_Impl implements WatchCat_Controller {
     @Override
     public void formatEncryptionDisk() {
         CmdLineInvoker invoker;
-        String cmd = CMD_MKFS_EXFAT.replace(CMD_MKFS_EXFAT_TAG_TARGET, PATH_MAPPED_DEV_DIR + mMappedName);
+        String cmd = CMD_MKFS_EXFAT.replace(CMD_MKFS_EXFAT_TAG_TARGET, PATH_MAPPED_DEV_DIR + getFirstCryptedDeviceName());
         if(!queryEncryption())
             throw new IllegalStateException("no encryption mirror exist");
 

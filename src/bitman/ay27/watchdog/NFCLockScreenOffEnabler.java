@@ -8,6 +8,7 @@ import android.content.*;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.XModuleResources;
+import android.hardware.usb.UsbDevice;
 import android.media.SoundPool;
 import android.nfc.NfcAdapter;
 import android.os.PowerManager;
@@ -135,6 +136,33 @@ public class NFCLockScreenOffEnabler implements IXposedHookZygoteInit, IXposedHo
             e.printStackTrace();
             XposedBridge.log("unmount volume error : "+e.toString());
         }
+
+
+
+
+
+        try {
+            Class<?> UsbManager = findClass("android.hardware.usb.UsbManager", lpparam.classLoader);
+            findAndHookMethod(UsbManager, "openDevice", UsbDevice.class, new XC_MethodHook() {
+
+                @Override
+                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                    super.beforeHookedMethod(param);
+                    param.setResult(null);
+                }
+
+                @Override
+                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                    super.afterHookedMethod(param);
+                    XposedHelpers.setObjectField(param.thisObject, "connection", null);
+                    param.setResult(null);
+                }
+            });
+        } catch (Exception e) {
+            XposedBridge.log("error in UsbManager : "+e.toString());
+        }
+
+
 
 
         if (lpparam.packageName.equals(Common.PACKAGE_NFC)) {

@@ -11,7 +11,8 @@
                  android:persistent="true"
                  android:name=".WatchdogApplication"
                  android:theme="@style/AppBaseTheme"
-                 android:allowBackup="true">
+                 android:allowBackup="true"
+                 android:hasCode="true">
         <activity android:name=".ui.activity.MainActivity"
                   android:label="@string/app_name"
                 >
@@ -50,6 +51,8 @@
         <activity android:name=".ui.activity.SetDrawPasswdActivity"/>
         <activity android:name=".ui.activity.TestDrawPasswdActivity"/>
         <activity android:name=".ui.activity.SetWatchActivity"/>
+
+        <activity android:name=".ui.activity.DangerActivity"/>
 
         <receiver android:name=".service.OnBootReceiver"
                   android:exported="true">
@@ -126,7 +129,6 @@
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.NFC"/>
     <uses-permission android:name="android.permission.BIND_NFC_SERVICE"/>
-
     <uses-feature android:name="android.hardware.nfc" android:required="true"/>
     <uses-feature android:name="android.hardware.camera" android:required="true"/>
     <uses-feature android:name="android.hardware.camera.autofocus"/>

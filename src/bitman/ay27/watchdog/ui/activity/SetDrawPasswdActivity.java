@@ -114,9 +114,9 @@ public class SetDrawPasswdActivity extends Activity {
             statusInDB = true;
         }
 
-        canvas.cleanCanvas();
+//        canvas.cleanCanvas();
 
-        Toast.makeText(this, R.string.save_ok, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.save_ok, Toast.LENGTH_LONG).show();
 //        canvas.drawChain(chains.get(0));
     }
 

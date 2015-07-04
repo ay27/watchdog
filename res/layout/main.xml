@@ -11,6 +11,7 @@
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent">
+
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                       android:orientation="vertical"
                       android:layout_width="fill_parent"
@@ -36,6 +37,27 @@
                           android:id="@+id/main_user_summer"
                         />
             </LinearLayout>
+
+
+            <!--<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      style="@style/PreferenceCatalog"
+                      android:text="我的笔记本电脑"/>
+            <include layout="@layout/divider_large"/>
+            <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                          style="@style/PreferencePanel"
+                          android:id="@+id/main_laptop_panel">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:text="笔记本电脑管理"
+                          style="@style/PreferenceFirstText"
+                          android:id="@+id/main_laptop_title"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:text="绑定，追踪我的笔记本电脑"
+                          style="@style/PreferenceSecondText"
+                          android:id="@+id/main_laptop_summer"
+                        />
+            </LinearLayout>
+            -->
+
 
             <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
                       style="@style/PreferenceCatalog"
@@ -235,17 +257,17 @@
             </LinearLayout>
 
 
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                      style="@style/PreferenceCatalog"
-                      android:text="关于"/>
-            <include layout="@layout/divider_large"/>
-            <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
-                          style="@style/PreferencePanel"
-                          android:id="@+id/main_about_panel">
-                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                          style="@style/PreferenceText"
-                          android:text="关于"/>
-            </LinearLayout>
+            <!--<TextView android:layout_width="wrap_content" android:layout_height="wrap_content"-->
+                      <!--style="@style/PreferenceCatalog"-->
+                      <!--android:text="关于"/>-->
+            <!--<include layout="@layout/divider_large"/>-->
+            <!--<LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"-->
+                          <!--style="@style/PreferencePanel"-->
+                          <!--android:id="@+id/main_about_panel">-->
+                <!--<TextView android:layout_width="wrap_content" android:layout_height="wrap_content"-->
+                          <!--style="@style/PreferenceText"-->
+                          <!--android:text="关于"/>-->
+            <!--</LinearLayout>-->
 
         </LinearLayout>
 
