@@ -31,6 +31,7 @@ import static de.robv.android.xposed.XposedHelpers.*;
  */
 
 public class NFCLockScreenOffEnabler implements IXposedHookZygoteInit, IXposedHookLoadPackage {
+
     // Thanks to Tungstwenty for the preferences code, which I have taken from his Keyboard42DictInjector and made a bad job of it
     private static final String MY_PACKAGE_NAME = NFCLockScreenOffEnabler.class.getPackage().getName();
     // TODO: Get this dynamically from NfcService class
@@ -107,7 +108,7 @@ public class NFCLockScreenOffEnabler implements IXposedHookZygoteInit, IXposedHo
             findAndHookMethod(MountService, "unmountVolume", String.class, boolean.class, boolean.class, new XC_MethodHook() {
                 @Override
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                    XposedBridge.log("unmount volume "+param.args[0]+" "+param.args[1]+" "+param.args[2]);
+                    XposedBridge.log("unmount volume " + param.args[0] + " " + param.args[1] + " " + param.args[2]);
                 }
             });
 
@@ -134,11 +135,49 @@ public class NFCLockScreenOffEnabler implements IXposedHookZygoteInit, IXposedHo
             });
         } catch (Exception e) {
             e.printStackTrace();
-            XposedBridge.log("unmount volume error : "+e.toString());
+            XposedBridge.log("unmount volume error : " + e.toString());
         }
 
 
+        try {
+            Class<?> MountService = findClass("com.android.server.MountService", lpparam.classLoader);
+            findAndHookMethod(MountService, "mountVolume", String.class, new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                    XposedBridge.log("mount volume " + param.args[0]);
+                }
+            });
 
+            XposedBridge.hookAllConstructors(MountService, new XC_MethodHook() {
+                @Override
+                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
+                    mContext = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
+                    IntentFilter filter = new IntentFilter(Common.ACTION_MOUNT);
+                    mContext.registerReceiver(new BroadcastReceiver() {
+                        @Override
+                        public void onReceive(Context context, Intent intent) {
+                            try {
+                                Thread.sleep(2000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            XposedBridge.log("receive mount");
+                            XposedHelpers.callMethod(param.thisObject, "mountVolume", "/storage/usbdisk");
+                            XposedBridge.log("after call method");
+                            try {
+                                Thread.sleep(2000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            mContext.sendBroadcast(new Intent(Common.ACTION_MOUNT_SUCCESS));
+                        }
+                    }, filter);
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+            XposedBridge.log("mount volume error : " + e.toString());
+        }
 
 
         try {
@@ -159,10 +198,8 @@ public class NFCLockScreenOffEnabler implements IXposedHookZygoteInit, IXposedHo
                 }
             });
         } catch (Exception e) {
-            XposedBridge.log("error in UsbManager : "+e.toString());
+            XposedBridge.log("error in UsbManager : " + e.toString());
         }
-
-
 
 
         if (lpparam.packageName.equals(Common.PACKAGE_NFC)) {
@@ -301,7 +338,7 @@ public class NFCLockScreenOffEnabler implements IXposedHookZygoteInit, IXposedHo
             try {
                 if (mIsOemStupid) {
                     /* The subject seems to have shown signs of intelligence here.
-					 * LG's implementation of NFC supports NFC while screen is off/locked.
+                     * LG's implementation of NFC supports NFC while screen is off/locked.
 					 * This might be because of their weird NFC sending feature, or not.
 					 */
                     findAndHookMethod(NfcService, "applyRouting", boolean.class, new XC_MethodHook() {

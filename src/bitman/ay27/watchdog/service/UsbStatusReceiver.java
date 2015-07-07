@@ -32,12 +32,11 @@ public class UsbStatusReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         pref = context.getSharedPreferences(MainActivity.PREF_NAME, Context.MODE_PRIVATE);
         if (intent.getAction().equals(Intent.ACTION_MEDIA_CHECKING)) {
-            if (pref.getInt(MainActivity.KEY_SD_STATUS, 0) == 0 && wc_ctl.isSDCardExist()) {
-                pref.edit().putInt(MainActivity.KEY_SD_STATUS, 1).apply();
+            if (pref.getInt(MainActivity.KEY_SD_STATE, 0) == 0 && wc_ctl.isSDCardExist()) {
+                pref.edit().putInt(MainActivity.KEY_SD_STATE, 1).apply();
                 Log.i("UsbStatusReceiver", "load bcpt, status 1");
             }
-        }
-        else if (intent.getAction().equals(Intent.ACTION_MEDIA_REMOVED)) {
+        } else if (intent.getAction().equals(Intent.ACTION_MEDIA_REMOVED)) {
             context.sendBroadcast(new Intent(Common.ACTION_UNMOUNT));
             context.registerReceiver(unmountSuccessReceiver, new IntentFilter(Common.ACTION_UNMOUNT_SUCCESS));
         }

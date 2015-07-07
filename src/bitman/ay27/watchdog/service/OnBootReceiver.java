@@ -38,13 +38,13 @@ public class OnBootReceiver extends BroadcastReceiver {
             }
         }
 
-        int sd_status = pref.getInt(MainActivity.KEY_SD_STATUS, 0);
+        int sd_status = pref.getInt(MainActivity.KEY_SD_STATE, 0);
         if (sd_status == 2 && wc_ctl.isSDCardExist()) {
             wc_ctl.loadBCPT();
             wc_ctl.enableEncryption(pref.getString(MainActivity.KEY_SD_PASSWD,""), pref.getInt(MainActivity.KEY_ENCRYPT_TYPE, 0));
         }
         if (!wc_ctl.isSDCardExist()) {
-            pref.edit().putInt(MainActivity.KEY_SD_STATUS, 0).apply();
+            pref.edit().putInt(MainActivity.KEY_SD_STATE, 0).apply();
         }
 
         Intent newIntent = new Intent(context, DaemonService.class);

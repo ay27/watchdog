@@ -1,16 +1,22 @@
 package bitman.ay27.watchdog;
 
+import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.util.Log;
 import bitman.ay27.watchdog.service.DaemonService;
 import bitman.ay27.watchdog.service.NfcFoundReceiver;
 import bitman.ay27.watchdog.utils.Common;
+import com.tencent.android.tpush.XGNotifaction;
+import com.tencent.android.tpush.XGPushManager;
+import com.tencent.android.tpush.XGPushNotifactionCallback;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 /**
  * Proudly to user Intellij IDEA.
@@ -52,5 +58,27 @@ public class WatchdogApplication extends Application {
         registerReceiver(new NfcFoundReceiver(), filter);
 //        filter = new IntentFilter(Common.ACTION_TAG_LOST);
 //        registerReceiver(new NfcLostReceiver(), filter);
+
+
+        // 在主进程设置信鸽相关的内容
+//        if (isMainProcess()) {
+            XGPushManager.registerPush(this);
+//        }
+
     }
+
+
+    private boolean isMainProcess() {
+        ActivityManager am = ((ActivityManager) getSystemService(Context.ACTIVITY_SERVICE));
+        List<ActivityManager.RunningAppProcessInfo> processInfos = am.getRunningAppProcesses();
+        String mainProcessName = getPackageName();
+        int myPid = android.os.Process.myPid();
+        for (ActivityManager.RunningAppProcessInfo info : processInfos) {
+            if (info.pid == myPid && mainProcessName.equals(info.processName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

@@ -46,20 +46,6 @@ public class MainActivity$$ViewInjector {
           target.usbCheckChanged(p0, p1);
         }
       });
-    view = finder.findRequiredView(source, 2131558510, "field 'formatPanel' and method 'formatPanelClick'");
-    target.formatPanel = view;
-    view.setOnClickListener(
-      new android.view.View.OnClickListener() {
-        @Override public void onClick(
-          android.view.View p0
-        ) {
-          target.formatPanelClick(p0);
-        }
-      });
-    view = finder.findRequiredView(source, 2131558511, "field 'formatTitle'");
-    target.formatTitle = (android.widget.TextView) view;
-    view = finder.findRequiredView(source, 2131558512, "field 'formatSummer'");
-    target.formatSummer = (android.widget.TextView) view;
     view = finder.findRequiredView(source, 2131558504, "method 'loginClick'");
     view.setOnClickListener(
       new android.view.View.OnClickListener() {
@@ -96,24 +82,6 @@ public class MainActivity$$ViewInjector {
           target.setPasswdPanelClick(p0);
         }
       });
-    view = finder.findRequiredView(source, 2131558514, "method 'bindWatchClick'");
-    view.setOnClickListener(
-      new android.view.View.OnClickListener() {
-        @Override public void onClick(
-          android.view.View p0
-        ) {
-          target.bindWatchClick(p0);
-        }
-      });
-    view = finder.findRequiredView(source, 2131558516, "method 'nfcPanelClick'");
-    view.setOnClickListener(
-      new android.view.View.OnClickListener() {
-        @Override public void onClick(
-          android.view.View p0
-        ) {
-          target.nfcPanelClick(p0);
-        }
-      });
   }
 
   public static void reset(bitman.ay27.watchdog.ui.activity.MainActivity target) {
@@ -123,8 +91,5 @@ public class MainActivity$$ViewInjector {
     target.sdSummer = null;
     target.keyguardSwitch = null;
     target.usbSwitch = null;
-    target.formatPanel = null;
-    target.formatTitle = null;
-    target.formatSummer = null;
   }
 }

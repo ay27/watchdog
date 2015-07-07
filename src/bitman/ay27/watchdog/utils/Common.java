@@ -53,6 +53,8 @@ public class Common {
 	public static final String EXTRA_TAG_PRESENT = "tag_present";
 	public static final String ACTION_UNMOUNT = "bitman.ay27.watchdog.unmount";
 	public static final String ACTION_UNMOUNT_SUCCESS = "bitman.ay27.watchdog.unmount_success";
+	public static final String ACTION_MOUNT = "bitman.ay27.watchdog.mount";
+	public static final String ACTION_MOUNT_SUCCESS = "bitman.ay27.watchdog.mount_success";
 
 	// Converting byte[] to hex string, used to convert NFC UUID to String
 	public static String byteArrayToHexString(byte [] inarray) {
