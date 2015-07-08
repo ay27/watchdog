@@ -32,61 +32,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="28777324-ed83-4814-ba7a-bf7f7af243bb" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/HeartbeatService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/bitman/ay27/watchdog/net/WatchServerRestClient.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/NfcScannerService.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/KeyguardImgActivity$$ViewInjector.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/KeyguardImgActivity$$ViewInjector.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/KeyguardImgActivity$1.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/KeyguardImgActivity$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/KeyguardImgActivity.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/KeyguardImgActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/KeyguardKeyboardActivity$$ViewInjector.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/KeyguardKeyboardActivity$$ViewInjector.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/KeyguardKeyboardActivity$1.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/KeyguardKeyboardActivity$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/KeyguardKeyboardActivity.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/KeyguardKeyboardActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/LoginDialog$1.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/LoginDialog$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/LoginDialog.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/LoginDialog.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/MainActivity$$ViewInjector$4.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/MainActivity$$ViewInjector$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/MainActivity$$ViewInjector$5.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/MainActivity$$ViewInjector$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/MainActivity$$ViewInjector$6.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/MainActivity$$ViewInjector$6.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/MainActivity$$ViewInjector$7.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/MainActivity$$ViewInjector$7.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/MainActivity$$ViewInjector.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/MainActivity$$ViewInjector.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/CmdManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/MainActivity.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/MainActivity.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/net/NetManager.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/net/NetManager.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/service/OnBootReceiver.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/service/OnBootReceiver.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/R$id.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/R$id.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/widget/R$id.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/widget/R$id.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/R$integer.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/R$integer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/R$layout.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/R$layout.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/R$string.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/R$string.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/R$style.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/R$style.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/R$styleable.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/R$styleable.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/R$xml.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/R$xml.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/R.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/R.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/SetDrawPasswdActivity$$ViewInjector.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/SetDrawPasswdActivity$$ViewInjector.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/SetDrawPasswdActivity.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/SetDrawPasswdActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/SetPasswdActivity$$ViewInjector.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/SetPasswdActivity$$ViewInjector.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/SetPasswdActivity.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/SetPasswdActivity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/WatchdogApplication.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/WatchdogApplication.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/watchdog.apk" afterPath="$PROJECT_DIR$/out/production/watchdog/watchdog.apk" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/watchdog.unaligned.apk" afterPath="$PROJECT_DIR$/out/production/watchdog/watchdog.unaligned.apk" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/generated/bitman/ay27/watchdog/ui/activity/KeyguardImgActivity$$ViewInjector.java" afterPath="$PROJECT_DIR$/out/production/watchdog/generated/bitman/ay27/watchdog/ui/activity/KeyguardImgActivity$$ViewInjector.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/KeyguardImgActivity.java" afterPath="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/KeyguardImgActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/generated/bitman/ay27/watchdog/ui/activity/KeyguardKeyboardActivity$$ViewInjector.java" afterPath="$PROJECT_DIR$/out/production/watchdog/generated/bitman/ay27/watchdog/ui/activity/KeyguardKeyboardActivity$$ViewInjector.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/KeyguardKeyboardActivity.java" afterPath="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/KeyguardKeyboardActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/LoginDialog.java" afterPath="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/LoginDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/generated/bitman/ay27/watchdog/ui/activity/MainActivity$$ViewInjector.java" afterPath="$PROJECT_DIR$/out/production/watchdog/generated/bitman/ay27/watchdog/ui/activity/MainActivity$$ViewInjector.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/MainActivity.java" afterPath="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/MainActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/MessageByServerReceiver.java" afterPath="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/MessageByServerReceiver.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bitman/ay27/watchdog/net/NetManager.java" afterPath="$PROJECT_DIR$/src/bitman/ay27/watchdog/net/NetManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/NfcLostReceiver.java" afterPath="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/NfcLostReceiver.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/OnBootReceiver.java" afterPath="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/OnBootReceiver.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/generated/bitman/ay27/watchdog/ui/activity/SetDrawPasswdActivity$$ViewInjector.java" afterPath="$PROJECT_DIR$/out/production/watchdog/generated/bitman/ay27/watchdog/ui/activity/SetDrawPasswdActivity$$ViewInjector.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/generated/bitman/ay27/watchdog/ui/activity/SetPasswdActivity$$ViewInjector.java" afterPath="$PROJECT_DIR$/out/production/watchdog/generated/bitman/ay27/watchdog/ui/activity/SetPasswdActivity$$ViewInjector.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bitman/ay27/watchdog/utils/UpgradeSystemPermission.java" afterPath="$PROJECT_DIR$/src/bitman/ay27/watchdog/utils/UpgradeSystemPermission.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bitman/ay27/watchdog/WatchdogApplication.java" afterPath="$PROJECT_DIR$/src/bitman/ay27/watchdog/WatchdogApplication.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/keyguard_img.xml" afterPath="$PROJECT_DIR$/res/layout/keyguard_img.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/keyguard_keyboard.xml" afterPath="$PROJECT_DIR$/res/layout/keyguard_keyboard.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/watchdog.iml" afterPath="$PROJECT_DIR$/watchdog.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="watchdog.iws" />
@@ -116,8 +73,8 @@
       <file leaf-file-name="NetManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/net/NetManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2599" max-vertical-offset="3542">
-              <caret line="156" column="0" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="396" max-vertical-offset="4048">
+              <caret line="25" column="4" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -125,84 +82,42 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="KeyguardImgActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/KeyguardImgActivity.java">
+      <file leaf-file-name="UsbStatusReceiver.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/UsbStatusReceiver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="783" max-vertical-offset="5302">
-              <caret line="54" column="55" selection-start-line="54" selection-start-column="55" selection-end-line="54" selection-end-column="55" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3059#3071#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="KeyguardKeyboardActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/KeyguardKeyboardActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="484" max-vertical-offset="2926">
-              <caret line="51" column="60" selection-start-line="51" selection-start-column="60" selection-end-line="51" selection-end-column="60" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1143#1364#0" expanded="true" />
-                <element signature="e#1363#1364#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="keyguard_keyboard.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/keyguard_keyboard.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.381818" vertical-offset="353" max-vertical-offset="1342">
-              <caret line="37" column="0" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="924">
+              <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="keyguard_img.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/keyguard_img.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
+      <file leaf-file-name="ServiceManager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/ServiceManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.4" vertical-offset="0" max-vertical-offset="1408">
-              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="936" max-vertical-offset="2530">
+              <caret line="73" column="125" selection-start-line="73" selection-start-column="125" selection-end-line="73" selection-end-column="125" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="keyboard.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/widget/res/layout/keyboard.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
+      <file leaf-file-name="NfcLostReceiver.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/NfcLostReceiver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.0" vertical-offset="0" max-vertical-offset="484">
-              <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="594">
+              <caret line="24" column="1" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HeartbeatService.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/HeartbeatService.java">
+      <file leaf-file-name="NfcFoundReceiver.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/NfcFoundReceiver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="396" max-vertical-offset="1452">
-              <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#464#579#0" expanded="true" />
-                <element signature="e#578#579#0" expanded="true" />
-                <element signature="e#662#663#0" expanded="true" />
-                <element signature="e#689#690#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="748">
+              <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -210,9 +125,14 @@
       <file leaf-file-name="MessageByServerReceiver.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/MessageByServerReceiver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="91" max-vertical-offset="1034">
-              <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1869" max-vertical-offset="2552">
+              <caret line="94" column="0" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1330#1331#0" expanded="true" />
+                <element signature="e#1386#1387#0" expanded="true" />
+                <element signature="e#2253#2269#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -220,18 +140,38 @@
       <file leaf-file-name="WatchdogApplication.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/WatchdogApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="61" max-vertical-offset="1694">
-              <caret line="40" column="17" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="263" max-vertical-offset="1694">
+              <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="946" max-vertical-offset="5236">
+              <caret line="55" column="51" selection-start-line="55" selection-start-column="51" selection-end-line="55" selection-end-column="51" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CmdManager.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/CmdManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.8196721" vertical-offset="490" max-vertical-offset="1210">
+              <caret line="45" column="45" selection-start-line="45" selection-start-column="45" selection-end-line="45" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="6.213389" vertical-offset="0" max-vertical-offset="11968">
-              <caret line="302" column="0" selection-start-line="302" selection-start-column="0" selection-end-line="302" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="11968">
+              <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
               <folding>
                 <element signature="e#3433#3455#0" expanded="true" />
                 <element signature="e#3499#3528#0" expanded="true" />
@@ -294,7 +234,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/KeyguardService.java" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/DaemonService.java" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/db/DatabaseHelper.java" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/db/model/WatchCat.java" />
@@ -330,21 +269,22 @@
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/utils/Common.java" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/UsbStatusReceiver.java" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/NFCLockScreenOffEnabler.java" />
-        <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/MessageByServerReceiver.java" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/NfcLostReceiver.java" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/utils/UpgradeSystemPermission.java" />
-        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/net/WatchServerRestClient.java" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/LoginDialog.java" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/OnBootReceiver.java" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/HeartbeatService.java" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/WatchdogApplication.java" />
-        <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/net/NetManager.java" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/KeyguardImgActivity.java" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/KeyguardKeyboardActivity.java" />
         <option value="$PROJECT_DIR$/res/layout/keyguard_keyboard.xml" />
         <option value="$PROJECT_DIR$/res/layout/keyguard_img.xml" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/MainActivity.java" />
+        <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/net/NetManager.java" />
+        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/MessageByServerReceiver.java" />
+        <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/CmdManager.java" />
       </list>
     </option>
   </component>
@@ -666,15 +606,9 @@
       <recent name="$PROJECT_DIR$/widget/res/xml" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="bitman.ay27.watchdog.service" />
       <recent name="bitman.ay27.watchdog.ui.activity" />
       <recent name="bitman.ay27.watchdog.ui.keyguard" />
-      <recent name="bitman.ay27.watchdog.service" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/widget/res/layout" />
-      <recent name="$PROJECT_DIR$/widget/res/drawable" />
-      <recent name="$PROJECT_DIR$/res/drawable" />
-      <recent name="$PROJECT_DIR$/res/values" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="bitman.ay27.watchdog" />
@@ -682,6 +616,12 @@
       <recent name="bitman.ay27.watchdog.widget" />
       <recent name="org.bitman.watchdog" />
       <recent name="org.bitman" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/widget/res/layout" />
+      <recent name="$PROJECT_DIR$/widget/res/drawable" />
+      <recent name="$PROJECT_DIR$/res/drawable" />
+      <recent name="$PROJECT_DIR$/res/values" />
     </key>
   </component>
   <component name="RunManager" selected="Android Application.watchdog">
@@ -1029,12 +969,12 @@
       <workItem from="1436284374112" duration="1186000" />
       <workItem from="1436316926959" duration="1068000" />
       <workItem from="1436319846741" duration="1906000" />
-      <workItem from="1436321879432" duration="9601000" />
+      <workItem from="1436321879432" duration="12453000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="289133000" />
+    <option name="totallyTimeSpent" value="291985000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
@@ -1060,7 +1000,7 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.351626" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.351626" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1826411" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2550813" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33841464" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1256,9 +1196,33 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/bitman/ay27/watchdog/net/NetManager.java</url>
-          <line>150</line>
+          <line>175</line>
           <properties />
           <option name="timeStamp" value="103" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/bitman/ay27/watchdog/WatchdogApplication.java</url>
+          <line>40</line>
+          <properties />
+          <option name="timeStamp" value="104" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/MessageByServerReceiver.java</url>
+          <line>50</line>
+          <properties />
+          <option name="timeStamp" value="105" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/MessageByServerReceiver.java</url>
+          <line>68</line>
+          <properties />
+          <option name="timeStamp" value="108" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/MessageByServerReceiver.java</url>
+          <line>93</line>
+          <properties />
+          <option name="timeStamp" value="115" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-field">
           <url>file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/SetPasswdActivity.java</url>
@@ -1267,7 +1231,7 @@
           <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="104" />
+      <option name="time" value="116" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="watchdog">
@@ -1285,31 +1249,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/processor/CompareProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1562" max-vertical-offset="3872">
-          <caret line="99" column="18" selection-start-line="99" selection-start-column="18" selection-end-line="99" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/read_nfc_dialog.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1342">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libwatchcat/src/bitman/s117/libwatchcat/WatchCat_Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="60" max-vertical-offset="836">
-          <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/ReadNfcDialog.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="390" max-vertical-offset="2002">
@@ -1459,14 +1398,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="843" max-vertical-offset="5236">
-          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/libs/android-async-http-1.4.6.jar!/com/loopj/android/http/RequestHandle.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.15384616" vertical-offset="304" max-vertical-offset="902">
@@ -1542,14 +1473,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/NfcLostReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="594">
-          <caret line="24" column="1" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/NFCLockScreenOffEnabler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="15004">
@@ -1606,26 +1529,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/UsbStatusReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="924">
-          <caret line="40" column="41" selection-start-line="40" selection-start-column="41" selection-end-line="40" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/DaemonService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="144" max-vertical-offset="1100">
           <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/ServiceManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="936" max-vertical-offset="2530">
-          <caret line="73" column="125" selection-start-line="73" selection-start-column="125" selection-end-line="73" selection-end-column="125" />
           <folding />
         </state>
       </provider>
@@ -1638,37 +1545,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/MessageByServerReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="91" max-vertical-offset="1034">
-          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Applications/android-sdk-macosx/sources/android-21/android/provider/Settings.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.79133224" vertical-offset="75275" max-vertical-offset="156024">
           <caret line="3510" column="0" selection-start-line="3510" selection-start-column="0" selection-end-line="3510" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/WatchdogApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="61" max-vertical-offset="1694">
-          <caret line="40" column="17" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/net/NetManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2599" max-vertical-offset="3542">
-          <caret line="156" column="0" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1744,8 +1625,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="6.213389" vertical-offset="0" max-vertical-offset="11968">
-          <caret line="302" column="0" selection-start-line="302" selection-start-column="0" selection-end-line="302" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="11968">
+          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
           <folding>
             <element signature="e#3433#3455#0" expanded="true" />
             <element signature="e#3499#3528#0" expanded="true" />
@@ -1791,6 +1672,96 @@
             <element signature="e#19905#19938#0" expanded="true" />
             <element signature="e#20026#20060#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/UsbStatusReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="924">
+          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/ServiceManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="936" max-vertical-offset="2530">
+          <caret line="73" column="125" selection-start-line="73" selection-start-column="125" selection-end-line="73" selection-end-column="125" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/NfcLostReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="594">
+          <caret line="24" column="1" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Applications/android-sdk-macosx/sources/android-21/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33263597" vertical-offset="20208" max-vertical-offset="38940">
+          <caret line="979" column="19" selection-start-line="979" selection-start-column="19" selection-end-line="979" selection-end-column="19" />
+          <folding>
+            <element signature="e#36883#36884#0" expanded="true" />
+            <element signature="e#36916#36917#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/net/NetManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="396" max-vertical-offset="4048">
+          <caret line="25" column="4" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/NfcFoundReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="748">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="946" max-vertical-offset="5236">
+          <caret line="55" column="51" selection-start-line="55" selection-start-column="51" selection-end-line="55" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/WatchdogApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="263" max-vertical-offset="1694">
+          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/MessageByServerReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1869" max-vertical-offset="2552">
+          <caret line="94" column="0" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1330#1331#0" expanded="true" />
+            <element signature="e#1386#1387#0" expanded="true" />
+            <element signature="e#2253#2269#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/CmdManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8196721" vertical-offset="490" max-vertical-offset="1210">
+          <caret line="45" column="45" selection-start-line="45" selection-start-column="45" selection-end-line="45" selection-end-column="45" />
+          <folding />
         </state>
       </provider>
     </entry>

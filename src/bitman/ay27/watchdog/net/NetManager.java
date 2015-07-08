@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import bitman.ay27.watchdog.WatchdogApplication;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.tencent.android.tpush.XGPushManager;
 import org.apache.http.Header;
 import org.json.JSONObject;
 
@@ -29,32 +30,52 @@ public class NetManager {
     public static final String KEY_PASSWORD = "password";
     public static final String KEY_EMAIL = "email";
     public static final String KEY_DEVICE_ID = "deviceId";
-    private static final String KEY_LATI = "latitude";
-    private static final String KEY_LONI = "longitude";
-    private static final String GPS = "gps";
-    private static final String ALARM = "alarm";
-    private static final String DISALARM = "disalarm";
-    private static final String UNLOCK = "unlock";
-    private static final String ERASE = "erase";
-    private static final String KEY_STATE = "state";
-    private static final String STATE = "state";
-    private static final String KEY_FILE_LIST = "file_list";
-    private static final String FILE_LIST = "file_list";
-    private static final String KEY_USERID = "userId";
-    private static final String KEY_FILE_PATH = "filePath";
-    private static final String KEY_FILE_NAME = "fileName";
-    private static final String KEY_FILE = "file";
+    public static final String KEY_LATI = "latitude";
+    public static final String KEY_LONI = "longitude";
+    public static final String GPS = "gps";
+    public static final String ALARM = "alarm";
+    public static final String DISALARM = "disalarm";
+    public static final String LOCK = "lock";
+    public static final String UNLOCK = "unlock";
+    public static final String ERASE = "erase";
+    public static final String KEY_STATE = "state";
+    public static final String STATE = "state";
+    public static final String KEY_FILE_LIST = "file_list";
+    public static final String FILE_LIST = "file_list";
+    public static final String KEY_USERID = "userId";
+    public static final String KEY_FILE_PATH = "filePath";
+    public static final String KEY_FILE_NAME = "fileName";
+    public static final String KEY_FILE = "file";
 
     private NetManager() {
 
     }
 
-    public static void signIn(String username, String password, NetCallback callback) {
+    public static void signIn(final String username, String password, final NetCallback callback) {
         RequestParams params = new RequestParams();
         params.put(KEY_USERNAME, username);
         params.put(KEY_PASSWORD, password);
 //        callback.onSuccess(0, "");
-        WatchServerRestClient.post(SIGN_IN, params, generateDefaultHandler(callback));
+        WatchServerRestClient.post(SIGN_IN, params, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int i, Header[] headers, byte[] bytes) {
+                // login XGPush
+                XGPushManager.registerPush(WatchdogApplication.getContext(), username);
+
+                if (bytes != null)
+                    callback.onSuccess(i, new String(bytes));
+                else
+                    callback.onSuccess(i, null);
+            }
+
+            @Override
+            public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
+                if (bytes != null)
+                    callback.onError(i, new String(bytes), throwable);
+                else
+                    callback.onError(i, null, throwable);
+            }
+        });
     }
 
     public static void signUp(String username, String email, String password, NetCallback callback) {
@@ -106,6 +127,10 @@ public class NetManager {
         WatchServerRestClient.get(DISALARM, null, null);
     }
 
+    public static void lock() {
+        WatchServerRestClient.get(LOCK, null, null);
+    }
+
     public static void unlock() {
         WatchServerRestClient.get(UNLOCK, null, null);
     }
@@ -147,7 +172,7 @@ public class NetManager {
 
             @Override
             public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
-                if (bytes!=null)
+                if (bytes != null)
                     callback.onError(i, new String(bytes), throwable);
                 else
                     callback.onError(i, null, throwable);
