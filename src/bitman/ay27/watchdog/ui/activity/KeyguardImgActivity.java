@@ -16,6 +16,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.Toast;
 import bitman.ay27.watchdog.R;
+import bitman.ay27.watchdog.WatchdogApplication;
 import bitman.ay27.watchdog.db.DbManager;
 import bitman.ay27.watchdog.db.model.AngleChain;
 import bitman.ay27.watchdog.db.model.KeyguardStatus;
@@ -68,13 +69,14 @@ public class KeyguardImgActivity extends Activity {
             dCanvas.setBackground(Drawable.createFromPath(status.imagePath));
         }
 
-        NfcAdapter adapter = NfcAdapter.getDefaultAdapter(this);
-        adapter.enableReaderMode(this, new NfcAdapter.ReaderCallback() {
-            @Override
-            public void onTagDiscovered(Tag tag) {
-                Log.i("NFC", "found : " + Utils.ByteArrayToHexString(tag.getId()));
-            }
-        }, NfcAdapter.FLAG_READER_NFC_A, null);
+
+//        NfcAdapter adapter = NfcAdapter.getDefaultAdapter(this);
+//        adapter.enableReaderMode(this, new NfcAdapter.ReaderCallback() {
+//            @Override
+//            public void onTagDiscovered(Tag tag) {
+//                Log.i("NFC", "found : " + Utils.ByteArrayToHexString(tag.getId()));
+//            }
+//        }, NfcAdapter.FLAG_READER_NFC_A, null);
 
     }
 

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.provider.Settings;
 import android.util.Log;
 import bitman.ay27.watchdog.service.DaemonService;
 import bitman.ay27.watchdog.service.NfcFoundReceiver;
@@ -26,6 +27,8 @@ public class WatchdogApplication extends Application {
     private static WatchdogApplication instance = null;
     private SharedPreferences mPrefs;
 
+    public static String DeviceId;
+
     public static Context getContext() {
         return instance;
     }
@@ -34,6 +37,9 @@ public class WatchdogApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
+
+        DeviceId = Settings.Secure.getString(getContext().getContentResolver(),
+                Settings.Secure.ANDROID_ID);
 
         Intent intent = new Intent(this, DaemonService.class);
         startService(intent);

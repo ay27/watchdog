@@ -7,15 +7,15 @@ import butterknife.ButterKnife.Finder;
 public class SetPasswdActivity$$ViewInjector {
   public static void inject(Finder finder, final bitman.ay27.watchdog.ui.activity.SetPasswdActivity target, Object source) {
     View view;
-    view = finder.findRequiredView(source, 2131558591, "field 'toolbar'");
+    view = finder.findRequiredView(source, 2131558592, "field 'toolbar'");
     target.toolbar = (android.support.v7.widget.Toolbar) view;
-    view = finder.findRequiredView(source, 2131558594, "field 'newPasswdEdt'");
+    view = finder.findRequiredView(source, 2131558595, "field 'newPasswdEdt'");
     target.newPasswdEdt = (android.widget.EditText) view;
-    view = finder.findRequiredView(source, 2131558592, "field 'oldPasswdEdt'");
+    view = finder.findRequiredView(source, 2131558593, "field 'oldPasswdEdt'");
     target.oldPasswdEdt = (android.widget.EditText) view;
-    view = finder.findRequiredView(source, 2131558595, "field 'confirmEdt'");
+    view = finder.findRequiredView(source, 2131558596, "field 'confirmEdt'");
     target.confirmEdt = (android.widget.EditText) view;
-    view = finder.findRequiredView(source, 2131558597, "field 'okBtn' and method 'okClick'");
+    view = finder.findRequiredView(source, 2131558598, "field 'okBtn' and method 'okClick'");
     target.okBtn = (android.widget.Button) view;
     view.setOnClickListener(
       new android.view.View.OnClickListener() {
@@ -27,9 +27,9 @@ public class SetPasswdActivity$$ViewInjector {
       });
     view = finder.findRequiredView(source, 2131558485, "field 'keyboardView'");
     target.keyboardView = (android.inputmethodservice.KeyboardView) view;
-    view = finder.findRequiredView(source, 2131558593, "field 'oldPasswdError'");
+    view = finder.findRequiredView(source, 2131558594, "field 'oldPasswdError'");
     target.oldPasswdError = (android.widget.TextView) view;
-    view = finder.findRequiredView(source, 2131558596, "field 'newPasswdError'");
+    view = finder.findRequiredView(source, 2131558597, "field 'newPasswdError'");
     target.newPasswdError = (android.widget.TextView) view;
   }
 

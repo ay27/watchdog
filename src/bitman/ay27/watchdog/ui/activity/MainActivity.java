@@ -1,5 +1,6 @@
 package bitman.ay27.watchdog.ui.activity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.*;
 import android.graphics.Color;
@@ -13,6 +14,8 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import bitman.ay27.watchdog.R;
+import bitman.ay27.watchdog.net.NetManager;
+import bitman.ay27.watchdog.service.HeartbeatService;
 import bitman.ay27.watchdog.service.KeyguardService;
 import bitman.ay27.watchdog.service.ServiceManager;
 import bitman.ay27.watchdog.utils.Common;
@@ -62,6 +65,9 @@ public class MainActivity extends ActionBarActivity {
 //    TextView usbSummer;
     @InjectView(R.id.main_usb_switch)
     SwitchButton usbSwitch;
+
+    @InjectView(R.id.main_user_summer)
+    TextView userSummer;
 
 //    @InjectView(R.id.main_sd_format_panel)
 //    View formatPanel;
@@ -237,11 +243,69 @@ public class MainActivity extends ActionBarActivity {
                 break;
         }
 
+        final String username = pref.getString("username", null);
+        if (username != null) {
+            NetManager.signIn(username, pref.getString("password", null), new NetManager.NetCallback() {
+                @Override
+                public void onSuccess(int code, String recv) {
+                    userSummer.setText(getString(R.string.sign_in_success) + ": " + username);
+
+                    NetManager.online();
+                    ServiceManager manager = ServiceManager.getInstance();
+                    manager.addService(HeartbeatService.class);
+                }
+
+                @Override
+                public void onError(int code, String recv, Throwable throwable) {
+                    userSummer.setText(R.string.sign_in_failed);
+                }
+            });
+        }
+
     }
 
     @OnClick(R.id.main_login_panel)
     public void loginClick(View view) {
-        new LoginDialog(this).show();
+
+        new LoginDialog(this, new LoginDialog.Callback() {
+            @Override
+            public void onSuccess(String username, String password) {
+                userSummer.setText(getString(R.string.sign_in_success) + ": " + username);
+                pref.edit().putString("username", username).apply();
+                pref.edit().putString("password", password).apply();
+
+                NetManager.online();
+                ServiceManager manager = ServiceManager.getInstance();
+                manager.addService(HeartbeatService.class);
+
+                new AlertDialog.Builder(MainActivity.this)
+                        .setTitle(R.string.bind_device)
+                        .setNegativeButton(R.string.cancel, null)
+                        .setPositiveButton(R.string.bind, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                NetManager.bind(new NetManager.NetCallback() {
+                                    @Override
+                                    public void onSuccess(int code, String recv) {
+                                        Toast.makeText(MainActivity.this, R.string.bind_success, Toast.LENGTH_SHORT).show();
+                                    }
+
+                                    @Override
+                                    public void onError(int code, String recv, Throwable throwable) {
+                                        Toast.makeText(MainActivity.this, R.string.bind_failed, Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        })
+                        .create()
+                        .show();
+            }
+
+            @Override
+            public void onFailed() {
+                userSummer.setText(R.string.sign_in_failed);
+            }
+        }).show();
     }
 
 
@@ -274,6 +338,7 @@ public class MainActivity extends ActionBarActivity {
 
 
         UpgradeSystemPermission.grantSystemPermission(UpgradeSystemPermission.PERMISSION_WRITE_SECURE_SETTINGS);
+        UpgradeSystemPermission.grantSystemPermission(UpgradeSystemPermission.PERMISSION_MOUNT_UNMOUNT_FS);
 
         result = Settings.Global.putInt(this.getContentResolver(), Settings.Global.ADB_ENABLED, isChecked ? 1 : 0);
         if (!result) {
@@ -281,6 +346,23 @@ public class MainActivity extends ActionBarActivity {
             Toast.makeText(this, R.string.change_usb_error, Toast.LENGTH_SHORT).show();
             usbSwitch.setChecked(!isChecked);
         }
+
+//        try {
+//            Class<?> storageManager = Class.forName("android.os.storage.StorageManager");
+//            Method disableUsbMassStorage = storageManager.getMethod("disableUsbMassStorage");
+//            disableUsbMassStorage.setAccessible(true);
+//            Object o = getSystemService("storage");
+//            disableUsbMassStorage.invoke(o);
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (NoSuchMethodException e) {
+//            e.printStackTrace();
+//        } catch (InvocationTargetException e) {
+//            e.printStackTrace();
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        }
+
     }
 
     @OnClick(R.id.main_sd_panel)
@@ -473,6 +555,18 @@ public class MainActivity extends ActionBarActivity {
     @OnClick(R.id.main_sec_passwd_panel)
     public void setPasswdPanelClick(View view) {
         Intent intent = new Intent(this, SetPasswdActivity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.main_bind_watch_panel)
+    public void watchClick(View view) {
+        Intent intent = new Intent(this, BindWatchActivity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.main_bind_nfc_panel)
+    public void nfcClick(View view) {
+        Intent intent = new Intent(this, BindNfcActivity.class);
         startActivity(intent);
     }
 

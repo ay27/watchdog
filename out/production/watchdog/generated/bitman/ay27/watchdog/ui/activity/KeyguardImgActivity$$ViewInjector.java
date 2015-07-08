@@ -19,7 +19,7 @@ public class KeyguardImgActivity$$ViewInjector {
           target.changeClick(p0);
         }
       });
-    view = finder.findRequiredView(source, 2131558487, "field 'errorToast'");
+    view = finder.findRequiredView(source, 2131558489, "field 'errorToast'");
     target.errorToast = view;
   }
 

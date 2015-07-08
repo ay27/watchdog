@@ -1,6 +1,7 @@
 package bitman.ay27.watchdog.ui.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.inputmethodservice.KeyboardView;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import bitman.ay27.watchdog.widget.keyboard.KeyboardCallback;
 import bitman.ay27.watchdog.widget.keyboard.KeyboardUtil;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnClick;
 
 /**
  * Proudly to user Intellij IDEA.
@@ -61,6 +63,15 @@ public class KeyguardKeyboardActivity extends Activity {
         setupKeyboard();
 
 //        TaskUtils.executeAsyncTask(new NfcScanner(this));
+    }
+
+    @OnClick(R.id.keyguard_change_btn)
+    public void changeMode(View view) {
+        Intent intent = new Intent(this, KeyguardImgActivity.class);
+        intent.putExtra("Status", status);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        this.finish();
     }
 
     @Override

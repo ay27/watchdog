@@ -20,7 +20,6 @@ import java.util.List;
  */
 public class OnBootReceiver extends BroadcastReceiver {
 
-
     @Override
     public void onReceive(Context context, Intent intent) {
 

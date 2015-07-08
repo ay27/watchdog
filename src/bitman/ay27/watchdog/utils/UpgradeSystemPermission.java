@@ -13,6 +13,7 @@ public class UpgradeSystemPermission {
 
     public static final String PERMISSION_WRITE_SECURE_SETTINGS = "android.permission.WRITE_SECURE_SETTINGS";
     public static final String PACKAGE_NAME = WatchdogApplication.getContext().getPackageName();
+    public static final String PERMISSION_MOUNT_UNMOUNT_FS = "android.permission.MOUNT_UNMOUNT_FILESYSTEMS";
 
     private UpgradeSystemPermission() {
     }
