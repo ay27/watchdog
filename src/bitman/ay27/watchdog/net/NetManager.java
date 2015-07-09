@@ -144,10 +144,10 @@ public class NetManager {
         WatchServerRestClient.get(STATE, params, null);
     }
 
-    public static void fileList(JSONObject json, NetCallback cb) {
+    public static void fileList(String json, NetCallback cb) {
         RequestParams params = new RequestParams();
         params.put(KEY_DEVICE_ID, WatchdogApplication.DeviceId);
-        params.put(KEY_FILE_LIST, json.toString());
+        params.put(KEY_FILE_LIST, json);
         WatchServerRestClient.post(FILE_LIST, params, generateDefaultHandler(cb));
     }
 

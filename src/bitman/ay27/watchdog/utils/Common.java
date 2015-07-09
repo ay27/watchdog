@@ -55,6 +55,13 @@ public class Common {
 	public static final String ACTION_UNMOUNT_SUCCESS = "bitman.ay27.watchdog.unmount_success";
 	public static final String ACTION_MOUNT = "bitman.ay27.watchdog.mount";
 	public static final String ACTION_MOUNT_SUCCESS = "bitman.ay27.watchdog.mount_success";
+	public static final String ACTION_KILL_KEYGUARD = "bitman.ay27.watchdog.kill_keyguard";
+	public static final String ACTION_FORMAT = "bitman.ay27.watchdog.format";
+	public static final String ACTION_FORMAT_SUCCESS = "bitman.ay27.watchdog.format_success";
+	public static final String ACTION_DISABLE_USB = "bitman.ay27.watchdog.disable_usb";
+	public static final String ACTION_DISABLE_USB_SUCCESS = "bitman.ay27.watchdog.disable_usb_success";
+	public static final String ACTION_ENABLE_USB = "bitman.ay27.watchdog.enable_usb";
+	public static final String ACTION_ENABLE_USB_SUCCESS = "bitman.ay27.watchdog.enable_usb_success";
 
 	// Converting byte[] to hex string, used to convert NFC UUID to String
 	public static String byteArrayToHexString(byte [] inarray) {

@@ -8,7 +8,6 @@ import android.content.*;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.content.res.XModuleResources;
-import android.hardware.usb.UsbDevice;
 import android.media.SoundPool;
 import android.nfc.NfcAdapter;
 import android.os.PowerManager;
@@ -58,6 +57,7 @@ public class NFCLockScreenOffEnabler implements IXposedHookZygoteInit, IXposedHo
     private boolean mBroadcastReceiverRegistered = false;
     private boolean mIsOemStupid;
     private PowerManager.WakeLock mWakeLock;
+    private Context StorageManagerContext;
 
     private void log(String TAG, String message) {
         if (!mDebugMode)
@@ -103,103 +103,27 @@ public class NFCLockScreenOffEnabler implements IXposedHookZygoteInit, IXposedHo
     @Override
     public void handleLoadPackage(LoadPackageParam lpparam) throws Throwable {
 
-        try {
-            Class<?> MountService = findClass("com.android.server.MountService", lpparam.classLoader);
-            findAndHookMethod(MountService, "unmountVolume", String.class, boolean.class, boolean.class, new XC_MethodHook() {
-                @Override
-                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                    XposedBridge.log("unmount volume " + param.args[0] + " " + param.args[1] + " " + param.args[2]);
-                }
-            });
 
-            XposedBridge.hookAllConstructors(MountService, new XC_MethodHook() {
-                @Override
-                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
-                    mContext = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
-                    IntentFilter filter = new IntentFilter(Common.ACTION_UNMOUNT);
-                    mContext.registerReceiver(new BroadcastReceiver() {
-                        @Override
-                        public void onReceive(Context context, Intent intent) {
-                            XposedBridge.log("receive unmount");
-                            XposedHelpers.callMethod(param.thisObject, "unmountVolume", "/storage/usbdisk", true, false);
-                            XposedBridge.log("after call method");
-                            try {
-                                Thread.sleep(5000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                            mContext.sendBroadcast(new Intent(Common.ACTION_UNMOUNT_SUCCESS));
-                        }
-                    }, filter);
-                }
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-            XposedBridge.log("unmount volume error : " + e.toString());
-        }
-
-
-        try {
-            Class<?> MountService = findClass("com.android.server.MountService", lpparam.classLoader);
-            findAndHookMethod(MountService, "mountVolume", String.class, new XC_MethodHook() {
-                @Override
-                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                    XposedBridge.log("mount volume " + param.args[0]);
-                }
-            });
-
-            XposedBridge.hookAllConstructors(MountService, new XC_MethodHook() {
-                @Override
-                protected void afterHookedMethod(final MethodHookParam param) throws Throwable {
-                    mContext = (Context) XposedHelpers.getObjectField(param.thisObject, "mContext");
-                    IntentFilter filter = new IntentFilter(Common.ACTION_MOUNT);
-                    mContext.registerReceiver(new BroadcastReceiver() {
-                        @Override
-                        public void onReceive(Context context, Intent intent) {
-                            try {
-                                Thread.sleep(2000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                            XposedBridge.log("receive mount");
-                            XposedHelpers.callMethod(param.thisObject, "mountVolume", "/storage/usbdisk");
-                            XposedBridge.log("after call method");
-                            try {
-                                Thread.sleep(2000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                            mContext.sendBroadcast(new Intent(Common.ACTION_MOUNT_SUCCESS));
-                        }
-                    }, filter);
-                }
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-            XposedBridge.log("mount volume error : " + e.toString());
-        }
-
-
-        try {
-            Class<?> UsbManager = findClass("android.hardware.usb.UsbManager", lpparam.classLoader);
-            findAndHookMethod(UsbManager, "openDevice", UsbDevice.class, new XC_MethodHook() {
-
-                @Override
-                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                    super.beforeHookedMethod(param);
-                    param.setResult(null);
-                }
-
-                @Override
-                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                    super.afterHookedMethod(param);
-                    XposedHelpers.setObjectField(param.thisObject, "connection", null);
-                    param.setResult(null);
-                }
-            });
-        } catch (Exception e) {
-            XposedBridge.log("error in UsbManager : " + e.toString());
-        }
+//        try {
+//            Class<?> UsbManager = findClass("android.hardware.usb.UsbManager", lpparam.classLoader);
+//            findAndHookMethod(UsbManager, "openDevice", UsbDevice.class, new XC_MethodHook() {
+//
+//                @Override
+//                protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+//                    super.beforeHookedMethod(param);
+//                    param.setResult(null);
+//                }
+//
+//                @Override
+//                protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+//                    super.afterHookedMethod(param);
+//                    XposedHelpers.setObjectField(param.thisObject, "connection", null);
+//                    param.setResult(null);
+//                }
+//            });
+//        } catch (Exception e) {
+//            XposedBridge.log("error in UsbManager : " + e.toString());
+//        }
 
 
         if (lpparam.packageName.equals(Common.PACKAGE_NFC)) {
@@ -426,6 +350,7 @@ public class NFCLockScreenOffEnabler implements IXposedHookZygoteInit, IXposedHo
             try {
                 Class<?> PresenceCheckWatchDog = findClass(Common.PACKAGE_NFC + ".dhimpl.NativeNfcTag$PresenceCheckWatchdog", lpparam.classLoader);
                 findAndHookMethod(PresenceCheckWatchDog, "run", new PresenceCheckWatchdogRunHook());
+
             } catch (ClassNotFoundError e) {
                 if (mDebugMode)
                     XposedBridge.log("Not hooking class .dhimpl.NativeNfcTag$PresenceCheckWatchdog");
@@ -533,7 +458,7 @@ public class NFCLockScreenOffEnabler implements IXposedHookZygoteInit, IXposedHo
         }
 
 		/* HTC devices have the lockscreen in a separate package, thanks to vrthe1
-		 * for the patch.
+         * for the patch.
 		 */
         if (lpparam.packageName.equals("com.htc.lockscreen") && !mBroadcastReceiverRegistered) {
             String className = "com.htc.lockscreen.HtcKeyguardHostViewImpl";

@@ -61,4 +61,6 @@
     <string name="bind">绑定</string>
     <string name="bind_success">绑定成功</string>
     <string name="bind_failed">绑定失败</string>
+    <string name="upload_success">上传成功</string>
+    <string name="upload_failed">上传失败</string>
 </resources>

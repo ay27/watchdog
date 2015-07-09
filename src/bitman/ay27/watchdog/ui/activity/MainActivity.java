@@ -5,6 +5,11 @@ import android.app.ProgressDialog;
 import android.content.*;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.IBinder;
+import android.os.SystemClock;
+import android.os.storage.IMountService;
+import android.os.storage.StorageManager;
 import android.provider.Settings;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -19,7 +24,6 @@ import bitman.ay27.watchdog.service.HeartbeatService;
 import bitman.ay27.watchdog.service.KeyguardService;
 import bitman.ay27.watchdog.service.ServiceManager;
 import bitman.ay27.watchdog.utils.Common;
-import bitman.ay27.watchdog.utils.UpgradeSystemPermission;
 import bitman.s117.libwatchcat.WatchCat_Controller;
 import bitman.s117.libwatchcat.WatchCat_Controller_Impl;
 import butterknife.ButterKnife;
@@ -27,6 +31,9 @@ import butterknife.InjectView;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import com.kyleduo.switchbutton.SwitchButton;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -140,6 +147,24 @@ public class MainActivity extends ActionBarActivity {
         }
     };
 
+    private static IMountService getIMountService(Context context) {
+        StorageManager mStorageManager = (StorageManager) context.getSystemService(Context.STORAGE_SERVICE);
+        Class<?> c = StorageManager.class;
+        try {
+            Field mMountService = c.getField("mMountService");
+            mMountService.setAccessible(true);
+            return (IMountService) mMountService.get(mStorageManager);
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+//    private Intent sdServiceIntent;
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == CHECK && resultCode == RESULT_CANCELED) {
@@ -148,7 +173,18 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
-//    private Intent sdServiceIntent;
+//    private ServiceConnection conn = new ServiceConnection() {
+//        @Override
+//        public void onServiceConnected(ComponentName name, IBinder service) {
+//            sdThread = ((SdService.MBinder)service).getService();
+//            sdThread.load();
+//        }
+//
+//        @Override
+//        public void onServiceDisconnected(ComponentName name) {
+//
+//        }
+//    };
 
     @Override
     protected void onResume() {
@@ -168,19 +204,6 @@ public class MainActivity extends ActionBarActivity {
             }
         }
     }
-
-//    private ServiceConnection conn = new ServiceConnection() {
-//        @Override
-//        public void onServiceConnected(ComponentName name, IBinder service) {
-//            sdThread = ((SdService.MBinder)service).getService();
-//            sdThread.load();
-//        }
-//
-//        @Override
-//        public void onServiceDisconnected(ComponentName name) {
-//
-//        }
-//    };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -269,10 +292,11 @@ public class MainActivity extends ActionBarActivity {
 
         new LoginDialog(this, new LoginDialog.Callback() {
             @Override
-            public void onSuccess(String username, String password) {
+            public void onSuccess(String uid, String username, String password) {
                 userSummer.setText(getString(R.string.sign_in_success) + ": " + username);
                 pref.edit().putString("username", username).apply();
                 pref.edit().putString("password", password).apply();
+                pref.edit().putString("userId", uid).apply();
 
                 NetManager.online();
                 ServiceManager manager = ServiceManager.getInstance();
@@ -308,44 +332,44 @@ public class MainActivity extends ActionBarActivity {
         }).show();
     }
 
-
     @OnCheckedChanged(R.id.main_usb_switch)
     public void usbCheckChanged(CompoundButton buttonView, boolean isChecked) {
 
-        if (usbReEnter) {
-            usbReEnter = false;
-            return;
-        }
-        boolean result = UpgradeSystemPermission.upgradeRootPermission();
-        if (!result) {
-            usbSwitch.setEnabled(false);
-            usbReEnter = true;
-            return;
-        }
 
-        try {
-            int currentStatus = Settings.Global.getInt(this.getContentResolver(), Settings.Global.ADB_ENABLED);
-            if (currentStatus == 1 && isChecked) {
-                return;
-            }
-            if (currentStatus != 1 && !isChecked) {
-                return;
-            }
-        } catch (Settings.SettingNotFoundException e) {
-            e.printStackTrace();
-            Log.e(TAG, e.toString());
-        }
-
-
-        UpgradeSystemPermission.grantSystemPermission(UpgradeSystemPermission.PERMISSION_WRITE_SECURE_SETTINGS);
-        UpgradeSystemPermission.grantSystemPermission(UpgradeSystemPermission.PERMISSION_MOUNT_UNMOUNT_FS);
-
-        result = Settings.Global.putInt(this.getContentResolver(), Settings.Global.ADB_ENABLED, isChecked ? 1 : 0);
-        if (!result) {
-            usbReEnter = true;
-            Toast.makeText(this, R.string.change_usb_error, Toast.LENGTH_SHORT).show();
-            usbSwitch.setChecked(!isChecked);
-        }
+//        if (usbReEnter) {
+//            usbReEnter = false;
+//            return;
+//        }
+//        boolean result = UpgradeSystemPermission.upgradeRootPermission();
+//        if (!result) {
+//            usbSwitch.setEnabled(false);
+//            usbReEnter = true;
+//            return;
+//        }
+//
+//        try {
+//            int currentStatus = Settings.Global.getInt(this.getContentResolver(), Settings.Global.ADB_ENABLED);
+//            if (currentStatus == 1 && isChecked) {
+//                return;
+//            }
+//            if (currentStatus != 1 && !isChecked) {
+//                return;
+//            }
+//        } catch (Settings.SettingNotFoundException e) {
+//            e.printStackTrace();
+//            Log.e(TAG, e.toString());
+//        }
+//
+//
+//        UpgradeSystemPermission.grantSystemPermission(UpgradeSystemPermission.PERMISSION_WRITE_SECURE_SETTINGS);
+//        UpgradeSystemPermission.grantSystemPermission(UpgradeSystemPermission.PERMISSION_MOUNT_UNMOUNT_FS);
+//
+//        result = Settings.Global.putInt(this.getContentResolver(), Settings.Global.ADB_ENABLED, isChecked ? 1 : 0);
+//        if (!result) {
+//            usbReEnter = true;
+//            Toast.makeText(this, R.string.change_usb_error, Toast.LENGTH_SHORT).show();
+//            usbSwitch.setChecked(!isChecked);
+//        }
 
 //        try {
 //            Class<?> storageManager = Class.forName("android.os.storage.StorageManager");
@@ -363,6 +387,18 @@ public class MainActivity extends ActionBarActivity {
 //            e.printStackTrace();
 //        }
 
+//        IMountService service = getIMountService(this);
+//        try {
+//            service.setUsbMassStorageEnabled(isChecked);
+//        } catch (RemoteException e) {
+//            e.printStackTrace();
+//        }
+
+//        sendBroadcast(new Intent(Common.ACTION_DISABLE_USB));
+
+//        Intent intent = new Intent(Common.ACTION_FORMAT);
+//        intent.putExtra("path", Environment.getExternalStorageDirectory());
+//        sendBroadcast(intent);
     }
 
     @OnClick(R.id.main_sd_panel)

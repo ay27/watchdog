@@ -1,7 +1,10 @@
 package bitman.ay27.watchdog.ui.activity;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.PixelFormat;
 import android.graphics.drawable.Drawable;
 import android.nfc.NfcAdapter;
@@ -23,6 +26,7 @@ import bitman.ay27.watchdog.db.model.KeyguardStatus;
 import bitman.ay27.watchdog.processor.AngleChainProcessor;
 import bitman.ay27.watchdog.processor.Curve;
 import bitman.ay27.watchdog.ui.DrawingCanvas;
+import bitman.ay27.watchdog.utils.Common;
 import bitman.ay27.watchdog.utils.Utils;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -47,6 +51,12 @@ public class KeyguardImgActivity extends Activity {
     private KeyguardStatus status;
     private View view;
     private boolean staticViewAdded = false;
+    private BroadcastReceiver killKeyguardReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            finish();
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +88,7 @@ public class KeyguardImgActivity extends Activity {
 //            }
 //        }, NfcAdapter.FLAG_READER_NFC_A, null);
 
+        registerReceiver(killKeyguardReceiver, new IntentFilter(Common.ACTION_KILL_KEYGUARD));
     }
 
     @Override
@@ -85,6 +96,9 @@ public class KeyguardImgActivity extends Activity {
         if (staticViewAdded) {
             wm.removeViewImmediate(view);
         }
+
+        unregisterReceiver(killKeyguardReceiver);
+
         super.onDestroy();
     }
 

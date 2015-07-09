@@ -1,7 +1,10 @@
 package bitman.ay27.watchdog.ui.activity;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.PixelFormat;
 import android.inputmethodservice.KeyboardView;
 import android.os.Bundle;
@@ -13,6 +16,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import bitman.ay27.watchdog.R;
 import bitman.ay27.watchdog.db.model.KeyguardStatus;
+import bitman.ay27.watchdog.utils.Common;
 import bitman.ay27.watchdog.widget.keyboard.KeyboardCallback;
 import bitman.ay27.watchdog.widget.keyboard.KeyboardUtil;
 import butterknife.ButterKnife;
@@ -45,6 +49,13 @@ public class KeyguardKeyboardActivity extends Activity {
         }
     };
 
+    private BroadcastReceiver killKeyguardReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            finish();
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +74,8 @@ public class KeyguardKeyboardActivity extends Activity {
         setupKeyboard();
 
 //        TaskUtils.executeAsyncTask(new NfcScanner(this));
+
+        registerReceiver(killKeyguardReceiver, new IntentFilter(Common.ACTION_KILL_KEYGUARD));
     }
 
     @OnClick(R.id.keyguard_change_btn)
@@ -79,6 +92,9 @@ public class KeyguardKeyboardActivity extends Activity {
         if (staticViewAdded) {
             wm.removeViewImmediate(view);
         }
+
+        unregisterReceiver(killKeyguardReceiver);
+
         super.onDestroy();
     }
 
