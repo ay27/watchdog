@@ -399,6 +399,8 @@ public class MainActivity extends ActionBarActivity {
 //        Intent intent = new Intent(Common.ACTION_FORMAT);
 //        intent.putExtra("path", Environment.getExternalStorageDirectory());
 //        sendBroadcast(intent);
+
+        sendBroadcast(new Intent(Common.ACTION_DISABLE_USB));
     }
 
     @OnClick(R.id.main_sd_panel)

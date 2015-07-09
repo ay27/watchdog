@@ -65,7 +65,7 @@
                  android:theme="@style/AppBaseTheme"
                  android:allowBackup="true"
                  android:hasCode="true">
-        <activity android:name=".ui.activity.MainActivity"
+        <activity android:name=".ui.activity.FirstEnterCheckActivity"
                   android:label="@string/app_name"
                 >
             <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
@@ -74,6 +74,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity android:name=".ui.activity.FirstEnterCheck2Activity"/>
+        <activity android:name=".ui.activity.MainActivity"/>
 
         <activity android:name=".ui.activity.KeyguardImgActivity"
                   android:launchMode="singleTask"
@@ -113,6 +116,12 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
         </receiver>
+
+        <receiver android:name=".service.UsbStateReceiver">
+             <intent-filter android:priority="800">
+                    <action android:name="android.hardware.usb.action.USB_STATE"/>
+                 </intent-filter>
+             </receiver>
 
         <receiver android:name=".service.UsbStatusReceiver"
                   android:exported="true">
