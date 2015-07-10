@@ -1,9 +1,9 @@
 package bitman.ay27.watchdog.ui.activity;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.nfc.NfcManager;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -14,11 +14,12 @@ import android.widget.*;
 import bitman.ay27.watchdog.R;
 import bitman.ay27.watchdog.db.DbManager;
 import bitman.ay27.watchdog.db.model.NfcCard;
-import bitman.ay27.watchdog.db.model.ServiceStatus;
-import bitman.ay27.watchdog.service.ServiceManager;
+import bitman.ay27.watchdog.model.CardList;
+import bitman.ay27.watchdog.utils.Common;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -129,9 +130,10 @@ public class BindNfcActivity extends ActionBarActivity {
         }
 
         public void remove(int position) {
+            DbManager.getInstance().delete(NfcCard.class, cards.get(position));
             cards.remove(position);
             this.notifyDataSetInvalidated();
-            DbManager.getInstance().updateList(NfcCard.class, cards);
+//            DbManager.getInstance().updateList(NfcCard.class, cards);
         }
 
         @Override

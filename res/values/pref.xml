@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pref_sounds_to_play_values" translatable="false">
+        <item>sound_start</item>
+        <item>sound_end</item>
+        <item>sound_error</item>
+        <item>sound_taglost</item>
+    </string-array>
+</resources>

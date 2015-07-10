@@ -25,6 +25,9 @@ public class Common {
 	public static final String PREF_NFC_KEYS_NAMES = "authorized_nfc_tag_friendly_names";
 	public static final String PREF_SOUNDS_TO_PLAY = "nfc_sounds_to_play";
 	public static final String PREF_ENABLE_NFC_WHEN = "enable_nfc_for_lock_state";
+	public static final String PREF_PLAY_SOUND = "play_sound";
+	public static final String PREF_NFC_CARDS = "nfc_cards";
+	public static final String PREF_CURRENT_NFC = "current_nfc";
 
 	/* -- */
 	public static final String PACKAGE_NFC = "com.android.nfc";
@@ -59,6 +62,7 @@ public class Common {
 	public static final String ACTION_FORMAT = "bitman.ay27.watchdog.format";
 	public static final String ACTION_FORMAT_SUCCESS = "bitman.ay27.watchdog.format_success";
 	public static final String ACTION_CHOOSE_MTP = "bitman.ay27.watchdog.choose_mtp";
+	public static final String ACTION_PLAY_SOUND = "bitman.ay27.watchdog.play_sound";
 
 	// Converting byte[] to hex string, used to convert NFC UUID to String
 	public static String byteArrayToHexString(byte [] inarray) {

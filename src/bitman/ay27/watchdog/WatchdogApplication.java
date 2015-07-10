@@ -4,16 +4,11 @@ import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.provider.Settings;
-import android.util.Log;
 import bitman.ay27.watchdog.service.DaemonService;
-import bitman.ay27.watchdog.service.NfcFoundReceiver;
 import bitman.ay27.watchdog.utils.Common;
-import com.tencent.android.tpush.XGNotifaction;
 import com.tencent.android.tpush.XGPushManager;
-import com.tencent.android.tpush.XGPushNotifactionCallback;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -24,10 +19,9 @@ import java.util.List;
  * Created by ay27 on 15/3/27.
  */
 public class WatchdogApplication extends Application {
+    public static String DeviceId;
     private static WatchdogApplication instance = null;
     private SharedPreferences mPrefs;
-
-    public static String DeviceId;
 
     public static Context getContext() {
         return instance;
@@ -60,17 +54,8 @@ public class WatchdogApplication extends Application {
             sendBroadcast(new Intent(Common.SETTINGS_UPDATED_INTENT));
         }
 
-        IntentFilter filter = new IntentFilter(Common.ACTION_TAG_CHANGED);
-        registerReceiver(new NfcFoundReceiver(), filter);
-//        filter = new IntentFilter(Common.ACTION_TAG_LOST);
-//        registerReceiver(new NfcLostReceiver(), filter);
-
-
         // 在主进程设置信鸽相关的内容
-//        if (isMainProcess()) {
-            XGPushManager.registerPush(this);
-//        }
-
+        XGPushManager.registerPush(this);
     }
 
 
