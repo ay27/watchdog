@@ -9,45 +9,32 @@ public class MainActivity$$ViewInjector {
     View view;
     view = finder.findRequiredView(source, 2131558504, "field 'toolbar'");
     target.toolbar = (android.support.v7.widget.Toolbar) view;
-    view = finder.findRequiredView(source, 2131558492, "field 'bootLoaderSwitch' and method 'bootLoaderCheckChanged'");
-    target.bootLoaderSwitch = (com.kyleduo.switchbutton.SwitchButton) view;
-    ((android.widget.CompoundButton) view).setOnCheckedChangeListener(
-      new android.widget.CompoundButton.OnCheckedChangeListener() {
-        @Override public void onCheckedChanged(
-          android.widget.CompoundButton p0,
-          boolean p1
-        ) {
-          target.bootLoaderCheckChanged(p0, p1);
-        }
-      });
+    view = finder.findRequiredView(source, 2131558507, "field 'userSummer'");
+    target.userSummer = (android.widget.TextView) view;
     view = finder.findRequiredView(source, 2131558509, "field 'sdTitle'");
     target.sdTitle = (android.widget.TextView) view;
     view = finder.findRequiredView(source, 2131558510, "field 'sdSummer'");
     target.sdSummer = (android.widget.TextView) view;
-    view = finder.findRequiredView(source, 2131558493, "field 'keyguardSwitch' and method 'keyguardCheckChanged'");
+    view = finder.findRequiredView(source, 2131558492, "field 'bootLoaderSwitch'");
+    target.bootLoaderSwitch = (com.kyleduo.switchbutton.SwitchButton) view;
+    view = finder.findRequiredView(source, 2131558493, "field 'keyguardSwitch'");
     target.keyguardSwitch = (com.kyleduo.switchbutton.SwitchButton) view;
-    ((android.widget.CompoundButton) view).setOnCheckedChangeListener(
-      new android.widget.CompoundButton.OnCheckedChangeListener() {
-        @Override public void onCheckedChanged(
-          android.widget.CompoundButton p0,
-          boolean p1
-        ) {
-          target.keyguardCheckChanged(p0, p1);
-        }
-      });
-    view = finder.findRequiredView(source, 2131558494, "field 'usbSwitch' and method 'usbCheckChanged'");
+    view = finder.findRequiredView(source, 2131558494, "field 'usbSwitch'");
     target.usbSwitch = (com.kyleduo.switchbutton.SwitchButton) view;
-    ((android.widget.CompoundButton) view).setOnCheckedChangeListener(
-      new android.widget.CompoundButton.OnCheckedChangeListener() {
-        @Override public void onCheckedChanged(
-          android.widget.CompoundButton p0,
-          boolean p1
+    view = finder.findRequiredView(source, 2131558511, "field 'formatPanel' and method 'formatClick'");
+    target.formatPanel = view;
+    view.setOnClickListener(
+      new android.view.View.OnClickListener() {
+        @Override public void onClick(
+          android.view.View p0
         ) {
-          target.usbCheckChanged(p0, p1);
+          target.formatClick(p0);
         }
       });
-    view = finder.findRequiredView(source, 2131558507, "field 'userSummer'");
-    target.userSummer = (android.widget.TextView) view;
+    view = finder.findRequiredView(source, 2131558512, "field 'formatTitle'");
+    target.formatTitle = (android.widget.TextView) view;
+    view = finder.findRequiredView(source, 2131558513, "field 'formatSummer'");
+    target.formatSummer = (android.widget.TextView) view;
     view = finder.findRequiredView(source, 2131558505, "method 'loginClick'");
     view.setOnClickListener(
       new android.view.View.OnClickListener() {
@@ -106,11 +93,14 @@ public class MainActivity$$ViewInjector {
 
   public static void reset(bitman.ay27.watchdog.ui.activity.MainActivity target) {
     target.toolbar = null;
-    target.bootLoaderSwitch = null;
+    target.userSummer = null;
     target.sdTitle = null;
     target.sdSummer = null;
+    target.bootLoaderSwitch = null;
     target.keyguardSwitch = null;
     target.usbSwitch = null;
-    target.userSummer = null;
+    target.formatPanel = null;
+    target.formatTitle = null;
+    target.formatSummer = null;
   }
 }
