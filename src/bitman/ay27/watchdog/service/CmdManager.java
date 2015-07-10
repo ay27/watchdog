@@ -13,12 +13,12 @@ import android.media.RingtoneManager;
 import android.os.Environment;
 import android.util.Log;
 import android.widget.Toast;
+import bitman.ay27.watchdog.PrefUtils;
 import bitman.ay27.watchdog.R;
 import bitman.ay27.watchdog.WatchdogApplication;
 import bitman.ay27.watchdog.model.FileItem;
 import bitman.ay27.watchdog.net.NetManager;
 import bitman.ay27.watchdog.ui.KeyguardManager;
-import bitman.ay27.watchdog.ui.activity.MainActivity;
 import bitman.ay27.watchdog.utils.Common;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -116,9 +116,8 @@ public class CmdManager {
     public static void upload(String filePath) {
         File file = new File(filePath);
         if (file.exists()) {
-            SharedPreferences pref = WatchdogApplication.getContext().getSharedPreferences(MainActivity.PREF_NAME, Context.MODE_PRIVATE);
             try {
-                NetManager.fileUpload(file, pref.getString("userId", ""), filePath, file.getName(), new NetManager.NetCallback() {
+                NetManager.fileUpload(file, PrefUtils.getUserId(), filePath, file.getName(), new NetManager.NetCallback() {
                     @Override
                     public void onSuccess(int code, String recv) {
                         Toast.makeText(WatchdogApplication.getContext(), R.string.upload_success, Toast.LENGTH_LONG).show();

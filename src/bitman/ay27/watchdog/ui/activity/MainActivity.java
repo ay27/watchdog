@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
+import bitman.ay27.watchdog.PrefUtils;
 import bitman.ay27.watchdog.R;
 import bitman.ay27.watchdog.net.NetManager;
 import bitman.ay27.watchdog.service.HeartbeatService;
@@ -29,14 +30,6 @@ import com.kyleduo.switchbutton.SwitchButton;
 public class MainActivity extends ActionBarActivity {
 
     public static final String TAG = "MainActivity";
-    public static final String KEY_BOOT_LOADER_LOCK = "boot_loader_lock";
-    public static final String KEY_SD_ENCRYPT = "sd_encrypt";
-    public static final String KEY_KEYGUARD = "keyguard";
-    public static final String PREF_NAME = "main_preference";
-    public static final String KEY_USB = "usb_debug";
-    public static final String KEY_SD_STATE = "sd_state";
-    public static final String KEY_SD_PASSWD = "sd_passwd";
-    public static final String KEY_ENCRYPT_TYPE = "sd_encrypt_type";
     private static final int CHECK = 0x1;
 
     @InjectView(R.id.main_toolbar)
@@ -60,30 +53,10 @@ public class MainActivity extends ActionBarActivity {
     @InjectView(R.id.main_sd_format_summer)
     TextView formatSummer;
 
-    private SharedPreferences pref;
     private SharedPreferences.OnSharedPreferenceChangeListener sdStatusChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-            if (key.equals(KEY_SD_STATE)) {
-                int status = sharedPreferences.getInt(KEY_SD_STATE, 0);
-                switch (status) {
-                    case 0:     // nothing
-                        sdTitle.setText(R.string.sd_no_sd_card);
-                        sdSummer.setText(R.string.sd_no_sd_card_summer);
-                        enableFormatPanel(false);
-                        break;
-                    case 1:     // found sd card
-                        sdTitle.setText(R.string.sd_wait_to_enable);
-                        sdSummer.setText(R.string.sd_wait_to_enable_summer);
-                        enableFormatPanel(false);
-                        break;
-                    case 2:
-                        sdTitle.setText(R.string.sd_can_be_remove);
-                        sdSummer.setText(R.string.sd_can_be_remove_summer);
-                        enableFormatPanel(true);
-                        break;
-                }
-            }
+            setSdPanel();
         }
     };
 
@@ -99,7 +72,7 @@ public class MainActivity extends ActionBarActivity {
                     Toast.makeText(MainActivity.this, R.string.remove_sd_failed, Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(MainActivity.this, R.string.remove_sd_success, Toast.LENGTH_SHORT).show();
-                    pref.edit().putInt(KEY_SD_STATE, 0).apply();
+                    PrefUtils.setSdState(0);
                 }
             } catch (Exception e) {
                 Log.e(TAG, e.toString());
@@ -111,7 +84,7 @@ public class MainActivity extends ActionBarActivity {
             unregisterReceiver(unmountSuccessReceiver);
 
             if (checkSDCardExist()) {
-                pref.edit().putInt(KEY_SD_STATE, 1).apply();
+                PrefUtils.setSdState(1);
             }
         }
     };
@@ -128,7 +101,7 @@ public class MainActivity extends ActionBarActivity {
     private CompoundButton.OnCheckedChangeListener bootLoaderCheckChanged = new CompoundButton.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            pref.edit().putBoolean(KEY_BOOT_LOADER_LOCK, isChecked).apply();
+            PrefUtils.setBootLoaderEnable(isChecked);
 
             WatchCat_Controller wc_ctl = new WatchCat_Controller_Impl();
 
@@ -164,7 +137,7 @@ public class MainActivity extends ActionBarActivity {
     private CompoundButton.OnCheckedChangeListener keyguardCheckChanged = new CompoundButton.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            pref.edit().putBoolean(KEY_KEYGUARD, isChecked).apply();
+            PrefUtils.setKeyguardEnable(isChecked);
             ServiceManager manager = ServiceManager.getInstance();
             if (isChecked) {
                 manager.addService(KeyguardService.class);
@@ -179,7 +152,7 @@ public class MainActivity extends ActionBarActivity {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-            pref.edit().putBoolean(KEY_USB, isChecked).apply();
+            PrefUtils.setUsbEnable(isChecked);
             if (!isChecked) {
                 UpgradeSystemPermission.runCmd("echo 0 > /sys/devices/virtual/android_usb/android0/enable");
                 return;
@@ -201,9 +174,8 @@ public class MainActivity extends ActionBarActivity {
         toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
 
-        pref = getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
 
-        pref.registerOnSharedPreferenceChangeListener(sdStatusChangeListener);
+        PrefUtils.registerListener(sdStatusChangeListener);
 
         init();
     }
@@ -213,19 +185,19 @@ public class MainActivity extends ActionBarActivity {
         super.onResume();
         WatchCat_Controller wc_ctl = new WatchCat_Controller_Impl();
         if (!wc_ctl.isSDCardExist()) {
-            pref.edit().putInt(KEY_SD_STATE, 0).apply();
+            PrefUtils.setSdState(0);
             enableFormatPanel(false);
         } else {
             if (wc_ctl.isBcptLoaded()) {
                 if (wc_ctl.queryEncryption()) {
-                    pref.edit().putInt(KEY_SD_STATE, 2).apply();
+                    PrefUtils.setSdState(2);
                     enableFormatPanel(true);
                 } else {
-                    pref.edit().putInt(KEY_SD_STATE, 1).apply();
+                    PrefUtils.setSdState(1);
                     enableFormatPanel(false);
                 }
             } else {
-                pref.edit().putInt(KEY_SD_STATE, 1).apply();
+                PrefUtils.setSdState(1);
                 enableFormatPanel(false);
             }
         }
@@ -242,32 +214,15 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        pref.unregisterOnSharedPreferenceChangeListener(sdStatusChangeListener);
+        PrefUtils.unregisterListener(sdStatusChangeListener);
     }
 
     private void init() {
-        bootLoaderSwitch.setChecked(pref.getBoolean(KEY_BOOT_LOADER_LOCK, false));
-        keyguardSwitch.setChecked(pref.getBoolean(KEY_KEYGUARD, false));
-        usbSwitch.setChecked(pref.getBoolean(KEY_USB, false));
+        bootLoaderSwitch.setChecked(PrefUtils.isBootloaderEnable());
+        keyguardSwitch.setChecked(PrefUtils.isKeyguardEnable());
+        usbSwitch.setChecked(PrefUtils.isUsbEnable());
 
-        boolean usb = pref.getBoolean(KEY_USB, true);
-        usbSwitch.setChecked(usb);
-
-        int status = pref.getInt(KEY_SD_STATE, 0);
-        switch (status) {
-            case 0:     // nothing
-                sdTitle.setText(R.string.sd_no_sd_card);
-                sdSummer.setText(R.string.sd_no_sd_card_summer);
-                break;
-            case 1:     // found sd card
-                sdTitle.setText(R.string.sd_wait_to_enable);
-                sdSummer.setText(R.string.sd_wait_to_enable_summer);
-                break;
-            case 2:
-                sdTitle.setText(R.string.sd_can_be_remove);
-                sdSummer.setText(R.string.sd_can_be_remove_summer);
-                break;
-        }
+        setSdPanel();
 
         bootLoaderSwitch.setOnCheckedChangeListener(bootLoaderCheckChanged);
         keyguardSwitch.setOnCheckedChangeListener(keyguardCheckChanged);
@@ -277,6 +232,27 @@ public class MainActivity extends ActionBarActivity {
 
     }
 
+    private void setSdPanel() {
+        int state = PrefUtils.getSdState();
+        switch (state) {
+            case 0:     // nothing
+                sdTitle.setText(R.string.sd_no_sd_card);
+                sdSummer.setText(R.string.sd_no_sd_card_summer);
+                enableFormatPanel(false);
+                break;
+            case 1:     // found sd card
+                sdTitle.setText(R.string.sd_wait_to_enable);
+                sdSummer.setText(R.string.sd_wait_to_enable_summer);
+                enableFormatPanel(false);
+                break;
+            case 2:
+                sdTitle.setText(R.string.sd_can_be_remove);
+                sdSummer.setText(R.string.sd_can_be_remove_summer);
+                enableFormatPanel(true);
+                break;
+        }
+    }
+
     @OnClick(R.id.main_login_panel)
     void loginClick(View view) {
 
@@ -284,9 +260,9 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onSuccess(String uid, String username, String password) {
                 userSummer.setText(getString(R.string.sign_in_success) + ": " + username);
-                pref.edit().putString("username", username).apply();
-                pref.edit().putString("password", password).apply();
-                pref.edit().putString("userId", uid).apply();
+                PrefUtils.setUserName(username);
+                PrefUtils.setUserPasswd(password);
+                PrefUtils.setUserId(uid);
 
                 NetManager.online();
                 ServiceManager manager = ServiceManager.getInstance();
@@ -325,9 +301,9 @@ public class MainActivity extends ActionBarActivity {
 
     @OnClick(R.id.main_sd_panel)
     void sdPanelClick(View view) {
-        int status = pref.getInt(KEY_SD_STATE, 0);
+        int state = PrefUtils.getSdState();
         final WatchCat_Controller wc_ctl = new WatchCat_Controller_Impl();
-        switch (status) {
+        switch (state) {
             case 0:     // nothing
                 break;
             case 1:     // found sd card
@@ -347,6 +323,8 @@ public class MainActivity extends ActionBarActivity {
                         try {
                             wc_ctl.loadBCPT();
                             wc_ctl.enableEncryption(passwd, mode);
+                            PrefUtils.setSdPasswd(passwd);
+                            PrefUtils.setSdEncryptType(mode);
                             registerReceiver(mountSuccessReceiver, new IntentFilter(Common.ACTION_MOUNT_SUCCESS));
                             sendBroadcast(new Intent(Common.ACTION_MOUNT));
                         } catch (Exception e) {
@@ -358,9 +336,9 @@ public class MainActivity extends ActionBarActivity {
                         if (wc_ctl.isBcptLoaded() && wc_ctl.queryEncryption()) {
                             Toast.makeText(MainActivity.this, R.string.bcpt_enable_success, Toast.LENGTH_SHORT).show();
 
-//                            enableFormatPanel(true);
+                            enableFormatPanel(true);
 
-                            pref.edit().putInt(KEY_SD_STATE, 2).apply();
+                            PrefUtils.setSdState(2);
                         } else {
                             Toast.makeText(MainActivity.this, R.string.bcpt_enable_failed, Toast.LENGTH_SHORT).show();
                         }
@@ -422,9 +400,9 @@ public class MainActivity extends ActionBarActivity {
 
 
     private void tryLogin() {
-        final String username = pref.getString("username", null);
-        if (username != null) {
-            NetManager.signIn(username, pref.getString("password", null), new NetManager.NetCallback() {
+        final String username = PrefUtils.getUserName();
+        if (!username.isEmpty()) {
+            NetManager.signIn(username, PrefUtils.getUserPasswd(), new NetManager.NetCallback() {
                 @Override
                 public void onSuccess(int code, String recv) {
                     userSummer.setText(getString(R.string.sign_in_success) + ": " + username);
@@ -458,7 +436,7 @@ public class MainActivity extends ActionBarActivity {
             try {
                 wc_ctl.disableEncryption();
                 wc_ctl.unloadBCPT();
-                pref.edit().putInt(KEY_SD_STATE, 0).apply();
+                PrefUtils.setSdState(0);
             } catch (Exception e) {
                 Log.e(TAG, e.toString());
             }

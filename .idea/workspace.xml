@@ -32,21 +32,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="28777324-ed83-4814-ba7a-bf7f7af243bb" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/MainActivity.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/MainActivity$$ViewInjector$1.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/MainActivity$$ViewInjector$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/MainActivity$$ViewInjector$2.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/MainActivity$$ViewInjector$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/MainActivity$$ViewInjector$3.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/MainActivity$$ViewInjector$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/MainActivity$$ViewInjector$4.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/MainActivity$$ViewInjector$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/MainActivity$$ViewInjector$5.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/MainActivity$$ViewInjector$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/MainActivity$$ViewInjector$6.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/MainActivity$$ViewInjector$6.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/MainActivity$$ViewInjector$7.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/MainActivity$$ViewInjector$7.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/MainActivity$$ViewInjector.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/ui/activity/MainActivity$$ViewInjector.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/net/NetManager.class" afterPath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/net/NetManager.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/bitman/ay27/watchdog/PrefUtils.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/watchdog/bitman/ay27/watchdog/service/OnBootReceiver.class" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/watchdog.apk" afterPath="$PROJECT_DIR$/out/production/watchdog/watchdog.apk" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/watchdog.unaligned.apk" afterPath="$PROJECT_DIR$/out/production/watchdog/watchdog.unaligned.apk" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/generated/bitman/ay27/watchdog/ui/activity/MainActivity$$ViewInjector.java" afterPath="$PROJECT_DIR$/out/production/watchdog/generated/bitman/ay27/watchdog/ui/activity/MainActivity$$ViewInjector.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/CmdManager.java" afterPath="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/CmdManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/MainActivity.java" afterPath="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/main.xml" afterPath="$PROJECT_DIR$/res/layout/main.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/OnBootReceiver.java" afterPath="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/OnBootReceiver.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/UsbStateReceiver.java" afterPath="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/UsbStateReceiver.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/UsbStatusReceiver.java" afterPath="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/UsbStatusReceiver.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="watchdog.iws" />
@@ -73,14 +67,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="HookUsbManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/hook/HookUsbManager.java">
+      <file leaf-file-name="CmdManager.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/CmdManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="154" max-vertical-offset="1122">
-              <caret line="15" column="27" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="27" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
+            <state vertical-scroll-proportion="0.0" vertical-offset="210" max-vertical-offset="2882">
+              <caret line="57" column="32" selection-start-line="57" selection-start-column="32" selection-end-line="57" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UsbStatusReceiver.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/UsbStatusReceiver.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="87" max-vertical-offset="880">
+              <caret line="34" column="38" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -88,133 +90,99 @@
       <file leaf-file-name="UsbStateReceiver.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/UsbStateReceiver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="418" max-vertical-offset="616">
-              <caret line="26" column="9" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="xposed_init" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/xposed_init">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="44" max-vertical-offset="176">
-              <caret line="2" column="40" selection-start-line="2" selection-start-column="40" selection-end-line="2" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="594">
+              <caret line="22" column="55" selection-start-line="22" selection-start-column="55" selection-end-line="22" selection-end-column="55" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WatchdogApplication.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/WatchdogApplication.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="276" max-vertical-offset="1694">
-              <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#977#978#0" expanded="false" />
-                <element signature="e#1008#1009#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.2545457" vertical-offset="1108" max-vertical-offset="4730">
-              <caret line="61" column="12" selection-start-line="61" selection-start-column="12" selection-end-line="61" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NFCLockScreenOffEnabler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/hook/NFCLockScreenOffEnabler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2794" max-vertical-offset="13772">
-              <caret line="150" column="13" selection-start-line="150" selection-start-column="13" selection-end-line="150" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#3649#3657#0" expanded="false" />
-                <element signature="e#5949#7004#0" expanded="false" />
-                <element signature="e#6293#6920#0" expanded="false" />
-                <element signature="e#6919#6920#0" expanded="false" />
-                <element signature="e#7003#7004#0" expanded="false" />
-                <element signature="e#7757#8372#0" expanded="false" />
-                <element signature="e#8371#8372#0" expanded="false" />
-                <element signature="e#8559#9189#0" expanded="false" />
-                <element signature="e#9188#9189#0" expanded="false" />
-                <element signature="e#9337#10259#0" expanded="false" />
-                <element signature="e#10258#10259#0" expanded="false" />
-                <element signature="e#11326#12192#0" expanded="false" />
-                <element signature="e#12191#12192#0" expanded="false" />
-                <element signature="e#18961#19851#0" expanded="false" />
-                <element signature="e#19850#19851#0" expanded="false" />
-                <element signature="e#20813#21647#0" expanded="false" />
-                <element signature="e#21646#21647#0" expanded="false" />
-                <element signature="e#22420#23265#0" expanded="false" />
-                <element signature="e#23264#23265#0" expanded="false" />
-                <element signature="e#24084#25792#0" expanded="false" />
-                <element signature="e#25791#25792#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.90507364" vertical-offset="9089" max-vertical-offset="10032">
-              <caret line="408" column="5" selection-start-line="408" selection-start-column="5" selection-end-line="408" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="5160" max-vertical-offset="9988">
+              <caret line="245" column="41" selection-start-line="245" selection-start-column="41" selection-end-line="245" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2460#3621#0" expanded="true" />
-                <element signature="e#2867#2889#0" expanded="true" />
-                <element signature="e#2933#2962#0" expanded="true" />
-                <element signature="e#3135#3161#0" expanded="true" />
-                <element signature="e#3205#3238#0" expanded="true" />
-                <element signature="e#3390#3415#0" expanded="true" />
-                <element signature="e#3459#3491#0" expanded="true" />
-                <element signature="e#3620#3621#0" expanded="true" />
-                <element signature="e#4117#4142#0" expanded="true" />
-                <element signature="e#4251#4277#0" expanded="true" />
-                <element signature="e#4518#4543#0" expanded="true" />
-                <element signature="e#6093#6114#0" expanded="true" />
-                <element signature="e#6223#6243#0" expanded="true" />
-                <element signature="e#6686#6719#0" expanded="true" />
-                <element signature="e#6828#6862#0" expanded="true" />
-                <element signature="e#7701#8327#0" expanded="true" />
-                <element signature="e#8326#8327#0" expanded="true" />
-                <element signature="e#9778#9798#0" expanded="true" />
-                <element signature="e#10508#10530#0" expanded="true" />
-                <element signature="e#10566#10595#0" expanded="true" />
-                <element signature="e#10694#10720#0" expanded="true" />
-                <element signature="e#10756#10789#0" expanded="true" />
-                <element signature="e#10867#10892#0" expanded="true" />
-                <element signature="e#10928#10960#0" expanded="true" />
-                <element signature="e#11507#11542#0" expanded="true" />
-                <element signature="e#12026#12046#0" expanded="true" />
-                <element signature="e#12091#12106#0" expanded="true" />
-                <element signature="e#12157#12170#0" expanded="true" />
-                <element signature="e#12617#12638#0" expanded="true" />
-                <element signature="e#12929#12949#0" expanded="true" />
-                <element signature="e#13286#13309#0" expanded="true" />
-                <element signature="e#14571#14598#0" expanded="true" />
-                <element signature="e#14834#14862#0" expanded="true" />
-                <element signature="e#15117#15144#0" expanded="true" />
-                <element signature="e#15538#15590#0" expanded="true" />
-                <element signature="e#16035#16058#0" expanded="true" />
-                <element signature="e#16212#16234#0" expanded="true" />
-                <element signature="e#17365#17400#0" expanded="true" />
-                <element signature="e#17768#17791#0" expanded="true" />
-                <element signature="e#18341#18363#0" expanded="true" />
+                <element signature="e#1966#2181#0" expanded="true" />
+                <element signature="e#2180#2181#0" expanded="true" />
+                <element signature="e#2270#3369#0" expanded="true" />
+                <element signature="e#2677#2702#0" expanded="true" />
+                <element signature="e#2811#2837#0" expanded="true" />
+                <element signature="e#3058#3083#0" expanded="true" />
+                <element signature="e#3368#3369#0" expanded="true" />
+                <element signature="e#3425#3688#0" expanded="true" />
+                <element signature="e#3687#3688#0" expanded="true" />
+                <element signature="e#3768#5436#0" expanded="true" />
+                <element signature="e#4590#4611#0" expanded="true" />
+                <element signature="e#4720#4740#0" expanded="true" />
+                <element signature="e#5183#5216#0" expanded="true" />
+                <element signature="e#5325#5359#0" expanded="true" />
+                <element signature="e#5435#5436#0" expanded="true" />
+                <element signature="e#5512#6110#0" expanded="true" />
+                <element signature="e#6109#6110#0" expanded="true" />
+                <element signature="e#6181#6790#0" expanded="true" />
+                <element signature="e#6789#6790#0" expanded="true" />
+                <element signature="e#8072#8092#0" expanded="true" />
+                <element signature="e#8952#8974#0" expanded="true" />
+                <element signature="e#9010#9039#0" expanded="true" />
+                <element signature="e#9180#9206#0" expanded="true" />
+                <element signature="e#9242#9275#0" expanded="true" />
+                <element signature="e#9395#9420#0" expanded="true" />
+                <element signature="e#9456#9488#0" expanded="true" />
+                <element signature="e#9840#9875#0" expanded="true" />
+                <element signature="e#10301#10321#0" expanded="true" />
+                <element signature="e#10366#10381#0" expanded="true" />
+                <element signature="e#10432#10445#0" expanded="true" />
+                <element signature="e#10447#11383#0" expanded="true" />
+                <element signature="e#10892#10913#0" expanded="true" />
+                <element signature="e#11204#11224#0" expanded="true" />
+                <element signature="e#11382#11383#0" expanded="true" />
+                <element signature="e#11524#11525#0" expanded="true" />
+                <element signature="e#11561#11584#0" expanded="true" />
+                <element signature="e#11599#11600#0" expanded="true" />
+                <element signature="e#12076#13605#0" expanded="true" />
+                <element signature="e#12959#12986#0" expanded="true" />
+                <element signature="e#13222#13250#0" expanded="true" />
+                <element signature="e#13483#13510#0" expanded="true" />
+                <element signature="e#13604#13605#0" expanded="true" />
+                <element signature="e#13904#13956#0" expanded="true" />
+                <element signature="e#14401#14424#0" expanded="true" />
+                <element signature="e#14578#14600#0" expanded="true" />
+                <element signature="e#15718#15753#0" expanded="true" />
+                <element signature="e#16121#16144#0" expanded="true" />
+                <element signature="e#16694#16716#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UpgradeSystemPermission.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/utils/UpgradeSystemPermission.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="770" max-vertical-offset="1804">
+              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TaskUtils.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/utils/TaskUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="550">
+              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ImageDecodeUtils.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/utils/ImageDecodeUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="968">
+              <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -222,19 +190,65 @@
       <file leaf-file-name="NetManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/net/NetManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="743" max-vertical-offset="3938">
-              <caret line="66" column="41" selection-start-line="66" selection-start-column="41" selection-end-line="66" selection-end-column="41" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2075" max-vertical-offset="3938">
+              <caret line="126" column="0" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <file leaf-file-name="OnBootReceiver.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/OnBootReceiver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="22" max-vertical-offset="5940">
-              <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="307" max-vertical-offset="1012">
+              <caret line="37" column="34" selection-start-line="37" selection-start-column="34" selection-end-line="37" selection-end-column="34" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PrefUtils.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/PrefUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.6255319" vertical-offset="1715" max-vertical-offset="2508">
+              <caret line="98" column="5" selection-start-line="98" selection-start-column="5" selection-end-line="98" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1397#1398#0" expanded="true" />
+                <element signature="e#1451#1452#0" expanded="true" />
+                <element signature="e#1502#1503#0" expanded="true" />
+                <element signature="e#1568#1569#0" expanded="true" />
+                <element signature="e#1756#1757#0" expanded="true" />
+                <element signature="e#1823#1824#0" expanded="true" />
+                <element signature="e#1871#1872#0" expanded="true" />
+                <element signature="e#1930#1931#0" expanded="true" />
+                <element signature="e#1990#1991#0" expanded="true" />
+                <element signature="e#2058#2059#0" expanded="true" />
+                <element signature="e#2101#2102#0" expanded="true" />
+                <element signature="e#2155#2156#0" expanded="true" />
+                <element signature="e#2210#2211#0" expanded="true" />
+                <element signature="e#2273#2274#0" expanded="true" />
+                <element signature="e#2311#2312#0" expanded="true" />
+                <element signature="e#2362#2363#0" expanded="true" />
+                <element signature="e#2410#2411#0" expanded="true" />
+                <element signature="e#2473#2474#0" expanded="true" />
+                <element signature="e#2515#2516#0" expanded="true" />
+                <element signature="e#2571#2572#0" expanded="true" />
+                <element signature="e#2624#2625#0" expanded="true" />
+                <element signature="e#2692#2693#0" expanded="true" />
+                <element signature="e#2736#2737#0" expanded="true" />
+                <element signature="e#2791#2792#0" expanded="true" />
+                <element signature="e#2844#2845#0" expanded="true" />
+                <element signature="e#2910#2911#0" expanded="true" />
+                <element signature="e#2952#2953#0" expanded="true" />
+                <element signature="e#3007#3008#0" expanded="true" />
+                <element signature="e#3062#3063#0" expanded="true" />
+                <element signature="e#3131#3132#0" expanded="true" />
+                <element signature="e#3175#3176#0" expanded="true" />
+                <element signature="e#3235#3236#0" expanded="true" />
+                <element signature="e#3292#3293#0" expanded="true" />
+                <element signature="e#3366#3367#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -252,8 +266,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/nfc/AmInterceptHook.java" />
-        <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/nfc/NFCLockScreenOffEnabler.java" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/BindNfcActivity.java" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/NfcScanner.java" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/NfcFoundReceiver.java" />
@@ -263,7 +275,6 @@
         <option value="$PROJECT_DIR$/res/layout/input_sd_passwd_dialog.xml" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/InputSdPasswdDialog.java" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/SdManager.java" />
-        <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/UsbStatusReceiver.java" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/NfcLostReceiver.java" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/utils/UpgradeSystemPermission.java" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/HeartbeatService.java" />
@@ -285,10 +296,8 @@
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/model/Folder.java" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/model/FileItem.java" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/LoginDialog.java" />
-        <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/CmdManager.java" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/FirstEnterCheck2Activity.java" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/FirstEnterCheckActivity.java" />
-        <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/OnBootReceiver.java" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/HookSgorageVolume.java" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/HookStorageVolume.java" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/HookMediaFormat.java" />
@@ -296,13 +305,18 @@
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/HookExternalStorageFormatter.java" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/HookMountService.java" />
-        <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/UsbStateReceiver.java" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/HookUsbManager.java" />
-        <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/utils/Common.java" />
         <option value="$PROJECT_DIR$/assets/xposed_init" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/net/NetManager.java" />
         <option value="$PROJECT_DIR$/res/layout/main.xml" />
+        <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/utils/Common.java" />
+        <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/Constants.java" />
+        <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/UsbStateReceiver.java" />
+        <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/CmdManager.java" />
+        <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/UsbStatusReceiver.java" />
         <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/MainActivity.java" />
+        <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/OnBootReceiver.java" />
+        <option value="$PROJECT_DIR$/src/bitman/ay27/watchdog/PrefUtils.java" />
       </list>
     </option>
   </component>
@@ -411,6 +425,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="utils" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="watchdog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="watchdog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="watchdog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="ui" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -460,50 +496,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="watchdog" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="watchdog" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="watchdog" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="net" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="watchdog" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="watchdog" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="watchdog" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hook" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -979,16 +971,16 @@
       <workItem from="1436494262913" duration="347000" />
       <workItem from="1436495248011" duration="923000" />
       <workItem from="1436509612080" duration="1549000" />
-      <workItem from="1436511235415" duration="1069000" />
+      <workItem from="1436511235415" duration="3370000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="333197000" />
+    <option name="totallyTimeSpent" value="335498000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1002,24 +994,24 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19595315" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19595315" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31910568" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Memory Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23642172" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.351626" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1826411" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2550813" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33739838" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22683705" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2550813" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33739838" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22683705" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1182,19 +1174,19 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/MainActivity.java</url>
-          <line>65</line>
+          <line>57</line>
           <properties />
           <option name="timeStamp" value="97" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/UsbStatusReceiver.java</url>
-          <line>23</line>
+          <line>22</line>
           <properties />
           <option name="timeStamp" value="98" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/MainActivity.java</url>
-          <line>335</line>
+          <line>311</line>
           <properties />
           <option name="timeStamp" value="100" />
         </line-breakpoint>
@@ -1254,19 +1246,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/MainActivity.java</url>
-          <line>445</line>
+          <line>423</line>
           <properties />
           <option name="timeStamp" value="128" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/MainActivity.java</url>
-          <line>67</line>
-          <properties />
-          <option name="timeStamp" value="134" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/MainActivity.java</url>
-          <line>213</line>
+          <line>185</line>
           <properties />
           <option name="timeStamp" value="135" />
         </line-breakpoint>
@@ -1298,44 +1284,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$PROJECT_DIR$/libs/android-async-http-1.4.6.jar!/com/loopj/android/http/JsonHttpResponseHandler.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.3246187" vertical-offset="1656" max-vertical-offset="3058">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Applications/android-sdk-macosx/sources/android-21/org/json/JSONObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53974897" vertical-offset="13762" max-vertical-offset="17248">
-          <caret line="694" column="0" selection-start-line="694" selection-start-column="0" selection-end-line="694" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/DaemonService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="144" max-vertical-offset="1100">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Applications/android-sdk-macosx/sources/android-21/android/provider/Settings.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.79133224" vertical-offset="75275" max-vertical-offset="156024">
-          <caret line="3510" column="0" selection-start-line="3510" selection-start-column="0" selection-end-line="3510" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/widget/res/layout/keyboard.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.0" vertical-offset="0" max-vertical-offset="484">
-          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/HeartbeatService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="396" max-vertical-offset="1452">
@@ -1481,17 +1429,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/CmdManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2904">
-          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-          <folding>
-            <element signature="e#4615#4638#0" expanded="false" />
-            <element signature="e#4879#4901#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/KeyguardKeyboardActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1430" max-vertical-offset="2640">
@@ -1550,16 +1487,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/OnBootReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="78" max-vertical-offset="1034">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/hook/HookStorageManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="418" max-vertical-offset="2948">
@@ -1581,26 +1508,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/UsbStatusReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="924">
-          <caret line="33" column="56" selection-start-line="33" selection-start-column="56" selection-end-line="33" selection-end-column="56" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/utils/UpgradeSystemPermission.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="770" max-vertical-offset="1804">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/hook/HookMountService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3718">
@@ -1612,16 +1519,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2761506" vertical-offset="1188" max-vertical-offset="3168">
           <caret line="77" column="1" selection-start-line="77" selection-start-column="1" selection-end-line="77" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/utils/Common.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="919" max-vertical-offset="2266">
-          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1694,24 +1591,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/UsbStateReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="770">
-          <caret line="26" column="9" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/net/NetManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="743" max-vertical-offset="3938">
-          <caret line="66" column="41" selection-start-line="66" selection-start-column="41" selection-end-line="66" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="22" max-vertical-offset="5940">
@@ -1739,52 +1618,184 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/utils/Common.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="474" max-vertical-offset="2266">
+          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/utils/Utils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2784" max-vertical-offset="3740">
+          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/utils/UpgradeSystemPermission.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="770" max-vertical-offset="1804">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/utils/TaskUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="550">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/utils/ImageDecodeUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="968">
+          <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/UsbStateReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="594">
+          <caret line="22" column="55" selection-start-line="22" selection-start-column="55" selection-end-line="22" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/UsbStatusReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="87" max-vertical-offset="880">
+          <caret line="34" column="38" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/CmdManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="210" max-vertical-offset="2882">
+          <caret line="57" column="32" selection-start-line="57" selection-start-column="32" selection-end-line="57" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/net/NetManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2075" max-vertical-offset="3938">
+          <caret line="126" column="0" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/OnBootReceiver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="307" max-vertical-offset="1012">
+          <caret line="37" column="34" selection-start-line="37" selection-start-column="34" selection-end-line="37" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.90507364" vertical-offset="9089" max-vertical-offset="10032">
-          <caret line="408" column="5" selection-start-line="408" selection-start-column="5" selection-end-line="408" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="5160" max-vertical-offset="9988">
+          <caret line="245" column="41" selection-start-line="245" selection-start-column="41" selection-end-line="245" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2460#3621#0" expanded="true" />
-            <element signature="e#2867#2889#0" expanded="true" />
-            <element signature="e#2933#2962#0" expanded="true" />
-            <element signature="e#3135#3161#0" expanded="true" />
-            <element signature="e#3205#3238#0" expanded="true" />
-            <element signature="e#3390#3415#0" expanded="true" />
-            <element signature="e#3459#3491#0" expanded="true" />
-            <element signature="e#3620#3621#0" expanded="true" />
-            <element signature="e#4117#4142#0" expanded="true" />
-            <element signature="e#4251#4277#0" expanded="true" />
-            <element signature="e#4518#4543#0" expanded="true" />
-            <element signature="e#6093#6114#0" expanded="true" />
-            <element signature="e#6223#6243#0" expanded="true" />
-            <element signature="e#6686#6719#0" expanded="true" />
-            <element signature="e#6828#6862#0" expanded="true" />
-            <element signature="e#7701#8327#0" expanded="true" />
-            <element signature="e#8326#8327#0" expanded="true" />
-            <element signature="e#9778#9798#0" expanded="true" />
-            <element signature="e#10508#10530#0" expanded="true" />
-            <element signature="e#10566#10595#0" expanded="true" />
-            <element signature="e#10694#10720#0" expanded="true" />
-            <element signature="e#10756#10789#0" expanded="true" />
-            <element signature="e#10867#10892#0" expanded="true" />
-            <element signature="e#10928#10960#0" expanded="true" />
-            <element signature="e#11507#11542#0" expanded="true" />
-            <element signature="e#12026#12046#0" expanded="true" />
-            <element signature="e#12091#12106#0" expanded="true" />
-            <element signature="e#12157#12170#0" expanded="true" />
-            <element signature="e#12617#12638#0" expanded="true" />
-            <element signature="e#12929#12949#0" expanded="true" />
-            <element signature="e#13286#13309#0" expanded="true" />
-            <element signature="e#14571#14598#0" expanded="true" />
-            <element signature="e#14834#14862#0" expanded="true" />
-            <element signature="e#15117#15144#0" expanded="true" />
-            <element signature="e#15538#15590#0" expanded="true" />
-            <element signature="e#16035#16058#0" expanded="true" />
-            <element signature="e#16212#16234#0" expanded="true" />
-            <element signature="e#17365#17400#0" expanded="true" />
-            <element signature="e#17768#17791#0" expanded="true" />
-            <element signature="e#18341#18363#0" expanded="true" />
+            <element signature="e#1966#2181#0" expanded="true" />
+            <element signature="e#2180#2181#0" expanded="true" />
+            <element signature="e#2270#3369#0" expanded="true" />
+            <element signature="e#2677#2702#0" expanded="true" />
+            <element signature="e#2811#2837#0" expanded="true" />
+            <element signature="e#3058#3083#0" expanded="true" />
+            <element signature="e#3368#3369#0" expanded="true" />
+            <element signature="e#3425#3688#0" expanded="true" />
+            <element signature="e#3687#3688#0" expanded="true" />
+            <element signature="e#3768#5436#0" expanded="true" />
+            <element signature="e#4590#4611#0" expanded="true" />
+            <element signature="e#4720#4740#0" expanded="true" />
+            <element signature="e#5183#5216#0" expanded="true" />
+            <element signature="e#5325#5359#0" expanded="true" />
+            <element signature="e#5435#5436#0" expanded="true" />
+            <element signature="e#5512#6110#0" expanded="true" />
+            <element signature="e#6109#6110#0" expanded="true" />
+            <element signature="e#6181#6790#0" expanded="true" />
+            <element signature="e#6789#6790#0" expanded="true" />
+            <element signature="e#8072#8092#0" expanded="true" />
+            <element signature="e#8952#8974#0" expanded="true" />
+            <element signature="e#9010#9039#0" expanded="true" />
+            <element signature="e#9180#9206#0" expanded="true" />
+            <element signature="e#9242#9275#0" expanded="true" />
+            <element signature="e#9395#9420#0" expanded="true" />
+            <element signature="e#9456#9488#0" expanded="true" />
+            <element signature="e#9840#9875#0" expanded="true" />
+            <element signature="e#10301#10321#0" expanded="true" />
+            <element signature="e#10366#10381#0" expanded="true" />
+            <element signature="e#10432#10445#0" expanded="true" />
+            <element signature="e#10447#11383#0" expanded="true" />
+            <element signature="e#10892#10913#0" expanded="true" />
+            <element signature="e#11204#11224#0" expanded="true" />
+            <element signature="e#11382#11383#0" expanded="true" />
+            <element signature="e#11524#11525#0" expanded="true" />
+            <element signature="e#11561#11584#0" expanded="true" />
+            <element signature="e#11599#11600#0" expanded="true" />
+            <element signature="e#12076#13605#0" expanded="true" />
+            <element signature="e#12959#12986#0" expanded="true" />
+            <element signature="e#13222#13250#0" expanded="true" />
+            <element signature="e#13483#13510#0" expanded="true" />
+            <element signature="e#13604#13605#0" expanded="true" />
+            <element signature="e#13904#13956#0" expanded="true" />
+            <element signature="e#14401#14424#0" expanded="true" />
+            <element signature="e#14578#14600#0" expanded="true" />
+            <element signature="e#15718#15753#0" expanded="true" />
+            <element signature="e#16121#16144#0" expanded="true" />
+            <element signature="e#16694#16716#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/PrefUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6255319" vertical-offset="1715" max-vertical-offset="2508">
+          <caret line="98" column="5" selection-start-line="98" selection-start-column="5" selection-end-line="98" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1397#1398#0" expanded="true" />
+            <element signature="e#1451#1452#0" expanded="true" />
+            <element signature="e#1502#1503#0" expanded="true" />
+            <element signature="e#1568#1569#0" expanded="true" />
+            <element signature="e#1756#1757#0" expanded="true" />
+            <element signature="e#1823#1824#0" expanded="true" />
+            <element signature="e#1871#1872#0" expanded="true" />
+            <element signature="e#1930#1931#0" expanded="true" />
+            <element signature="e#1990#1991#0" expanded="true" />
+            <element signature="e#2058#2059#0" expanded="true" />
+            <element signature="e#2101#2102#0" expanded="true" />
+            <element signature="e#2155#2156#0" expanded="true" />
+            <element signature="e#2210#2211#0" expanded="true" />
+            <element signature="e#2273#2274#0" expanded="true" />
+            <element signature="e#2311#2312#0" expanded="true" />
+            <element signature="e#2362#2363#0" expanded="true" />
+            <element signature="e#2410#2411#0" expanded="true" />
+            <element signature="e#2473#2474#0" expanded="true" />
+            <element signature="e#2515#2516#0" expanded="true" />
+            <element signature="e#2571#2572#0" expanded="true" />
+            <element signature="e#2624#2625#0" expanded="true" />
+            <element signature="e#2692#2693#0" expanded="true" />
+            <element signature="e#2736#2737#0" expanded="true" />
+            <element signature="e#2791#2792#0" expanded="true" />
+            <element signature="e#2844#2845#0" expanded="true" />
+            <element signature="e#2910#2911#0" expanded="true" />
+            <element signature="e#2952#2953#0" expanded="true" />
+            <element signature="e#3007#3008#0" expanded="true" />
+            <element signature="e#3062#3063#0" expanded="true" />
+            <element signature="e#3131#3132#0" expanded="true" />
+            <element signature="e#3175#3176#0" expanded="true" />
+            <element signature="e#3235#3236#0" expanded="true" />
+            <element signature="e#3292#3293#0" expanded="true" />
+            <element signature="e#3366#3367#0" expanded="true" />
           </folding>
         </state>
       </provider>

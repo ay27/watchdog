@@ -3,16 +3,9 @@ package bitman.ay27.watchdog.service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.widget.Toast;
-import bitman.ay27.watchdog.db.DbManager;
-import bitman.ay27.watchdog.db.model.WatchCat;
-import bitman.ay27.watchdog.ui.activity.MainActivity;
+import bitman.ay27.watchdog.PrefUtils;
 import bitman.s117.libwatchcat.WatchCat_Controller;
 import bitman.s117.libwatchcat.WatchCat_Controller_Impl;
-
-import java.io.IOException;
-import java.util.List;
 
 /**
  * Proudly to user Intellij IDEA.
@@ -23,8 +16,7 @@ public class OnBootReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        SharedPreferences pref = context.getSharedPreferences(MainActivity.PREF_NAME, Context.MODE_PRIVATE);
-        boolean lock = pref.getBoolean(MainActivity.KEY_BOOT_LOADER_LOCK, false);
+        boolean lock = PrefUtils.isBootloaderEnable();
 
         WatchCat_Controller wc_ctl = new WatchCat_Controller_Impl();
         if (lock) {
@@ -37,13 +29,13 @@ public class OnBootReceiver extends BroadcastReceiver {
             }
         }
 
-        int sd_status = pref.getInt(MainActivity.KEY_SD_STATE, 0);
+        int sd_status = PrefUtils.getSdState();
         if (sd_status == 2 && wc_ctl.isSDCardExist()) {
             wc_ctl.loadBCPT();
-            wc_ctl.enableEncryption(pref.getString(MainActivity.KEY_SD_PASSWD,""), pref.getInt(MainActivity.KEY_ENCRYPT_TYPE, 0));
+            wc_ctl.enableEncryption(PrefUtils.getSdPasswd(), PrefUtils.getSdEncryptType());
         }
         if (!wc_ctl.isSDCardExist()) {
-            pref.edit().putInt(MainActivity.KEY_SD_STATE, 0).apply();
+            PrefUtils.setSdState(0);
         }
 
         Intent newIntent = new Intent(context, DaemonService.class);
