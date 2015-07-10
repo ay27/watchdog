@@ -107,8 +107,6 @@
         <activity android:name=".ui.activity.TestDrawPasswdActivity"/>
         <activity android:name=".ui.activity.SetWatchActivity"/>
 
-        <activity android:name=".ui.activity.DangerActivity"/>
-
         <receiver android:name=".service.OnBootReceiver"
                   android:exported="true">
             <intent-filter android:priority="2147483647">

@@ -1,4 +1,4 @@
-package bitman.ay27.watchdog.ui.activity;
+package bitman.ay27.watchdog.ui.activity.widget;
 
 import android.app.Activity;
 import android.app.Dialog;

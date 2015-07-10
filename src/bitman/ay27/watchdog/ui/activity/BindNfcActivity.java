@@ -1,9 +1,7 @@
 package bitman.ay27.watchdog.ui.activity;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -14,12 +12,10 @@ import android.widget.*;
 import bitman.ay27.watchdog.R;
 import bitman.ay27.watchdog.db.DbManager;
 import bitman.ay27.watchdog.db.model.NfcCard;
-import bitman.ay27.watchdog.model.CardList;
-import bitman.ay27.watchdog.utils.Common;
+import bitman.ay27.watchdog.ui.activity.widget.ReadNfcDialog;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,19 +47,6 @@ public class BindNfcActivity extends ActionBarActivity {
         init();
     }
 
-//    private void checkService() {
-//        List<ServiceStatus> tmp = DbManager.getInstance().query(ServiceStatus.class);
-//        if (tmp == null || tmp.size() == 0) {
-//            ServiceManager.getInstance().addService(NfcScannerService.class);
-//            return;
-//        }
-//        for (ServiceStatus status : tmp) {
-//            if (status.serviceClassName.equals(NfcScannerService.class.getName())) {
-//                return;
-//            }
-//        }
-//        ServiceManager.getInstance().addService(NfcScannerService.class);
-//    }
 
     private void init() {
         List<NfcCard> tmp = DbManager.getInstance().query(NfcCard.class);
@@ -91,7 +74,6 @@ public class BindNfcActivity extends ActionBarActivity {
             }
         });
 
-//        checkService();
     }
 
     @OnClick(R.id.bind_nfc_new_card)
@@ -133,7 +115,6 @@ public class BindNfcActivity extends ActionBarActivity {
             DbManager.getInstance().delete(NfcCard.class, cards.get(position));
             cards.remove(position);
             this.notifyDataSetInvalidated();
-//            DbManager.getInstance().updateList(NfcCard.class, cards);
         }
 
         @Override

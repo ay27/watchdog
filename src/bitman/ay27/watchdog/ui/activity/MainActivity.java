@@ -18,6 +18,8 @@ import bitman.ay27.watchdog.net.NetManager;
 import bitman.ay27.watchdog.service.HeartbeatService;
 import bitman.ay27.watchdog.service.KeyguardService;
 import bitman.ay27.watchdog.service.ServiceManager;
+import bitman.ay27.watchdog.ui.activity.widget.InputSdPasswdDialog;
+import bitman.ay27.watchdog.ui.activity.widget.LoginDialog;
 import bitman.ay27.watchdog.utils.Common;
 import bitman.ay27.watchdog.utils.UpgradeSystemPermission;
 import bitman.s117.libwatchcat.WatchCat_Controller;

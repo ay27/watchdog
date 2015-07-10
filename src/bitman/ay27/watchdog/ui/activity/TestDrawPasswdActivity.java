@@ -18,7 +18,7 @@ import bitman.ay27.watchdog.db.DbManager;
 import bitman.ay27.watchdog.db.model.AngleChain;
 import bitman.ay27.watchdog.processor.AngleChainProcessor;
 import bitman.ay27.watchdog.processor.Curve;
-import bitman.ay27.watchdog.ui.DrawingCanvas;
+import bitman.ay27.watchdog.ui.activity.widget.DrawingCanvas;
 import bitman.ay27.watchdog.utils.Utils;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
