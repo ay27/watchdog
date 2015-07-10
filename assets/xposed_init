@@ -1,2 +1,3 @@
-bitman.ay27.watchdog.NFCLockScreenOffEnabler
-bitman.ay27.watchdog.HookMountService
+bitman.ay27.watchdog.hook.NFCLockScreenOffEnabler
+bitman.ay27.watchdog.hook.HookMountService
+bitman.ay27.watchdog.hook.HookUsbManager

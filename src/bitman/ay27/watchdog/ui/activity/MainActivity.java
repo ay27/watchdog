@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.*;
 import android.graphics.Color;
+import android.hardware.usb.UsbManager;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.IBinder;
@@ -24,6 +25,7 @@ import bitman.ay27.watchdog.service.HeartbeatService;
 import bitman.ay27.watchdog.service.KeyguardService;
 import bitman.ay27.watchdog.service.ServiceManager;
 import bitman.ay27.watchdog.utils.Common;
+import bitman.ay27.watchdog.utils.UpgradeSystemPermission;
 import bitman.s117.libwatchcat.WatchCat_Controller;
 import bitman.s117.libwatchcat.WatchCat_Controller_Impl;
 import butterknife.ButterKnife;
@@ -147,23 +149,6 @@ public class MainActivity extends ActionBarActivity {
         }
     };
 
-    private static IMountService getIMountService(Context context) {
-        StorageManager mStorageManager = (StorageManager) context.getSystemService(Context.STORAGE_SERVICE);
-        Class<?> c = StorageManager.class;
-        try {
-            Field mMountService = c.getField("mMountService");
-            mMountService.setAccessible(true);
-            return (IMountService) mMountService.get(mStorageManager);
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
-//    private Intent sdServiceIntent;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -335,72 +320,14 @@ public class MainActivity extends ActionBarActivity {
     @OnCheckedChanged(R.id.main_usb_switch)
     public void usbCheckChanged(CompoundButton buttonView, boolean isChecked) {
 
-
-//        if (usbReEnter) {
-//            usbReEnter = false;
-//            return;
-//        }
-//        boolean result = UpgradeSystemPermission.upgradeRootPermission();
-//        if (!result) {
-//            usbSwitch.setEnabled(false);
-//            usbReEnter = true;
-//            return;
-//        }
-//
-//        try {
-//            int currentStatus = Settings.Global.getInt(this.getContentResolver(), Settings.Global.ADB_ENABLED);
-//            if (currentStatus == 1 && isChecked) {
-//                return;
-//            }
-//            if (currentStatus != 1 && !isChecked) {
-//                return;
-//            }
-//        } catch (Settings.SettingNotFoundException e) {
-//            e.printStackTrace();
-//            Log.e(TAG, e.toString());
-//        }
-//
-//
-//        UpgradeSystemPermission.grantSystemPermission(UpgradeSystemPermission.PERMISSION_WRITE_SECURE_SETTINGS);
-//        UpgradeSystemPermission.grantSystemPermission(UpgradeSystemPermission.PERMISSION_MOUNT_UNMOUNT_FS);
-//
-//        result = Settings.Global.putInt(this.getContentResolver(), Settings.Global.ADB_ENABLED, isChecked ? 1 : 0);
-//        if (!result) {
-//            usbReEnter = true;
-//            Toast.makeText(this, R.string.change_usb_error, Toast.LENGTH_SHORT).show();
-//            usbSwitch.setChecked(!isChecked);
-//        }
-
-//        try {
-//            Class<?> storageManager = Class.forName("android.os.storage.StorageManager");
-//            Method disableUsbMassStorage = storageManager.getMethod("disableUsbMassStorage");
-//            disableUsbMassStorage.setAccessible(true);
-//            Object o = getSystemService("storage");
-//            disableUsbMassStorage.invoke(o);
-//        } catch (ClassNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (NoSuchMethodException e) {
-//            e.printStackTrace();
-//        } catch (InvocationTargetException e) {
-//            e.printStackTrace();
-//        } catch (IllegalAccessException e) {
-//            e.printStackTrace();
-//        }
-
-//        IMountService service = getIMountService(this);
-//        try {
-//            service.setUsbMassStorageEnabled(isChecked);
-//        } catch (RemoteException e) {
-//            e.printStackTrace();
-//        }
-
-//        sendBroadcast(new Intent(Common.ACTION_DISABLE_USB));
-
-//        Intent intent = new Intent(Common.ACTION_FORMAT);
-//        intent.putExtra("path", Environment.getExternalStorageDirectory());
-//        sendBroadcast(intent);
-
-        sendBroadcast(new Intent(Common.ACTION_DISABLE_USB));
+        pref.edit().putBoolean(KEY_USB, isChecked).apply();
+        if (!isChecked) {
+            UpgradeSystemPermission.runCmd("echo 0 > /sys/devices/virtual/android_usb/android0/enable");
+            return;
+        }
+        UpgradeSystemPermission.runCmd("echo 1 > /sys/devices/virtual/android_usb/android0/enable");
+//        Toast.makeText(this, R.string.reconnect_usb, Toast.LENGTH_SHORT).show();
+        sendBroadcast(new Intent(Common.ACTION_CHOOSE_MTP));
     }
 
     @OnClick(R.id.main_sd_panel)

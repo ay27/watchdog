@@ -10,6 +10,8 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.net.CookieHandler;
+import java.net.CookieManager;
 
 /**
  * Proudly to user Intellij IDEA.
@@ -61,6 +63,10 @@ public class NetManager {
             public void onSuccess(int i, Header[] headers, byte[] bytes) {
                 // login XGPush
                 XGPushManager.registerPush(WatchdogApplication.getContext(), username);
+
+                // set cookie, keep login
+                CookieManager cookieManager = new CookieManager();
+                CookieHandler.setDefault(cookieManager);
 
                 if (bytes != null)
                     callback.onSuccess(i, new String(bytes));
