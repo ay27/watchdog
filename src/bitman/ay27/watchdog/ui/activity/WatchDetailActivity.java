@@ -15,7 +15,6 @@ import butterknife.InjectView;
  */
 public class WatchDetailActivity extends ActionBarActivity {
 
-
     @InjectView(R.id.watch_detail_toolbar)
     Toolbar toolbar;
     @InjectView(R.id.watch_detail_name)

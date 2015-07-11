@@ -8,7 +8,7 @@ import org.apache.http.Header;
  */
 class WatchServerRestClient {
 
-    private static final String BASE_URL = "TODO/";
+    private static final String BASE_URL = "http://test.cnss446.ml/";
     private static final AsyncHttpClient client = new AsyncHttpClient();
     private static ResponseHandlerInterface defaultHandler = new AsyncHttpResponseHandler() {
         @Override

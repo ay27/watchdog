@@ -16,14 +16,11 @@ import bitman.ay27.watchdog.PrefUtils;
 import bitman.ay27.watchdog.R;
 import bitman.ay27.watchdog.WatchdogApplication;
 import bitman.ay27.watchdog.model.FileItem;
+import bitman.ay27.watchdog.net.LocationManager;
 import bitman.ay27.watchdog.net.NetManager;
 import bitman.ay27.watchdog.ui.KeyguardManager;
 import bitman.ay27.watchdog.utils.Common;
 import bitman.ay27.watchdog.utils.SuperUserAccess;
-import com.baidu.location.BDLocation;
-import com.baidu.location.BDLocationListener;
-import com.baidu.location.LocationClient;
-import com.baidu.location.LocationClientOption;
 import com.google.gson.Gson;
 
 import java.io.File;
@@ -40,26 +37,12 @@ public class CmdManager {
     private static AudioManager mAudioManager = (AudioManager) WatchdogApplication.getContext().getSystemService(Context.AUDIO_SERVICE);
 
     public static void gps() {
-        LocationClientOption option = new LocationClientOption();
-        option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);//设置定位模式
-        option.setCoorType("bd09ll");//返回的定位结果是百度经纬度
-        option.setScanSpan(5000); // 5s扫描一次
-
-        final LocationClient mLocationClient = new LocationClient(WatchdogApplication.getContext());
-        mLocationClient.setLocOption(option);
-        mLocationClient.registerLocationListener(new BDLocationListener() {
+        LocationManager.getLocation(new LocationManager.GetLocationCallback() {
             @Override
-            public void onReceiveLocation(BDLocation bdLocation) {
-                int code = bdLocation.getLocType();
-                if (code == 61 || code == 65 || code == 66 || code == 68 || code == 161) {
-                    mLocationClient.stop();
-                    double latitude = bdLocation.getLatitude();
-                    double longitude = bdLocation.getLongitude();
-                    NetManager.gps(latitude, longitude);
-                }
+            public void onSuccess(double latitude, double longitude) {
+                NetManager.gps(latitude, longitude);
             }
         });
-        mLocationClient.start();
     }
 
     public static void alarm() {

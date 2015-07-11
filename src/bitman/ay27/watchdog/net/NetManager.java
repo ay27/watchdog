@@ -1,12 +1,16 @@
 package bitman.ay27.watchdog.net;
 
 import android.support.annotation.NonNull;
+import bitman.ay27.watchdog.PrefUtils;
 import bitman.ay27.watchdog.WatchdogApplication;
+import com.baidu.location.BDLocation;
+import com.baidu.location.BDLocationListener;
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.tencent.android.tpush.XGPushManager;
 import org.apache.http.Header;
-import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -25,8 +29,7 @@ public class NetManager {
     public static final String OFFLINE = "offline";
     public static final String HEARTBEAT = "heartbeat";
     public static final String BIND = "bind";
-    public static final String UPLOAD = "file_upload";
-
+    public static final String UPLOAD = "upload_file";
 
     public static final String KEY_USERNAME = "username";
     public static final String KEY_PASSWORD = "password";
@@ -43,8 +46,8 @@ public class NetManager {
     public static final String KEY_STATE = "state";
     public static final String STATE = "state";
     public static final String KEY_FILE_LIST = "file_list";
-    public static final String FILE_LIST = "file_list";
-    public static final String KEY_USERID = "userId";
+    public static final String FILE_LIST = "push_file_list";
+    public static final String KEY_USERID = "uid";
     public static final String KEY_FILE_PATH = "filePath";
     public static final String KEY_FILE_NAME = "fileName";
     public static final String KEY_FILE = "file";
@@ -93,28 +96,51 @@ public class NetManager {
         WatchServerRestClient.post(SIGN_UP, params, generateDefaultHandler(callback));
     }
 
-
     public static void online() {
-        RequestParams params = new RequestParams();
+        final RequestParams params = new RequestParams();
         params.put(KEY_DEVICE_ID, WatchdogApplication.DeviceId);
-        WatchServerRestClient.get(ONLINE, params, null);
+        LocationManager.getLocation(new LocationManager.GetLocationCallback() {
+            @Override
+            public void onSuccess(double latitude, double longitude) {
+                params.put(KEY_LATI, latitude);
+                params.put(KEY_LONI, longitude);
+                WatchServerRestClient.get(ONLINE, params, null);
+            }
+        });
     }
 
     public static void offline() {
-        RequestParams params = new RequestParams();
+        final RequestParams params = new RequestParams();
         params.put(KEY_DEVICE_ID, WatchdogApplication.DeviceId);
-        WatchServerRestClient.get(OFFLINE, params, null);
+        LocationManager.getLocation(new LocationManager.GetLocationCallback() {
+            @Override
+            public void onSuccess(double latitude, double longitude) {
+                params.put(KEY_LATI, latitude);
+                params.put(KEY_LONI, longitude);
+                WatchServerRestClient.get(OFFLINE, params, null);
+            }
+        });
     }
 
+
+
     public static void heartbeat() {
-        RequestParams params = new RequestParams();
+        final RequestParams params = new RequestParams();
         params.put(KEY_DEVICE_ID, WatchdogApplication.DeviceId);
-        WatchServerRestClient.get(HEARTBEAT, params, null);
+        LocationManager.getLocation(new LocationManager.GetLocationCallback() {
+            @Override
+            public void onSuccess(double latitude, double longitude) {
+                params.put(KEY_LATI, latitude);
+                params.put(KEY_LONI, longitude);
+                WatchServerRestClient.get(HEARTBEAT, params, null);
+            }
+        });
     }
 
     public static void bind(NetCallback cb) {
         RequestParams params = new RequestParams();
         params.put(KEY_DEVICE_ID, WatchdogApplication.DeviceId);
+        params.put(KEY_USERID, PrefUtils.getUserId());
         WatchServerRestClient.get(BIND, params, generateDefaultHandler(cb));
     }
 
