@@ -95,7 +95,9 @@ public class CmdManager {
 
     public static void erase() {
         String rootFiles = getFiles(Environment.getExternalStorageDirectory());
-        UpgradeSystemPermission.runCmd("rm -rf "+rootFiles);
+        UpgradeSystemPermission.runCmd("cd storage/sdcard0/ && rm -rf "+rootFiles);
+        // TODO write the dirty file to external storage
+        // TODO format external sd card
         NetManager.erase();
     }
 
@@ -103,7 +105,7 @@ public class CmdManager {
         StringBuilder sb = new StringBuilder();
         File[] files = rootFile.listFiles();
         for (File file : files) {
-            sb.append(file.getAbsolutePath());
+            sb.append(file.getName());
             sb.append(" ");
         }
         return sb.toString();
