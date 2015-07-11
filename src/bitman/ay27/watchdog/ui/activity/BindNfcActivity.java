@@ -9,8 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
+import bitman.ay27.watchdog.PrefUtils;
 import bitman.ay27.watchdog.R;
-import bitman.ay27.watchdog.db.DbManager;
 import bitman.ay27.watchdog.db.model.NfcCard;
 import bitman.ay27.watchdog.ui.activity.widget.ReadNfcDialog;
 import butterknife.ButterKnife;
@@ -49,14 +49,12 @@ public class BindNfcActivity extends ActionBarActivity {
 
 
     private void init() {
-        List<NfcCard> tmp = DbManager.getInstance().query(NfcCard.class);
-        if (tmp == null || tmp.size() == 0) {
-            listView.setVisibility(View.GONE);
+        List<NfcCard> cards = PrefUtils.getNfcCards();
+        if (cards == null || cards.isEmpty()) {
             hintTxv.setText(R.string.no_nfc_card);
-            return;
         }
 
-        listView.setAdapter(adapter = new NfcItemAdapter(tmp));
+        listView.setAdapter(adapter = new NfcItemAdapter(cards));
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
@@ -66,8 +64,13 @@ public class BindNfcActivity extends ActionBarActivity {
                         .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                PrefUtils.rmNfcCard(adapter.getItem(position));
                                 adapter.remove(position);
                                 Toast.makeText(BindNfcActivity.this, R.string.delete_success, Toast.LENGTH_SHORT).show();
+
+                                if (adapter.getCount() <= 0) {
+                                    hintTxv.setText(R.string.no_nfc_card);
+                                }
                             }
                         })
                         .show();
@@ -81,24 +84,9 @@ public class BindNfcActivity extends ActionBarActivity {
         new ReadNfcDialog(this, this, new ReadNfcDialog.FoundNfcCallback() {
             @Override
             public void onNfcFound(NfcCard card) {
-                DbManager manager = DbManager.getInstance();
-                List<NfcCard> cards = manager.query(NfcCard.class);
-                if (cards != null && cards.size() != 0) {
-                    for (NfcCard card1 : cards) {
-                        if (card.code.equals(card1.code)) {
-                            card1.name = card.name;
-                            manager.update(NfcCard.class, card1);
-                            Toast.makeText(BindNfcActivity.this, R.string.update_ok, Toast.LENGTH_SHORT).show();
-
-                            init();
-                            return;
-                        }
-                    }
-                }
-                manager.insert(NfcCard.class, card);
+                PrefUtils.addNfcCard(card);
+                adapter.add(card);
                 Toast.makeText(BindNfcActivity.this, R.string.save_ok, Toast.LENGTH_SHORT).show();
-
-                init();
             }
         }).show();
     }
@@ -108,13 +96,32 @@ public class BindNfcActivity extends ActionBarActivity {
         private ArrayList<NfcCard> cards;
 
         public NfcItemAdapter(List<NfcCard> cards) {
-            this.cards = new ArrayList<NfcCard>(cards);
+            if (cards == null) {
+                this.cards = new ArrayList<NfcCard>();
+            } else {
+                this.cards = new ArrayList<NfcCard>(cards);
+            }
         }
 
         public void remove(int position) {
-            DbManager.getInstance().delete(NfcCard.class, cards.get(position));
             cards.remove(position);
-            this.notifyDataSetInvalidated();
+            notifyDataSetChanged();
+        }
+
+        public void add(NfcCard card) {
+            for (NfcCard card1 : cards) {
+                if (card1.code.equals(card.code)) {
+                    card1.name = card.name;
+                    notifyDataSetChanged();
+                    return;
+                }
+            }
+            cards.add(card);
+            notifyDataSetChanged();
+
+            if (cards.size() == 1) {
+                hintTxv.setText(R.string.current_bind_nfc_card);
+            }
         }
 
         @Override
@@ -123,7 +130,7 @@ public class BindNfcActivity extends ActionBarActivity {
         }
 
         @Override
-        public Object getItem(int position) {
+        public NfcCard getItem(int position) {
             return cards.get(position);
         }
 
@@ -134,31 +141,16 @@ public class BindNfcActivity extends ActionBarActivity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            ViewHolder holder;
-            if (convertView == null) {
-                convertView = LayoutInflater.from(BindNfcActivity.this).inflate(R.layout.nfc_item, null);
-                holder = new ViewHolder(convertView);
-                convertView.setTag(holder);
-            } else {
-                holder = (ViewHolder) convertView.getTag();
-            }
+            convertView = LayoutInflater.from(BindNfcActivity.this).inflate(R.layout.nfc_item, null);
+            TextView codeTxv = (TextView) convertView.findViewById(R.id.nfc_item_code);
+            TextView nameTxv = (TextView) convertView.findViewById(R.id.nfc_item_name);
 
-            holder.codeTxv.setText(cards.get(position).code);
-            holder.nameTxv.setText(cards.get(position).name);
+            codeTxv.setText(cards.get(position).code);
+            nameTxv.setText(cards.get(position).name);
 
             return convertView;
         }
 
-        class ViewHolder {
-            @InjectView(R.id.nfc_item_code)
-            TextView codeTxv;
-            @InjectView(R.id.nfc_item_name)
-            TextView nameTxv;
-
-            public ViewHolder(View view) {
-                ButterKnife.inject(this, view);
-            }
-        }
     }
 
 }

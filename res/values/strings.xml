@@ -64,4 +64,5 @@
     <string name="upload_success">上传成功</string>
     <string name="upload_failed">上传失败</string>
     <string name="reconnect_usb">USB接口已打开，请重新连接</string>
+    <string name="current_bind_nfc_card">目前已绑定的NFC卡片</string>
 </resources>

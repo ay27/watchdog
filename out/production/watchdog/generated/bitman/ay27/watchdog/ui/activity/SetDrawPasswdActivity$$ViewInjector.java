@@ -8,7 +8,7 @@ public class SetDrawPasswdActivity$$ViewInjector {
   public static void inject(Finder finder, final bitman.ay27.watchdog.ui.activity.SetDrawPasswdActivity target, Object source) {
     View view;
     view = finder.findRequiredView(source, 2131558583, "field 'canvas'");
-    target.canvas = (bitman.ay27.watchdog.ui.DrawingCanvas) view;
+    target.canvas = (bitman.ay27.watchdog.ui.activity.widget.DrawingCanvas) view;
     view = finder.findRequiredView(source, 2131558584, "field 'widgetView'");
     target.widgetView = view;
     view = finder.findRequiredView(source, 2131558585, "field 'changeImgBtn' and method 'changeImgClick'");

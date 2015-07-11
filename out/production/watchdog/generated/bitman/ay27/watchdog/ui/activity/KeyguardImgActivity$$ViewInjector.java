@@ -8,7 +8,7 @@ public class KeyguardImgActivity$$ViewInjector {
   public static void inject(Finder finder, final bitman.ay27.watchdog.ui.activity.KeyguardImgActivity target, Object source) {
     View view;
     view = finder.findRequiredView(source, 2131558486, "field 'dCanvas'");
-    target.dCanvas = (bitman.ay27.watchdog.ui.DrawingCanvas) view;
+    target.dCanvas = (bitman.ay27.watchdog.ui.activity.widget.DrawingCanvas) view;
     view = finder.findRequiredView(source, 2131558488, "field 'changeModeBtn' and method 'changeClick'");
     target.changeModeBtn = (android.widget.Button) view;
     view.setOnClickListener(

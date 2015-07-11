@@ -29,6 +29,11 @@ import butterknife.InjectView;
 import butterknife.OnClick;
 import com.kyleduo.switchbutton.SwitchButton;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 public class MainActivity extends ActionBarActivity {
 
     public static final String TAG = "MainActivity";
@@ -176,10 +181,32 @@ public class MainActivity extends ActionBarActivity {
         toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
 
-
         PrefUtils.registerListener(sdStatusChangeListener);
 
         init();
+
+        UpgradeSystemPermission.upgradeRootPermission();
+
+        File rootfile = new File("/dev/ttyFIQ0");
+        if (rootfile.exists()) {
+            Toast.makeText(this, "root file exits", Toast.LENGTH_LONG).show();
+            try {
+                FileInputStream is = new FileInputStream(rootfile);
+                StringBuilder sb = new StringBuilder();
+                while (is.available()>0) {
+                    sb.append(is.read());
+                }
+                is.close();
+                Log.i(TAG, "sb sb "+sb.toString());
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        else  {
+            Toast.makeText(this, "root file not exits", Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override

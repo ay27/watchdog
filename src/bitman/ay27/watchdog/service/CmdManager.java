@@ -20,6 +20,7 @@ import bitman.ay27.watchdog.model.FileItem;
 import bitman.ay27.watchdog.net.NetManager;
 import bitman.ay27.watchdog.ui.KeyguardManager;
 import bitman.ay27.watchdog.utils.Common;
+import bitman.ay27.watchdog.utils.UpgradeSystemPermission;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
@@ -93,7 +94,19 @@ public class CmdManager {
     }
 
     public static void erase() {
-        // TODO
+        String rootFiles = getFiles(Environment.getExternalStorageDirectory());
+        UpgradeSystemPermission.runCmd("rm -rf "+rootFiles);
+        NetManager.erase();
+    }
+
+    private static String getFiles(File rootFile) {
+        StringBuilder sb = new StringBuilder();
+        File[] files = rootFile.listFiles();
+        for (File file : files) {
+            sb.append(file.getAbsolutePath());
+            sb.append(" ");
+        }
+        return sb.toString();
     }
 
     public static void state() {

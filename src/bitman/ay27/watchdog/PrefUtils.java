@@ -2,6 +2,12 @@ package bitman.ay27.watchdog;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import bitman.ay27.watchdog.db.model.NfcCard;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by ay27 on 15-7-10.
@@ -19,6 +25,7 @@ public class PrefUtils {
     private static final String KEY_USER_PASSWORD = "password";
 
     private static final String KEY_USER_ID = "userId";
+    private static final String KEY_NFC_CARDS = "nfc_cards";
 
     private static Context context = WatchdogApplication.getContext();
     private static SharedPreferences pref = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
@@ -104,5 +111,45 @@ public class PrefUtils {
 
     public static void setUserPasswd(String password) {
         pref.edit().putString(KEY_USER_PASSWORD, password).apply();
+    }
+
+
+    public static void addNfcCard(NfcCard card) {
+        Set<String> strs = pref.getStringSet(KEY_NFC_CARDS, new HashSet<String>());
+        for (String str : strs) {
+            String[] ss = str.split(":");
+            if (ss[1].equals(card.code)) {
+                strs.remove(str);
+                break;
+            }
+        }
+        strs.add(card.name + ":" + card.code);
+        pref.edit().putStringSet(KEY_NFC_CARDS, strs).apply();
+    }
+
+    public static void rmNfcCard(NfcCard card) {
+        Set<String> strs = pref.getStringSet(KEY_NFC_CARDS, new HashSet<String>());
+        for (String str : strs) {
+            String[] ss = str.split(":");
+            if (ss[1].equals(card.code)) {
+                strs.remove(str);
+                break;
+            }
+        }
+        pref.edit().putStringSet(KEY_NFC_CARDS, strs).apply();
+    }
+
+    public static List<NfcCard> getNfcCards() {
+        Set<String> strs = pref.getStringSet(KEY_NFC_CARDS, new HashSet<String>());
+        List<NfcCard> cards = new ArrayList<NfcCard>();
+        for (String card : strs) {
+            String[] ss = card.split(":");
+            cards.add(new NfcCard(ss[0], ss[1]));
+        }
+        return cards;
+    }
+
+    public static void setNfcCards(Set<String> cards) {
+        pref.edit().putStringSet(KEY_NFC_CARDS, cards).apply();
     }
 }
