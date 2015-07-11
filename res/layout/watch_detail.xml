@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <include layout="@layout/toolbar"
+             android:id="@+id/watch_detail_toolbar"/>
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:text="设备信息"
+              style="@style/PreferenceCatalog"
+            />
+    <include layout="@layout/divider_large"/>
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:minHeight="32dp"
+                  android:paddingLeft="16dp"
+                  android:paddingRight="16dp"
+                  android:gravity="center_vertical">
+        <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:layout_weight="2"
+                  android:text="名称"/>
+        <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:layout_gravity="end|center_vertical"
+                  android:text="dogwatch"
+                  android:gravity="end"
+                  android:layout_weight="1"
+                  android:id="@+id/watch_detail_name"/>
+    </LinearLayout>
+
+    <include layout="@layout/divider_small"/>
+
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:minHeight="32dp"
+                  android:paddingLeft="16dp"
+                  android:paddingRight="16dp"
+                  android:gravity="center_vertical">
+        <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:layout_weight="2"
+                  android:text="MAC地址"/>
+        <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:layout_gravity="end|center_vertical"
+                  android:text="10:43:23:3d:2d:2d"
+                  android:gravity="end"
+                  android:layout_weight="1"
+                  android:id="@+id/watch_detail_mac_addr"
+                />
+    </LinearLayout>
+
+    <include layout="@layout/divider_small"/>
+
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:minHeight="32dp"
+                  android:paddingLeft="16dp"
+                  android:paddingRight="16dp"
+                  android:gravity="center_vertical">
+        <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:layout_weight="2"
+                  android:text="设备类型"/>
+        <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:layout_gravity="end|center_vertical"
+                  android:text="bluetooth LE"
+                  android:gravity="end"
+                  android:layout_weight="1"
+                  android:id="@+id/watch_detail_device_type"/>
+    </LinearLayout>
+
+    <include layout="@layout/divider_small"/>
+
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:minHeight="32dp"
+                  android:paddingLeft="16dp"
+                  android:paddingRight="16dp"
+                  android:gravity="center_vertical">
+        <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:layout_weight="4"
+                  android:text="服务UUID"/>
+        <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:layout_gravity="end|center_vertical"
+                  android:text="00001101-0000-1000-8000-00805F9B34FB"
+                  android:gravity="end"
+                  android:layout_weight="1"
+                  android:id="@+id/watch_detail_uuid"
+                />
+    </LinearLayout>
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:text="状态信息"
+              style="@style/PreferenceCatalog"
+              android:paddingTop="8dp"
+            />
+    <include layout="@layout/divider_large"/>
+
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:minHeight="32dp"
+                  android:paddingLeft="16dp"
+                  android:paddingRight="16dp"
+                  android:gravity="center_vertical">
+        <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:layout_weight="2"
+                  android:text="时间"/>
+        <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:layout_gravity="end|center_vertical"
+                  android:text="2015.07.08 12:06"
+                  android:gravity="end"
+                  android:layout_weight="1"
+                  android:id="@+id/watch_detail_time"/>
+    </LinearLayout>
+
+    <include layout="@layout/divider_small"/>
+
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:minHeight="32dp"
+                  android:paddingLeft="16dp"
+                  android:paddingRight="16dp"
+                  android:gravity="center_vertical">
+        <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:layout_weight="2"
+                  android:text="发射功率"/>
+        <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:layout_gravity="end|center_vertical"
+                  android:text="RF_TOGGLE_LEVEL_NORMAL"
+                  android:gravity="end"
+                  android:layout_weight="1"
+                  android:id="@+id/watch_detail_broadcast_power"/>
+    </LinearLayout>
+
+    <include layout="@layout/divider_small"/>
+
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:minHeight="32dp"
+                  android:paddingLeft="16dp"
+                  android:paddingRight="16dp"
+                  android:gravity="center_vertical">
+        <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:layout_weight="2"
+                  android:text="电池容量"/>
+        <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:layout_gravity="end|center_vertical"
+                  android:text="96%"
+                  android:gravity="end"
+                  android:layout_weight="1"
+                  android:id="@+id/watch_detail_battery"
+                />
+    </LinearLayout>
+
+    <include layout="@layout/divider_small"/>
+
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:minHeight="32dp"
+                  android:paddingLeft="16dp"
+                  android:paddingRight="16dp"
+                  android:gravity="center_vertical">
+        <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:layout_weight="2"
+                  android:text="RSSI"/>
+        <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:layout_gravity="end|center_vertical"
+                  android:text="-56dB"
+                  android:gravity="end"
+                  android:layout_weight="1"
+                  android:id="@+id/watch_detail_rssi"
+                />
+    </LinearLayout>
+
+    <include layout="@layout/divider_small"/>
+
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:minHeight="32dp"
+                  android:paddingLeft="16dp"
+                  android:paddingRight="16dp"
+                  android:gravity="center_vertical">
+        <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:layout_weight="2"
+                  android:text="实时距离"/>
+        <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:layout_gravity="end|center_vertical"
+                  android:text="1.2米"
+                  android:gravity="end"
+                  android:layout_weight="1"
+                  android:id="@+id/watch_detail_distance"
+                />
+    </LinearLayout>
+
+</LinearLayout>

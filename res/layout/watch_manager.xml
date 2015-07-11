@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent">
+
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="160dp"
+                  android:background="@color/blue_1"
+                  android:orientation="vertical"
+                  android:gravity="center"
+                  android:id="@+id/watch_manager_new_panel"
+                  android:visibility="gone"
+            >
+        <Button android:layout_width="fill_parent" android:layout_height="wrap_content"
+                android:text="点击绑定"
+                android:gravity="center"
+                android:textSize="32sp"
+                android:textColor="@color/white"
+                android:padding="8dp"
+                android:background="@drawable/transparent_item_bg_blue_1"
+                android:id="@+id/watch_manager_bind_btn"
+                />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="尚未绑定手表"
+                  android:textColor="@color/white"
+                  android:gravity="center"
+                  android:paddingTop="16dp"
+                />
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="160dp"
+                  android:background="@color/blue_1"
+                  android:orientation="vertical"
+                  android:gravity="center"
+                  android:id="@+id/watch_manager_current_panel"
+            >
+        <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:text="0.12米"
+                  android:gravity="center"
+                  android:textSize="48sp"
+                  android:textColor="@color/white"
+                  android:id="@+id/watch_manager_current_distance"
+                />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="当前手表与手机距离"
+                  android:textColor="@color/white"
+                  android:gravity="center"
+                  android:paddingTop="16dp"
+                />
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:id="@+id/watch_manager_setting_panel"
+            >
+
+        <include layout="@layout/divider_small"/>
+        <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      style="@style/PreferencePanel"
+                      android:id="@+id/watch_manager_find_watch">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      style="@style/PreferenceFirstText"
+                      android:text="查找手表"
+                    />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      style="@style/PreferenceSecondText"
+                      android:text="开启手表震动，方便查找"
+                    />
+        </LinearLayout>
+
+        <include layout="@layout/divider_small"/>
+        <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      style="@style/PreferencePanel"
+                      android:id="@+id/watch_manager_set_safe_distance">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      style="@style/PreferenceFirstText"
+                      android:text="安全距离"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      style="@style/PreferenceSecondText"
+                      android:text="开关和设置安全距离阈值"
+                    />
+        </LinearLayout>
+
+        <include layout="@layout/divider_small"/>
+        <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      style="@style/PreferencePanel"
+                      android:id="@+id/watch_manager_correct_distance"
+                >
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      style="@style/PreferenceFirstText"
+                      android:text="校正距离"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      style="@style/PreferenceSecondText"
+                      android:text="校正手表与手机的距离"
+                    />
+        </LinearLayout>
+
+
+        <include layout="@layout/divider_small"/>
+        <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      style="@style/PreferencePanel"
+                      android:id="@+id/watch_manager_correct_time">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      style="@style/PreferenceFirstText"
+                      android:text="校正时间"
+                    />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      style="@style/PreferenceSecondText"
+                      android:text="使用手机时间，校正手表时间"
+                    />
+        </LinearLayout>
+
+        <include layout="@layout/divider_small"/>
+        <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      style="@style/PreferencePanel"
+                      android:id="@+id/watch_manager_detail">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      style="@style/PreferenceFirstText"
+                      android:text="详细信息"
+                    />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      style="@style/PreferenceSecondText"
+                      android:text="查看手表的详细信息"
+                    />
+        </LinearLayout>
+
+        <include layout="@layout/divider_small"/>
+        <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      style="@style/PreferencePanel"
+                      android:id="@+id/watch_manager_dis_bind">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      style="@style/PreferenceFirstText"
+                      android:text="解除绑定"
+                    />
+            <!--<TextView android:layout_width="wrap_content" android:layout_height="wrap_content"-->
+            <!--style="@style/PreferenceSecondText"-->
+            <!--android:text="开启手表震动，方便查找"-->
+            <!--android:id="@+id/main_bind_nfc_summer"/>-->
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

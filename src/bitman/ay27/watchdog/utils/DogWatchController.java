@@ -20,6 +20,16 @@ public interface DogWatchController {
     public boolean setDevice(BluetoothDevice device);
 
     /**
+     * Establish connection to DogWatch
+     */
+    public void connect();
+
+    /**
+     * Drop the connection to DogWatch
+     */
+    public void disconnect();
+
+    /**
      * set time - year
      *
      * @param val year, in binary, it should meet 2000<=val

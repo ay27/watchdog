@@ -106,6 +106,7 @@
         <activity android:name=".ui.activity.SetDrawPasswdActivity"/>
         <activity android:name=".ui.activity.TestDrawPasswdActivity"/>
         <activity android:name=".ui.activity.SetWatchActivity"/>
+        <activity android:name=".ui.activity.WatchDetailActivity"/>
 
         <receiver android:name=".service.OnBootReceiver"
                   android:exported="true">
@@ -155,6 +156,7 @@
         <!--</receiver>-->
 
         <service android:name=".service.KeyguardService"/>
+
         <service android:name=".service.DaemonService"/>
 
 
