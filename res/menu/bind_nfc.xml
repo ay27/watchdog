@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:title="绑定新的NFC卡片"
+          android:id="@+id/bind_new_nfc_card"
+            android:icon="@drawable/ic_action_new"
+          app:showAsAction="always"
+            />
+</menu>

@@ -45,6 +45,8 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="16dp"
                 android:layout_centerVertical="true"
+                android:textSize="12sp"
+                android:textStyle="normal"
                 android:text="校正"
                 />
     </RelativeLayout>
@@ -62,7 +64,7 @@
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                       style="@style/PreferenceSecondText"
                       android:text="开关和设置安全距离阈值"
-                      />
+                    />
         </LinearLayout>
         <Button
                 android:layout_width="96dp"
@@ -72,6 +74,8 @@
                 android:layout_marginEnd="16dp"
                 android:layout_centerVertical="true"
                 android:text="设置"
+                android:textSize="12sp"
+                android:textStyle="normal"
                 />
     </RelativeLayout>
 

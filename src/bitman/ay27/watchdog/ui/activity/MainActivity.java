@@ -21,18 +21,13 @@ import bitman.ay27.watchdog.service.ServiceManager;
 import bitman.ay27.watchdog.ui.activity.widget.InputSdPasswdDialog;
 import bitman.ay27.watchdog.ui.activity.widget.LoginDialog;
 import bitman.ay27.watchdog.utils.Common;
-import bitman.ay27.watchdog.utils.UpgradeSystemPermission;
+import bitman.ay27.watchdog.utils.SuperUserAccess;
 import bitman.s117.libwatchcat.WatchCat_Controller;
 import bitman.s117.libwatchcat.WatchCat_Controller_Impl;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import com.kyleduo.switchbutton.SwitchButton;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -161,10 +156,10 @@ public class MainActivity extends ActionBarActivity {
 
             PrefUtils.setUsbEnable(isChecked);
             if (!isChecked) {
-                UpgradeSystemPermission.runCmd("echo 0 > /sys/devices/virtual/android_usb/android0/enable");
+                SuperUserAccess.runCmd("echo 0 > /sys/devices/virtual/android_usb/android0/enable");
                 return;
             }
-            UpgradeSystemPermission.runCmd("echo 1 > /sys/devices/virtual/android_usb/android0/enable");
+            SuperUserAccess.runCmd("echo 1 > /sys/devices/virtual/android_usb/android0/enable");
 
             // make the default function is MTP
             sendBroadcast(new Intent(Common.ACTION_CHOOSE_MTP));
@@ -185,28 +180,6 @@ public class MainActivity extends ActionBarActivity {
 
         init();
 
-        UpgradeSystemPermission.upgradeRootPermission();
-
-        File rootfile = new File("/dev/ttyFIQ0");
-        if (rootfile.exists()) {
-            Toast.makeText(this, "root file exits", Toast.LENGTH_LONG).show();
-            try {
-                FileInputStream is = new FileInputStream(rootfile);
-                StringBuilder sb = new StringBuilder();
-                while (is.available()>0) {
-                    sb.append(is.read());
-                }
-                is.close();
-                Log.i(TAG, "sb sb "+sb.toString());
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        else  {
-            Toast.makeText(this, "root file not exits", Toast.LENGTH_LONG).show();
-        }
     }
 
     @Override

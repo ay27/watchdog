@@ -2,12 +2,11 @@ package bitman.ay27.watchdog.ui.activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import android.widget.*;
 import bitman.ay27.watchdog.PrefUtils;
 import bitman.ay27.watchdog.R;
@@ -15,7 +14,6 @@ import bitman.ay27.watchdog.db.model.NfcCard;
 import bitman.ay27.watchdog.ui.activity.widget.ReadNfcDialog;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import butterknife.OnClick;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,12 +28,26 @@ public class BindNfcActivity extends ActionBarActivity {
     Toolbar toolbar;
     @InjectView(R.id.bind_nfc_list)
     ListView listView;
-    @InjectView(R.id.bind_nfc_new_card)
-    Button btn;
-    @InjectView(R.id.bind_nfc_hint)
-    TextView hintTxv;
+//    @InjectView(R.id.bind_nfc_new_card)
+//    Button btn;
+//    @InjectView(R.id.bind_nfc_hint)
+//    TextView hintTxv;
 
     private NfcItemAdapter adapter;
+//    private Toolbar.OnMenuItemClickListener menuClickListener = new Toolbar.OnMenuItemClickListener() {
+//        @Override
+//        public boolean onMenuItemClick(MenuItem menuItem) {
+//            new ReadNfcDialog(BindNfcActivity.this, BindNfcActivity.this, new ReadNfcDialog.FoundNfcCallback() {
+//                @Override
+//                public void onNfcFound(NfcCard card) {
+//                    PrefUtils.addNfcCard(card);
+//                    adapter.add(card);
+//                    Toast.makeText(BindNfcActivity.this, R.string.save_ok, Toast.LENGTH_SHORT).show();
+//                }
+//            }).show();
+//            return true;
+//        }
+//    };
 
 
     @Override
@@ -44,14 +56,42 @@ public class BindNfcActivity extends ActionBarActivity {
         setContentView(R.layout.bind_nfc_card);
         ButterKnife.inject(this);
 
+        toolbar.setTitleTextColor(Color.WHITE);
+        toolbar.setTitle(R.string.current_bind_nfc_card);
+        setSupportActionBar(toolbar);
+//        toolbar.setOnMenuItemClickListener(menuClickListener);
+
         init();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.bind_nfc, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.bind_new_nfc_card) {
+            new ReadNfcDialog(BindNfcActivity.this, BindNfcActivity.this, new ReadNfcDialog.FoundNfcCallback() {
+                @Override
+                public void onNfcFound(NfcCard card) {
+                    PrefUtils.addNfcCard(card);
+                    adapter.add(card);
+                    Toast.makeText(BindNfcActivity.this, R.string.save_ok, Toast.LENGTH_SHORT).show();
+                }
+            }).show();
+            return true;
+        }
+        return false;
     }
 
 
     private void init() {
         List<NfcCard> cards = PrefUtils.getNfcCards();
         if (cards == null || cards.isEmpty()) {
-            hintTxv.setText(R.string.no_nfc_card);
+            toolbar.setTitle(R.string.no_nfc_card);
+            setSupportActionBar(toolbar);
         }
 
         listView.setAdapter(adapter = new NfcItemAdapter(cards));
@@ -69,7 +109,8 @@ public class BindNfcActivity extends ActionBarActivity {
                                 Toast.makeText(BindNfcActivity.this, R.string.delete_success, Toast.LENGTH_SHORT).show();
 
                                 if (adapter.getCount() <= 0) {
-                                    hintTxv.setText(R.string.no_nfc_card);
+                                    toolbar.setTitle(R.string.no_nfc_card);
+                                    setSupportActionBar(toolbar);
                                 }
                             }
                         })
@@ -79,17 +120,17 @@ public class BindNfcActivity extends ActionBarActivity {
 
     }
 
-    @OnClick(R.id.bind_nfc_new_card)
-    public void newCardClick(View view) {
-        new ReadNfcDialog(this, this, new ReadNfcDialog.FoundNfcCallback() {
-            @Override
-            public void onNfcFound(NfcCard card) {
-                PrefUtils.addNfcCard(card);
-                adapter.add(card);
-                Toast.makeText(BindNfcActivity.this, R.string.save_ok, Toast.LENGTH_SHORT).show();
-            }
-        }).show();
-    }
+//    @OnClick(R.id.bind_nfc_new_card)
+//    public void newCardClick(View view) {
+//        new ReadNfcDialog(this, this, new ReadNfcDialog.FoundNfcCallback() {
+//            @Override
+//            public void onNfcFound(NfcCard card) {
+//                PrefUtils.addNfcCard(card);
+//                adapter.add(card);
+//                Toast.makeText(BindNfcActivity.this, R.string.save_ok, Toast.LENGTH_SHORT).show();
+//            }
+//        }).show();
+//    }
 
     class NfcItemAdapter extends BaseAdapter {
 
@@ -120,7 +161,8 @@ public class BindNfcActivity extends ActionBarActivity {
             notifyDataSetChanged();
 
             if (cards.size() == 1) {
-                hintTxv.setText(R.string.current_bind_nfc_card);
+                toolbar.setTitle(R.string.current_bind_nfc_card);
+                setSupportActionBar(toolbar);
             }
         }
 

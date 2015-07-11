@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent">
@@ -11,17 +11,17 @@
     <!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"-->
                 <!--android:layout_width="fill_parent"-->
                 <!--android:layout_height="fill_parent">-->
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                      android:orientation="vertical"
-                      android:layout_width="fill_parent"
-                      android:layout_height="wrap_content"
-                >
+        <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+                      <!--android:orientation="vertical"-->
+                      <!--android:layout_width="fill_parent"-->
+                      <!--android:layout_height="wrap_content"-->
+                <!-->-->
 
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                      android:text="@string/current_bind_nfc_card"
-                      style="@style/PreferenceCatalog"
-                      android:id="@+id/bind_nfc_hint"
-                    />
+            <!--<TextView android:layout_width="wrap_content" android:layout_height="wrap_content"-->
+                      <!--android:text="@string/current_bind_nfc_card"-->
+                      <!--style="@style/PreferenceCatalog"-->
+                      <!--android:id="@+id/bind_nfc_hint"-->
+                    <!--/>-->
             <!--<include layout="@layout/divider_large"/>-->
 
             <ListView android:layout_width="fill_parent" android:layout_height="wrap_content"
@@ -29,15 +29,17 @@
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="4dp"
                     android:footerDividersEnabled="true"
+                    android:layout_below="@id/bind_nfc_toolbar"
                     >
             </ListView>
 
-            <Button android:layout_width="fill_parent" android:layout_height="wrap_content"
-                    android:background="@drawable/transparent_item_bg"
-                    android:text="绑定新卡"
-                    android:id="@+id/bind_nfc_new_card"/>
+            <!--<Button android:layout_width="fill_parent" android:layout_height="wrap_content"-->
+                    <!--android:background="@drawable/transparent_item_bg"-->
+                    <!--android:text="绑定新卡"-->
+                    <!--android:id="@+id/bind_nfc_new_card"-->
+                    <!--android:layout_alignParentBottom="true"/>-->
 
-        </LinearLayout>
+        <!--</LinearLayout>-->
 
     <!--</ScrollView>-->
-</LinearLayout>
+</RelativeLayout>

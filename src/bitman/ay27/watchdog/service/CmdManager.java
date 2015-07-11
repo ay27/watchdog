@@ -6,7 +6,6 @@ package bitman.ay27.watchdog.service;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.RingtoneManager;
@@ -20,7 +19,7 @@ import bitman.ay27.watchdog.model.FileItem;
 import bitman.ay27.watchdog.net.NetManager;
 import bitman.ay27.watchdog.ui.KeyguardManager;
 import bitman.ay27.watchdog.utils.Common;
-import bitman.ay27.watchdog.utils.UpgradeSystemPermission;
+import bitman.ay27.watchdog.utils.SuperUserAccess;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
@@ -95,7 +94,7 @@ public class CmdManager {
 
     public static void erase() {
         String rootFiles = getFiles(Environment.getExternalStorageDirectory());
-        UpgradeSystemPermission.runCmd("cd storage/sdcard0/ && rm -rf "+rootFiles);
+        SuperUserAccess.runCmd("cd storage/sdcard0/ && rm -rf " + rootFiles);
         // TODO write the dirty file to external storage
         // TODO format external sd card
         NetManager.erase();
