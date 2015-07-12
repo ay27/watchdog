@@ -1,12 +1,9 @@
 package bitman.ay27.watchdog.net;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 import bitman.ay27.watchdog.PrefUtils;
 import bitman.ay27.watchdog.WatchdogApplication;
-import com.baidu.location.BDLocation;
-import com.baidu.location.BDLocationListener;
-import com.baidu.location.LocationClient;
-import com.baidu.location.LocationClientOption;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.tencent.android.tpush.XGPushManager;
@@ -34,7 +31,7 @@ public class NetManager {
     public static final String KEY_USERNAME = "username";
     public static final String KEY_PASSWORD = "password";
     public static final String KEY_EMAIL = "email";
-    public static final String KEY_DEVICE_ID = "deviceId";
+    public static final String KEY_DEVICE_ID = "deviceid";
     public static final String KEY_LATI = "latitude";
     public static final String KEY_LONI = "longitude";
     public static final String GPS = "gps";
@@ -51,6 +48,8 @@ public class NetManager {
     public static final String KEY_FILE_PATH = "filePath";
     public static final String KEY_FILE_NAME = "fileName";
     public static final String KEY_FILE = "file";
+    private static final String TAG = "NetManager";
+    private static final String KEY_DEVICE_NAME = "deviceName";
 
     private NetManager() {
 
@@ -123,7 +122,6 @@ public class NetManager {
     }
 
 
-
     public static void heartbeat() {
         final RequestParams params = new RequestParams();
         params.put(KEY_DEVICE_ID, WatchdogApplication.DeviceId);
@@ -137,11 +135,20 @@ public class NetManager {
         });
     }
 
-    public static void bind(NetCallback cb) {
-        RequestParams params = new RequestParams();
+    public static void bind(final NetCallback cb) {
+        final RequestParams params = new RequestParams();
         params.put(KEY_DEVICE_ID, WatchdogApplication.DeviceId);
         params.put(KEY_USERID, PrefUtils.getUserId());
-        WatchServerRestClient.get(BIND, params, generateDefaultHandler(cb));
+        params.put(KEY_DEVICE_NAME, PrefUtils.getDeviceName());
+        params.put("phone_number", "12345678910");
+        LocationManager.getLocation(new LocationManager.GetLocationCallback() {
+            @Override
+            public void onSuccess(double latitude, double longitude) {
+                params.put(KEY_LONI, longitude);
+                params.put(KEY_LATI, latitude);
+                WatchServerRestClient.post(BIND, params, generateDefaultHandler(cb));
+            }
+        });
     }
 
     public static void gps(double latitude, double longitude) {
@@ -199,15 +206,24 @@ public class NetManager {
         return new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int i, Header[] headers, byte[] bytes) {
-                callback.onSuccess(i, new String(bytes));
+                Log.i(TAG, "code: " + i);
+                if (bytes != null) {
+                    Log.i(TAG, "content: " + new String(bytes));
+                    callback.onSuccess(i, new String(bytes));
+                } else {
+                    callback.onSuccess(i, "");
+                }
             }
 
             @Override
             public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
-                if (bytes != null)
+                Log.i(TAG, "code: " + i);
+                if (bytes != null) {
+                    Log.i(TAG, "content: " + new String(bytes));
                     callback.onError(i, new String(bytes), throwable);
-                else
+                } else {
                     callback.onError(i, null, throwable);
+                }
             }
         };
     }

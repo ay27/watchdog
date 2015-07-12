@@ -79,7 +79,7 @@ public class LoginDialog extends Dialog {
                     @Override
                     public void onSuccess(int code, String recv) {
                         pd.dismiss();
-                        Toast.makeText(getContext(), R.string.sign_in_success, Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getContext(), R.string.sign_in_success, Toast.LENGTH_LONG).show();
                         cb.onSuccess(recv, username, password);
                         dismiss();
                     }
@@ -87,7 +87,7 @@ public class LoginDialog extends Dialog {
                     @Override
                     public void onError(int code, String recv, Throwable throwable) {
                         pd.dismiss();
-                        Toast.makeText(getContext(), R.string.sign_in_failed, Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getContext(), R.string.sign_in_failed, Toast.LENGTH_LONG).show();
                         cb.onFailed();
                         dismiss();
                     }
@@ -155,7 +155,7 @@ public class LoginDialog extends Dialog {
     }
 
     public interface Callback {
-        public void onSuccess(String uid, String username, String password);
+        public void onSuccess(String content, String username, String password);
         public void onFailed();
     }
 

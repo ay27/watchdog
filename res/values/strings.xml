@@ -57,7 +57,7 @@
     <string name="sign_up_success">注册成功</string>
     <string name="sign_up_failed">注册失败</string>
     <string name="sign_in_processing">正在登录</string>
-    <string name="bind_device">需要绑定这台设备吗？</string>
+    <string name="bind_device">输入设备名称，绑定设备</string>
     <string name="bind">绑定</string>
     <string name="bind_success">绑定成功</string>
     <string name="bind_failed">绑定失败</string>
@@ -66,4 +66,7 @@
     <string name="reconnect_usb">USB接口已打开，请重新连接</string>
     <string name="current_bind_nfc_card">已绑定的卡片</string>
     <string name="watch_detail">手表详细信息</string>
+    <string name="input_device_name">输入设备名称</string>
+    <string name="please_signin">请登录</string>
+    <string name="username">用户名</string>
 </resources>

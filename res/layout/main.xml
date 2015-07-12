@@ -28,11 +28,11 @@
                           style="@style/PreferencePanel"
                           android:id="@+id/main_login_panel">
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                          android:text="用户名"
+                          android:text="@string/username"
                           style="@style/PreferenceFirstText"
                           android:id="@+id/main_user_name"/>
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                          android:text="请登录"
+                          android:text="@string/please_signin"
                           style="@style/PreferenceSecondText"
                           android:id="@+id/main_user_summer"
                         />

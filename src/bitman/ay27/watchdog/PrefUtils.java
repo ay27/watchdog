@@ -26,6 +26,7 @@ public class PrefUtils {
 
     private static final String KEY_USER_ID = "userId";
     private static final String KEY_NFC_CARDS = "nfc_cards";
+    private static final String KEY_DEVICE_NAME = "deviceName";
 
     private static Context context = WatchdogApplication.getContext();
     private static SharedPreferences pref = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
@@ -151,5 +152,14 @@ public class PrefUtils {
 
     public static void setNfcCards(Set<String> cards) {
         pref.edit().putStringSet(KEY_NFC_CARDS, cards).apply();
+    }
+
+
+    public static void setDeviceName(String deviceName) {
+        pref.edit().putString(KEY_DEVICE_NAME, deviceName).apply();
+    }
+
+    public static String getDeviceName() {
+        return pref.getString(KEY_DEVICE_NAME, "");
     }
 }

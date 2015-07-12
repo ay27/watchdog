@@ -2,7 +2,10 @@ package bitman.ay27.watchdog.service;
 
 import android.app.Service;
 import android.content.Intent;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Message;
+import android.util.Log;
 import bitman.ay27.watchdog.db.DbManager;
 import bitman.ay27.watchdog.db.model.ServiceStatus;
 import bitman.ay27.watchdog.net.NetManager;
@@ -15,10 +18,18 @@ import java.util.TimerTask;
  * Created by ay27 on 15-7-8.
  */
 public class HeartbeatService extends Service {
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            NetManager.heartbeat();
+            Log.i("heartbeat", "heartbeat");
+        }
+    };
     private TimerTask heartbeatTask = new TimerTask() {
         @Override
         public void run() {
-            NetManager.heartbeat();
+            handler.sendEmptyMessage(0);
         }
     };
     private Timer timer;

@@ -4,16 +4,20 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.*;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import bitman.ay27.watchdog.PrefUtils;
 import bitman.ay27.watchdog.R;
+import bitman.ay27.watchdog.WatchdogApplication;
+import bitman.ay27.watchdog.model.SignInRecvForm;
 import bitman.ay27.watchdog.net.NetManager;
 import bitman.ay27.watchdog.service.HeartbeatService;
 import bitman.ay27.watchdog.service.KeyguardService;
@@ -27,6 +31,7 @@ import bitman.s117.libwatchcat.WatchCat_Controller_Impl;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import com.google.gson.Gson;
 import com.kyleduo.switchbutton.SwitchButton;
 
 public class MainActivity extends ActionBarActivity {
@@ -36,6 +41,8 @@ public class MainActivity extends ActionBarActivity {
 
     @InjectView(R.id.main_toolbar)
     Toolbar toolbar;
+    @InjectView(R.id.main_user_name)
+    TextView userNameTxv;
     @InjectView(R.id.main_user_summer)
     TextView userSummer;
     @InjectView(R.id.main_sd_title)
@@ -54,6 +61,8 @@ public class MainActivity extends ActionBarActivity {
     TextView formatTitle;
     @InjectView(R.id.main_sd_format_summer)
     TextView formatSummer;
+
+    private int loginState = 0;
 
     private SharedPreferences.OnSharedPreferenceChangeListener sdStatusChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
         @Override
@@ -257,47 +266,152 @@ public class MainActivity extends ActionBarActivity {
 
     @OnClick(R.id.main_login_panel)
     void loginClick(View view) {
+        if (loginState == 1) {
+            bindDevice();
+            return;
+        }
+        if (loginState == 2) {
+            NetManager.offline();
+            ServiceManager.getInstance().removeService(HeartbeatService.class);
+            userSummer.setText(R.string.please_signin);
+            userNameTxv.setText(R.string.username);
+            PrefUtils.setUserId("");
+            PrefUtils.setUserName("");
+            PrefUtils.setUserPasswd("");
+            loginState = 0;
+            return;
+        }
+
 
         new LoginDialog(this, new LoginDialog.Callback() {
             @Override
-            public void onSuccess(String uid, String username, String password) {
+            public void onSuccess(String content, String username, String password) {
+
+                SignInRecvForm form = null;
+                try {
+
+                    Gson gson = new Gson();
+                    form = gson.fromJson(content, SignInRecvForm.class);
+                    if (form.err != 0) {
+                        Toast.makeText(MainActivity.this, R.string.sign_in_failed, Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(MainActivity.this, R.string.sign_in_failed, Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                    return;
+                }
+
+                loginState = 1;
+
                 userSummer.setText(getString(R.string.sign_in_success) + ": " + username);
                 PrefUtils.setUserName(username);
                 PrefUtils.setUserPasswd(password);
-                PrefUtils.setUserId(uid);
+                PrefUtils.setUserId(Integer.toString(form.user.uid));
 
                 NetManager.online();
                 ServiceManager manager = ServiceManager.getInstance();
                 manager.addService(HeartbeatService.class);
 
-                new AlertDialog.Builder(MainActivity.this)
-                        .setTitle(R.string.bind_device)
-                        .setNegativeButton(R.string.cancel, null)
-                        .setPositiveButton(R.string.bind, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                NetManager.bind(new NetManager.NetCallback() {
-                                    @Override
-                                    public void onSuccess(int code, String recv) {
-                                        Toast.makeText(MainActivity.this, R.string.bind_success, Toast.LENGTH_SHORT).show();
-                                    }
+                for (SignInRecvForm.Device device : form.user.devices) {
+                    if (device.deviceid.equals(WatchdogApplication.DeviceId)) {
+                        loginState = 2;
+                        return;
+                    }
+                }
 
-                                    @Override
-                                    public void onError(int code, String recv, Throwable throwable) {
-                                        Toast.makeText(MainActivity.this, R.string.bind_failed, Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                            }
-                        })
-                        .create()
-                        .show();
+                bindDevice();
             }
 
             @Override
             public void onFailed() {
+                loginState = 0;
                 userSummer.setText(R.string.sign_in_failed);
             }
         }).show();
+    }
+
+    private void tryLogin() {
+        loginState = 0;
+        final String username = PrefUtils.getUserName();
+        if (!username.isEmpty()) {
+            NetManager.signIn(username, PrefUtils.getUserPasswd(), new NetManager.NetCallback() {
+                @Override
+                public void onSuccess(int code, String recv) {
+
+                    SignInRecvForm form = null;
+                    try {
+
+                        Gson gson = new Gson();
+                        form = gson.fromJson(recv, SignInRecvForm.class);
+                        if (form.err != 0) {
+                            Toast.makeText(MainActivity.this, R.string.sign_in_failed, Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        return;
+                    }
+
+                    loginState = 1;
+                    userSummer.setText(getString(R.string.sign_in_success) + ": " + username);
+
+                    NetManager.online();
+                    ServiceManager manager = ServiceManager.getInstance();
+                    manager.addService(HeartbeatService.class);
+
+
+                    for (SignInRecvForm.Device device : form.user.devices) {
+                        if (device.deviceid.equals(WatchdogApplication.DeviceId)) {
+                            loginState = 2;
+                            return;
+                        }
+                    }
+
+                    bindDevice();
+                }
+
+                @Override
+                public void onError(int code, String recv, Throwable throwable) {
+                    Log.i(TAG, recv);
+                    userSummer.setText(R.string.sign_in_failed);
+                }
+            });
+        }
+    }
+
+    private void bindDevice() {
+        final EditText deviceName = new EditText(MainActivity.this);
+        deviceName.setText(Build.BRAND + "-" + Build.MODEL);
+        new AlertDialog.Builder(MainActivity.this)
+                .setTitle(R.string.bind_device)
+                .setView(deviceName)
+                .setNegativeButton(R.string.cancel, null)
+                .setPositiveButton(R.string.bind, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        if (deviceName.getText().toString().isEmpty()) {
+                            Toast.makeText(MainActivity.this, R.string.input_device_name, Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        PrefUtils.setDeviceName(deviceName.getText().toString());
+                        NetManager.bind(new NetManager.NetCallback() {
+                            @Override
+                            public void onSuccess(int code, String recv) {
+                                loginState = 2;
+                                Toast.makeText(MainActivity.this, R.string.bind_success, Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onError(int code, String recv, Throwable throwable) {
+                                Toast.makeText(MainActivity.this, R.string.bind_failed, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                })
+                .create()
+                .show();
     }
 
 
@@ -400,27 +514,6 @@ public class MainActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
-
-    private void tryLogin() {
-        final String username = PrefUtils.getUserName();
-        if (!username.isEmpty()) {
-            NetManager.signIn(username, PrefUtils.getUserPasswd(), new NetManager.NetCallback() {
-                @Override
-                public void onSuccess(int code, String recv) {
-                    userSummer.setText(getString(R.string.sign_in_success) + ": " + username);
-
-                    NetManager.online();
-                    ServiceManager manager = ServiceManager.getInstance();
-                    manager.addService(HeartbeatService.class);
-                }
-
-                @Override
-                public void onError(int code, String recv, Throwable throwable) {
-                    userSummer.setText(R.string.sign_in_failed);
-                }
-            });
-        }
-    }
 
     private void enableFormatPanel(boolean value) {
         formatPanel.setEnabled(value);

@@ -155,6 +155,9 @@
 
         <!--</receiver>-->
 
+
+        <service android:name=".service.HeartbeatService"/>
+
         <service android:name=".service.KeyguardService"/>
 
         <service android:name=".service.DaemonService"/>

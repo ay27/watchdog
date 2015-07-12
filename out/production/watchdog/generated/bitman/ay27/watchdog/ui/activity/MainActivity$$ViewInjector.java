@@ -9,6 +9,8 @@ public class MainActivity$$ViewInjector {
     View view;
     view = finder.findRequiredView(source, 2131558492, "field 'toolbar'");
     target.toolbar = (android.support.v7.widget.Toolbar) view;
+    view = finder.findRequiredView(source, 2131558494, "field 'userNameTxv'");
+    target.userNameTxv = (android.widget.TextView) view;
     view = finder.findRequiredView(source, 2131558495, "field 'userSummer'");
     target.userSummer = (android.widget.TextView) view;
     view = finder.findRequiredView(source, 2131558497, "field 'sdTitle'");
@@ -93,6 +95,7 @@ public class MainActivity$$ViewInjector {
 
   public static void reset(bitman.ay27.watchdog.ui.activity.MainActivity target) {
     target.toolbar = null;
+    target.userNameTxv = null;
     target.userSummer = null;
     target.sdTitle = null;
     target.sdSummer = null;
