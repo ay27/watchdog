@@ -117,7 +117,7 @@ public class BluetoothLeService extends Service {
                 disconnect();
             } else if (action.equals(ACTION_REQ_DATA_PUSH)) {
                 // handle push request there
-                final BluetoothLeServiceParamPush paramPush = intent.getParcelableExtra(EXTRA_REQ_PARAM);
+                final BluetoothLeServiceParamPost paramPush = intent.getParcelableExtra(EXTRA_REQ_PARAM);
                 if (paramPush == null) {
                     Log.e(TAG, "Request has no parameter.");
                     broadcastFail(ACTION_REP_DATA_PUSH_FAIL, "Request has no parameter.");
@@ -364,7 +364,7 @@ public class BluetoothLeService extends Service {
     }
 
 
-    private void processPushRequest(BluetoothLeServiceParamPush param) {
+    private void processPushRequest(BluetoothLeServiceParamPost param) {
         // TODO: process push request there
     }
 

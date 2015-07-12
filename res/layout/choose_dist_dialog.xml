@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="340dp"
+              android:layout_height="match_parent"
+              android:padding="16dp">
+
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:layout_marginTop="8dp"
+                  android:layout_marginBottom="8dp"
+                  android:layout_marginLeft="2dp"
+                  android:layout_marginRight="2dp"
+            >
+        <TextView android:layout_width="36dp" android:layout_height="wrap_content"
+                  android:text="关闭"
+                />
+        <TextView android:layout_width="36dp" android:layout_height="wrap_content"
+                  android:text="很近"
+                  android:layout_marginLeft="32dp"
+                />
+        <TextView android:layout_width="36dp" android:layout_height="wrap_content"
+                  android:text="较近"
+                  android:layout_marginLeft="32dp"
+                />
+        <TextView android:layout_width="36dp" android:layout_height="wrap_content"
+                  android:text="正常"
+                  android:layout_marginLeft="32dp"
+                />
+        <TextView android:layout_width="36dp" android:layout_height="wrap_content"
+                  android:text="较远"
+                  android:layout_marginLeft="32dp"
+                />
+    </LinearLayout>
+
+    <bitman.ay27.watchdog.ui.activity.widget.FiveSegmentSeekBar android:layout_width="fill_parent"
+                                                                android:layout_height="wrap_content"
+                                                                android:id="@+id/choose_dist_dialog_seekbar"
+                                                                android:padding="8dp"
+                                                                android:layout_marginLeft="2dp"
+                                                                android:layout_marginRight="2dp"/>
+
+    <Button android:layout_width="fill_parent" android:layout_height="wrap_content"
+            android:text="确定"
+            android:background="@drawable/white_btn"
+            android:id="@+id/choose_dist_dialog_ok"/>
+
+</LinearLayout>

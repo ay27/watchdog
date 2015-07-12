@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import bitman.ay27.watchdog.R;
+import bitman.ay27.watchdog.ui.activity.widget.ChooseDistDialog;
 import bitman.ay27.watchdog.ui.activity.widget.ScanBleDialog;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -73,7 +74,7 @@ public class WatchManageActivity extends Activity {
 
         bindWatchPanel.setVisibility(View.VISIBLE);
         currentPanel.setVisibility(View.GONE);
-        setSettingEnable(false);
+//        setSettingEnable(false);
 
     }
 
@@ -122,9 +123,16 @@ public class WatchManageActivity extends Activity {
     }
 
     public void findWatchClick(View view) {
+
     }
 
     public void safeDistClick(View view) {
+        new ChooseDistDialog(this, new ChooseDistDialog.DistCallback() {
+            @Override
+            public void onFinished(int progress) {
+                Toast.makeText(WatchManageActivity.this, ""+progress, Toast.LENGTH_LONG).show();
+            }
+        }).show();
     }
 
     public void correctDistClick(View view) {

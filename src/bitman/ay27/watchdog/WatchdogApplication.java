@@ -50,7 +50,7 @@ public class WatchdogApplication extends Application {
             editor.putString(Common.PREF_PRESENCE_CHECK_TIMEOUT, "2000");
             editor.putStringSet(Common.PREF_NFC_KEYS_NAMES, new HashSet<String>(Arrays.asList(getResources().getStringArray(R.array.card_name))));
             editor.putStringSet(Common.PREF_NFC_KEYS, new HashSet<String>(Arrays.asList(getResources().getStringArray(R.array.card_uuid))));
-            editor.commit();
+            editor.apply();
 
             sendBroadcast(new Intent(Common.SETTINGS_UPDATED_INTENT));
         }
@@ -59,18 +59,7 @@ public class WatchdogApplication extends Application {
 //        XGPushManager.registerPush(this);
         XGPushManager.registerPush(this, DeviceId);
 
-        startService(new Intent(this, BluetoothLeService.class));
-        bindService(new Intent(this, BluetoothLeService.class), new ServiceConnection() {
-            @Override
-            public void onServiceConnected(ComponentName name, IBinder service) {
 
-            }
-
-            @Override
-            public void onServiceDisconnected(ComponentName name) {
-
-            }
-        }, Context.BIND_AUTO_CREATE);
     }
 
     private boolean isMainProcess() {
