@@ -3,7 +3,7 @@
               android:orientation="vertical"
               android:layout_width="300dp"
               android:layout_height="match_parent"
-        android:padding="16dp">
+              android:padding="16dp">
 
     <EditText
             android:layout_width="fill_parent"
@@ -13,10 +13,10 @@
             android:hint="输入SD卡密钥"
             android:id="@+id/input_sd_passwd_dialog_pass_edt"/>
     <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                  android:orientation="horizontal">
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:text="选择加密方式"
-                android:layout_gravity="center"/>
+                  android:text="选择加密方式"
+                  android:layout_gravity="center"/>
         <RadioGroup
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"

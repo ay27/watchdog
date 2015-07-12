@@ -47,7 +47,7 @@ public class Curve {
     }
 
     public RhythmPoint get(int index) {
-        if (points == null || points.size()<=index)
+        if (points == null || points.size() <= index)
             return null;
         return points.get(index);
     }

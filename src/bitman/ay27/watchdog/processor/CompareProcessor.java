@@ -79,29 +79,24 @@ class CompareProcessor {
         ArrayList<Double> tl1 = chain1.time_lines, tl2 = chain2.time_lines;
 
         if (angles1.size() != angles2.size()) {
-            Log.i(TAG, "angle size error : "+angles1.size()+" "+angles2.size());
+            Log.i(TAG, "angle size error : " + angles1.size() + " " + angles2.size());
             return false;
         }
 
         for (int i = 0; i < angles1.size(); i++) {
             double angle_tmp = angles1.get(i) - angles2.get(i);
             if (Math.abs(angle_tmp) - ANGLE_CHAIN_THRESHOLD1 <= Utils.PRECISION_THRESHOLD) {
-                if (angle_tmp<Utils.PRECISION_THRESHOLD) {
+                if (angle_tmp < Utils.PRECISION_THRESHOLD) {
                     deviationTolerance -= 1.0;
-                }
-                else deviationTolerance += 1.0;
-            }
-            else if (Math.abs(angle_tmp) - ANGLE_CHAIN_THRESHOLD2 <= Utils.PRECISION_THRESHOLD) {
+                } else deviationTolerance += 1.0;
+            } else if (Math.abs(angle_tmp) - ANGLE_CHAIN_THRESHOLD2 <= Utils.PRECISION_THRESHOLD) {
                 if (angle_tmp < Utils.PRECISION_THRESHOLD) {
                     deviationTolerance -= 2.0;
-                }
-                else deviationTolerance +=2.0;
-            }
-            else {
+                } else deviationTolerance += 2.0;
+            } else {
                 if (angle_tmp < Utils.PRECISION_THRESHOLD) {
                     deviationTolerance -= 3.0;
-                }
-                else deviationTolerance += 3.0;
+                } else deviationTolerance += 3.0;
             }
 //            if (angle_tmp - ANGLE_CHAIN_THRESHOLD1 <= Utils.PRECISION_THRESHOLD) {
 //
@@ -113,13 +108,13 @@ class CompareProcessor {
 //            }
 
             if (deviationTolerance - CHAIN_MATCHING_TOLERANCE >= Utils.PRECISION_THRESHOLD) {
-                Log.i(TAG, "deviation tolerance : "+deviationTolerance);
+                Log.i(TAG, "deviation tolerance : " + deviationTolerance);
                 return false;
             }
 
             double time_tmp = Math.abs(tl1.get(i) - tl2.get(i));
             if (TIME_THRESHOLD - time_tmp < Utils.PRECISION_THRESHOLD) {
-                Log.i(TAG, "time error : "+time_tmp);
+                Log.i(TAG, "time error : " + time_tmp);
                 return false;
             }
         }
@@ -158,14 +153,14 @@ class CompareProcessor {
     }
 
     private boolean comp_segment_param(int num_of_segments1, double segment_length1, int num_of_segments2, double segment_length2) {
-        Log.i(TAG, "num : "+num_of_segments1+" "+num_of_segments2+"   length : "+segment_length1+" "+segment_length2);
+        Log.i(TAG, "num : " + num_of_segments1 + " " + num_of_segments2 + "   length : " + segment_length1 + " " + segment_length2);
         return //((Math.abs(segment_length1 - segment_length2) - SEGMENT_LENGTH_THRESHOLD <= Utils.PRECISION_THRESHOLD)
                 //&&
                 (num_of_segments1 == num_of_segments2);
     }
 
     private boolean comp_start_point(RhythmPoint p1, RhythmPoint p2) {
-        Log.i(TAG, "start point : "+p1.x+","+p1.y+" "+p2.x+","+p2.y);
+        Log.i(TAG, "start point : " + p1.x + "," + p1.y + " " + p2.x + "," + p2.y);
         return (Utils.get_distance(p1, p2) - START_POSITION_THRESHOLD <= Utils.PRECISION_THRESHOLD)
                 &&
                 (Math.abs(p1.timestamp - p2.timestamp) - TIME_THRESHOLD <= Utils.PRECISION_THRESHOLD);

@@ -20,6 +20,7 @@
                 android:padding="8dp"
                 android:background="@drawable/transparent_item_bg_blue_1"
                 android:id="@+id/watch_manager_bind_btn"
+                android:onClick="bindWatchClick"
                 />
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                   android:text="尚未绑定手表"
@@ -58,7 +59,8 @@
         <include layout="@layout/divider_small"/>
         <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
                       style="@style/PreferencePanel"
-                      android:id="@+id/watch_manager_find_watch">
+                      android:id="@+id/watch_manager_find_watch"
+                android:onClick="findWatchClick">
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                       style="@style/PreferenceFirstText"
                       android:text="查找手表"
@@ -74,7 +76,8 @@
         <include layout="@layout/divider_small"/>
         <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
                       style="@style/PreferencePanel"
-                      android:id="@+id/watch_manager_set_safe_distance">
+                      android:id="@+id/watch_manager_set_safe_distance"
+                android:onClick="safeDistClick">
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                       style="@style/PreferenceFirstText"
                       android:text="安全距离"
@@ -90,6 +93,7 @@
         <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
                       style="@style/PreferencePanel"
                       android:id="@+id/watch_manager_correct_distance"
+                      android:onClick="correctDistClick"
                 >
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                       style="@style/PreferenceFirstText"
@@ -106,7 +110,8 @@
         <include layout="@layout/divider_small"/>
         <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
                       style="@style/PreferencePanel"
-                      android:id="@+id/watch_manager_correct_time">
+                      android:id="@+id/watch_manager_correct_time"
+                android:onClick="correctTimeClick">
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                       style="@style/PreferenceFirstText"
                       android:text="校正时间"
@@ -122,7 +127,8 @@
         <include layout="@layout/divider_small"/>
         <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
                       style="@style/PreferencePanel"
-                      android:id="@+id/watch_manager_detail">
+                      android:id="@+id/watch_manager_detail"
+                android:onClick="detailClick">
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                       style="@style/PreferenceFirstText"
                       android:text="详细信息"
@@ -138,7 +144,8 @@
         <include layout="@layout/divider_small"/>
         <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
                       style="@style/PreferencePanel"
-                      android:id="@+id/watch_manager_dis_bind">
+                      android:id="@+id/watch_manager_dis_bind"
+                android:onClick="unbindClick">
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                       style="@style/PreferenceFirstText"
                       android:text="解除绑定"

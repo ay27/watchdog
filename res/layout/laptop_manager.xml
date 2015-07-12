@@ -11,18 +11,18 @@
 
 
     <!--<TextView-->
-            <!--android:layout_width="fill_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="安全状态"-->
-            <!--android:id="@+id/textView"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:gravity="center"-->
-            <!--android:background="@color/green_1"-->
-            <!--android:textSize="20sp"-->
-            <!--android:textColor="@color/white"-->
-            <!--android:paddingTop="4dp"-->
-            <!--android:paddingBottom="4dp"-->
-            <!--/>-->
+    <!--android:layout_width="fill_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="安全状态"-->
+    <!--android:id="@+id/textView"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:gravity="center"-->
+    <!--android:background="@color/green_1"-->
+    <!--android:textSize="20sp"-->
+    <!--android:textColor="@color/white"-->
+    <!--android:paddingTop="4dp"-->
+    <!--android:paddingBottom="4dp"-->
+    <!--/>-->
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="fill_parent"
@@ -35,8 +35,8 @@
                 >
 
             <!--<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"-->
-                      <!--style="@style/PreferenceCatalog"-->
-                      <!--android:text="开关"/>-->
+            <!--style="@style/PreferenceCatalog"-->
+            <!--android:text="开关"/>-->
 
 
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -133,7 +133,7 @@
 
             <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
                           style="@style/PreferencePanel"
-                          >
+                    >
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                           android:text="追踪器号码"
                           style="@style/PreferenceFirstText"/>
@@ -143,17 +143,16 @@
             </LinearLayout>
 
 
-
             <!--<include layout="@layout/divider_small"/>-->
             <!--<LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"-->
-                          <!--style="@style/PreferencePanel"-->
-                          <!-->-->
-                <!--<TextView android:layout_width="wrap_content" android:layout_height="wrap_content"-->
-                          <!--android:text="加密密钥"-->
-                          <!--style="@style/PreferenceFirstText"/>-->
-                <!--<TextView android:layout_width="wrap_content" android:layout_height="wrap_content"-->
-                          <!--android:text=""-->
-                          <!--style="@style/PreferenceSecondText"/>-->
+            <!--style="@style/PreferencePanel"-->
+            <!-->-->
+            <!--<TextView android:layout_width="wrap_content" android:layout_height="wrap_content"-->
+            <!--android:text="加密密钥"-->
+            <!--style="@style/PreferenceFirstText"/>-->
+            <!--<TextView android:layout_width="wrap_content" android:layout_height="wrap_content"-->
+            <!--android:text=""-->
+            <!--style="@style/PreferenceSecondText"/>-->
             <!--</LinearLayout>-->
 
             <!--<include layout="@layout/divider_small"/>-->
@@ -168,7 +167,7 @@
             <!--<include layout="@layout/divider_small"/>-->
             <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
                           style="@style/PreferencePanel"
-                          >
+                    >
                 <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                           android:text="指令密钥"
                           style="@style/PreferenceFirstText"/>
@@ -194,8 +193,8 @@
                           style="@style/PreferenceFirstText"
                         />
                 <!--<TextView android:layout_width="wrap_content" android:layout_height="wrap_content"-->
-                          <!--android:text="用于发送指令的密钥"-->
-                          <!--style="@style/PreferenceSecondText"/>-->
+                <!--android:text="用于发送指令的密钥"-->
+                <!--style="@style/PreferenceSecondText"/>-->
             </LinearLayout>
 
         </LinearLayout>

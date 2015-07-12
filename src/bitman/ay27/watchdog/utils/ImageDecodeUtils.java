@@ -33,6 +33,7 @@ public class ImageDecodeUtils {
 
     public static final int ThumbnailsWidth = 250;
     public static final int ThumbnailsHeight = 250;
+
     public static Bitmap decode2Thumbnails(Context context, Uri picUri) throws FileNotFoundException {
         ContentResolver cr = context.getContentResolver();
         BitmapFactory.Options o1 = new BitmapFactory.Options();

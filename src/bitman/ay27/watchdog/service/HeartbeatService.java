@@ -46,7 +46,7 @@ public class HeartbeatService extends Service {
         timer = new Timer();
 
         // send a heartbeat every one minute
-        timer.schedule(heartbeatTask, 0, 5000);
+//        timer.schedule(heartbeatTask, 0, 5000);
     }
 
     @Override

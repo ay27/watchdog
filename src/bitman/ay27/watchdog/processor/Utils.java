@@ -109,11 +109,9 @@ class Utils {
             if (sgm.getCurve().size() >= 2) {
                 sgm.fitting();
                 result.add(sgm);
-            }
-            else if (sgm.getCurve().size() == 1) {
+            } else if (sgm.getCurve().size() == 1) {
                 result.add(sgm);
-            }
-            else {
+            } else {
                 return null;
             }
         }

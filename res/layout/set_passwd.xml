@@ -3,7 +3,7 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              >
+        >
 
     <include layout="@layout/toolbar" android:id="@+id/set_passwd_toolbar"/>
 
@@ -35,11 +35,11 @@
     </LinearLayout>
 
     <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
-            android:text="密码错误"
-            android:gravity="center_horizontal"
-            android:textColor="@color/red_1"
-            android:visibility="gone"
-            android:id="@+id/old_passwd_error"/>
+              android:text="密码错误"
+              android:gravity="center_horizontal"
+              android:textColor="@color/red_1"
+              android:visibility="gone"
+              android:id="@+id/old_passwd_error"/>
 
     <LinearLayout
             android:orientation="horizontal"
@@ -109,6 +109,6 @@
             android:paddingRight="16dp"
             />
 
-    <include layout="@layout/keyboard" />
+    <include layout="@layout/keyboard"/>
 
 </LinearLayout>

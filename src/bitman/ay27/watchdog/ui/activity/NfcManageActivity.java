@@ -23,7 +23,7 @@ import java.util.List;
  * Proudly to user Intellij IDEA.
  * Created by ay27 on 15/4/7.
  */
-public class BindNfcActivity extends ActionBarActivity {
+public class NfcManageActivity extends ActionBarActivity {
 
     @InjectView(R.id.bind_nfc_list)
     ListView listView;
@@ -60,12 +60,12 @@ public class BindNfcActivity extends ActionBarActivity {
 
     @OnClick(R.id.bind_nfc_new_card_btn)
     public void newCardClick(View view) {
-        new ReadNfcDialog(BindNfcActivity.this, BindNfcActivity.this, new ReadNfcDialog.FoundNfcCallback() {
+        new ReadNfcDialog(NfcManageActivity.this, NfcManageActivity.this, new ReadNfcDialog.FoundNfcCallback() {
             @Override
             public void onNfcFound(NfcCard card) {
                 PrefUtils.addNfcCard(card);
                 adapter.add(card);
-                Toast.makeText(BindNfcActivity.this, R.string.save_ok, Toast.LENGTH_SHORT).show();
+                Toast.makeText(NfcManageActivity.this, R.string.save_ok, Toast.LENGTH_SHORT).show();
             }
         }).show();
     }
@@ -78,7 +78,7 @@ public class BindNfcActivity extends ActionBarActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
-                new AlertDialog.Builder(BindNfcActivity.this)
+                new AlertDialog.Builder(NfcManageActivity.this)
                         .setTitle(R.string.ask_delete_card)
                         .setNegativeButton(R.string.cancel, null)
                         .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
@@ -86,7 +86,7 @@ public class BindNfcActivity extends ActionBarActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 PrefUtils.rmNfcCard(adapter.getItem(position));
                                 adapter.remove(position);
-                                Toast.makeText(BindNfcActivity.this, R.string.delete_success, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(NfcManageActivity.this, R.string.delete_success, Toast.LENGTH_SHORT).show();
 
                             }
                         })
@@ -155,7 +155,7 @@ public class BindNfcActivity extends ActionBarActivity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            convertView = LayoutInflater.from(BindNfcActivity.this).inflate(R.layout.nfc_item, null);
+            convertView = LayoutInflater.from(NfcManageActivity.this).inflate(R.layout.nfc_item, null);
             TextView codeTxv = (TextView) convertView.findViewById(R.id.nfc_item_code);
             TextView nameTxv = (TextView) convertView.findViewById(R.id.nfc_item_name);
 

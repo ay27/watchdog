@@ -505,13 +505,13 @@ public class MainActivity extends ActionBarActivity {
 
     @OnClick(R.id.main_bind_watch_panel)
     void watchClick(View view) {
-        Intent intent = new Intent(this, BindWatchActivity.class);
+        Intent intent = new Intent(this, WatchManageActivity.class);
         startActivity(intent);
     }
 
     @OnClick(R.id.main_bind_nfc_panel)
     void nfcClick(View view) {
-        Intent intent = new Intent(this, BindNfcActivity.class);
+        Intent intent = new Intent(this, NfcManageActivity.class);
         startActivity(intent);
     }
 

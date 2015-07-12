@@ -31,9 +31,9 @@
     <include layout="@layout/divider_large"/>
 
     <ListView android:layout_width="fill_parent" android:layout_height="wrap_content"
-            android:id="@+id/bind_nfc_list"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp">
+              android:id="@+id/bind_nfc_list"
+              android:layout_marginStart="16dp"
+              android:layout_marginEnd="16dp">
 
     </ListView>
 

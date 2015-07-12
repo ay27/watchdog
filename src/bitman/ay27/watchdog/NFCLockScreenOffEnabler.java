@@ -428,7 +428,7 @@ public class NFCLockScreenOffEnabler implements IXposedHookZygoteInit, IXposedHo
         }
 
 		/* HTC devices have the lockscreen in a separate package, thanks to vrthe1
-		 * for the patch.
+         * for the patch.
 		 */
         if (lpparam.packageName.equals("com.htc.lockscreen") && !mBroadcastReceiverRegistered) {
             String className = "com.htc.lockscreen.HtcKeyguardHostViewImpl";

@@ -47,12 +47,14 @@
         <item name="android:paddingEnd">8dp</item>
     </style>
 
-    <style name="RtlOverlay.Widget.AppCompat.ActionButton.CloseMode" parent="Base.Widget.AppCompat.ActionButton.CloseMode">
+    <style name="RtlOverlay.Widget.AppCompat.ActionButton.CloseMode"
+           parent="Base.Widget.AppCompat.ActionButton.CloseMode">
         <item name="android:paddingStart">8dp</item>
         <item name="android:layout_marginEnd">16dp</item>
     </style>
 
-    <style name="RtlOverlay.Widget.AppCompat.ActionButton.Overflow" parent="Base.Widget.AppCompat.ActionButton.Overflow">
+    <style name="RtlOverlay.Widget.AppCompat.ActionButton.Overflow"
+           parent="Base.Widget.AppCompat.ActionButton.Overflow">
         <item name="android:paddingStart">0dp</item>
         <item name="android:paddingEnd">12dp</item>
     </style>

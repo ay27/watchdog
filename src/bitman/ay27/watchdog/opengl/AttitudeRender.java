@@ -7,7 +7,8 @@ import bitman.ay27.watchdog.opengl.GL_Property.GL_Utils;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
-import java.lang.Override;import java.nio.FloatBuffer;
+import java.lang.Override;
+import java.nio.FloatBuffer;
 
 import static android.opengl.GLU.gluLookAt;
 

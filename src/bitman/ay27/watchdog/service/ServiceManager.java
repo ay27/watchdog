@@ -72,7 +72,7 @@ public class ServiceManager {
         }
         Pack pack;
         packs.add(pack = new Pack(serviceCls, new ServiceStatus(serviceCls.getPackage().getName(), serviceCls.getName(), true)));
-        Log.i(TAG, "add service: "+pack.service.getSimpleName());
+        Log.i(TAG, "add service: " + pack.service.getSimpleName());
         updateDB();
 
         context.startService(new Intent(context, pack.service));

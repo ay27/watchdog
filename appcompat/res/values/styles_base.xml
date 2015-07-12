@@ -157,11 +157,13 @@
         <item name="android:textSize">@dimen/abc_text_size_subtitle_material_toolbar</item>
     </style>
 
-    <style name="Base.TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse" parent="TextAppearance.AppCompat.Title.Inverse">
+    <style name="Base.TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse"
+           parent="TextAppearance.AppCompat.Title.Inverse">
         <item name="android:textSize">@dimen/abc_text_size_title_material_toolbar</item>
     </style>
 
-    <style name="Base.TextAppearance.AppCompat.Widget.ActionBar.Subtitle.Inverse" parent="TextAppearance.AppCompat.Subhead.Inverse">
+    <style name="Base.TextAppearance.AppCompat.Widget.ActionBar.Subtitle.Inverse"
+           parent="TextAppearance.AppCompat.Subhead.Inverse">
         <item name="android:textSize">@dimen/abc_text_size_subtitle_material_toolbar</item>
     </style>
 
@@ -365,6 +367,6 @@
         <item name="showText">false</item>
     </style>
 
-    <style name="Base.TextAppearance.AppCompat.Widget.Switch" parent="TextAppearance.AppCompat.Button" />
+    <style name="Base.TextAppearance.AppCompat.Widget.Switch" parent="TextAppearance.AppCompat.Button"/>
 
 </resources>

@@ -8,6 +8,7 @@ public class EncryptManager {
     public String encrypt(String value) {
         return null;
     }
+
     public String decrypt(String value) {
         return null;
     }

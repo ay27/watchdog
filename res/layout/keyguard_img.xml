@@ -4,9 +4,10 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent">
 
-    <bitman.ay27.watchdog.ui.activity.widget.DrawingCanvas android:layout_width="match_parent" android:layout_height="match_parent"
-                                         android:background="@drawable/image1"
-                                         android:id="@+id/keyguard_img"/>
+    <bitman.ay27.watchdog.ui.activity.widget.DrawingCanvas android:layout_width="match_parent"
+                                                           android:layout_height="match_parent"
+                                                           android:background="@drawable/image1"
+                                                           android:id="@+id/keyguard_img"/>
     <!--<TextView android:layout_width="fill_parent" android:layout_height="wrap_content"-->
     <!--android:text="丢失模式"-->
     <!--android:textSize="24sp"-->

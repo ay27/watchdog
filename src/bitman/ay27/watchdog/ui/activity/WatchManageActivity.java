@@ -14,7 +14,7 @@ import butterknife.InjectView;
  * Proudly to user Intellij IDEA.
  * Created by ay27 on 15/4/7.
  */
-public class BindWatchActivity extends Activity {
+public class WatchManageActivity extends Activity {
 
 
     @InjectView(R.id.watch_manager_bind_btn)
@@ -104,5 +104,28 @@ public class BindWatchActivity extends Activity {
     private void setEnable(View view, boolean flag) {
         view.setEnabled(flag);
         view.setClickable(flag);
+    }
+
+
+    public void bindWatchClick(View view) {
+
+    }
+
+    public void findWatchClick(View view) {
+    }
+
+    public void safeDistClick(View view) {
+    }
+
+    public void correctDistClick(View view) {
+    }
+
+    public void correctTimeClick(View view) {
+    }
+
+    public void detailClick(View view) {
+    }
+
+    public void unbindClick(View view) {
     }
 }

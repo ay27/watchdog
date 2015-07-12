@@ -2,13 +2,16 @@ package bitman.ay27.watchdog.opengl;
 
 import android.content.Context;
 import android.opengl.GLSurfaceView;
-import android.util.AttributeSet;import java.lang.Exception;
+import android.util.AttributeSet;
+
+import java.lang.Exception;
 
 /**
  * Created by Spartan on 2015/5/2.
  */
 public class AttitudeView extends GLSurfaceView {
     AttitudeRender render = null;
+
     public AttitudeView(Context context) {
         super(context);
         init();
@@ -36,7 +39,7 @@ public class AttitudeView extends GLSurfaceView {
     }
 
     public void SetAttitudeDeg(float pit, float yaw, float roll) {
-        render.SetAttitudeDeg(pit,yaw,roll);
+        render.SetAttitudeDeg(pit, yaw, roll);
         this.requestRender();
     }
 }

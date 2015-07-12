@@ -43,9 +43,9 @@
         <item name="android:windowActionBar">false</item>
     </style>
 
-    <style name="Base.Theme.AppCompat" parent="Base.V21.Theme.AppCompat" />
+    <style name="Base.Theme.AppCompat" parent="Base.V21.Theme.AppCompat"/>
 
-    <style name="Base.Theme.AppCompat.Light" parent="Base.V21.Theme.AppCompat.Light" />
+    <style name="Base.Theme.AppCompat.Light" parent="Base.V21.Theme.AppCompat.Light"/>
 
     <style name="Base.V21.Theme.AppCompat" parent="Base.V7.Theme.AppCompat">
         <!-- Action Bar styling attributes -->
@@ -195,9 +195,9 @@
         <item name="android:colorControlHighlight">?attr/colorControlHighlight</item>
     </style>
 
-    <style name="Base.Theme.AppCompat.Dialog" parent="Base.V21.Theme.AppCompat.Dialog" />
+    <style name="Base.Theme.AppCompat.Dialog" parent="Base.V21.Theme.AppCompat.Dialog"/>
 
-    <style name="Base.Theme.AppCompat.Light.Dialog" parent="Base.V21.Theme.AppCompat.Light.Dialog" />
+    <style name="Base.Theme.AppCompat.Light.Dialog" parent="Base.V21.Theme.AppCompat.Light.Dialog"/>
 
     <style name="Base.ThemeOverlay.AppCompat" parent="android:ThemeOverlay.Material">
     </style>

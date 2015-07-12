@@ -2,12 +2,12 @@ package bitman.ay27.watchdog;
 
 import android.app.ActivityManager;
 import android.app.Application;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
+import android.content.*;
+import android.os.IBinder;
 import android.provider.Settings;
 import bitman.ay27.watchdog.service.DaemonService;
 import bitman.ay27.watchdog.utils.Common;
+import bitman.ay27.watchdog.watchlink.BluetoothLeService;
 import com.tencent.android.tpush.XGPushConfig;
 import com.tencent.android.tpush.XGPushManager;
 
@@ -58,6 +58,19 @@ public class WatchdogApplication extends Application {
         // 在主进程设置信鸽相关的内容
 //        XGPushManager.registerPush(this);
         XGPushManager.registerPush(this, DeviceId);
+
+        startService(new Intent(this, BluetoothLeService.class));
+        bindService(new Intent(this, BluetoothLeService.class), new ServiceConnection() {
+            @Override
+            public void onServiceConnected(ComponentName name, IBinder service) {
+
+            }
+
+            @Override
+            public void onServiceDisconnected(ComponentName name) {
+
+            }
+        }, Context.BIND_AUTO_CREATE);
     }
 
     private boolean isMainProcess() {

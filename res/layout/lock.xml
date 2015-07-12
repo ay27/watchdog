@@ -7,13 +7,13 @@
         >
 
     <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
-            android:text="已锁定"
-            android:textColor="@color/white"
-            android:textSize="32sp"
-            android:gravity="center"
-            android:layout_marginTop="100dp"/>
+              android:text="已锁定"
+              android:textColor="@color/white"
+              android:textSize="32sp"
+              android:gravity="center"
+              android:layout_marginTop="100dp"/>
 
     <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
-            android:text="这是张三的手机，请拾获的人"/>
+              android:text="这是张三的手机，请拾获的人"/>
 
 </LinearLayout>
