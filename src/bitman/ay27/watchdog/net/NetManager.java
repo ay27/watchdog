@@ -63,8 +63,6 @@ public class NetManager {
         WatchServerRestClient.post(SIGN_IN, params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int i, Header[] headers, byte[] bytes) {
-                // login XGPush
-                XGPushManager.registerPush(WatchdogApplication.getContext(), username);
 
                 // set cookie, keep login
                 CookieManager cookieManager = new CookieManager();

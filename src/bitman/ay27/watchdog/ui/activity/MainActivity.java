@@ -373,7 +373,8 @@ public class MainActivity extends ActionBarActivity {
 
                 @Override
                 public void onError(int code, String recv, Throwable throwable) {
-                    Log.i(TAG, recv);
+                    if (recv != null && !recv.isEmpty())
+                        Log.i(TAG, recv);
                     userSummer.setText(R.string.sign_in_failed);
                 }
             });

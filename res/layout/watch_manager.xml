@@ -62,10 +62,12 @@
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                       style="@style/PreferenceFirstText"
                       android:text="查找手表"
+                      android:id="@+id/watch_manager_find_watch_txv"
                     />
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                       style="@style/PreferenceSecondText"
                       android:text="开启手表震动，方便查找"
+                      android:id="@+id/watch_manager_find_watch_summer"
                     />
         </LinearLayout>
 
@@ -75,10 +77,12 @@
                       android:id="@+id/watch_manager_set_safe_distance">
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                       style="@style/PreferenceFirstText"
-                      android:text="安全距离"/>
+                      android:text="安全距离"
+                      android:id="@+id/watch_manager_safe_dist_txv"/>
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                       style="@style/PreferenceSecondText"
                       android:text="开关和设置安全距离阈值"
+                      android:id="@+id/watch_manager_safe_dist_summer"
                     />
         </LinearLayout>
 
@@ -89,10 +93,12 @@
                 >
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                       style="@style/PreferenceFirstText"
-                      android:text="校正距离"/>
+                      android:text="校正距离"
+                      android:id="@+id/watch_manager_correct_dist_txv"/>
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                       style="@style/PreferenceSecondText"
                       android:text="校正手表与手机的距离"
+                      android:id="@+id/watch_manager_correct_dist_summer"
                     />
         </LinearLayout>
 
@@ -104,10 +110,12 @@
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                       style="@style/PreferenceFirstText"
                       android:text="校正时间"
+                      android:id="@+id/watch_manager_correct_time_txv"
                     />
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                       style="@style/PreferenceSecondText"
                       android:text="使用手机时间，校正手表时间"
+                      android:id="@+id/watch_manager_correct_time_summer"
                     />
         </LinearLayout>
 
@@ -118,10 +126,12 @@
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                       style="@style/PreferenceFirstText"
                       android:text="详细信息"
+                      android:id="@+id/watch_manager_detail_txv"
                     />
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                       style="@style/PreferenceSecondText"
                       android:text="查看手表的详细信息"
+                      android:id="@+id/watch_manager_detail_summer"
                     />
         </LinearLayout>
 
@@ -132,6 +142,7 @@
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                       style="@style/PreferenceFirstText"
                       android:text="解除绑定"
+                      android:id="@+id/watch_manager_unbind_txv"
                     />
             <!--<TextView android:layout_width="wrap_content" android:layout_height="wrap_content"-->
             <!--style="@style/PreferenceSecondText"-->

@@ -29,7 +29,7 @@ public class HeartbeatService extends Service {
     private TimerTask heartbeatTask = new TimerTask() {
         @Override
         public void run() {
-            handler.sendEmptyMessage(0);
+            handler.obtainMessage(0).sendToTarget();
         }
     };
     private Timer timer;
@@ -46,7 +46,7 @@ public class HeartbeatService extends Service {
         timer = new Timer();
 
         // send a heartbeat every one minute
-        timer.schedule(heartbeatTask, 60000);
+        timer.schedule(heartbeatTask, 0, 5000);
     }
 
     @Override

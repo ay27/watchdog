@@ -1,5 +1,7 @@
 package bitman.ay27.watchdog.model;
 
+import org.json.JSONObject;
+
 /**
  * Proudly to use Intellij IDEA.
  * Created by ay27 on 15-7-12.
@@ -19,13 +21,8 @@ public class SignInRecvForm {
     public class Device {
         public String deviceid;
         public long id;
-        public LastStatus last_status;
+        public JSONObject last_status;
         public long owner;
-        public String phone_number;
     }
 
-    public class LastStatus {
-        public long time;
-        public String event;
-    }
 }

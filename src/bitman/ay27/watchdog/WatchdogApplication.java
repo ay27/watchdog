@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.provider.Settings;
 import bitman.ay27.watchdog.service.DaemonService;
 import bitman.ay27.watchdog.utils.Common;
+import com.tencent.android.tpush.XGPushConfig;
 import com.tencent.android.tpush.XGPushManager;
 
 import java.util.Arrays;
@@ -55,9 +56,9 @@ public class WatchdogApplication extends Application {
         }
 
         // 在主进程设置信鸽相关的内容
-        XGPushManager.registerPush(this);
+//        XGPushManager.registerPush(this);
+        XGPushManager.registerPush(this, DeviceId);
     }
-
 
     private boolean isMainProcess() {
         ActivityManager am = ((ActivityManager) getSystemService(Context.ACTIVITY_SERVICE));

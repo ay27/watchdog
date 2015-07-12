@@ -7,15 +7,15 @@ import butterknife.ButterKnife.Finder;
 public class SetPasswdActivity$$ViewInjector {
   public static void inject(Finder finder, final bitman.ay27.watchdog.ui.activity.SetPasswdActivity target, Object source) {
     View view;
-    view = finder.findRequiredView(source, 2131558580, "field 'toolbar'");
+    view = finder.findRequiredView(source, 2131558581, "field 'toolbar'");
     target.toolbar = (android.support.v7.widget.Toolbar) view;
-    view = finder.findRequiredView(source, 2131558583, "field 'newPasswdEdt'");
+    view = finder.findRequiredView(source, 2131558584, "field 'newPasswdEdt'");
     target.newPasswdEdt = (android.widget.EditText) view;
-    view = finder.findRequiredView(source, 2131558581, "field 'oldPasswdEdt'");
+    view = finder.findRequiredView(source, 2131558582, "field 'oldPasswdEdt'");
     target.oldPasswdEdt = (android.widget.EditText) view;
-    view = finder.findRequiredView(source, 2131558584, "field 'confirmEdt'");
+    view = finder.findRequiredView(source, 2131558585, "field 'confirmEdt'");
     target.confirmEdt = (android.widget.EditText) view;
-    view = finder.findRequiredView(source, 2131558586, "field 'okBtn' and method 'okClick'");
+    view = finder.findRequiredView(source, 2131558587, "field 'okBtn' and method 'okClick'");
     target.okBtn = (android.widget.Button) view;
     view.setOnClickListener(
       new android.view.View.OnClickListener() {
@@ -25,11 +25,11 @@ public class SetPasswdActivity$$ViewInjector {
           target.okClick(p0);
         }
       });
-    view = finder.findRequiredView(source, 2131558473, "field 'keyboardView'");
+    view = finder.findRequiredView(source, 2131558474, "field 'keyboardView'");
     target.keyboardView = (android.inputmethodservice.KeyboardView) view;
-    view = finder.findRequiredView(source, 2131558582, "field 'oldPasswdError'");
+    view = finder.findRequiredView(source, 2131558583, "field 'oldPasswdError'");
     target.oldPasswdError = (android.widget.TextView) view;
-    view = finder.findRequiredView(source, 2131558585, "field 'newPasswdError'");
+    view = finder.findRequiredView(source, 2131558586, "field 'newPasswdError'");
     target.newPasswdError = (android.widget.TextView) view;
   }
 

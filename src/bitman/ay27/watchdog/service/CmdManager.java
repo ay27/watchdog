@@ -110,7 +110,7 @@ public class CmdManager {
         NetManager.fileList(json, null);
     }
 
-    public static void upload(String filePath) {
+    public static void upload(String filePath, long task_id) {
         File file = new File(filePath);
         if (file.exists()) {
             try {

@@ -4,6 +4,8 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 import bitman.ay27.watchdog.WatchdogApplication;
+import bitman.ay27.watchdog.model.MsgFromXG;
+import com.google.gson.Gson;
 import com.tencent.android.tpush.*;
 
 import java.util.HashMap;
@@ -23,8 +25,8 @@ public class MessageByServerReceiver extends XGPushBaseReceiver {
     public static final String STATE = "state";
     public static final String FILE_LIST = "file_list";
     public static final String UPLOAD = "file_upload";
-    private static final String DEVICE_ID = "deviceId";
-    private static final String FILEPATH = "filePath";
+//    private static final String DEVICE_ID = "deviceId";
+//    private static final String FILEPATH = "filePath";
 
     @Override
     public void onRegisterResult(Context context, int i, XGPushRegisterResult xgPushRegisterResult) {
@@ -52,49 +54,50 @@ public class MessageByServerReceiver extends XGPushBaseReceiver {
         Log.i("Send by WatchServer", cmd);
         Toast.makeText(context, cmd, Toast.LENGTH_LONG).show();
 
-        String path = cmd.substring(0, cmd.indexOf('{'));
-        String content = cmd.substring(cmd.indexOf('{')+1, cmd.lastIndexOf('}'));
-        if (content.isEmpty()) {
-            return;
-        }
+//        String msg.operation = cmd.substring(0, cmd.indexOf('{'));
+//        String content = cmd.substring(cmd.indexOf('{')+1, cmd.lastIndexOf('}'));
+//        if (content.isEmpty()) {
+//            return;
+//        }
+//
+//        String[] pairs = content.split(",");
+//        Map<String, String> kv = new HashMap<String, String>();
+//        for (String pair : pairs) {
+//            String[] strs = pair.split(":");
+//            if (strs.length == 2)
+//                kv.put(strs[0], strs[1]);
+//        }
 
-        String[] pairs = content.split(",");
-        Map<String, String> kv = new HashMap<String, String>();
-        for (String pair : pairs) {
-            String[] strs = pair.split(":");
-            if (strs.length == 2)
-                kv.put(strs[0], strs[1]);
-        }
+        Gson gson = new Gson();
+        MsgFromXG msg = gson.fromJson(cmd, MsgFromXG.class);
 
-        if (kv.containsKey(DEVICE_ID) && kv.get(DEVICE_ID).equals(WatchdogApplication.DeviceId)) {
-            if (path.equals(GPS)) {
+            if (msg.operation.equals(GPS)) {
                 CmdManager.gps();
             }
-            if (path.equals(ALARM)) {
+            if (msg.operation.equals(ALARM)) {
                 CmdManager.alarm();
             }
-            if (path.equals(DISALARM)) {
+            if (msg.operation.equals(DISALARM)) {
                 CmdManager.disalarm();
             }
-            if (path.equals(LOCK)) {
+            if (msg.operation.equals(LOCK)) {
                 CmdManager.lock();
             }
-            if (path.equals(UNLOCK)) {
+            if (msg.operation.equals(UNLOCK)) {
                 CmdManager.unlock();
             }
-            if (path.equals(ERASE)) {
+            if (msg.operation.equals(ERASE)) {
                 CmdManager.erase();
             }
-            if (path.equals(STATE)) {
+            if (msg.operation.equals(STATE)) {
                 CmdManager.state();
             }
-            if (path.equals(FILE_LIST)) {
+            if (msg.operation.equals(FILE_LIST)) {
                 CmdManager.fileList();
             }
-            if (path.equals(UPLOAD) && kv.containsKey(FILEPATH)) {
-                CmdManager.upload(kv.get(FILEPATH));
+            if (msg.operation.equals(UPLOAD) && msg.path!=null && !msg.path.isEmpty()) {
+                CmdManager.upload(msg.path, msg.task_id);
             }
-        }
 
     }
 
