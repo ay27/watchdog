@@ -1,12 +1,15 @@
 package bitman.ay27.watchdog.ui.activity;
 
 import android.app.Activity;
+import android.bluetooth.BluetoothDevice;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import bitman.ay27.watchdog.R;
+import bitman.ay27.watchdog.ui.activity.widget.ScanBleDialog;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
@@ -108,7 +111,14 @@ public class WatchManageActivity extends Activity {
 
 
     public void bindWatchClick(View view) {
-
+        new ScanBleDialog(this, new ScanBleDialog.ScanBtDeviceCallback() {
+            @Override
+            public void onResult(BluetoothDevice device) {
+                if (device!=null) {
+                    Toast.makeText(WatchManageActivity.this, device.getAddress(), Toast.LENGTH_LONG).show();
+                }
+            }
+        }).show();
     }
 
     public void findWatchClick(View view) {
