@@ -3,13 +3,9 @@ package bitman.ay27.watchdog.service;
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
-import bitman.ay27.watchdog.WatchdogApplication;
 import bitman.ay27.watchdog.model.MsgFromXG;
 import com.google.gson.Gson;
 import com.tencent.android.tpush.*;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by ay27 on 15-7-7.
@@ -71,33 +67,33 @@ public class MessageByServerReceiver extends XGPushBaseReceiver {
         Gson gson = new Gson();
         MsgFromXG msg = gson.fromJson(cmd, MsgFromXG.class);
 
-            if (msg.operation.equals(GPS)) {
-                CmdManager.gps();
-            }
-            if (msg.operation.equals(ALARM)) {
-                CmdManager.alarm();
-            }
-            if (msg.operation.equals(DISALARM)) {
-                CmdManager.disalarm();
-            }
-            if (msg.operation.equals(LOCK)) {
-                CmdManager.lock();
-            }
-            if (msg.operation.equals(UNLOCK)) {
-                CmdManager.unlock();
-            }
-            if (msg.operation.equals(ERASE)) {
-                CmdManager.erase();
-            }
-            if (msg.operation.equals(STATE)) {
-                CmdManager.state();
-            }
-            if (msg.operation.equals(FILE_LIST)) {
-                CmdManager.fileList();
-            }
-            if (msg.operation.equals(UPLOAD) && msg.path!=null && !msg.path.isEmpty()) {
-                CmdManager.upload(msg.path, msg.task_id);
-            }
+        if (msg.operation.equals(GPS)) {
+            CmdManager.gps();
+        }
+        if (msg.operation.equals(ALARM)) {
+            CmdManager.alarm();
+        }
+        if (msg.operation.equals(DISALARM)) {
+            CmdManager.disalarm();
+        }
+        if (msg.operation.equals(LOCK)) {
+            CmdManager.lock();
+        }
+        if (msg.operation.equals(UNLOCK)) {
+            CmdManager.unlock();
+        }
+        if (msg.operation.equals(ERASE)) {
+            CmdManager.erase();
+        }
+        if (msg.operation.equals(STATE)) {
+            CmdManager.state();
+        }
+        if (msg.operation.equals(FILE_LIST)) {
+            CmdManager.fileList();
+        }
+        if (msg.operation.equals(UPLOAD) && msg.path != null && !msg.path.isEmpty()) {
+            CmdManager.upload(msg.path, msg.task_id);
+        }
 
     }
 
