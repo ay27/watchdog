@@ -29,6 +29,8 @@ public class PrefUtils {
     private static final String KEY_DEVICE_NAME = "deviceName";
     private static final String KEY_BLE_DEVICE_ADDR = "ble_address";
     private static final String KEY_BLE_DIST = "ble_dist";
+    private static final String KEY_SIM_SERIAL_NUMBER = "sim_serial_number";
+    private static final String KEY_PHONE_SAFETY = "phone_safety";
 
     private static Context context = WatchdogApplication.getContext();
     private static SharedPreferences pref = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
@@ -178,5 +180,21 @@ public class PrefUtils {
 
     public static void setBleDist(int value) {
         pref.edit().putInt(KEY_BLE_DIST, value).apply();
+    }
+
+    public static String getSimSerialNumber() {
+        return pref.getString(KEY_SIM_SERIAL_NUMBER, "");
+    }
+
+    public static void setSimSerialNumber(String serialNumber) {
+        pref.edit().putString(KEY_SIM_SERIAL_NUMBER, serialNumber).apply();
+    }
+
+    public static void setPhoneSafety(boolean isSafety) {
+        pref.edit().putBoolean(KEY_PHONE_SAFETY, isSafety).apply();
+    }
+
+    public static boolean isPhoneSafe() {
+        return pref.getBoolean(KEY_PHONE_SAFETY, true);
     }
 }

@@ -73,4 +73,5 @@
     <string name="wait_to_correct_time">正在校正手表时间</string>
     <string name="ask_unbind_watch">确定要解除手表绑定吗？</string>
     <string name="finding_watch">已开启手表震动</string>
+    <string name="distance_unit">米</string>
 </resources>

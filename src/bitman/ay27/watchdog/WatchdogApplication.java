@@ -1,25 +1,28 @@
 package bitman.ay27.watchdog;
 
-import android.app.ActivityManager;
 import android.app.Application;
 import android.content.*;
 import android.os.IBinder;
 import android.provider.Settings;
+import android.util.Log;
+import android.widget.Toast;
 import bitman.ay27.watchdog.service.DaemonService;
+import bitman.ay27.watchdog.service.ServiceManager;
+import bitman.ay27.watchdog.ui.activity.WatchManageActivity;
 import bitman.ay27.watchdog.utils.Common;
-import bitman.ay27.watchdog.watchlink.BluetoothLeService;
-import com.tencent.android.tpush.XGPushConfig;
+import bitman.ay27.watchdog.watchlink.DefaultDogWatchCallback;
+import bitman.ay27.watchdog.watchlink.DogWatchService;
 import com.tencent.android.tpush.XGPushManager;
 
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 
 /**
  * Proudly to user Intellij IDEA.
  * Created by ay27 on 15/3/27.
  */
 public class WatchdogApplication extends Application {
+    private static final String TAG = "WatchdogAppliation";
     public static String DeviceId;
     private static WatchdogApplication instance = null;
     private SharedPreferences mPrefs;
@@ -39,6 +42,16 @@ public class WatchdogApplication extends Application {
         Intent intent = new Intent(this, DaemonService.class);
         startService(intent);
 
+        setNfcModulePref();
+
+        // 在主进程设置信鸽相关的内容
+        XGPushManager.registerPush(this, DeviceId);
+
+//        ServiceManager.getInstance().removeService(DogWatchService.class);
+        ServiceManager.getInstance().addService(DogWatchService.class);
+    }
+
+    private void setNfcModulePref() {
         mPrefs = getSharedPreferences(Common.PREFS, Context.MODE_WORLD_READABLE);
         if (mPrefs.getString(Common.PREF_ENABLE_NFC_WHEN, null) == null) {
             SharedPreferences.Editor editor = mPrefs.edit();
@@ -54,25 +67,7 @@ public class WatchdogApplication extends Application {
 
             sendBroadcast(new Intent(Common.SETTINGS_UPDATED_INTENT));
         }
-
-        // 在主进程设置信鸽相关的内容
-//        XGPushManager.registerPush(this);
-        XGPushManager.registerPush(this, DeviceId);
-
-
     }
 
-    private boolean isMainProcess() {
-        ActivityManager am = ((ActivityManager) getSystemService(Context.ACTIVITY_SERVICE));
-        List<ActivityManager.RunningAppProcessInfo> processInfos = am.getRunningAppProcesses();
-        String mainProcessName = getPackageName();
-        int myPid = android.os.Process.myPid();
-        for (ActivityManager.RunningAppProcessInfo info : processInfos) {
-            if (info.pid == myPid && mainProcessName.equals(info.processName)) {
-                return true;
-            }
-        }
-        return false;
-    }
 
 }

@@ -157,13 +157,24 @@
 
         <!--</receiver>-->
 
+        <service android:name=".watchlink.DogWatchService"/>
 
-        <service android:name=".watchlink.BluetoothLeService"/>
         <service android:name=".service.HeartbeatService"/>
 
         <service android:name=".service.KeyguardService"/>
 
         <service android:name=".service.DaemonService"/>
+
+        <receiver android:name=".service.DogWatchReceiver">
+            <intent-filter>
+                <action android:name="org.bitman.bluetooth.le.ACTION_REP_GATT_CONNECTED" />
+                <action android:name="org.bitman.bluetooth.le.ACTION_REP_GATT_CONNECTED_FAIL"/>
+                <action android:name="org.bitman.bluetooth.le.ACTION_REP_GATT_DISCONNECTED"/>
+                <action android:name="org.bitman.bluetooth.le.ACTION_REP_GATT_DISCONNECTED_FAIL"/>
+                <action android:name="org.bitman.bluetooth.le.ACTION_REP_RSSI_OUT_OF_RANGE"/>
+                <action android:name="org.bitman.bluetooth.le.ACTION_REP_RSSI_RETURN_RANGE"/>
+            </intent-filter>
+        </receiver>
 
 
         <!-- APP项目的其它配置... -->

@@ -6,6 +6,8 @@ import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,12 +40,28 @@ public class ScanBleDialog extends Dialog {
             cancel();
         }
     };
+
+    private Handler leHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            if (foundDevice== null ){
+                return;
+            }
+            if (foundDevice.getBondState() != BluetoothDevice.BOND_BONDED) {
+                if (newDeviceAdapter.devices.contains(foundDevice)) {
+                    return;
+                }
+                newDeviceAdapter.addDevice(foundDevice);
+            }
+        }
+    };
+
+    private BluetoothDevice foundDevice;
     private BluetoothAdapter.LeScanCallback leScanCallback = new BluetoothAdapter.LeScanCallback() {
         @Override
         public void onLeScan(BluetoothDevice device, int rssi, byte[] scanRecord) {
-            if (device.getBondState() != BluetoothDevice.BOND_BONDED) {
-                newDeviceAdapter.addDevice(device);
-            }
+            foundDevice = device;
+            leHandler.obtainMessage(0).sendToTarget();
         }
     };
 
@@ -76,7 +94,7 @@ public class ScanBleDialog extends Dialog {
     @Override
     protected void onStop() {
         super.onStop();
-        mBtAdapter.stopLeScan(leScanCallback);
+//        mBtAdapter.stopLeScan(leScanCallback);
     }
 
     private void setupNewList() {
@@ -89,6 +107,13 @@ public class ScanBleDialog extends Dialog {
     }
 
     private void doDiscovery() {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mBtAdapter.stopLeScan(leScanCallback);
+            }
+        }, 10000);
         mBtAdapter.startLeScan(leScanCallback);
     }
 

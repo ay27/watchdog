@@ -6,6 +6,7 @@ import android.content.*;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -26,6 +27,8 @@ import bitman.ay27.watchdog.ui.activity.widget.InputSdPasswdDialog;
 import bitman.ay27.watchdog.ui.activity.widget.LoginDialog;
 import bitman.ay27.watchdog.utils.Common;
 import bitman.ay27.watchdog.utils.SuperUserAccess;
+import bitman.ay27.watchdog.watchlink.DefaultDogWatchCallback;
+import bitman.ay27.watchdog.watchlink.DogWatchService;
 import bitman.s117.libwatchcat.WatchCat_Controller;
 import bitman.s117.libwatchcat.WatchCat_Controller_Impl;
 import butterknife.ButterKnife;
@@ -38,7 +41,7 @@ public class MainActivity extends ActionBarActivity {
 
     public static final String TAG = "MainActivity";
     private static final int CHECK = 0x1;
-
+    public DogWatchService dogWatchService;
     @InjectView(R.id.main_toolbar)
     Toolbar toolbar;
     @InjectView(R.id.main_user_name)
@@ -61,16 +64,13 @@ public class MainActivity extends ActionBarActivity {
     TextView formatTitle;
     @InjectView(R.id.main_sd_format_summer)
     TextView formatSummer;
-
     private int loginState = 0;
-
     private SharedPreferences.OnSharedPreferenceChangeListener sdStatusChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
             setSdPanel();
         }
     };
-
     private ProgressDialog pd;
     private BroadcastReceiver unmountSuccessReceiver = new BroadcastReceiver() {
         @Override
@@ -99,7 +99,6 @@ public class MainActivity extends ActionBarActivity {
             }
         }
     };
-
     private BroadcastReceiver mountSuccessReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -107,8 +106,6 @@ public class MainActivity extends ActionBarActivity {
             unregisterReceiver(mountSuccessReceiver);
         }
     };
-
-
     private CompoundButton.OnCheckedChangeListener bootLoaderCheckChanged = new CompoundButton.OnCheckedChangeListener() {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -174,6 +171,26 @@ public class MainActivity extends ActionBarActivity {
             sendBroadcast(new Intent(Common.ACTION_CHOOSE_MTP));
         }
     };
+    private ServiceConnection conn = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            dogWatchService = ((DogWatchService.LocalBinder) service).getService();
+            boolean result = dogWatchService.initialize(new DefaultDogWatchCallback());
+            if (!result) {
+                Log.i(TAG, "initial DogWatchService failed");
+                unbindService(conn);
+                return;
+            }
+            dogWatchService.connect(PrefUtils.getBLEAddr(), true);
+            unbindService(conn);
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            Log.i(TAG, "initial DogWatchService failed");
+            unbindService(conn);
+        }
+    };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -189,7 +206,18 @@ public class MainActivity extends ActionBarActivity {
 
         init();
 
+        tryConnectWatch();
     }
+
+    private void tryConnectWatch() {
+        String addr = PrefUtils.getBLEAddr();
+        if (addr.isEmpty()) {
+            return;
+        }
+        Log.i(TAG, "bind service");
+        bindService(new Intent(this, DogWatchService.class), conn, Context.BIND_AUTO_CREATE);
+    }
+
 
     @Override
     protected void onResume() {

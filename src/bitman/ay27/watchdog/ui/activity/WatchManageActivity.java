@@ -4,10 +4,11 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothDevice;
-import android.content.DialogInterface;
-import android.content.Intent;
+import android.content.*;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -17,8 +18,13 @@ import bitman.ay27.watchdog.PrefUtils;
 import bitman.ay27.watchdog.R;
 import bitman.ay27.watchdog.ui.activity.widget.ChooseDistDialog;
 import bitman.ay27.watchdog.ui.activity.widget.ScanBleDialog;
+import bitman.ay27.watchdog.watchlink.DefaultDogWatchCallback;
+import bitman.ay27.watchdog.watchlink.DogWatchCallback;
+import bitman.ay27.watchdog.watchlink.DogWatchService;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+
+import java.util.*;
 
 /**
  * Proudly to user Intellij IDEA.
@@ -27,6 +33,7 @@ import butterknife.InjectView;
 public class WatchManageActivity extends Activity {
 
 
+    private static final String TAG = "WatchManagerActivity";
     @InjectView(R.id.watch_manager_bind_btn)
     Button bindBtn;
     @InjectView(R.id.watch_manager_new_panel)
@@ -72,21 +79,171 @@ public class WatchManageActivity extends Activity {
     @InjectView(R.id.watch_manager_unbind_txv)
     TextView unbindTxv;
     private ProgressDialog pd;
+    private DogWatchService dogWatchService;
+
     private Runnable correctDistRunnable = new Runnable() {
         @Override
         public void run() {
 
-            // TODO get the average rssi and push to watch
+            double rssi = dogWatchService.getAvgRSSI();
+            dogWatchService.post(DogWatchService.CHARA_RF_CALIBRATE, new byte[]{(byte) rssi});
 
             if (pd.isShowing()) {
                 pd.cancel();
             }
         }
     };
+
     private DialogInterface.OnClickListener unbindWatchListener = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
-            // TODO unbind watch
+            dogWatchService.disconnect();
+        }
+    };
+
+    private DogWatchCallback dogWatchCallback = new DefaultDogWatchCallback() {
+        @Override
+        public void onPostFinish(final int name, UUID characUUID, final byte[] remoteVal) {
+            super.onPostFinish(name, characUUID, remoteVal);
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(WatchManageActivity.this, "on post: " + name + " " + Arrays.toString(remoteVal), Toast.LENGTH_SHORT).show();
+                    if (name == DogWatchService.CHARA_TIME_YEAR && pd.isShowing()) {
+                        pd.cancel();
+                    }
+                }
+            }, 20);
+        }
+
+        @Override
+        public void onPostFail(final String reason) {
+            super.onPostFail(reason);
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(WatchManageActivity.this, reason, Toast.LENGTH_SHORT).show();
+                }
+            }, 20);
+        }
+
+        @Override
+        public void onGetFinish(final int name, UUID characUUID, final byte[] remoteVal) {
+            super.onGetFinish(name, characUUID, remoteVal);
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(WatchManageActivity.this, "on get: " + name + " " + Arrays.toString(remoteVal), Toast.LENGTH_SHORT).show();
+                }
+            }, 20);
+        }
+
+        @Override
+        public void onGetFail(final String reason) {
+            super.onGetFail(reason);
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(WatchManageActivity.this, reason, Toast.LENGTH_SHORT).show();
+                }
+            }, 20);
+        }
+
+        @Override
+        public void onDisconnectFail(final String reason) {
+            super.onDisconnectFail(reason);
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(WatchManageActivity.this, "disconnect failed "+reason, Toast.LENGTH_SHORT).show();
+                }
+            }, 20);
+        }
+
+        @Override
+        public void onDisconnected() {
+            super.onDisconnected();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    bindWatchPanel.setVisibility(View.VISIBLE);
+                    currentPanel.setVisibility(View.GONE);
+                    setSettingEnable(false);
+                    timer.cancel();
+
+                    PrefUtils.setBLEAddr("");
+
+                    Toast.makeText(WatchManageActivity.this, "disconnect", Toast.LENGTH_SHORT).show();
+                }
+            }, 20);
+        }
+
+        @Override
+        public void onConnectedFail(final String reason) {
+            super.onConnectedFail(reason);
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(WatchManageActivity.this, reason, Toast.LENGTH_SHORT).show();
+                }
+            }, 20);
+        }
+
+        @Override
+        public void onConnected(final String address, boolean isAutoConnEnable) {
+            super.onConnected(address, isAutoConnEnable);
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    bindWatchPanel.setVisibility(View.GONE);
+                    currentPanel.setVisibility(View.VISIBLE);
+                    setSettingEnable(true);
+                    PrefUtils.setBLEAddr(address);
+                    setUpDistView();
+                }
+            }, 20);
+        }
+    };
+
+    private Timer timer;
+    private void setUpDistView() {
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        currentDistanceTxv.setText("" + String.format("%02f", dogWatchService.calcAccuracy()) + getString(R.string.distance_unit));
+                    }
+                });
+            }
+        };
+        timer = new Timer();
+        timer.schedule(task, 0, 2000);
+    }
+
+    private Handler handler = new Handler();
+
+    private ServiceConnection conn = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            if (service == null) {
+                Toast.makeText(WatchManageActivity.this, "unbind service first", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            dogWatchService = ((DogWatchService.LocalBinder) service).getService();
+            dogWatchService.initialize(dogWatchCallback);
+            if (dogWatchService.getConnectionState() != DogWatchService.STATE_DISCONNECTED) {
+                return;
+            }
+            if (!PrefUtils.getBLEAddr().isEmpty()) {
+                dogWatchService.connect(PrefUtils.getBLEAddr(), true);
+            }
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            Log.e(TAG, "service disconnected");
         }
     };
 
@@ -96,10 +253,29 @@ public class WatchManageActivity extends Activity {
         setContentView(R.layout.watch_manager);
         ButterKnife.inject(this);
 
-        bindWatchPanel.setVisibility(View.VISIBLE);
-        currentPanel.setVisibility(View.GONE);
+        String addr = PrefUtils.getBLEAddr();
+        if (addr.isEmpty()) {
+            bindWatchPanel.setVisibility(View.VISIBLE);
+            currentPanel.setVisibility(View.GONE);
+            setSettingEnable(false);
+        } else {
+            bindWatchPanel.setVisibility(View.GONE);
+            currentPanel.setVisibility(View.VISIBLE);
+            setSettingEnable(true);
+        }
+
+        bindService(new Intent(this, DogWatchService.class), conn, Context.BIND_AUTO_CREATE);
 //        setSettingEnable(false);
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbindService(conn);
+        if (timer!=null) {
+            timer.cancel();
+        }
     }
 
     private void setSettingEnable(boolean flag) {
@@ -139,8 +315,10 @@ public class WatchManageActivity extends Activity {
             @Override
             public void onResult(BluetoothDevice device) {
                 if (device != null) {
-                    Toast.makeText(WatchManageActivity.this, device.getAddress(), Toast.LENGTH_LONG).show();
-                    // TODO connect to device
+                    if (dogWatchService == null) {
+                        return;
+                    }
+                    dogWatchService.connect(device.getAddress(), true);
                 }
             }
         }).show();
@@ -152,10 +330,11 @@ public class WatchManageActivity extends Activity {
         pd.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
-                // TODO send stop vibrate
+                dogWatchService.post(DogWatchService.CHARA_VIBRATE_TRIGGER, new byte[]{DogWatchService.VIBRATE_STOP});
             }
         });
-        // TODO push long vibrate, then when pd cancel, push stop vibrate
+        pd.show();
+        dogWatchService.post(DogWatchService.CHARA_VIBRATE_TRIGGER, new byte[]{DogWatchService.VIBRATE_FINDING});
     }
 
     public void safeDistClick(View view) {
@@ -197,7 +376,15 @@ public class WatchManageActivity extends Activity {
         pd = new ProgressDialog(this);
         pd.setMessage(getString(R.string.wait_to_correct_time));
         pd.show();
-        // TODO push time to watch, then dismiss pd
+
+        Calendar calendar = Calendar.getInstance();
+        dogWatchService.post(DogWatchService.CHARA_TIME_SEC, new byte[]{(byte) calendar.get(Calendar.SECOND)});
+        dogWatchService.post(DogWatchService.CHARA_TIME_MIN, new byte[]{(byte) calendar.get(Calendar.MINUTE)});
+        dogWatchService.post(DogWatchService.CHARA_TIME_HOUR, new byte[]{(byte) calendar.get(Calendar.HOUR)});
+        dogWatchService.post(DogWatchService.CHARA_TIME_DAY, new byte[]{(byte) calendar.get(Calendar.DAY_OF_MONTH)});
+        dogWatchService.post(DogWatchService.CHARA_TIME_MONTH, new byte[]{(byte) calendar.get(Calendar.MONTH)});
+        int year = calendar.get(Calendar.YEAR);
+        dogWatchService.post(DogWatchService.CHARA_TIME_YEAR, new byte[]{(byte) (year & 0xff), (byte) (year & 0xff00)});
     }
 
     public void detailClick(View view) {

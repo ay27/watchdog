@@ -25,7 +25,7 @@ import java.util.List;
  */
 public class NfcManageActivity extends ActionBarActivity {
 
-    @InjectView(R.id.bind_nfc_list)
+    @InjectView(R.id.nfc_manager_list)
     ListView listView;
 //    @InjectView(R.id.bind_nfc_new_card)
 //    Button btn;
@@ -52,13 +52,13 @@ public class NfcManageActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.bind_nfc_card);
+        setContentView(R.layout.nfc_manager);
         ButterKnife.inject(this);
 
         init();
     }
 
-    @OnClick(R.id.bind_nfc_new_card_btn)
+    @OnClick(R.id.nfc_manager_new_card_btn)
     public void newCardClick(View view) {
         new ReadNfcDialog(NfcManageActivity.this, NfcManageActivity.this, new ReadNfcDialog.FoundNfcCallback() {
             @Override
