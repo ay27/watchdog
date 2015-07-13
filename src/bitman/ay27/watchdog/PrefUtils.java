@@ -28,6 +28,7 @@ public class PrefUtils {
     private static final String KEY_NFC_CARDS = "nfc_cards";
     private static final String KEY_DEVICE_NAME = "deviceName";
     private static final String KEY_BLE_DEVICE_ADDR = "ble_address";
+    private static final String KEY_BLE_DIST = "ble_dist";
 
     private static Context context = WatchdogApplication.getContext();
     private static SharedPreferences pref = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
@@ -155,20 +156,27 @@ public class PrefUtils {
         pref.edit().putStringSet(KEY_NFC_CARDS, cards).apply();
     }
 
+    public static String getDeviceName() {
+        return pref.getString(KEY_DEVICE_NAME, "");
+    }
 
     public static void setDeviceName(String deviceName) {
         pref.edit().putString(KEY_DEVICE_NAME, deviceName).apply();
     }
 
-    public static String getDeviceName() {
-        return pref.getString(KEY_DEVICE_NAME, "");
+    public static String getBLEAddr() {
+        return pref.getString(KEY_BLE_DEVICE_ADDR, "");
     }
 
     public static void setBLEAddr(String addr) {
         pref.edit().putString(KEY_BLE_DEVICE_ADDR, addr).apply();
     }
 
-    public static String getBLEAddr() {
-        return pref.getString(KEY_BLE_DEVICE_ADDR, "");
+    public static int getBleDist() {
+        return pref.getInt(KEY_BLE_DIST, 0);
+    }
+
+    public static void setBleDist(int value) {
+        pref.edit().putInt(KEY_BLE_DIST, value).apply();
     }
 }

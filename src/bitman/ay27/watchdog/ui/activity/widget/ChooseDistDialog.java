@@ -14,18 +14,21 @@ import bitman.ay27.watchdog.R;
  */
 public class ChooseDistDialog extends Dialog implements View.OnClickListener {
 
+    private final int defaultValue;
     private DistCallback cb;
     private FiveSegmentSeekBar seekBar;
     private Button okBtn;
 
-    public ChooseDistDialog(Context context, DistCallback cb) {
+    public ChooseDistDialog(Context context, int defaultValue, DistCallback cb) {
         super(context);
         this.cb = cb;
+        this.defaultValue = defaultValue;
     }
 
     @Override
     public void onClick(View v) {
         cb.onFinished(seekBar.getProgress());
+        cancel();
     }
 
     @Override
@@ -38,6 +41,7 @@ public class ChooseDistDialog extends Dialog implements View.OnClickListener {
         okBtn = (Button) findViewById(R.id.choose_dist_dialog_ok);
 
         okBtn.setOnClickListener(this);
+        seekBar.setProgress(defaultValue);
     }
 
     public interface DistCallback {

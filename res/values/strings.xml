@@ -69,4 +69,8 @@
     <string name="input_device_name">输入设备名称</string>
     <string name="please_signin">请登录</string>
     <string name="username">用户名</string>
+    <string name="wait_to_correct_dist">请等待，正在校正</string>
+    <string name="wait_to_correct_time">正在校正手表时间</string>
+    <string name="ask_unbind_watch">确定要解除手表绑定吗？</string>
+    <string name="finding_watch">已开启手表震动</string>
 </resources>

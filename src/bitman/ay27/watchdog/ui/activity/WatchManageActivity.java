@@ -1,13 +1,19 @@
 package bitman.ay27.watchdog.ui.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.bluetooth.BluetoothDevice;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import bitman.ay27.watchdog.PrefUtils;
 import bitman.ay27.watchdog.R;
 import bitman.ay27.watchdog.ui.activity.widget.ChooseDistDialog;
 import bitman.ay27.watchdog.ui.activity.widget.ScanBleDialog;
@@ -65,6 +71,24 @@ public class WatchManageActivity extends Activity {
     TextView detailSummer;
     @InjectView(R.id.watch_manager_unbind_txv)
     TextView unbindTxv;
+    private ProgressDialog pd;
+    private Runnable correctDistRunnable = new Runnable() {
+        @Override
+        public void run() {
+
+            // TODO get the average rssi and push to watch
+
+            if (pd.isShowing()) {
+                pd.cancel();
+            }
+        }
+    };
+    private DialogInterface.OnClickListener unbindWatchListener = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            // TODO unbind watch
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,40 +134,81 @@ public class WatchManageActivity extends Activity {
         view.setClickable(flag);
     }
 
-
     public void bindWatchClick(View view) {
         new ScanBleDialog(this, new ScanBleDialog.ScanBtDeviceCallback() {
             @Override
             public void onResult(BluetoothDevice device) {
-                if (device!=null) {
+                if (device != null) {
                     Toast.makeText(WatchManageActivity.this, device.getAddress(), Toast.LENGTH_LONG).show();
+                    // TODO connect to device
                 }
             }
         }).show();
     }
 
     public void findWatchClick(View view) {
-
+        pd = new ProgressDialog(this);
+        pd.setMessage(getString(R.string.finding_watch));
+        pd.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                // TODO send stop vibrate
+            }
+        });
+        // TODO push long vibrate, then when pd cancel, push stop vibrate
     }
 
     public void safeDistClick(View view) {
-        new ChooseDistDialog(this, new ChooseDistDialog.DistCallback() {
+        new ChooseDistDialog(this, PrefUtils.getBleDist(), new ChooseDistDialog.DistCallback() {
             @Override
             public void onFinished(int progress) {
-                Toast.makeText(WatchManageActivity.this, ""+progress, Toast.LENGTH_LONG).show();
+                Toast.makeText(WatchManageActivity.this, "" + progress, Toast.LENGTH_LONG).show();
+                PrefUtils.setBleDist(progress);
             }
         }).show();
     }
 
     public void correctDistClick(View view) {
+        pd = new ProgressDialog(this);
+        pd.setMessage(getString(R.string.wait_to_correct_dist));
+
+        View dialogView = getLayoutInflater().inflate(R.layout.correct_dist_dialog, null);
+        final AlertDialog correctDistDialog = new AlertDialog.Builder(this)
+                .setView(dialogView)
+                .create();
+
+        dialogView.findViewById(R.id.correct_dist_dialog_ok).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (correctDistDialog.isShowing()) {
+                    correctDistDialog.cancel();
+                }
+                pd.show();
+                Handler handler = new Handler();
+                handler.postDelayed(correctDistRunnable, 3000);
+            }
+        });
+
+        correctDistDialog.show();
+
     }
 
     public void correctTimeClick(View view) {
+        pd = new ProgressDialog(this);
+        pd.setMessage(getString(R.string.wait_to_correct_time));
+        pd.show();
+        // TODO push time to watch, then dismiss pd
     }
 
     public void detailClick(View view) {
+        startActivity(new Intent(this, WatchDetailActivity.class));
     }
 
     public void unbindClick(View view) {
+        new AlertDialog.Builder(this)
+                .setMessage(R.string.ask_unbind_watch)
+                .setPositiveButton(R.string.ok, unbindWatchListener)
+                .setNegativeButton(R.string.cancel, null)
+                .create().show();
     }
 }

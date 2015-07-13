@@ -9,6 +9,7 @@
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
               android:text="设备信息"
               style="@style/PreferenceCatalog"
+              android:paddingTop="16dp"
             />
     <include layout="@layout/divider_large"/>
     <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
@@ -76,7 +77,7 @@
                   android:paddingRight="16dp"
                   android:gravity="center_vertical">
         <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
-                  android:layout_weight="4"
+                  android:layout_weight="2"
                   android:text="服务UUID"/>
         <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
                   android:layout_gravity="end|center_vertical"
@@ -90,7 +91,7 @@
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
               android:text="状态信息"
               style="@style/PreferenceCatalog"
-              android:paddingTop="8dp"
+              android:paddingTop="16dp"
             />
     <include layout="@layout/divider_large"/>
 

@@ -79,7 +79,7 @@ public class NfcManageActivity extends ActionBarActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                 new AlertDialog.Builder(NfcManageActivity.this)
-                        .setTitle(R.string.ask_delete_card)
+                        .setMessage(R.string.ask_delete_card)
                         .setNegativeButton(R.string.cancel, null)
                         .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                             @Override
