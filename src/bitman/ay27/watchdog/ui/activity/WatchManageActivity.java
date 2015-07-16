@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import bitman.ay27.watchdog.PrefUtils;
 import bitman.ay27.watchdog.R;
+import bitman.ay27.watchdog.service.ServiceManager;
 import bitman.ay27.watchdog.ui.activity.widget.ChooseDistDialog;
 import bitman.ay27.watchdog.ui.activity.widget.ScanBleDialog;
 import bitman.ay27.watchdog.watchlink.DefaultDogWatchCallback;
@@ -24,6 +25,8 @@ import bitman.ay27.watchdog.watchlink.DogWatchService;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.*;
 
 /**
@@ -98,9 +101,13 @@ public class WatchManageActivity extends Activity {
         @Override
         public void onClick(DialogInterface dialog, int which) {
             dogWatchService.disconnect();
+            ServiceManager.getInstance().removeService(DogWatchService.class);
+            PrefUtils.setBLEAddr("");
         }
     };
 
+    private Timer timer;
+    private Handler handler = new Handler();
     private DogWatchCallback dogWatchCallback = new DefaultDogWatchCallback() {
         @Override
         public void onPostFinish(final int name, UUID characUUID, final byte[] remoteVal) {
@@ -109,7 +116,9 @@ public class WatchManageActivity extends Activity {
                 @Override
                 public void run() {
                     Toast.makeText(WatchManageActivity.this, "on post: " + name + " " + Arrays.toString(remoteVal), Toast.LENGTH_SHORT).show();
-                    if (name == DogWatchService.CHARA_TIME_YEAR && pd.isShowing()) {
+                    Log.i(TAG, "on post: " + name + " " + Arrays.toString(remoteVal));
+
+                    if (name == DogWatchService.CHARA_TIME_UTC && pd.isShowing()) {
                         pd.cancel();
                     }
                 }
@@ -155,7 +164,7 @@ public class WatchManageActivity extends Activity {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Toast.makeText(WatchManageActivity.this, "disconnect failed "+reason, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(WatchManageActivity.this, "disconnect failed " + reason, Toast.LENGTH_SHORT).show();
                 }
             }, 20);
         }
@@ -204,26 +213,6 @@ public class WatchManageActivity extends Activity {
             }, 20);
         }
     };
-
-    private Timer timer;
-    private void setUpDistView() {
-        TimerTask task = new TimerTask() {
-            @Override
-            public void run() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        currentDistanceTxv.setText("" + String.format("%02f", dogWatchService.calcAccuracy()) + getString(R.string.distance_unit));
-                    }
-                });
-            }
-        };
-        timer = new Timer();
-        timer.schedule(task, 0, 2000);
-    }
-
-    private Handler handler = new Handler();
-
     private ServiceConnection conn = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
@@ -234,6 +223,7 @@ public class WatchManageActivity extends Activity {
             dogWatchService = ((DogWatchService.LocalBinder) service).getService();
             dogWatchService.initialize(dogWatchCallback);
             if (dogWatchService.getConnectionState() != DogWatchService.STATE_DISCONNECTED) {
+                setUpDistView();
                 return;
             }
             if (!PrefUtils.getBLEAddr().isEmpty()) {
@@ -246,6 +236,34 @@ public class WatchManageActivity extends Activity {
             Log.e(TAG, "service disconnected");
         }
     };
+    private BroadcastReceiver bondStateReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(BluetoothDevice.ACTION_BOND_STATE_CHANGED)) {
+                int bondState = intent.getIntExtra(BluetoothDevice.EXTRA_BOND_STATE, 0);
+                if (bondState == BluetoothDevice.BOND_BONDED) {
+                    BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                    dogWatchService.connect(device.getAddress(), true);
+                }
+            }
+        }
+    };
+
+    private void setUpDistView() {
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        currentDistanceTxv.setText("" + String.format("%.02f", dogWatchService.calcAccuracy()) + getString(R.string.distance_unit));
+                    }
+                });
+            }
+        };
+        timer = new Timer();
+        timer.schedule(task, 0, 2000);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -265,7 +283,6 @@ public class WatchManageActivity extends Activity {
         }
 
         bindService(new Intent(this, DogWatchService.class), conn, Context.BIND_AUTO_CREATE);
-//        setSettingEnable(false);
 
     }
 
@@ -273,7 +290,7 @@ public class WatchManageActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
         unbindService(conn);
-        if (timer!=null) {
+        if (timer != null) {
             timer.cancel();
         }
     }
@@ -318,7 +335,27 @@ public class WatchManageActivity extends Activity {
                     if (dogWatchService == null) {
                         return;
                     }
-                    dogWatchService.connect(device.getAddress(), true);
+                    if (device.getBondState() == BluetoothDevice.BOND_NONE) {
+                        Method creMethod = null;
+                        try {
+                            IntentFilter intent = new IntentFilter();
+                            intent.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
+                            registerReceiver(bondStateReceiver, intent);
+
+                            creMethod = BluetoothDevice.class
+                                    .getMethod("createBond");
+                            creMethod.invoke(device);
+                        } catch (NoSuchMethodException e) {
+                            e.printStackTrace();
+                        } catch (InvocationTargetException e) {
+                            e.printStackTrace();
+                        } catch (IllegalAccessException e) {
+                            e.printStackTrace();
+                        }
+                        Log.e("TAG", "开始配对");
+                    } else {
+                        dogWatchService.connect(device.getAddress(), true);
+                    }
                 }
             }
         }).show();
@@ -341,7 +378,24 @@ public class WatchManageActivity extends Activity {
         new ChooseDistDialog(this, PrefUtils.getBleDist(), new ChooseDistDialog.DistCallback() {
             @Override
             public void onFinished(int progress) {
-                Toast.makeText(WatchManageActivity.this, "" + progress, Toast.LENGTH_LONG).show();
+//                Toast.makeText(WatchManageActivity.this, "" + progress, Toast.LENGTH_LONG).show();
+                switch (progress) {
+                    case 0:
+                        dogWatchService.setOutOfRange(-1);
+                        break;
+                    case 25:
+                        dogWatchService.setOutOfRange(5.0);
+                        break;
+                    case 50:
+                        dogWatchService.setOutOfRange(6.6);
+                        break;
+                    case 75:
+                        dogWatchService.setOutOfRange(8.3);
+                        break;
+                    case 100:
+                        dogWatchService.setOutOfRange(10.0);
+                        break;
+                }
                 PrefUtils.setBleDist(progress);
             }
         }).show();
@@ -377,14 +431,14 @@ public class WatchManageActivity extends Activity {
         pd.setMessage(getString(R.string.wait_to_correct_time));
         pd.show();
 
-        Calendar calendar = Calendar.getInstance();
-        dogWatchService.post(DogWatchService.CHARA_TIME_SEC, new byte[]{(byte) calendar.get(Calendar.SECOND)});
-        dogWatchService.post(DogWatchService.CHARA_TIME_MIN, new byte[]{(byte) calendar.get(Calendar.MINUTE)});
-        dogWatchService.post(DogWatchService.CHARA_TIME_HOUR, new byte[]{(byte) calendar.get(Calendar.HOUR)});
-        dogWatchService.post(DogWatchService.CHARA_TIME_DAY, new byte[]{(byte) calendar.get(Calendar.DAY_OF_MONTH)});
-        dogWatchService.post(DogWatchService.CHARA_TIME_MONTH, new byte[]{(byte) calendar.get(Calendar.MONTH)});
-        int year = calendar.get(Calendar.YEAR);
-        dogWatchService.post(DogWatchService.CHARA_TIME_YEAR, new byte[]{(byte) (year & 0xff), (byte) (year & 0xff00)});
+        Date date = new Date();
+        long currentTime = date.getTime();
+        long from2000 = new Date(100, 0, 1, 0, 0, 0).getTime();
+
+        long time = currentTime - from2000;
+        time = time / 1000;
+        Log.i(TAG, "time = " + time);
+        dogWatchService.post(DogWatchService.CHARA_TIME_UTC, new byte[]{(byte) (time & 0xff), (byte) ((time & 0xff00) >>> 8), (byte) ((time & 0xff0000) >>> 16), (byte) ((time & 0xff000000) >>> 24)});
     }
 
     public void detailClick(View view) {

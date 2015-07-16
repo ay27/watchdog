@@ -42,18 +42,13 @@ public class DogWatchService extends Service {
         }
     }
 
-    public final static int CHARA_INVALID = -1;  // Represent an invalid characteristic
-    public final static int CHARA_BATT_RAMAIN = 0x0;  // R uint8
-    public final static int CHARA_TIME_YEAR = 0x1;  // RW uint16
-    public final static int CHARA_TIME_MONTH = 0x2;  // RW uint8
-    public final static int CHARA_TIME_DAY = 0x3;  // RW uint8
-    public final static int CHARA_TIME_HOUR = 0x4;  // RW uint8
-    public final static int CHARA_TIME_MIN = 0x5;  // RW uint8
-    public final static int CHARA_TIME_SEC = 0x6;  // RW uint8
-    public final static int CHARA_RF_CALIBRATE = 0x7;  // RW int8
-    public final static int CHARA_RF_TXLEVEL = 0x8;  // RW uint8
-    public final static int CHARA_VIBRATE_TRIGGER = 0x9;  //  W uint8
-    public final static int CHARA_DISCONNECT_ALARM_SWITCH = 0xa;  //  W uint8 //TODO: NOT USE NOW
+    public final static int CHARA_INVALID                   = -1;   // Represent an invalid characteristic
+    public final static int CHARA_BATT_RAMAIN               = 0x0;  // R uint8
+    public final static int CHARA_TIME_UTC                  = 0x1;  // RW uint32
+    public final static int CHARA_RF_CALIBRATE              = 0x2;  // RW int8
+    public final static int CHARA_RF_TXLEVEL                = 0x3;  // RW uint8
+    public final static int CHARA_VIBRATE_TRIGGER           = 0x4;  //  W uint8
+    public final static int CHARA_DISCONNECT_ALARM_SWITCH   = 0x5;  //  W uint8 //TODO: NOT USE NOW
 
     public static final int VIBRATE_STOP = 0x0;
     public static final int VIBRATE_NFC = 0x1;
@@ -118,7 +113,7 @@ public class DogWatchService extends Service {
             } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
                 mConnectionState = STATE_DISCONNECTED;
                 Log.i(TAG, "Disconnected from GATT server.");
-
+                stopRSSId();
                 if (mAppNotifyCallback != null)
                     mAppNotifyCallback.onDisconnected();
                 broadcastUpdate(ACTION_REP_GATT_DISCONNECTED);
@@ -411,6 +406,7 @@ public class DogWatchService extends Service {
 
     public boolean post(int name, byte[] val) {
         // TODO: process push request there
+//        Log.i(TAG, "byte[] = "+val[0]+" "+ val[1]+" "+val[2]+" "+val[3]);
         if (mBluetoothAdapter == null || mBluetoothGatt == null) {
             final String eInfo = "BluetoothAdapter not initialized";
             Log.w(TAG, eInfo);
@@ -462,7 +458,7 @@ public class DogWatchService extends Service {
     }
 
     private double mDistThreahold = -1;
-    private final static int RSSID_AVG_COUNT = 3;
+    private final static int RSSID_AVG_COUNT = 5;
     private final static int RSSID_AVG_UPDATE_INTERVAL = 500;
     private int cycBuffPtr = 0;
     private int[] cycBuff = new int[RSSID_AVG_COUNT];

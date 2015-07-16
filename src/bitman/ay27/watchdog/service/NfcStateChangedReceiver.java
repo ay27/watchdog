@@ -1,14 +1,15 @@
 package bitman.ay27.watchdog.service;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
+import android.content.*;
 import android.media.MediaPlayer;
+import android.os.IBinder;
 import android.util.Log;
 import bitman.ay27.watchdog.PrefUtils;
 import bitman.ay27.watchdog.R;
+import bitman.ay27.watchdog.WatchdogApplication;
 import bitman.ay27.watchdog.db.model.NfcCard;
 import bitman.ay27.watchdog.utils.Common;
+import bitman.ay27.watchdog.watchlink.DogWatchService;
 
 import java.util.List;
 
@@ -39,6 +40,7 @@ public class NfcStateChangedReceiver extends BroadcastReceiver {
                             MediaPlayer.create(context, R.raw.end).start();
                         } else {
                             MediaPlayer.create(context, R.raw.tag_lost).start();
+                            sendNfcVibrate();
                         }
 //                        SharedPreferences mPrefs = context.getSharedPreferences(Common.PREFS, Context.MODE_WORLD_READABLE);
 //                        mPrefs.edit().putStringSet(Common.PREF_SOUNDS_TO_PLAY,
@@ -55,6 +57,28 @@ public class NfcStateChangedReceiver extends BroadcastReceiver {
 //            Intent i = new Intent(Common.SETTINGS_UPDATED_INTENT);
 //            context.sendBroadcast(i);
         }
+    }
+
+
+    private DogWatchService dogWatchService;
+    private ServiceConnection conn = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            dogWatchService = ((DogWatchService.LocalBinder)service).getService();
+            if (dogWatchService == null || dogWatchService.getConnectionState()!=DogWatchService.STATE_CONNECTED) {
+                return;
+            }
+            dogWatchService.post(DogWatchService.CHARA_VIBRATE_TRIGGER, new byte[]{DogWatchService.VIBRATE_NFC});
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+
+        }
+    };
+
+    private void sendNfcVibrate() {
+        WatchdogApplication.getContext().bindService(new Intent(WatchdogApplication.getContext(), DogWatchService.class), conn, Context.BIND_AUTO_CREATE);
     }
 
 }

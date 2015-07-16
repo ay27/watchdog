@@ -5,6 +5,12 @@
               android:layout_height="match_parent"
               android:padding="16dp">
 
+    <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+            android:text="以下距离仅是参考值"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:padding="8dp"/>
+
     <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
                   android:orientation="horizontal"
                   android:layout_marginTop="8dp"
@@ -16,19 +22,19 @@
                   android:text="关闭"
                 />
         <TextView android:layout_width="36dp" android:layout_height="wrap_content"
-                  android:text="很近"
+                  android:text="5米"
                   android:layout_marginLeft="32dp"
                 />
         <TextView android:layout_width="36dp" android:layout_height="wrap_content"
-                  android:text="较近"
+                  android:text="6.6米"
                   android:layout_marginLeft="32dp"
                 />
         <TextView android:layout_width="36dp" android:layout_height="wrap_content"
-                  android:text="正常"
+                  android:text="8.3米"
                   android:layout_marginLeft="32dp"
                 />
         <TextView android:layout_width="36dp" android:layout_height="wrap_content"
-                  android:text="较远"
+                  android:text="10米"
                   android:layout_marginLeft="32dp"
                 />
     </LinearLayout>

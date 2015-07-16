@@ -31,24 +31,14 @@ public class ServiceInfo {
                         }),
                 new ServiceRecord(UUID.fromString("0000ffe0-0000-1000-8000-00805f9b34fb"),    // DogWatch Service
                         new UUID[]{
-                                UUID.fromString("0000ffe1-0000-1000-8000-00805f9b34fb"),    // CHAR_TIME_YEAR
-                                UUID.fromString("0000ffe2-0000-1000-8000-00805f9b34fb"),    // CHAR_TIME_MONTH
-                                UUID.fromString("0000ffe3-0000-1000-8000-00805f9b34fb"),    // CHAR_TIME_DAY
-                                UUID.fromString("0000ffe4-0000-1000-8000-00805f9b34fb"),    // CHAR_TIME_HOUR
-                                UUID.fromString("0000ffe5-0000-1000-8000-00805f9b34fb"),    // CHAR_TIME_MIN
-                                UUID.fromString("0000ffe6-0000-1000-8000-00805f9b34fb"),    // CHAR_TIME_SEC
-                                UUID.fromString("0000ffe7-0000-1000-8000-00805f9b34fb"),    // CHAR_RF_CALIBRATE
-                                UUID.fromString("0000ffe8-0000-1000-8000-00805f9b34fb"),    // CHAR_RF_TXLEVEL
-                                UUID.fromString("0000ffe9-0000-1000-8000-00805f9b34fb"),    // CHAR_VIBRATE_TRIGGER
-                                UUID.fromString("0000ffea-0000-1000-8000-00805f9b34fb"),    // CHAR_DISCONNECT_ALARM_SWITCH
+                                UUID.fromString("0000ffe1-0000-1000-8000-00805f9b34fb"),    // CHAR_TIME_UTC
+                                UUID.fromString("0000ffe2-0000-1000-8000-00805f9b34fb"),    // CHAR_RF_CALIBRATE
+                                UUID.fromString("0000ffe3-0000-1000-8000-00805f9b34fb"),    // CHAR_RF_TXLEVEL
+                                UUID.fromString("0000ffe4-0000-1000-8000-00805f9b34fb"),    // CHAR_VIBRATE_TRIGGER
+                                UUID.fromString("0000ffe5-0000-1000-8000-00805f9b34fb"),    // CHAR_DISCONNECT_ALARM_SWITCH
                         },
                         new int[]{
-                                DogWatchService.CHARA_TIME_YEAR,
-                                DogWatchService.CHARA_TIME_MONTH,
-                                DogWatchService.CHARA_TIME_DAY,
-                                DogWatchService.CHARA_TIME_HOUR,
-                                DogWatchService.CHARA_TIME_MIN,
-                                DogWatchService.CHARA_TIME_SEC,
+                                DogWatchService.CHARA_TIME_UTC,
                                 DogWatchService.CHARA_RF_CALIBRATE,
                                 DogWatchService.CHARA_RF_TXLEVEL,
                                 DogWatchService.CHARA_VIBRATE_TRIGGER,
@@ -58,30 +48,30 @@ public class ServiceInfo {
     }
 
 
-    public class ResloveResult{
+    public class ResloveResult {
         public UUID serviceUUID;
         public UUID characterUUID;
 
-        protected ResloveResult(UUID serviceUUID, UUID characterUUID){
+        protected ResloveResult(UUID serviceUUID, UUID characterUUID) {
             this.serviceUUID = serviceUUID;
             this.characterUUID = characterUUID;
         }
     }
 
-    public ResloveResult resloveName(int name){
-        for(ServiceRecord record : services ){
-            for(int i = 0 ;i < record.characteristics.length;++i){
-                if(name == record.namelist[i])
+    public ResloveResult resloveName(int name) {
+        for (ServiceRecord record : services) {
+            for (int i = 0; i < record.characteristics.length; ++i) {
+                if (name == record.namelist[i])
                     return new ResloveResult(record.service, record.characteristics[i]);
             }
         }
         return null;
     }
 
-    public int resloveUUID(UUID charaUUID){
-        for(ServiceRecord record : services ){
-            for(int i = 0 ;i < record.characteristics.length;++i){
-                if(charaUUID.equals(record.characteristics[i]))
+    public int resloveUUID(UUID charaUUID) {
+        for (ServiceRecord record : services) {
+            for (int i = 0; i < record.characteristics.length; ++i) {
+                if (charaUUID.equals(record.characteristics[i]))
                     return record.namelist[i];
             }
         }
