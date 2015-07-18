@@ -22,9 +22,9 @@
     <string name="save_ok">保存成功</string>
     <string name="change_passwd_ok">密码更改成功</string>
     <string name="unlock_failed">解锁失败</string>
-    <string name="usb_disable">USB调试已关闭</string>
+    <string name="usb_disable">USB接口已关闭</string>
     <string name="change_usb_error">无法更改USB调试状态</string>
-    <string name="usb_enable">USB调试已开启</string>
+    <string name="usb_enable">USB接口已开启</string>
     <string name="no_nfc_card">没有绑定卡片</string>
     <string name="ask_delete_card">是否需要删除此卡？</string>
     <string name="delete_success">删除成功</string>
@@ -74,4 +74,7 @@
     <string name="ask_unbind_watch">确定要解除手表绑定吗？</string>
     <string name="finding_watch">已开启手表震动</string>
     <string name="distance_unit">米</string>
+    <string name="usb_failed">USB接口操作失败</string>
+    <string name="screen_lock_enable">屏幕锁已开启</string>
+    <string name="screen_lock_disable">屏幕锁已关闭</string>
 </resources>

@@ -4,4 +4,68 @@
     <color name="text_darker_gray_default_pressed">@color/white</color>
     <color name="list_item_bg_default">@color/windowBackground</color>
     <color name="list_item_bg_pressed">@color/primary</color>
+
+
+    <color name="white">#ffffffff</color>
+    <color name="black">#ff000000</color>
+    <color name="edittext_border">#ccc</color>
+    <color name="edittext_disabled">#ffe0e0e0</color>
+
+    <!--<color name="primary">#ff428bca</color>-->
+    <color name="primary_edge">#ff357ebd</color>
+    <color name="primary_pressed">#ff3276b1</color>
+    <color name="primary_pressed_edge">#ff285e8e</color>
+    <color name="primary_disabled">#a5428bca</color>
+    <color name="primary_disabled_edge">#a5357ebd</color>
+
+    <color name="danger">#ffd9534f</color>
+    <color name="danger_edge">#ffd43f3a</color>
+    <color name="danger_pressed">#ffd2322d</color>
+    <color name="danger_pressed_edge">#ffac2925</color>
+    <color name="danger_disabled">#a5d9534f</color>
+    <color name="danger_disabled_edge">#a5d43f3a</color>
+
+
+    <color name="success">#ff5cb85c</color>
+    <color name="success_edge">#ff4cae4c</color>
+    <color name="success_pressed">#ff47a447</color>
+    <color name="success_pressed_edge">#ff398439</color>
+    <color name="success_disabled">#a55cb85c</color>
+    <color name="success_disabled_edge">#a54cae4c</color>
+
+
+    <color name="holo_bule_pressed">#ff0099cc</color>
+    <color name="holo_blue_disabled">#8833b5e5</color>
+    <color name="holo_blue">#ff33b5e5</color>
+
+
+    <color name="warning">#fff0ad4e</color>
+    <color name="warning_edge">#ffeea236</color>
+    <color name="warning_pressed">#ffed9c28</color>
+    <color name="warning_pressed_edge">#ffd58512</color>
+    <color name="warning_disabled">#a5f0ad4e</color>
+    <color name="warning_disabled_edge">#a5eea236</color>
+
+    <color name="info">#ff5bc0de</color>
+    <color name="info_edge">#ff46b8da</color>
+    <color name="info_pressed">#ff39b3d7</color>
+    <color name="info_pressed_edge">#ff269abc</color>
+    <color name="info_disabled">#a55bc0de</color>
+    <color name="info_disabled_edge">#a546b8da</color>
+
+    <color name="default_">#ffffffff</color>
+    <color name="default_edge">#ffcccccc</color>
+    <color name="default_pressed">#ffebebeb</color>
+    <color name="default_pressed_edge">#ffadadad</color>
+    <color name="default_disabled">#a5ffffff</color>
+    <color name="default_disabled_edge">#a5cccccc</color>
+
+    <color name="inverse">#ff0a0a0a</color>
+    <color name="inverse_edge">#ff141414</color>
+    <color name="inverse_pressed">#ff1f1f1f</color>
+    <color name="inverse_pressed_edge">#ff292929</color>
+    <color name="inverse_disabled">#a50a0a0a</color>
+    <color name="inverse_disabled_edge">#a5141414</color>
+
+
 </resources>

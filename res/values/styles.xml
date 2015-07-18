@@ -51,5 +51,16 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">16dp</item>
     </style>
+    <style name="main_button">
+        <item name="android:background">@drawable/transparent_item_bg</item>
+    </style>
+
+
+    <attr name="marked" format="boolean" />
+    <attr name="autocheck" format="boolean" />
+    <declare-styleable name="CheckableLinearLayout">
+        <attr name="marked" />
+        <attr name="autocheck" />
+    </declare-styleable>
 
 </resources>

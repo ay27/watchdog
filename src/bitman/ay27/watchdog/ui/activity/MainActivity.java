@@ -2,6 +2,7 @@ package bitman.ay27.watchdog.ui.activity;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.app.admin.DevicePolicyManager;
 import android.content.*;
 import android.graphics.Color;
 import android.os.Build;
@@ -20,6 +21,7 @@ import bitman.ay27.watchdog.R;
 import bitman.ay27.watchdog.WatchdogApplication;
 import bitman.ay27.watchdog.model.SignInRecvForm;
 import bitman.ay27.watchdog.net.NetManager;
+import bitman.ay27.watchdog.service.DeviceManagerReceiver;
 import bitman.ay27.watchdog.service.HeartbeatService;
 import bitman.ay27.watchdog.service.KeyguardService;
 import bitman.ay27.watchdog.service.ServiceManager;
@@ -292,8 +294,26 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
+    //激活设备管理器
+    private void showAdminManagement(ComponentName mAdminName) {
+        Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
+        intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, mAdminName);
+        intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, "activity device");
+        startActivityForResult(intent,1);
+    }
+
     @OnClick(R.id.main_login_panel)
     void loginClick(View view) {
+
+//        ComponentName name = new ComponentName(this, DeviceManagerReceiver.class);
+//
+//        DevicePolicyManager mDPM = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
+//        if (!mDPM.isAdminActive(name)) {
+//            showAdminManagement(name);
+//        }
+//
+//        return;
+
         if (loginState == 1) {
             bindDevice();
             return;
@@ -413,7 +433,7 @@ public class MainActivity extends ActionBarActivity {
         final EditText deviceName = new EditText(MainActivity.this);
         deviceName.setText(Build.BRAND + "-" + Build.MODEL);
         new AlertDialog.Builder(MainActivity.this)
-                .setTitle(R.string.bind_device)
+                .setMessage(R.string.bind_device)
                 .setView(deviceName)
                 .setNegativeButton(R.string.cancel, null)
                 .setPositiveButton(R.string.bind, new DialogInterface.OnClickListener() {

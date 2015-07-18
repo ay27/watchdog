@@ -52,6 +52,7 @@
     <Button android:layout_width="fill_parent" android:layout_height="wrap_content"
             android:text="确定"
             android:background="@drawable/white_btn"
-            android:id="@+id/choose_dist_dialog_ok"/>
+            android:id="@+id/choose_dist_dialog_ok"
+            />
 
 </LinearLayout>

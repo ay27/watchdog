@@ -76,4 +76,11 @@ public class SuperUserAccess {
         return true;
     }
 
+    public static boolean disableUsb() {
+        return runCmd("echo 0 > /sys/devices/virtual/android_usb/android0/enable");
+    }
+
+    public static boolean enableUsb() {
+        return runCmd("echo 1 > /sys/devices/virtual/android_usb/android0/enable");
+    }
 }

@@ -131,5 +131,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="module" module-name="dynamicgrid" />
   </component>
 </module>
