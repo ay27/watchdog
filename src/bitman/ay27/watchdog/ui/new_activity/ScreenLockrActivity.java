@@ -8,7 +8,6 @@ import bitman.ay27.watchdog.PrefUtils;
 import bitman.ay27.watchdog.R;
 import bitman.ay27.watchdog.service.KeyguardService;
 import bitman.ay27.watchdog.service.ServiceManager;
-import com.kyleduo.switchbutton.SwitchButton;
 
 /**
  * Proudly to use Intellij IDEA.
