@@ -41,13 +41,13 @@ public class DogWatchService extends Service {
         }
     }
 
-    public final static int CHARA_INVALID                   = -1;   // Represent an invalid characteristic
-    public final static int CHARA_BATT_RAMAIN               = 0x0;  // R uint8
-    public final static int CHARA_TIME_UTC                  = 0x1;  // RW uint32
-    public final static int CHARA_RF_CALIBRATE              = 0x2;  // RW int8
-    public final static int CHARA_RF_TXLEVEL                = 0x3;  // RW uint8
-    public final static int CHARA_VIBRATE_TRIGGER           = 0x4;  //  W uint8
-    public final static int CHARA_DISCONNECT_ALARM_SWITCH   = 0x5;  //  W uint8 //TODO: NOT USE NOW
+    public final static int CHARA_INVALID = -1;   // Represent an invalid characteristic
+    public final static int CHARA_BATT_RAMAIN = 0x0;  // R uint8
+    public final static int CHARA_TIME_UTC = 0x1;  // RW uint32
+    public final static int CHARA_RF_CALIBRATE = 0x2;  // RW int8
+    public final static int CHARA_RF_TXLEVEL = 0x3;  // RW uint8
+    public final static int CHARA_VIBRATE_TRIGGER = 0x4;  //  W uint8
+    public final static int CHARA_DISCONNECT_ALARM_SWITCH = 0x5;  //  W uint8 //TODO: NOT USE NOW
 
     public static final int VIBRATE_STOP = 0x0;
     public static final int VIBRATE_NFC = 0x1;
@@ -175,7 +175,7 @@ public class DogWatchService extends Service {
             // post operate finished, pack the data and notify
             int charaName = mWatchServices.resloveUUID(characteristic.getUuid());
             if (status == BluetoothGatt.GATT_SUCCESS) {
-                if(charaName == CHARA_RF_CALIBRATE){
+                if (charaName == CHARA_RF_CALIBRATE) {
                     mCalibrateTxPower = characteristic.getValue()[0];
                 }
                 if (mAppNotifyCallback != null)
@@ -245,7 +245,7 @@ public class DogWatchService extends Service {
         // For API level 18 and above, get a reference to BluetoothAdapter through
         // BluetoothManager.
 //        if (mAppNotifyCallback == null) {
-            mAppNotifyCallback = callback;
+        mAppNotifyCallback = callback;
 //        }
 
         if (mBluetoothManager == null) {
@@ -369,20 +369,20 @@ public class DogWatchService extends Service {
      *
      * @param characteristic The characteristic to read from.
      */
-    private void readCharacteristic(BluetoothGattCharacteristic characteristic) {
+    private boolean readCharacteristic(BluetoothGattCharacteristic characteristic) {
         if (mBluetoothAdapter == null || mBluetoothGatt == null) {
             Log.w(TAG, "BluetoothAdapter not initialized");
-            return;
+            return false;
         }
-        mBluetoothGatt.readCharacteristic(characteristic);
+        return mBluetoothGatt.readCharacteristic(characteristic);
     }
 
-    private void writeCharacteristic(BluetoothGattCharacteristic characteristic) {
+    private boolean writeCharacteristic(BluetoothGattCharacteristic characteristic) {
         if (mBluetoothAdapter == null || mBluetoothGatt == null) {
             Log.w(TAG, "BluetoothAdapter not initialized");
-            return;
+            return false;
         }
-        mBluetoothGatt.writeCharacteristic(characteristic);
+        return mBluetoothGatt.writeCharacteristic(characteristic);
     }
 
     /**
@@ -412,8 +412,8 @@ public class DogWatchService extends Service {
         ServiceInfo.ResloveResult resloveResult = mWatchServices.resloveName(name);
         BluetoothGattCharacteristic characteristic = mBluetoothGatt.getService(resloveResult.serviceUUID).getCharacteristic(resloveResult.characterUUID);
         characteristic.setValue(val);
-        writeCharacteristic(characteristic);
-        return true;
+
+        return writeCharacteristic(characteristic);
     }
 
     public boolean get(int name) {
@@ -428,8 +428,7 @@ public class DogWatchService extends Service {
 
         ServiceInfo.ResloveResult resloveResult = mWatchServices.resloveName(name);
         BluetoothGattCharacteristic characteristic = mBluetoothGatt.getService(resloveResult.serviceUUID).getCharacteristic(resloveResult.characterUUID);
-        readCharacteristic(characteristic);
-        return true;
+        return readCharacteristic(characteristic);
     }
 
     /**

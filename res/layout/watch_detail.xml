@@ -68,25 +68,6 @@
                   android:id="@+id/watch_detail_device_type"/>
     </LinearLayout>
 
-    <include layout="@layout/divider_small"/>
-
-    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
-                  android:orientation="horizontal"
-                  android:minHeight="32dp"
-                  android:paddingLeft="16dp"
-                  android:paddingRight="16dp"
-                  android:gravity="center_vertical">
-        <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
-                  android:layout_weight="2"
-                  android:text="服务UUID"/>
-        <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
-                  android:layout_gravity="end|center_vertical"
-                  android:text="00001101-0000-1000-8000-00805F9B34FB"
-                  android:gravity="end"
-                  android:layout_weight="1"
-                  android:id="@+id/watch_detail_uuid"
-                />
-    </LinearLayout>
 
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
               android:text="状态信息"

@@ -12,10 +12,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import bitman.ay27.watchdog.PrefUtils;
 import bitman.ay27.watchdog.R;
-import bitman.ay27.watchdog.watchlink.DogWatchServiceManager;
 import bitman.ay27.watchdog.watchlink.DefaultDogWatchCallback;
 import bitman.ay27.watchdog.watchlink.DogWatchCallback;
 import bitman.ay27.watchdog.watchlink.DogWatchService;
+import bitman.ay27.watchdog.watchlink.DogWatchServiceManager;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
@@ -38,8 +38,6 @@ public class WatchDetailActivity extends ActionBarActivity {
     TextView watchDetailMacAddr;
     @InjectView(R.id.watch_detail_device_type)
     TextView watchDetailDeviceType;
-    @InjectView(R.id.watch_detail_uuid)
-    TextView watchDetailUuid;
     @InjectView(R.id.watch_detail_time)
     TextView watchDetailTime;
     @InjectView(R.id.watch_detail_broadcast_power)
@@ -54,31 +52,50 @@ public class WatchDetailActivity extends ActionBarActivity {
     private BluetoothDevice device;
     private DogWatchService dogWatchService;
     private DogWatchServiceManager manager = DogWatchServiceManager.getInstance();
+
     private DogWatchCallback initialCallback = new DefaultDogWatchCallback() {
         @Override
-        public void onGetFinish(int name, UUID characUUID, byte[] remoteVal) {
+        public void onGetFinish(final int name, final UUID characUUID, final byte[] remoteVal) {
             super.onGetFinish(name, characUUID, remoteVal);
 
-            Log.i(TAG, "on get finish " + name);
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Log.i(TAG, "on get finish " + name);
 
-            switch (name) {
-                case DogWatchService.CHARA_TIME_UTC:
-                    long timeFrom2000 = remoteVal[0] + remoteVal[1] << 8 + remoteVal[2] << 16 + remoteVal[3] << 24;
-                    long timeFrom1970 = timeFrom2000 * 1000 + (new Date(100, 0, 1, 0, 0, 0).getTime());
-                    Date date = new Date(timeFrom1970);
-                    watchDetailTime.setText(String.format("%d年%d月%d日 %d:%d:%d",
-                            date.getYear(), date.getMonth(), date.getDay(),
-                            date.getHours(), date.getMinutes(), date.getSeconds()));
-                    break;
-                case DogWatchService.CHARA_RF_TXLEVEL:
-                    watchDetailBroadcastPower.setText("" + remoteVal[0]);
-                    break;
-                case DogWatchService.CHARA_BATT_RAMAIN:
-                    watchDetailBattery.setText(String.format("%.01f%%", remoteVal[0]));
-                    break;
-            }
+                    switch (name) {
+                        case DogWatchService.CHARA_TIME_UTC:
+                            long timeFrom2000 = fuck(remoteVal[0], 0) | fuck(remoteVal[1], 8) | fuck(remoteVal[2], 16) | fuck(remoteVal[3], 24);
+                            long timeFrom1970 = timeFrom2000 * 1000 + (new Date(100, 0, 1, 0, 0, 0).getTime());
+                            Calendar calendar = Calendar.getInstance();
+                            calendar.setTimeInMillis(timeFrom1970);
+                            watchDetailTime.setText(String.format("%d年%d月%d日 %d:%d",
+                                    calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH),
+                                    calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE)));
+
+                            dogWatchService.get(DogWatchService.CHARA_RF_TXLEVEL);
+                            break;
+                        case DogWatchService.CHARA_RF_TXLEVEL:
+                            watchDetailBroadcastPower.setText("" + remoteVal[0]);
+                            dogWatchService.get(DogWatchService.CHARA_BATT_RAMAIN);
+                            break;
+                        case DogWatchService.CHARA_BATT_RAMAIN:
+                            if (remoteVal[0] == 0) {
+                                watchDetailBattery.setText(R.string.batterying);
+                            } else {
+                                watchDetailBattery.setText(String.format("%d%%", (int) remoteVal[0]));
+                            }
+                            break;
+                    }
+                }
+            });
+
         }
     };
+
+    private long fuck(byte b, long shift) {
+        return (((long) b) & 0xff) << shift;
+    }
 
     private DogWatchServiceManager.BindCallback bindCallback = new DogWatchServiceManager.BindCallback() {
         @Override
@@ -133,16 +150,12 @@ public class WatchDetailActivity extends ActionBarActivity {
         }
         watchDetailDeviceType.setText(typeName);
 
-        watchDetailUuid.setText(device.getUuids()[0].toString());
-
         if (dogWatchService == null) {
             return;
         }
 
         // service state
         dogWatchService.get(DogWatchService.CHARA_TIME_UTC);
-        dogWatchService.get(DogWatchService.CHARA_RF_TXLEVEL);
-        dogWatchService.get(DogWatchService.CHARA_BATT_RAMAIN);
         watchDetailRssi.setText(String.format("%.01fdB", dogWatchService.getAvgRSSI()));
         watchDetailDistance.setText(String.format("%.02f米", dogWatchService.calcAccuracy()));
 

@@ -44,6 +44,8 @@ public class ChooseDistDialog extends Dialog implements View.OnClickListener {
         seekBar.setProgress(defaultValue);
     }
 
+
+
     public interface DistCallback {
         public void onFinished(int progress);
     }

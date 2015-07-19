@@ -82,4 +82,5 @@
     <string name="device_type_le">BLE低功耗设备</string>
     <string name="device_type_classic">蓝牙2.0设备</string>
     <string name="device_type_daul">DEVICE_TYPE_DUAL</string>
+    <string name="batterying">正在充电</string>
 </resources>
