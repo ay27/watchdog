@@ -56,11 +56,4 @@
     </style>
 
 
-    <attr name="marked" format="boolean" />
-    <attr name="autocheck" format="boolean" />
-    <declare-styleable name="CheckableLinearLayout">
-        <attr name="marked" />
-        <attr name="autocheck" />
-    </declare-styleable>
-
 </resources>

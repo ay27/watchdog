@@ -27,6 +27,24 @@
 
     </style>
 
+
+    <style name="MaterialSettings" parent="MaterialSettingsTheme">
+        <!--<item name="msColorPrimary">@color/redPrimary</item>-->
+        <!--<item name="msColorPrimaryDark">@color/redPrimaryDark</item>-->
+        <!--<item name="msColorAccent">@color/redAccent</item>-->
+        <!--<item name="msColorHeader">@color/redAccent</item>-->
+        <item name="colorPrimary">@color/primary</item>
+        <!-- Status bar color -->
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <!-- Window color -->
+        <!--<item name="android:windowBackground">@color/bright_foreground_material_dark</item>-->
+        <item name="android:windowBackground">@color/windowBackground</item>
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+        <!--<item name="actionMenuTextColor">@color/white</item>-->
+        <item name="colorAccent">@color/primary</item>
+        <!--<item name="colorControlNormal">@color/icons</item>-->
+    </style>
+
     <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
         <item name="spinBars">true</item>
         <item name="color">@android:color/white</item>

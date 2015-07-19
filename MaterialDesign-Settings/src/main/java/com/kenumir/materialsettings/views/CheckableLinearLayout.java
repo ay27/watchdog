@@ -1,4 +1,4 @@
-package bitman.ay27.watchdog.ui.activity.widget;
+package com.kenumir.materialsettings.views;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -10,7 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Checkable;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
-import bitman.ay27.watchdog.R;
+
+import com.kenumir.materialsettings.R;
 
 public class CheckableLinearLayout extends LinearLayout implements Checkable {
 

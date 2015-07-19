@@ -60,7 +60,6 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module" module-name="appcompat" />
     <orderEntry type="module" module-name="widget" />
     <orderEntry type="module" module-name="SwitchButton-adt" />
     <orderEntry type="module" module-name="libwatchcat" />
@@ -132,5 +131,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module" module-name="dynamicgrid" />
+    <orderEntry type="module" module-name="main" />
+    <orderEntry type="module" module-name="appcompat" />
   </component>
 </module>

@@ -7,11 +7,11 @@ import butterknife.ButterKnife.Finder;
 public class SetDrawPasswdActivity$$ViewInjector {
   public static void inject(Finder finder, final bitman.ay27.watchdog.ui.activity.SetDrawPasswdActivity target, Object source) {
     View view;
-    view = finder.findRequiredView(source, 2131230897, "field 'canvas'");
+    view = finder.findRequiredView(source, 2131427517, "field 'canvas'");
     target.canvas = (bitman.ay27.watchdog.ui.activity.widget.DrawingCanvas) view;
-    view = finder.findRequiredView(source, 2131230898, "field 'widgetView'");
+    view = finder.findRequiredView(source, 2131427518, "field 'widgetView'");
     target.widgetView = view;
-    view = finder.findRequiredView(source, 2131230899, "field 'changeImgBtn' and method 'changeImgClick'");
+    view = finder.findRequiredView(source, 2131427519, "field 'changeImgBtn' and method 'changeImgClick'");
     target.changeImgBtn = (android.widget.Button) view;
     view.setOnClickListener(
       new android.view.View.OnClickListener() {
@@ -21,7 +21,7 @@ public class SetDrawPasswdActivity$$ViewInjector {
           target.changeImgClick(p0);
         }
       });
-    view = finder.findRequiredView(source, 2131230900, "field 'saveBtn' and method 'saveClick'");
+    view = finder.findRequiredView(source, 2131427520, "field 'saveBtn' and method 'saveClick'");
     target.saveBtn = (android.widget.Button) view;
     view.setOnClickListener(
       new android.view.View.OnClickListener() {
