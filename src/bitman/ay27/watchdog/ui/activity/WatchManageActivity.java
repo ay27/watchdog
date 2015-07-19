@@ -7,7 +7,6 @@ import android.bluetooth.BluetoothDevice;
 import android.content.*;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.IBinder;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import bitman.ay27.watchdog.PrefUtils;
 import bitman.ay27.watchdog.R;
+import bitman.ay27.watchdog.service.DogWatchServiceManager;
 import bitman.ay27.watchdog.service.ServiceManager;
 import bitman.ay27.watchdog.ui.activity.widget.ChooseDistDialog;
 import bitman.ay27.watchdog.ui.activity.widget.ScanBleDialog;
@@ -213,29 +213,7 @@ public class WatchManageActivity extends Activity {
             }, 20);
         }
     };
-    private ServiceConnection conn = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            if (service == null) {
-                Toast.makeText(WatchManageActivity.this, "unbind service first", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            dogWatchService = ((DogWatchService.LocalBinder) service).getService();
-            dogWatchService.initialize(dogWatchCallback);
-            if (dogWatchService.getConnectionState() != DogWatchService.STATE_DISCONNECTED) {
-                setUpDistView();
-                return;
-            }
-            if (!PrefUtils.getBLEAddr().isEmpty()) {
-                dogWatchService.connect(PrefUtils.getBLEAddr(), true);
-            }
-        }
 
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            Log.e(TAG, "service disconnected");
-        }
-    };
     private BroadcastReceiver bondStateReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -248,6 +226,31 @@ public class WatchManageActivity extends Activity {
             }
         }
     };
+    private DogWatchServiceManager.BindCallback bindCallback = new DogWatchServiceManager.BindCallback() {
+        @Override
+        public void onBindSuccess(DogWatchService service) {
+            dogWatchService = service;
+            dogWatchService.initialize(dogWatchCallback);
+            if (dogWatchService.getConnectionState() != DogWatchService.STATE_DISCONNECTED) {
+                setUpDistView();
+                return;
+            }
+            if (!PrefUtils.getBLEAddr().isEmpty()) {
+                dogWatchService.connect(PrefUtils.getBLEAddr(), true);
+            }
+        }
+
+        @Override
+        public void onBindFailed() {
+            Toast.makeText(WatchManageActivity.this, "unbind service first", Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onDisconnected() {
+
+        }
+    };
+    private DogWatchServiceManager manager = DogWatchServiceManager.getInstance();
 
     private void setUpDistView() {
         TimerTask task = new TimerTask() {
@@ -282,14 +285,14 @@ public class WatchManageActivity extends Activity {
             setSettingEnable(true);
         }
 
-        bindService(new Intent(this, DogWatchService.class), conn, Context.BIND_AUTO_CREATE);
+        manager.bind(this, bindCallback);
 
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unbindService(conn);
+        manager.unbind(this, bindCallback);
         if (timer != null) {
             timer.cancel();
         }

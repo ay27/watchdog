@@ -7,7 +7,6 @@ import android.content.*;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -21,7 +20,7 @@ import bitman.ay27.watchdog.R;
 import bitman.ay27.watchdog.WatchdogApplication;
 import bitman.ay27.watchdog.model.SignInRecvForm;
 import bitman.ay27.watchdog.net.NetManager;
-import bitman.ay27.watchdog.service.DeviceManagerReceiver;
+import bitman.ay27.watchdog.service.DogWatchServiceManager;
 import bitman.ay27.watchdog.service.HeartbeatService;
 import bitman.ay27.watchdog.service.KeyguardService;
 import bitman.ay27.watchdog.service.ServiceManager;
@@ -43,7 +42,6 @@ public class MainActivity extends ActionBarActivity {
 
     public static final String TAG = "MainActivity";
     private static final int CHECK = 0x1;
-    public DogWatchService dogWatchService;
     @InjectView(R.id.main_toolbar)
     Toolbar toolbar;
     @InjectView(R.id.main_user_name)
@@ -173,26 +171,6 @@ public class MainActivity extends ActionBarActivity {
             sendBroadcast(new Intent(Common.ACTION_CHOOSE_MTP));
         }
     };
-    private ServiceConnection conn = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            dogWatchService = ((DogWatchService.LocalBinder) service).getService();
-            boolean result = dogWatchService.initialize(new DefaultDogWatchCallback());
-            if (!result) {
-                Log.i(TAG, "initial DogWatchService failed");
-                unbindService(conn);
-                return;
-            }
-            dogWatchService.connect(PrefUtils.getBLEAddr(), true);
-            unbindService(conn);
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            Log.i(TAG, "initial DogWatchService failed");
-            unbindService(conn);
-        }
-    };
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -217,7 +195,30 @@ public class MainActivity extends ActionBarActivity {
             return;
         }
         Log.i(TAG, "bind service");
-        bindService(new Intent(this, DogWatchService.class), conn, Context.BIND_AUTO_CREATE);
+        final DogWatchServiceManager manager = DogWatchServiceManager.getInstance();
+        manager.bind(this, new DogWatchServiceManager.BindCallback() {
+            @Override
+            public void onBindSuccess(DogWatchService service) {
+                boolean result = service.initialize(new DefaultDogWatchCallback());
+                if (!result) {
+                    Log.i(TAG, "initial DogWatchService failed");
+                    manager.unbind(MainActivity.this, this);
+                    return;
+                }
+                service.connect(PrefUtils.getBLEAddr(), true);
+                manager.unbind(MainActivity.this, this);
+            }
+
+            @Override
+            public void onBindFailed() {
+                manager.unbind(MainActivity.this, this);
+            }
+
+            @Override
+            public void onDisconnected() {
+                manager.unbind(MainActivity.this, this);
+            }
+        });
     }
 
 
@@ -299,7 +300,7 @@ public class MainActivity extends ActionBarActivity {
         Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
         intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, mAdminName);
         intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, "activity device");
-        startActivityForResult(intent,1);
+        startActivityForResult(intent, 1);
     }
 
     @OnClick(R.id.main_login_panel)

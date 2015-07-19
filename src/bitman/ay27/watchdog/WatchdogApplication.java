@@ -47,7 +47,6 @@ public class WatchdogApplication extends Application {
         // 在主进程设置信鸽相关的内容
         XGPushManager.registerPush(this, DeviceId);
 
-//        ServiceManager.getInstance().removeService(DogWatchService.class);
         ServiceManager.getInstance().addService(DogWatchService.class);
     }
 
