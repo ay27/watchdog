@@ -2,13 +2,11 @@ package bitman.ay27.watchdog;
 
 import android.app.Application;
 import android.content.*;
-import android.os.IBinder;
 import android.provider.Settings;
 import android.util.Log;
-import android.widget.Toast;
 import bitman.ay27.watchdog.service.DaemonService;
+import bitman.ay27.watchdog.watchlink.DogWatchServiceManager;
 import bitman.ay27.watchdog.service.ServiceManager;
-import bitman.ay27.watchdog.ui.activity.WatchManageActivity;
 import bitman.ay27.watchdog.utils.Common;
 import bitman.ay27.watchdog.watchlink.DefaultDogWatchCallback;
 import bitman.ay27.watchdog.watchlink.DogWatchService;
@@ -48,6 +46,41 @@ public class WatchdogApplication extends Application {
         XGPushManager.registerPush(this, DeviceId);
 
         ServiceManager.getInstance().addService(DogWatchService.class);
+
+        tryConnectWatch();
+    }
+
+
+    private void tryConnectWatch() {
+        String addr = PrefUtils.getBLEAddr();
+        if (addr.isEmpty()) {
+            return;
+        }
+        Log.i(TAG, "bind service");
+        final DogWatchServiceManager manager = DogWatchServiceManager.getInstance();
+        manager.bind(this, new DogWatchServiceManager.BindCallback() {
+            @Override
+            public void onBindSuccess(DogWatchService service) {
+                boolean result = service.initialize(new DefaultDogWatchCallback());
+                if (!result) {
+                    Log.i(TAG, "initial DogWatchService failed");
+                    manager.unbind(getContext(), this);
+                    return;
+                }
+                service.connect(PrefUtils.getBLEAddr(), true);
+                manager.unbind(getContext(), this);
+            }
+
+            @Override
+            public void onBindFailed() {
+                manager.unbind(getContext(), this);
+            }
+
+            @Override
+            public void onDisconnected() {
+                manager.unbind(getContext(), this);
+            }
+        });
     }
 
     private void setNfcModulePref() {

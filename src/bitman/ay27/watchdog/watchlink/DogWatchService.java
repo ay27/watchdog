@@ -33,7 +33,6 @@ import java.util.UUID;
  */
 public class DogWatchService extends Service {
     private final static String TAG = DogWatchService.class.getSimpleName();
-    private boolean binded = false;
     private RSSIdeamon mRSSId;
 
     public class LocalBinder extends Binder {
@@ -114,6 +113,7 @@ public class DogWatchService extends Service {
                 mConnectionState = STATE_DISCONNECTED;
                 Log.i(TAG, "Disconnected from GATT server.");
                 stopRSSId();
+
                 if (mAppNotifyCallback != null)
                     mAppNotifyCallback.onDisconnected();
                 broadcastUpdate(ACTION_REP_GATT_DISCONNECTED);
@@ -175,6 +175,9 @@ public class DogWatchService extends Service {
             // post operate finished, pack the data and notify
             int charaName = mWatchServices.resloveUUID(characteristic.getUuid());
             if (status == BluetoothGatt.GATT_SUCCESS) {
+                if(charaName == CHARA_RF_CALIBRATE){
+                    mCalibrateTxPower = characteristic.getValue()[0];
+                }
                 if (mAppNotifyCallback != null)
                     mAppNotifyCallback.onPostFinish(charaName, characteristic.getUuid(), characteristic.getValue());
             } else {
@@ -218,14 +221,7 @@ public class DogWatchService extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
-        synchronized (this) {
-            if (!binded) {
-                binded = true;
-                return mBinder;
-            } else {
-                return null;
-            }
-        }
+        return mBinder;
     }
 
     @Override
@@ -234,7 +230,6 @@ public class DogWatchService extends Service {
         // such that resources are cleaned up properly.  In this particular example, close() is
         // invoked when the UI is disconnected from the Service.
         // close();
-        binded = false;
         mAppNotifyCallback = null;
         return super.onUnbind(intent);
     }
@@ -246,12 +241,12 @@ public class DogWatchService extends Service {
      *
      * @return Return true if the initialization is successful.
      */
-    public boolean initialize(DogWatchCallback callback) {
+    synchronized public boolean initialize(DogWatchCallback callback) {
         // For API level 18 and above, get a reference to BluetoothAdapter through
         // BluetoothManager.
-        if (mAppNotifyCallback == null) {
+//        if (mAppNotifyCallback == null) {
             mAppNotifyCallback = callback;
-        }
+//        }
 
         if (mBluetoothManager == null) {
             mBluetoothManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
@@ -285,7 +280,8 @@ public class DogWatchService extends Service {
      * {@code BluetoothGattCallback#onConnectionStateChange(android.bluetooth.BluetoothGatt, int, int)}
      * callback.
      */
-    public boolean connect(final String address, boolean autocon) {
+
+    synchronized public boolean connect(final String address, boolean autocon) {
         if (mBluetoothAdapter == null || address == null) {
             Log.w(TAG, "BluetoothAdapter not initialized or unspecified address.");
             if (mAppNotifyCallback != null)
@@ -340,7 +336,7 @@ public class DogWatchService extends Service {
      * {@code BluetoothGattCallback#onConnectionStateChange(android.bluetooth.BluetoothGatt, int, int)}
      * callback.
      */
-    public void disconnect() {
+    synchronized public void disconnect() {
         if (mBluetoothAdapter == null || mBluetoothGatt == null) {
             final String eInfo = "BluetoothAdapter not initialized";
             Log.w(TAG, eInfo);
@@ -406,7 +402,6 @@ public class DogWatchService extends Service {
 
     public boolean post(int name, byte[] val) {
         // TODO: process push request there
-//        Log.i(TAG, "byte[] = "+val[0]+" "+ val[1]+" "+val[2]+" "+val[3]);
         if (mBluetoothAdapter == null || mBluetoothGatt == null) {
             final String eInfo = "BluetoothAdapter not initialized";
             Log.w(TAG, eInfo);
@@ -458,7 +453,7 @@ public class DogWatchService extends Service {
     }
 
     private double mDistThreahold = -1;
-    private final static int RSSID_AVG_COUNT = 5;
+    private final static int RSSID_AVG_COUNT = 3;
     private final static int RSSID_AVG_UPDATE_INTERVAL = 500;
     private int cycBuffPtr = 0;
     private int[] cycBuff = new int[RSSID_AVG_COUNT];

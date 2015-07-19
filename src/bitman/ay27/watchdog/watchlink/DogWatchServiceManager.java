@@ -1,4 +1,4 @@
-package bitman.ay27.watchdog.service;
+package bitman.ay27.watchdog.watchlink;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -8,9 +8,9 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.util.Log;
-import bitman.ay27.watchdog.watchlink.DogWatchService;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.concurrent.Semaphore;
 
 /**
@@ -62,20 +62,36 @@ public class DogWatchServiceManager {
     }
 
     public synchronized void unbind(final Context context, final BindCallback cb) {
-        for (ConnItem item : items) {
+        for (Iterator it = items.iterator(); it.hasNext();) {
+            ConnItem item = (ConnItem) it.next();
             if (item.context.equals(context) && item.callback.equals(cb)) {
                 synchronized (ConnItem.class) {
                     if (item.conn != null) {
                         context.unbindService(item.conn);
                     }
                 }
-                items.remove(item);
+                it.remove();
+//                items.remove(item);
 
                 bindLockr.release();
 
                 Log.i(TAG, "unbind");
             }
         }
+//        for (ConnItem item : items) {
+//            if (item.context.equals(context) && item.callback.equals(cb)) {
+//                synchronized (ConnItem.class) {
+//                    if (item.conn != null) {
+//                        context.unbindService(item.conn);
+//                    }
+//                }
+//                items.remove(item);
+//
+//                bindLockr.release();
+//
+//                Log.i(TAG, "unbind");
+//            }
+//        }
     }
 
 

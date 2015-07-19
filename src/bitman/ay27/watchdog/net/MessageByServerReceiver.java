@@ -1,9 +1,10 @@
-package bitman.ay27.watchdog.service;
+package bitman.ay27.watchdog.net;
 
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 import bitman.ay27.watchdog.model.MsgFromXG;
+import bitman.ay27.watchdog.net.CmdManager;
 import com.google.gson.Gson;
 import com.tencent.android.tpush.*;
 

@@ -191,4 +191,12 @@
                 />
     </LinearLayout>
 
+    <Button android:layout_width="fill_parent" android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:background="@drawable/white_btn"
+            android:text="刷新"
+            android:id="@+id/watch_detail_refresh"
+            android:onClick="refreshClick"
+            />
+
 </LinearLayout>

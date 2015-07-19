@@ -6,20 +6,21 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 import bitman.ay27.watchdog.PrefUtils;
 import bitman.ay27.watchdog.R;
-import bitman.ay27.watchdog.service.DogWatchServiceManager;
+import bitman.ay27.watchdog.watchlink.DogWatchServiceManager;
 import bitman.ay27.watchdog.watchlink.DefaultDogWatchCallback;
 import bitman.ay27.watchdog.watchlink.DogWatchCallback;
 import bitman.ay27.watchdog.watchlink.DogWatchService;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
+import java.util.Calendar;
 import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.UUID;
 
 /**
@@ -28,6 +29,7 @@ import java.util.UUID;
  */
 public class WatchDetailActivity extends ActionBarActivity {
 
+    private static final String TAG = "WatchDetailActivity";
     @InjectView(R.id.watch_detail_toolbar)
     Toolbar toolbar;
     @InjectView(R.id.watch_detail_name)
@@ -50,11 +52,14 @@ public class WatchDetailActivity extends ActionBarActivity {
     TextView watchDetailDistance;
 
     private BluetoothDevice device;
+    private DogWatchService dogWatchService;
     private DogWatchServiceManager manager = DogWatchServiceManager.getInstance();
     private DogWatchCallback initialCallback = new DefaultDogWatchCallback() {
         @Override
         public void onGetFinish(int name, UUID characUUID, byte[] remoteVal) {
             super.onGetFinish(name, characUUID, remoteVal);
+
+            Log.i(TAG, "on get finish " + name);
 
             switch (name) {
                 case DogWatchService.CHARA_TIME_UTC:
@@ -63,7 +68,7 @@ public class WatchDetailActivity extends ActionBarActivity {
                     Date date = new Date(timeFrom1970);
                     watchDetailTime.setText(String.format("%d年%d月%d日 %d:%d:%d",
                             date.getYear(), date.getMonth(), date.getDay(),
-                            date.getTime(), date.getMinutes(), date.getSeconds()));
+                            date.getHours(), date.getMinutes(), date.getSeconds()));
                     break;
                 case DogWatchService.CHARA_RF_TXLEVEL:
                     watchDetailBroadcastPower.setText("" + remoteVal[0]);
@@ -79,16 +84,16 @@ public class WatchDetailActivity extends ActionBarActivity {
         @Override
         public void onBindSuccess(DogWatchService service) {
 
-            service.initialize(initialCallback);
-            if (service.getConnectionState() != DogWatchService.STATE_DISCONNECTED) {
-                setUpView(service);
+            if (service.getConnectionState() != DogWatchService.STATE_CONNECTED) {
+                Toast.makeText(WatchDetailActivity.this, R.string.bt_device_lost, Toast.LENGTH_SHORT).show();
+                finish();
                 return;
             }
-            if (!PrefUtils.getBLEAddr().isEmpty()) {
-                service.connect(PrefUtils.getBLEAddr(), true);
-            }
 
-            setUpView(service);
+            dogWatchService = service;
+            service.initialize(initialCallback);
+
+            updateView();
         }
 
         @Override
@@ -104,23 +109,7 @@ public class WatchDetailActivity extends ActionBarActivity {
         }
     };
 
-    private void setUpView(final DogWatchService service) {
-        TimerTask task = new TimerTask() {
-            @Override
-            public void run() {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        updateView(service);
-                    }
-                });
-            }
-        };
-        Timer timer = new Timer();
-        timer.schedule(task, 0, 2000);
-    }
-
-    private void updateView(DogWatchService service) {
+    private void updateView() {
         // device detail
 
         watchDetailName.setText(device.getName());
@@ -146,13 +135,16 @@ public class WatchDetailActivity extends ActionBarActivity {
 
         watchDetailUuid.setText(device.getUuids()[0].toString());
 
+        if (dogWatchService == null) {
+            return;
+        }
 
         // service state
-        service.get(DogWatchService.CHARA_TIME_UTC);
-        service.get(DogWatchService.CHARA_RF_TXLEVEL);
-        service.get(DogWatchService.CHARA_BATT_RAMAIN);
-        watchDetailRssi.setText(String.format("%.01fdB", service.getAvgRSSI()));
-        watchDetailDistance.setText(String.format("%.02f米", service.calcAccuracy()));
+        dogWatchService.get(DogWatchService.CHARA_TIME_UTC);
+        dogWatchService.get(DogWatchService.CHARA_RF_TXLEVEL);
+        dogWatchService.get(DogWatchService.CHARA_BATT_RAMAIN);
+        watchDetailRssi.setText(String.format("%.01fdB", dogWatchService.getAvgRSSI()));
+        watchDetailDistance.setText(String.format("%.02f米", dogWatchService.calcAccuracy()));
 
     }
 
@@ -182,12 +174,22 @@ public class WatchDetailActivity extends ActionBarActivity {
             return;
         }
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         manager.bind(this, bindCallback);
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onPause() {
+        super.onPause();
+
         manager.unbind(this, bindCallback);
+    }
+
+    public void refreshClick(View view) {
+        updateView();
     }
 }

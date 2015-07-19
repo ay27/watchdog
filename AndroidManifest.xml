@@ -205,7 +205,7 @@
 
         <!-- APP实现的Receiver，用于接收消息和结果反馈 -->
         <!-- com.tencent.android.xgpushdemo.CustomPushReceiver需要改为自己的Receiver -->
-        <receiver android:name="bitman.ay27.watchdog.service.MessageByServerReceiver">
+        <receiver android:name=".net.MessageByServerReceiver">
             <intent-filter>
                 <!-- 接收消息透传 -->
                 <action android:name="com.tencent.android.tpush.action.PUSH_MESSAGE"/>

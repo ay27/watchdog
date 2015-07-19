@@ -20,7 +20,7 @@ import bitman.ay27.watchdog.R;
 import bitman.ay27.watchdog.WatchdogApplication;
 import bitman.ay27.watchdog.model.SignInRecvForm;
 import bitman.ay27.watchdog.net.NetManager;
-import bitman.ay27.watchdog.service.DogWatchServiceManager;
+import bitman.ay27.watchdog.watchlink.DogWatchServiceManager;
 import bitman.ay27.watchdog.service.HeartbeatService;
 import bitman.ay27.watchdog.service.KeyguardService;
 import bitman.ay27.watchdog.service.ServiceManager;
@@ -186,7 +186,7 @@ public class MainActivity extends ActionBarActivity {
 
         init();
 
-        tryConnectWatch();
+//        tryConnectWatch();
     }
 
     private void tryConnectWatch() {

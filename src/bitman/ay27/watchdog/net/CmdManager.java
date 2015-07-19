@@ -1,4 +1,4 @@
-package bitman.ay27.watchdog.service;
+package bitman.ay27.watchdog.net;
 
 /**
  * Created by ay27 on 15-7-8.

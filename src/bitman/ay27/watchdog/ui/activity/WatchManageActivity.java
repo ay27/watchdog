@@ -15,8 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import bitman.ay27.watchdog.PrefUtils;
 import bitman.ay27.watchdog.R;
-import bitman.ay27.watchdog.service.DogWatchServiceManager;
-import bitman.ay27.watchdog.service.ServiceManager;
+import bitman.ay27.watchdog.watchlink.DogWatchServiceManager;
 import bitman.ay27.watchdog.ui.activity.widget.ChooseDistDialog;
 import bitman.ay27.watchdog.ui.activity.widget.ScanBleDialog;
 import bitman.ay27.watchdog.watchlink.DefaultDogWatchCallback;
@@ -84,6 +83,7 @@ public class WatchManageActivity extends Activity {
     private ProgressDialog pd;
     private DogWatchService dogWatchService;
 
+
     private Runnable correctDistRunnable = new Runnable() {
         @Override
         public void run() {
@@ -101,8 +101,8 @@ public class WatchManageActivity extends Activity {
         @Override
         public void onClick(DialogInterface dialog, int which) {
             dogWatchService.disconnect();
-            ServiceManager.getInstance().removeService(DogWatchService.class);
             PrefUtils.setBLEAddr("");
+            setSettingEnable(false);
         }
     };
 
@@ -118,9 +118,9 @@ public class WatchManageActivity extends Activity {
                     Toast.makeText(WatchManageActivity.this, "on post: " + name + " " + Arrays.toString(remoteVal), Toast.LENGTH_SHORT).show();
                     Log.i(TAG, "on post: " + name + " " + Arrays.toString(remoteVal));
 
-                    if (name == DogWatchService.CHARA_TIME_UTC && pd.isShowing()) {
+//                    if (name == DogWatchService.CHARA_TIME_UTC && pd.isShowing()) {
                         pd.cancel();
-                    }
+//                    }
                 }
             }, 20);
         }
@@ -175,8 +175,6 @@ public class WatchManageActivity extends Activity {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    bindWatchPanel.setVisibility(View.VISIBLE);
-                    currentPanel.setVisibility(View.GONE);
                     setSettingEnable(false);
                     timer.cancel();
 
@@ -204,8 +202,6 @@ public class WatchManageActivity extends Activity {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    bindWatchPanel.setVisibility(View.GONE);
-                    currentPanel.setVisibility(View.VISIBLE);
                     setSettingEnable(true);
                     PrefUtils.setBLEAddr(address);
                     setUpDistView();
@@ -229,6 +225,12 @@ public class WatchManageActivity extends Activity {
     private DogWatchServiceManager.BindCallback bindCallback = new DogWatchServiceManager.BindCallback() {
         @Override
         public void onBindSuccess(DogWatchService service) {
+
+            if (service.getConnectionState() != DogWatchService.STATE_CONNECTED) {
+                Toast.makeText(WatchManageActivity.this, R.string.bt_device_lost, Toast.LENGTH_SHORT).show();
+                setSettingEnable(false);
+            }
+
             dogWatchService = service;
             dogWatchService.initialize(dogWatchCallback);
             if (dogWatchService.getConnectionState() != DogWatchService.STATE_DISCONNECTED) {
@@ -250,6 +252,7 @@ public class WatchManageActivity extends Activity {
 
         }
     };
+
     private DogWatchServiceManager manager = DogWatchServiceManager.getInstance();
 
     private void setUpDistView() {
@@ -276,29 +279,42 @@ public class WatchManageActivity extends Activity {
 
         String addr = PrefUtils.getBLEAddr();
         if (addr.isEmpty()) {
-            bindWatchPanel.setVisibility(View.VISIBLE);
-            currentPanel.setVisibility(View.GONE);
             setSettingEnable(false);
         } else {
-            bindWatchPanel.setVisibility(View.GONE);
-            currentPanel.setVisibility(View.VISIBLE);
             setSettingEnable(true);
         }
-
-        manager.bind(this, bindCallback);
 
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onResume() {
+        super.onResume();
+
+        manager.bind(this, bindCallback);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
         manager.unbind(this, bindCallback);
         if (timer != null) {
             timer.cancel();
         }
     }
 
+
     private void setSettingEnable(boolean flag) {
+
+        if (!flag) {
+            bindWatchPanel.setVisibility(View.VISIBLE);
+            currentPanel.setVisibility(View.GONE);
+        }
+        else {
+            bindWatchPanel.setVisibility(View.GONE);
+            currentPanel.setVisibility(View.VISIBLE);
+        }
+
         setEnable(findWatchPanel, flag);
         setEnable(findWatchTxv, flag);
         setEnable(findWatchSummer, flag);
