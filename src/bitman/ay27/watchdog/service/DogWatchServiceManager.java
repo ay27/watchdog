@@ -7,6 +7,7 @@ import android.content.ServiceConnection;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
+import android.util.Log;
 import bitman.ay27.watchdog.watchlink.DogWatchService;
 
 import java.util.ArrayList;
@@ -18,15 +19,18 @@ import java.util.concurrent.Semaphore;
  */
 public class DogWatchServiceManager {
 
+    private static final String TAG = "DogWatchManager";
     private static DogWatchServiceManager instance;
-    private final Semaphore serviceFree;
+    private final Semaphore bindLockr;
+    private final Semaphore connItemCount;
     private final WorkThread workThread;
     private volatile ArrayList<ConnItem> items;
 
 
     public DogWatchServiceManager() {
         items = new ArrayList<ConnItem>();
-        serviceFree = new Semaphore(1);
+        bindLockr = new Semaphore(1);
+        connItemCount = new Semaphore(0);
 
         workThread = new WorkThread();
         workThread.start();
@@ -47,12 +51,14 @@ public class DogWatchServiceManager {
             @Override
             public void handleMessage(Message msg) {
                 synchronized (ConnItem.class) {
-                    context.bindService(new Intent(context, DogWatchService.class), item.conn = generateConn(cb), Context.BIND_AUTO_CREATE);
+                    context.bindService(new Intent(context, DogWatchService.class), item.conn = generateConn(context, cb), Context.BIND_AUTO_CREATE);
+                    Log.i(TAG, "bind");
                 }
             }
         };
         items.add(item);
-        workThread.notify();
+        connItemCount.release();
+//        workThread.notify();
     }
 
     public synchronized void unbind(final Context context, final BindCallback cb) {
@@ -65,13 +71,15 @@ public class DogWatchServiceManager {
                 }
                 items.remove(item);
 
-                serviceFree.release();
+                bindLockr.release();
+
+                Log.i(TAG, "unbind");
             }
         }
     }
 
 
-    private ServiceConnection generateConn(final BindCallback cb) {
+    private ServiceConnection generateConn(final Context context, final BindCallback cb) {
         return new ServiceConnection() {
             @Override
             public void onServiceConnected(ComponentName name, IBinder service) {
@@ -91,7 +99,8 @@ public class DogWatchServiceManager {
     }
 
     public static interface BindCallback {
-        public void onBindSuccess(DogWatchService service);
+
+        public abstract void onBindSuccess(DogWatchService service);
 
         public void onBindFailed();
 
@@ -106,22 +115,24 @@ public class DogWatchServiceManager {
     }
 
     private class WorkThread extends Thread {
+        private static final String TAG = "WorkThread";
+
         @Override
         public void run() {
             super.run();
 
             while (true) {
                 try {
-                    if (items.isEmpty()) {
-                        wait();
-                    }
 
-                    if (items.isEmpty()) {
-                        continue;
-                    }
+                    Log.i(TAG, "acquire");
+                    bindLockr.acquire();
 
-                    serviceFree.acquire();
+                    Log.i(TAG, "has item");
 
+                    // the bind task only handle ONE-TIME
+                    connItemCount.acquire();
+
+                    Log.i(TAG, "handler");
                     ConnItem item = items.get(0);
                     if (item.bindHandler != null) {
                         item.bindHandler.obtainMessage(0).sendToTarget();
