@@ -77,4 +77,9 @@
     <string name="usb_failed">USB接口操作失败</string>
     <string name="screen_lock_enable">屏幕锁已开启</string>
     <string name="screen_lock_disable">屏幕锁已关闭</string>
+    <string name="bt_device_lost">蓝牙连接丢失</string>
+    <string name="device_type_unknown">未知设备类型</string>
+    <string name="device_type_le">BLE低功耗设备</string>
+    <string name="device_type_classic">蓝牙2.0设备</string>
+    <string name="device_type_daul">DEVICE_TYPE_DUAL</string>
 </resources>
