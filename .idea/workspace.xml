@@ -41,23 +41,7 @@
     <bookmark url="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/ServiceManager.java" line="98" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="28777324-ed83-4814-ba7a-bf7f7af243bb" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/new_activity/AppSettingActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/bitman/ay27/watchdog/service/DogWatchServiceManager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/new_activity/SdEncryptActivity.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/bitman/ay27/watchdog/encrypt/EncryptManager.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/bitman/ay27/watchdog/opengl/AttitudeRender.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/bitman/ay27/watchdog/opengl/AttitudeView.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/bitman/ay27/watchdog/opengl/GL_Property/BufferUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/bitman/ay27/watchdog/opengl/GL_Property/GL_Utils.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/bitman/ay27/watchdog/opengl/GL_Property/LightColor.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/bitman/ay27/watchdog/opengl/GL_Property/LightPos.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/bitman/ay27/watchdog/opengl/GL_Property/Materials.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/watchdog/watchdog.unaligned.apk" afterPath="$PROJECT_DIR$/out/production/watchdog/watchdog.unaligned.apk" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/new_activity/ScreenLockrActivity.java" afterPath="$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/new_activity/ScreenLockrActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="28777324-ed83-4814-ba7a-bf7f7af243bb" name="Default" comment="" />
     <ignored path="watchdog.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -85,7 +69,7 @@
       <file leaf-file-name="ScreenLockrActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/new_activity/ScreenLockrActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="34" max-vertical-offset="990">
+            <state vertical-scroll-proportion="0.0" vertical-offset="550" max-vertical-offset="792">
               <caret line="32" column="6" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="6" />
               <folding />
             </state>
@@ -95,12 +79,9 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/new_activity/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2310" max-vertical-offset="3520">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1738" max-vertical-offset="2948">
               <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
-              <folding>
-                <element signature="e#2105#2106#0" expanded="false" />
-                <element signature="e#2187#2188#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -110,9 +91,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="78" max-vertical-offset="1034">
               <caret line="41" column="38" selection-start-line="41" selection-start-column="38" selection-end-line="41" selection-end-column="38" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -135,9 +114,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="368" max-vertical-offset="2266">
               <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -145,47 +122,9 @@
       <file leaf-file-name="WatchManageActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/ui/activity/WatchManageActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3250" max-vertical-offset="8404">
+            <state vertical-scroll-proportion="0.0" vertical-offset="3630" max-vertical-offset="8338">
               <caret line="222" column="12" selection-start-line="222" selection-start-column="12" selection-end-line="222" selection-end-column="83" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#3134#3442#0" expanded="false" />
-                <element signature="e#3441#3442#0" expanded="false" />
-                <element signature="e#3511#3808#0" expanded="false" />
-                <element signature="e#3807#3808#0" expanded="false" />
-                <element signature="e#4164#4649#0" expanded="false" />
-                <element signature="e#4648#4649#0" expanded="false" />
-                <element signature="e#4809#5016#0" expanded="false" />
-                <element signature="e#5015#5016#0" expanded="false" />
-                <element signature="e#5235#5488#0" expanded="false" />
-                <element signature="e#5487#5488#0" expanded="false" />
-                <element signature="e#5646#5853#0" expanded="false" />
-                <element signature="e#5852#5853#0" expanded="false" />
-                <element signature="e#6025#6255#0" expanded="false" />
-                <element signature="e#6254#6255#0" expanded="false" />
-                <element signature="e#6398#6863#0" expanded="false" />
-                <element signature="e#6862#6863#0" expanded="false" />
-                <element signature="e#7033#7240#0" expanded="false" />
-                <element signature="e#7239#7240#0" expanded="false" />
-                <element signature="e#7448#7813#0" expanded="false" />
-                <element signature="e#7812#7813#0" expanded="false" />
-                <element signature="e#8714#8715#0" expanded="false" />
-                <element signature="e#8772#8773#0" expanded="false" />
-                <element signature="e#9464#9867#0" expanded="false" />
-                <element signature="e#9566#9841#0" expanded="false" />
-                <element signature="e#9840#9841#0" expanded="false" />
-                <element signature="e#9866#9867#0" expanded="false" />
-                <element signature="e#11810#13217#0" expanded="false" />
-                <element signature="e#13216#13217#0" expanded="false" />
-                <element signature="e#13406#13670#0" expanded="false" />
-                <element signature="e#13669#13670#0" expanded="false" />
-                <element signature="e#13915#14852#0" expanded="false" />
-                <element signature="e#14851#14852#0" expanded="false" />
-                <element signature="e#15332#15707#0" expanded="false" />
-                <element signature="e#15706#15707#0" expanded="false" />
-                <element signature="e#16419#16420#0" expanded="false" />
-                <element signature="e#16493#16494#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -193,7 +132,7 @@
       <file leaf-file-name="DogWatchServiceManager.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/DogWatchServiceManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.39342523" vertical-offset="2049" max-vertical-offset="3014">
+            <state vertical-scroll-proportion="0.40827146" vertical-offset="2035" max-vertical-offset="3014">
               <caret line="115" column="27" selection-start-line="115" selection-start-column="27" selection-end-line="115" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -321,6 +260,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -655,7 +595,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1105,15 +1044,16 @@
       <workItem from="1437104428221" duration="16840000" />
       <workItem from="1437180642499" duration="18396000" />
       <workItem from="1437234540605" duration="177000" />
+      <workItem from="1437270049827" duration="7000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="473704000" />
+    <option name="totallyTimeSpent" value="473711000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1135,14 +1075,14 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20766774" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20766774" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Memory Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3140244" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25079873" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34857723" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25203252" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1750,10 +1690,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="2445" max-vertical-offset="3388">
           <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
-          <folding>
-            <element signature="e#2105#2106#0" expanded="false" />
-            <element signature="e#2187#2188#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1761,9 +1698,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="78" max-vertical-offset="1034">
           <caret line="41" column="38" selection-start-line="41" selection-start-column="38" selection-end-line="41" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1782,9 +1717,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="368" max-vertical-offset="2266">
           <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1792,45 +1725,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="3250" max-vertical-offset="8404">
           <caret line="222" column="12" selection-start-line="222" selection-start-column="12" selection-end-line="222" selection-end-column="83" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#3134#3442#0" expanded="false" />
-            <element signature="e#3441#3442#0" expanded="false" />
-            <element signature="e#3511#3808#0" expanded="false" />
-            <element signature="e#3807#3808#0" expanded="false" />
-            <element signature="e#4164#4649#0" expanded="false" />
-            <element signature="e#4648#4649#0" expanded="false" />
-            <element signature="e#4809#5016#0" expanded="false" />
-            <element signature="e#5015#5016#0" expanded="false" />
-            <element signature="e#5235#5488#0" expanded="false" />
-            <element signature="e#5487#5488#0" expanded="false" />
-            <element signature="e#5646#5853#0" expanded="false" />
-            <element signature="e#5852#5853#0" expanded="false" />
-            <element signature="e#6025#6255#0" expanded="false" />
-            <element signature="e#6254#6255#0" expanded="false" />
-            <element signature="e#6398#6863#0" expanded="false" />
-            <element signature="e#6862#6863#0" expanded="false" />
-            <element signature="e#7033#7240#0" expanded="false" />
-            <element signature="e#7239#7240#0" expanded="false" />
-            <element signature="e#7448#7813#0" expanded="false" />
-            <element signature="e#7812#7813#0" expanded="false" />
-            <element signature="e#8714#8715#0" expanded="false" />
-            <element signature="e#8772#8773#0" expanded="false" />
-            <element signature="e#9464#9867#0" expanded="false" />
-            <element signature="e#9566#9841#0" expanded="false" />
-            <element signature="e#9840#9841#0" expanded="false" />
-            <element signature="e#9866#9867#0" expanded="false" />
-            <element signature="e#11810#13217#0" expanded="false" />
-            <element signature="e#13216#13217#0" expanded="false" />
-            <element signature="e#13406#13670#0" expanded="false" />
-            <element signature="e#13669#13670#0" expanded="false" />
-            <element signature="e#13915#14852#0" expanded="false" />
-            <element signature="e#14851#14852#0" expanded="false" />
-            <element signature="e#15332#15707#0" expanded="false" />
-            <element signature="e#15706#15707#0" expanded="false" />
-            <element signature="e#16419#16420#0" expanded="false" />
-            <element signature="e#16493#16494#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1859,7 +1754,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33263597" vertical-offset="16138" max-vertical-offset="26686">
           <caret line="815" column="16" selection-start-line="815" selection-start-column="16" selection-end-line="815" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1867,13 +1761,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.74686193" vertical-offset="6920" max-vertical-offset="9570">
           <caret line="383" column="29" selection-start-line="383" selection-start-column="29" selection-end-line="383" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/bitman/ay27/watchdog/service/DogWatchServiceManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39342523" vertical-offset="2049" max-vertical-offset="3014">
+        <state vertical-scroll-proportion="0.40827146" vertical-offset="2035" max-vertical-offset="3014">
           <caret line="115" column="27" selection-start-line="115" selection-start-column="27" selection-end-line="115" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
