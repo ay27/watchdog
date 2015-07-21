@@ -31,6 +31,7 @@ public class PrefUtils {
     private static final String KEY_BLE_DIST = "ble_dist";
     private static final String KEY_SIM_SERIAL_NUMBER = "sim_serial_number";
     private static final String KEY_PHONE_SAFETY = "phone_safety";
+    private static final String KEY_AUTO_CLOSE_USB = "auto_close_usb";
 
     private static Context context = WatchdogApplication.getContext();
     private static SharedPreferences pref = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
@@ -196,5 +197,13 @@ public class PrefUtils {
 
     public static boolean isPhoneSafe() {
         return pref.getBoolean(KEY_PHONE_SAFETY, true);
+    }
+
+    public static void setAutoCloseUsb(boolean checked) {
+        pref.edit().putBoolean(KEY_AUTO_CLOSE_USB, checked).apply();
+    }
+
+    public static boolean isAutoCloseUsb() {
+        return pref.getBoolean(KEY_AUTO_CLOSE_USB, false);
     }
 }

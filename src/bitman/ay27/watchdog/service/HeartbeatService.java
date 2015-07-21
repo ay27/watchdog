@@ -46,6 +46,8 @@ public class HeartbeatService extends Service {
         timer = new Timer();
 
         // send a heartbeat every one minute
+
+        // TODO open it
 //        timer.schedule(heartbeatTask, 0, 5000);
     }
 

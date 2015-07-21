@@ -1,47 +1,36 @@
 package bitman.ay27.watchdog.ui.new_activity;
 
-import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.widget.CompoundButton;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import bitman.ay27.watchdog.PrefUtils;
 import bitman.ay27.watchdog.R;
 import bitman.s117.libwatchcat.WatchCat_Controller;
 import bitman.s117.libwatchcat.WatchCat_Controller_Impl;
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import com.kyleduo.switchbutton.SwitchButton;
 
 /**
  * Proudly to use Intellij IDEA.
  * Created by ay27 on 15-7-18.
  */
-public class FlashLockrActivity extends Activity {
+public class FlashLockrActivity extends ActionBarActivity implements View.OnClickListener {
 
-    private boolean reEnter = false;
-    private SwitchButton switchButton;
+    @InjectView(R.id.flash_lockr_switch)
+    SwitchButton switchButton;
+    @InjectView(R.id.flash_lockr_status)
+    TextView flashLockrStatus;
+    @InjectView(R.id.flash_lockr_toolbar)
+    Toolbar flashLockrToolbar;
+    @InjectView(R.id.flash_lockr_panel)
+    RelativeLayout flashLockrPanel;
 
-    private CompoundButton.OnCheckedChangeListener lockrCheckedChanged = new CompoundButton.OnCheckedChangeListener() {
-        @Override
-        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            if (reEnter) {
-                reEnter = false;
-                return;
-            }
-            PrefUtils.setBootLoaderEnable(isChecked);
-
-            boolean result;
-            if (isChecked) {
-                result = enableFlashLock();
-            } else {
-                result = disableFlashLock();
-            }
-            if (result) {
-                PrefUtils.setBootLoaderEnable(isChecked);
-            } else {
-                reEnter = true;
-                switchButton.setChecked(!isChecked);
-            }
-        }
-    };
 
     private boolean disableFlashLock() {
         WatchCat_Controller wc_ctl = new WatchCat_Controller_Impl();
@@ -82,8 +71,50 @@ public class FlashLockrActivity extends Activity {
         }
     }
 
+    private boolean isCheck = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.flash_lockr);
+        ButterKnife.inject(this);
+
+        flashLockrToolbar.setTitle(R.string.flash_lockr);
+        flashLockrToolbar.setTitleTextColor(Color.WHITE);
+        setSupportActionBar(flashLockrToolbar);
+
+        isCheck = PrefUtils.isBootloaderEnable();
+        switchButton.setChecked(isCheck);
+
+        setEnable(isCheck);
+
+        flashLockrPanel.setOnClickListener(this);
+//        switchButton.setOnCheckedChangeListener(lockrCheckedChanged);
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        isCheck = !isCheck;
+
+        boolean result;
+        if (isCheck) {
+            result = enableFlashLock();
+        } else {
+            result = disableFlashLock();
+        }
+        if (result) {
+            PrefUtils.setBootLoaderEnable(isCheck);
+            setEnable(isCheck);
+            switchButton.performClick();
+
+        } else {
+            switchButton.setChecked(!isCheck);
+        }
+    }
+
+    private void setEnable(boolean value) {
+        flashLockrStatus.setText(value ? R.string.flash_lockr_open : R.string.flash_lockr_close);
+        flashLockrStatus.setTextColor(getResources().getColor(value ? R.color.green_1 : R.color.red_1));
     }
 }

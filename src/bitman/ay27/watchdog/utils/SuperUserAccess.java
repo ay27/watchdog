@@ -54,6 +54,7 @@ public class SuperUserAccess {
     public static boolean runCmd(String cmd) {
         Process process = null;
         DataOutputStream dos = null;
+        int exitValue = 0;
         try {
             process = Runtime.getRuntime().exec("su");
             dos = new DataOutputStream(process.getOutputStream());
@@ -70,10 +71,12 @@ public class SuperUserAccess {
                     e.printStackTrace();
                 }
             }
-            if (process != null)
+            if (process != null) {
+                exitValue = process.exitValue();
                 process.destroy();
+            }
         }
-        return true;
+        return exitValue == 0;
     }
 
     public static boolean disableUsb() {

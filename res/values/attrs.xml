@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Semicircle">
+        <attr name="sector_num" format="integer"/>
+        <attr name="r" format="dimension"/>
+    </declare-styleable>
+</resources>

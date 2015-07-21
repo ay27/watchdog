@@ -83,4 +83,13 @@
     <string name="device_type_classic">蓝牙2.0设备</string>
     <string name="device_type_daul">DEVICE_TYPE_DUAL</string>
     <string name="batterying">正在充电</string>
+    <string name="flash_lockr_close">关闭，系统面临刷机风险</string>
+    <string name="flash_lockr_open">开启，系统处于安全状态</string>
+    <string name="flash_lockr">刷机锁</string>
+    <string name="usb_lockr_close">关闭，USB接口已被关闭</string>
+    <string name="usb_lockr_open">开启，USB接口正常使用</string>
+    <string name="usb_lockr">USB锁</string>
+    <string name="screen_lockr_close">关闭，他人可以直接唤醒并使用手机</string>
+    <string name="screen_lockr_open">开启，每次唤醒手机需要通过验证</string>
+    <string name="screen_lockr">屏幕锁</string>
 </resources>

@@ -67,5 +67,7 @@
     <color name="inverse_disabled">#a50a0a0a</color>
     <color name="inverse_disabled_edge">#a5141414</color>
 
+    <color name="gray3">#FFBDBDBD</color>
+    <color name="gray">#ffcccccc</color>
 
 </resources>

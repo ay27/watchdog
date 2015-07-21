@@ -15,12 +15,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 import bitman.ay27.watchdog.PrefUtils;
 import bitman.ay27.watchdog.R;
-import bitman.ay27.watchdog.watchlink.DogWatchServiceManager;
 import bitman.ay27.watchdog.ui.activity.widget.ChooseDistDialog;
 import bitman.ay27.watchdog.ui.activity.widget.ScanBleDialog;
 import bitman.ay27.watchdog.watchlink.DefaultDogWatchCallback;
 import bitman.ay27.watchdog.watchlink.DogWatchCallback;
 import bitman.ay27.watchdog.watchlink.DogWatchService;
+import bitman.ay27.watchdog.watchlink.DogWatchServiceManager;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
@@ -118,9 +118,9 @@ public class WatchManageActivity extends Activity {
                     Toast.makeText(WatchManageActivity.this, "on post: " + name + " " + Arrays.toString(remoteVal), Toast.LENGTH_SHORT).show();
                     Log.i(TAG, "on post: " + name + " " + Arrays.toString(remoteVal));
 
-//                    if (name == DogWatchService.CHARA_TIME_UTC && pd.isShowing()) {
+                    if (name == DogWatchService.CHARA_TIME_UTC && pd != null && pd.isShowing()) {
                         pd.cancel();
-//                    }
+                    }
                 }
             }, 20);
         }
@@ -309,8 +309,7 @@ public class WatchManageActivity extends Activity {
         if (!flag) {
             bindWatchPanel.setVisibility(View.VISIBLE);
             currentPanel.setVisibility(View.GONE);
-        }
-        else {
+        } else {
             bindWatchPanel.setVisibility(View.GONE);
             currentPanel.setVisibility(View.VISIBLE);
         }

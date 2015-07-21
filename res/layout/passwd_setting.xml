@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+        >
+
+    <include layout="@layout/toolbar"/>
+
+    <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+              android:text="WatchDog使用以下两种解锁方式："
+              android:textSize="20sp"
+              android:textColor="@color/black"
+              android:padding="16dp"/>
+
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:padding="16dp">
+        <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:orientation="vertical"
+                      android:layout_weight="1">
+            <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:text="速度轨迹解锁"
+                      android:textSize="16sp"
+                      android:gravity="center"
+                      android:padding="4dp"
+                      android:textColor="@color/black"/>
+            <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:text="绘图轨迹+绘图速度\n简单却安全可靠"
+                      android:gravity="center"
+                      android:padding="4dp"
+                    />
+            <ImageView android:layout_width="fill_parent" android:layout_height="200dp"
+                       android:src="@drawable/draw_passwd"
+                       android:scaleType="fitCenter"
+                       android:padding="16dp"
+                    />
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:orientation="vertical"
+                      android:layout_weight="1">
+            <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:text="动态键盘解锁"
+                      android:textSize="16sp"
+                      android:gravity="center"
+                      android:padding="4dp"
+                      android:textColor="@color/black"/>
+            <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:text="传统的字符密码有了\n全新的使用方式"
+                      android:gravity="center"
+                      android:padding="4dp"
+                    />
+            <ImageView android:layout_width="fill_parent" android:layout_height="200dp"
+                       android:src="@drawable/random_keyboard"
+                       android:scaleType="fitCenter"
+                       android:padding="16dp"
+                    />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button android:layout_width="300dp" android:layout_height="42dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="60dp"
+            android:text="开始设置密码"
+            android:background="@drawable/white_btn"
+            android:textSize="14sp"/>
+
+</LinearLayout>

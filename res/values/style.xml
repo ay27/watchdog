@@ -28,7 +28,7 @@
     </style>
 
 
-    <style name="MaterialSettings" parent="MaterialSettingsTheme">
+    <style name="WatchdogTheme" parent="MaterialSettingsTheme">
         <!--<item name="msColorPrimary">@color/redPrimary</item>-->
         <!--<item name="msColorPrimaryDark">@color/redPrimaryDark</item>-->
         <!--<item name="msColorAccent">@color/redAccent</item>-->
@@ -41,7 +41,7 @@
         <item name="android:windowBackground">@color/windowBackground</item>
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
         <!--<item name="actionMenuTextColor">@color/white</item>-->
-        <item name="colorAccent">@color/primary</item>
+        <item name="colorAccent">#62B6AE</item>
         <!--<item name="colorControlNormal">@color/icons</item>-->
     </style>
 
@@ -49,6 +49,7 @@
         <item name="spinBars">true</item>
         <item name="color">@android:color/white</item>
     </style>
+
 
 
     <!-- style in layout -->
