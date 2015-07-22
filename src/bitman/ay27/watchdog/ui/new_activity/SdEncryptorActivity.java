@@ -21,6 +21,9 @@ import bitman.s117.libwatchcat.WatchCat_Controller_Impl;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * Proudly to use Intellij IDEA.
  * Created by ay27 on 15-7-18.
@@ -68,16 +71,42 @@ public class SdEncryptorActivity extends ActionBarActivity {
         toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
 
-        PrefUtils.registerListener(sdStatusChangedListener);
+//        PrefUtils.registerListener(sdStatusChangedListener);
 
         updateSdStatus();
 
+        startScanSdExistTask();
+
+    }
+
+    private Timer timer;
+    private boolean sdStatus = wctl.isSDCardExist();
+
+    private void startScanSdExistTask() {
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                if (sdStatus != wctl.isSDCardExist()) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            updateSdStatus();
+                        }
+                    });
+                    sdStatus = !sdStatus;
+                }
+            }
+        }, 0, 3000);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        PrefUtils.unregisterListener(sdStatusChangedListener);
+//        PrefUtils.unregisterListener(sdStatusChangedListener);
+        if (timer != null) {
+            timer.cancel();
+        }
     }
 
 
@@ -86,7 +115,7 @@ public class SdEncryptorActivity extends ActionBarActivity {
         updateSdStatus();
 
         if (state == 0) {
-            exitWithNoSdCard();
+            noSdCard();
         } else if (state == 1) {
             showInputSdPasswdDialog();
         } else if (state == 2) {
@@ -167,7 +196,7 @@ public class SdEncryptorActivity extends ActionBarActivity {
 
     private void removeSd() {
         if (!wctl.isSDCardExist()) {
-            exitWithNoSdCard();
+            noSdCard();
             return;
         }
 
@@ -214,7 +243,7 @@ public class SdEncryptorActivity extends ActionBarActivity {
             public void finished(String passwd, int mode) {
 
                 if (!wctl.isSDCardExist()) {
-                    exitWithNoSdCard();
+                    noSdCard();
                     return;
                 }
 
@@ -258,7 +287,7 @@ public class SdEncryptorActivity extends ActionBarActivity {
         }).show();
     }
 
-    private void exitWithNoSdCard() {
+    private void noSdCard() {
         Toast.makeText(this, R.string.sd_no_sd_card, Toast.LENGTH_SHORT).show();
         PrefUtils.setSdState(0);
 //        finish();
@@ -278,11 +307,16 @@ public class SdEncryptorActivity extends ActionBarActivity {
         statusCode += wctl.isBcptLoaded() ? 10 : 0;
         statusCode += wctl.isSDCardExist() ? 100 : 0;
 
+        Log.i(TAG, "status code : "+statusCode);
+
         switch (statusCode) {
             case 000:
-                Toast.makeText(this, R.string.sd_no_sd_card, Toast.LENGTH_SHORT).show();
-                PrefUtils.setSdState(0);
-                finish();
+                noSdCard();
+                sdEncryptorSdStatus.setText(R.string.sd_no_sd_card);
+                sdEncryptorSdStatus.setTextColor(getResources().getColor(R.color.red_1));
+                setActionPanel(false);
+                setFormatPanel(false);
+                PrefUtils.setSdState(1);
                 break;
             case 001:
                 planC();
@@ -295,25 +329,34 @@ public class SdEncryptorActivity extends ActionBarActivity {
                 break;
             case 100:
             case 110:
+                setActionPanel(true);
+                setFormatPanel(false);
                 sdEncryptorSdStatus.setText(R.string.sd_wait_to_enable);
                 sdEncryptorSdStatus.setTextColor(getResources().getColor(R.color.red_1));
                 sdEncryptorActionTitle.setText(R.string.sd_action_load);
                 sdEncryptorActionSummer.setText(R.string.sd_action_load_summer);
-                setFormatPanel(false);
                 PrefUtils.setSdState(1);
                 break;
             case 101:
                 planC();
                 break;
             case 111:
+                setActionPanel(true);
+                setFormatPanel(true);
                 sdEncryptorSdStatus.setText(R.string.sd_can_be_remove);
                 sdEncryptorSdStatus.setTextColor(getResources().getColor(R.color.green_1));
                 sdEncryptorActionTitle.setText(R.string.sd_action_remove);
                 sdEncryptorActionSummer.setText(R.string.sd_action_remove_summer);
-                setFormatPanel(true);
                 PrefUtils.setSdState(2);
                 break;
         }
+    }
+
+    private void setActionPanel(boolean value) {
+        sdEncryptorActionPanel.setEnabled(value);
+        sdEncryptorActionPanel.setClickable(value);
+        sdEncryptorActionTitle.setEnabled(value);
+        sdEncryptorActionSummer.setEnabled(value);
     }
 
     private void setFormatPanel(boolean value) {

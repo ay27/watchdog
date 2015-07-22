@@ -5,45 +5,58 @@
               android:layout_height="match_parent"
               android:padding="16dp">
 
+    <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+            android:text="打开加密的SD卡"
+            android:textSize="20sp"
+            android:paddingTop="8dp"
+            android:paddingBottom="24dp"
+            android:textColor="@color/black"
+            android:gravity="center"
+            />
+
     <EditText
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:ems="10"
-            android:hint="输入SD卡密钥"
-            android:id="@+id/input_sd_passwd_dialog_pass_edt"/>
+            android:hint="输入加密密钥"
+            android:id="@+id/input_sd_passwd_dialog_pass_edt"
+            android:paddingTop="8dp"
+            android:paddingBottom="16dp"/>
     <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
-                  android:orientation="horizontal">
+                  android:orientation="vertical"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp">
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                   android:text="选择加密方式"
-                  android:layout_gravity="center"/>
+                  />
         <RadioGroup
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="4dp"
+                android:orientation="vertical"
+                android:padding="8dp"
                 android:id="@+id/input_sd_passwd_dialog_radio_group"
                 >
             <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="AES"
+                    android:text="AES：强度高"
                     android:id="@+id/input_sd_passwd_dialog_radio_btn_0"
                     android:checked="true"
-                    android:padding="4dp"/>
+                    android:padding="16dp"/>
             <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="blowfish"
-                    android:padding="4dp"
+                    android:text="blowfish：速度快"
+                    android:padding="16dp"
                     android:checked="false"
                     android:id="@+id/input_sd_passwd_dialog_radio_btn_1"/>
         </RadioGroup>
     </LinearLayout>
     <Button
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="42dp"
             android:text="装载"
             android:id="@+id/input_sd_passwd_dialog_btn"
-            android:background="@drawable/transparent_item_bg"/>
+            android:background="@drawable/white_btn"/>
 </LinearLayout>
