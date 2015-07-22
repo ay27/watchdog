@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="340dp"
+              android:layout_height="wrap_content"
+              android:padding="16dp"
+        >
+
+    <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+              android:text="什么是干扰密码？"
+              android:textSize="20sp"
+              android:textColor="@color/black"
+            />
+    <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+              android:text="        干扰密码是在传统的密码输入框上加上随机产生的字符，用户在输入密码时，需要把这些随机字符也同时输入才能通过验证。"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"/>
+
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:orientation="horizontal">
+
+        <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:orientation="vertical"
+                      android:layout_weight="1">
+            <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:text="传统字符密码"
+                      android:textSize="16sp"
+                      android:gravity="center"
+                      android:padding="4dp"
+                      android:textColor="@color/black"/>
+            <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:text="传统的字符密码有了\n全新的使用方式"
+                      android:gravity="center"
+                      android:padding="4dp"
+                    />
+            <ImageView android:layout_width="fill_parent" android:layout_height="200dp"
+                       android:src="@drawable/random_keyboard"
+                       android:scaleType="fitCenter"
+                       android:padding="16dp"
+                    />
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:orientation="vertical"
+                      android:layout_weight="1">
+            <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:text="带干扰的密码"
+                      android:textSize="16sp"
+                      android:gravity="center"
+                      android:padding="4dp"
+                      android:textColor="@color/black"/>
+            <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:text="传统的字符密码有了\n全新的使用方式"
+                      android:gravity="center"
+                      android:padding="4dp"
+                    />
+            <ImageView android:layout_width="fill_parent" android:layout_height="200dp"
+                       android:src="@drawable/random_keyboard"
+                       android:scaleType="fitCenter"
+                       android:padding="16dp"
+                    />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button android:layout_width="fill_parent" android:layout_height="42dp"
+            android:background="@drawable/white_btn"
+            android:text="了解"
+            android:textSize="14sp"
+            android:id="@+id/what_is_disturb_ok_btn"/>
+
+</LinearLayout>

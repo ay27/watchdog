@@ -37,6 +37,8 @@ public interface WatchCat_Controller {
 
     public boolean isSDCardExist();
 
+    public void umountSDCardCmd();
+
 
     //Watch Flash Lock Part
     public boolean isFlashLockExist();

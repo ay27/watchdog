@@ -1,6 +1,5 @@
 package bitman.ay27.watchdog.ui.new_activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -8,7 +7,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +16,7 @@ import bitman.ay27.watchdog.db.DbManager;
 import bitman.ay27.watchdog.db.model.KeyguardStatus;
 import bitman.ay27.watchdog.service.KeyguardService;
 import bitman.ay27.watchdog.service.ServiceManager;
+import bitman.ay27.watchdog.ui.new_activity.passwd.PasswdSettingActivity;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.kyleduo.switchbutton.SwitchButton;

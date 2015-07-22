@@ -65,6 +65,8 @@
             android:layout_marginTop="60dp"
             android:text="开始设置密码"
             android:background="@drawable/white_btn"
-            android:textSize="14sp"/>
+            android:textSize="14sp"
+            android:id="@+id/passwd_setting_set_btn"
+            android:onClick="startSetPasswdClick"/>
 
 </LinearLayout>

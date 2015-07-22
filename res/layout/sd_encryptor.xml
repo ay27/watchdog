@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <include layout="@layout/toolbar"
+            android:id="@+id/sd_encryptor_toolbar"/>
+
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:paddingLeft="16dp"
+                  android:layout_marginTop="16dp"
+                  android:layout_marginBottom="16dp">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="SD卡状态："
+                  android:textColor="@color/black"
+
+                />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:text="@string/sd_can_be_remove"
+                  android:textColor="@color/green_1"
+                  android:id="@+id/sd_encryptor_sd_status"/>
+    </LinearLayout>
+
+    <include layout="@layout/divider_small"/>
+
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:clickable="true"
+                  android:background="@drawable/transparent_item_bg"
+                  android:id="@+id/sd_encryptor_action_panel"
+                  android:paddingTop="16dp"
+                  android:paddingBottom="16dp"
+                  android:paddingLeft="16dp"
+                  android:paddingRight="16dp"
+                  android:orientation="vertical"
+                  android:gravity="center_vertical"
+                  android:onClick="sdActionClick"
+            >
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  style="@style/PreferenceFirstText"
+                  android:text="@string/sd_action_load"
+                android:id="@+id/sd_encryptor_action_title"/>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  style="@style/PreferenceSecondText"
+                  android:text="@string/sd_action_load_summer"
+                  android:id="@+id/sd_encryptor_action_summer"
+                />
+
+    </LinearLayout>
+
+    <include layout="@layout/divider_small"/>
+
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:clickable="true"
+                  android:background="@drawable/transparent_item_bg"
+                  android:id="@+id/sd_encryptor_format_panel"
+                  android:paddingTop="16dp"
+                  android:paddingBottom="16dp"
+                  android:paddingLeft="16dp"
+                  android:paddingRight="16dp"
+                  android:orientation="vertical"
+                  android:gravity="center_vertical"
+                  android:onClick="sdFormatClick"
+            >
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  style="@style/PreferenceFirstText"
+                  android:text="格式化"
+                  android:id="@+id/sd_encryptor_format_title"
+                />
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  style="@style/PreferenceSecondText"
+                  android:text="将SD卡格式化，清空其数据\n注意：新的SD卡需要使用这里的格式化后才能启用加密功能"
+                  android:id="@+id/sd_encryptor_format_summer"
+                />
+
+    </LinearLayout>
+
+    <include layout="@layout/divider_small"/>
+
+    <ImageView android:layout_width="fill_parent" android:layout_height="fill_parent"
+               android:layout_gravity="center"
+               android:src="@drawable/ic_sd_card_grey600_48dp"
+               android:scaleType="center"/>
+
+
+</LinearLayout>

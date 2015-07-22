@@ -7,9 +7,9 @@ import butterknife.ButterKnife.Finder;
 public class KeyguardImgActivity$$ViewInjector {
   public static void inject(Finder finder, final bitman.ay27.watchdog.ui.activity.KeyguardImgActivity target, Object source) {
     View view;
-    view = finder.findRequiredView(source, 2131427419, "field 'dCanvas'");
+    view = finder.findRequiredView(source, 2131427426, "field 'dCanvas'");
     target.dCanvas = (bitman.ay27.watchdog.ui.activity.widget.DrawingCanvas) view;
-    view = finder.findRequiredView(source, 2131427421, "field 'changeModeBtn' and method 'changeClick'");
+    view = finder.findRequiredView(source, 2131427428, "field 'changeModeBtn' and method 'changeClick'");
     target.changeModeBtn = (android.widget.Button) view;
     view.setOnClickListener(
       new android.view.View.OnClickListener() {
@@ -19,7 +19,7 @@ public class KeyguardImgActivity$$ViewInjector {
           target.changeClick(p0);
         }
       });
-    view = finder.findRequiredView(source, 2131427422, "field 'errorToast'");
+    view = finder.findRequiredView(source, 2131427429, "field 'errorToast'");
     target.errorToast = view;
   }
 

@@ -36,6 +36,9 @@ public class WatchCat_Controller_Impl implements WatchCat_Controller {
     public static final String CMD_MKFS_EXFAT_TAG_TARGET = "__TARGET__";
     public static final String CMD_MKFS_EXFAT = "mkfs.exfat " + CMD_MKFS_EXFAT_TAG_TARGET;
 
+    public static final String CMD_UMOUNT_USBDISK_STORAGE = "umount /storage/usbdisk";
+    public static final String CMD_UMOUNT_USBDISK_MEDIARW = "umount /mnt/media_rw/usbdisk";
+
     public static final String CMD_FSTAB_CRYPTSD_SCTIPT = "cryptSD.sh";
     public static final String CMD_FSTAB_NORMALSD_SCTIPT = "normalSD.sh";
 
@@ -437,8 +440,7 @@ public class WatchCat_Controller_Impl implements WatchCat_Controller {
         } else if (devList.length >= 1) {
             firstDevName = extractDeviceName(devList[0].getName());
             for (int i = 1; i < devList.length; i++) {
-//                if (!firstDevName.equals(devList[i]))
-                if(!firstDevName.equals(extractDeviceName(devList[i].getName())))
+                if (!firstDevName.equals(devList[i]))
                     throw new IllegalStateException("multiple original block device, you need specify which one");
             }
         } else {
@@ -447,8 +449,7 @@ public class WatchCat_Controller_Impl implements WatchCat_Controller {
         }
 
         String cmd = CMD_WC_CTL_CRYPT.
-                replace(CMD_WC_CTL_CRYPT_TAG_TARGET, devList[0].getParentFile().getAbsolutePath() + "/" + firstDevName).
-//                replace(CMD_WC_CTL_CRYPT_TAG_TARGET, devList[0].getAbsolutePath()).
+                replace(CMD_WC_CTL_CRYPT_TAG_TARGET, devList[0].getAbsolutePath()).
                 replace(CMD_WC_CTL_CRYPT_TAG_CPTKEY, bytesToHexString(MD5(cipher))).
                 replace(CMD_WC_CTL_CRYPT_TAG_NAME, CMD_WC_CTL_CRYPT_MAPPED_NAME_PERFIX + firstDevName);
         if (mode == 0) {
@@ -498,6 +499,17 @@ public class WatchCat_Controller_Impl implements WatchCat_Controller {
     public boolean isSDCardExist() {
         File[] devList = findFileUnderDir("/dev/block", "sd*");
         return devList.length != 0;
+    }
+
+    @Override
+    public void umountSDCardCmd() {
+        CmdLineInvoker invoker = new CmdLineInvoker(CMD_UMOUNT_USBDISK_STORAGE, true);
+        if (invoker.run() != 0)
+            throw new IllegalStateException("fail when invoke \"" + CMD_UMOUNT_USBDISK_STORAGE + "\".");
+
+        invoker.setCmd(CMD_UMOUNT_USBDISK_MEDIARW, true);
+        if (invoker.run() != 0)
+            throw new IllegalStateException("fail when invoke \"" + CMD_UMOUNT_USBDISK_MEDIARW + "\".");
     }
 
 

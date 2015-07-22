@@ -14,24 +14,25 @@ import java.util.Set;
  */
 public class PrefUtils {
 
-    private static final String KEY_BOOT_LOADER_LOCK = "boot_loader_lock";
-    private static final String KEY_KEYGUARD = "keyguard";
-    private static final String PREF_NAME = "main_preference";
-    private static final String KEY_USB = "usb_debug";
-    private static final String KEY_SD_STATE = "sd_state";
-    private static final String KEY_SD_PASSWD = "sd_passwd";
-    private static final String KEY_ENCRYPT_TYPE = "sd_encrypt_type";
-    private static final String KEY_USERNAME = "username";
-    private static final String KEY_USER_PASSWORD = "password";
+    public static final String KEY_BOOT_LOADER_LOCK = "boot_loader_lock";
+    public static final String KEY_KEYGUARD = "keyguard";
+    public static final String PREF_NAME = "main_preference";
+    public static final String KEY_USB = "usb_debug";
+    public static final String KEY_SD_STATE = "sd_state";
+    public static final String KEY_SD_PASSWD = "sd_passwd";
+    public static final String KEY_ENCRYPT_TYPE = "sd_encrypt_type";
+    public static final String KEY_USERNAME = "username";
+    public static final String KEY_USER_PASSWORD = "password";
 
-    private static final String KEY_USER_ID = "userId";
-    private static final String KEY_NFC_CARDS = "nfc_cards";
-    private static final String KEY_DEVICE_NAME = "deviceName";
-    private static final String KEY_BLE_DEVICE_ADDR = "ble_address";
-    private static final String KEY_BLE_DIST = "ble_dist";
-    private static final String KEY_SIM_SERIAL_NUMBER = "sim_serial_number";
-    private static final String KEY_PHONE_SAFETY = "phone_safety";
-    private static final String KEY_AUTO_CLOSE_USB = "auto_close_usb";
+    public static final String KEY_USER_ID = "userId";
+    public static final String KEY_NFC_CARDS = "nfc_cards";
+    public static final String KEY_DEVICE_NAME = "deviceName";
+    public static final String KEY_BLE_DEVICE_ADDR = "ble_address";
+    public static final String KEY_BLE_DIST = "ble_dist";
+    public static final String KEY_SIM_SERIAL_NUMBER = "sim_serial_number";
+    public static final String KEY_PHONE_SAFETY = "phone_safety";
+    public static final String KEY_AUTO_CLOSE_USB = "auto_close_usb";
+    public static final String KEY_DISTURB_PASSWD = "disturb_passwd";
 
     private static Context context = WatchdogApplication.getContext();
     private static SharedPreferences pref = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
@@ -72,7 +73,7 @@ public class PrefUtils {
     }
 
     public static boolean isUsbEnable() {
-        return pref.getBoolean(KEY_USB, false);
+        return pref.getBoolean(KEY_USB, true);
     }
 
     public static void setUsbEnable(boolean enable) {
@@ -205,5 +206,9 @@ public class PrefUtils {
 
     public static boolean isAutoCloseUsb() {
         return pref.getBoolean(KEY_AUTO_CLOSE_USB, false);
+    }
+
+    public static void setDisturbPasswd(boolean checked) {
+        pref.edit().putBoolean(KEY_DISTURB_PASSWD, checked).apply();
     }
 }
