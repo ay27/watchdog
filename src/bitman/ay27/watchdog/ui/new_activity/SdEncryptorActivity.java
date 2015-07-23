@@ -126,13 +126,13 @@ public class SdEncryptorActivity extends ActionBarActivity {
         try {
             /**
              * reEnable the encryption
-             * 1. call format function
-             * 2. send UNMOUNT broadcast, unmount the sd card
-             * 3. re-mount and enable the encryption
+             * 1. send UNMOUNT broadcast, unmount the sd card
+             * 2. format sd card
+             * 3. re-mount
              * 4. receive the MOUNT broadcast, it means all the process finish
              */
 
-            wctl.formatEncryptionDisk();
+//            wctl.formatEncryptionDisk();
 
 
             final ProgressDialog pd = new ProgressDialog(this);
@@ -178,7 +178,6 @@ public class SdEncryptorActivity extends ActionBarActivity {
         } catch (Exception e) {
             Log.e(TAG, e.toString());
             Toast.makeText(this, R.string.format_failed, Toast.LENGTH_SHORT).show();
-            return;
         }
     }
 
@@ -371,8 +370,18 @@ public class SdEncryptorActivity extends ActionBarActivity {
     }
 
     private void planB() {
-        wctl.unloadBCPT();
-        updateSdStatus();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                wctl.unloadBCPT();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        updateSdStatus();
+                    }
+                });
+            }
+        }).start();
     }
 
     private void planC() {
