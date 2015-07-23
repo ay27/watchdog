@@ -7,23 +7,23 @@ import butterknife.ButterKnife.Finder;
 public class MainActivity$$ViewInjector {
   public static void inject(Finder finder, final bitman.ay27.watchdog.ui.activity.MainActivity target, Object source) {
     View view;
-    view = finder.findRequiredView(source, 2131427438, "field 'toolbar'");
+    view = finder.findRequiredView(source, 2131427439, "field 'toolbar'");
     target.toolbar = (android.support.v7.widget.Toolbar) view;
-    view = finder.findRequiredView(source, 2131427440, "field 'userNameTxv'");
+    view = finder.findRequiredView(source, 2131427441, "field 'userNameTxv'");
     target.userNameTxv = (android.widget.TextView) view;
-    view = finder.findRequiredView(source, 2131427441, "field 'userSummer'");
+    view = finder.findRequiredView(source, 2131427442, "field 'userSummer'");
     target.userSummer = (android.widget.TextView) view;
-    view = finder.findRequiredView(source, 2131427443, "field 'sdTitle'");
+    view = finder.findRequiredView(source, 2131427444, "field 'sdTitle'");
     target.sdTitle = (android.widget.TextView) view;
-    view = finder.findRequiredView(source, 2131427444, "field 'sdSummer'");
+    view = finder.findRequiredView(source, 2131427445, "field 'sdSummer'");
     target.sdSummer = (android.widget.TextView) view;
-    view = finder.findRequiredView(source, 2131427448, "field 'bootLoaderSwitch'");
+    view = finder.findRequiredView(source, 2131427449, "field 'bootLoaderSwitch'");
     target.bootLoaderSwitch = (com.kyleduo.switchbutton.SwitchButton) view;
-    view = finder.findRequiredView(source, 2131427449, "field 'keyguardSwitch'");
+    view = finder.findRequiredView(source, 2131427450, "field 'keyguardSwitch'");
     target.keyguardSwitch = (com.kyleduo.switchbutton.SwitchButton) view;
-    view = finder.findRequiredView(source, 2131427450, "field 'usbSwitch'");
+    view = finder.findRequiredView(source, 2131427451, "field 'usbSwitch'");
     target.usbSwitch = (com.kyleduo.switchbutton.SwitchButton) view;
-    view = finder.findRequiredView(source, 2131427445, "field 'formatPanel' and method 'formatClick'");
+    view = finder.findRequiredView(source, 2131427446, "field 'formatPanel' and method 'formatClick'");
     target.formatPanel = view;
     view.setOnClickListener(
       new android.view.View.OnClickListener() {
@@ -33,11 +33,11 @@ public class MainActivity$$ViewInjector {
           target.formatClick(p0);
         }
       });
-    view = finder.findRequiredView(source, 2131427446, "field 'formatTitle'");
+    view = finder.findRequiredView(source, 2131427447, "field 'formatTitle'");
     target.formatTitle = (android.widget.TextView) view;
-    view = finder.findRequiredView(source, 2131427447, "field 'formatSummer'");
+    view = finder.findRequiredView(source, 2131427448, "field 'formatSummer'");
     target.formatSummer = (android.widget.TextView) view;
-    view = finder.findRequiredView(source, 2131427439, "method 'loginClick'");
+    view = finder.findRequiredView(source, 2131427440, "method 'loginClick'");
     view.setOnClickListener(
       new android.view.View.OnClickListener() {
         @Override public void onClick(
@@ -46,7 +46,7 @@ public class MainActivity$$ViewInjector {
           target.loginClick(p0);
         }
       });
-    view = finder.findRequiredView(source, 2131427442, "method 'sdPanelClick'");
+    view = finder.findRequiredView(source, 2131427443, "method 'sdPanelClick'");
     view.setOnClickListener(
       new android.view.View.OnClickListener() {
         @Override public void onClick(
@@ -55,7 +55,7 @@ public class MainActivity$$ViewInjector {
           target.sdPanelClick(p0);
         }
       });
-    view = finder.findRequiredView(source, 2131427451, "method 'drawPanelClick'");
+    view = finder.findRequiredView(source, 2131427452, "method 'drawPanelClick'");
     view.setOnClickListener(
       new android.view.View.OnClickListener() {
         @Override public void onClick(
@@ -64,7 +64,7 @@ public class MainActivity$$ViewInjector {
           target.drawPanelClick(p0);
         }
       });
-    view = finder.findRequiredView(source, 2131427452, "method 'setPasswdPanelClick'");
+    view = finder.findRequiredView(source, 2131427453, "method 'setPasswdPanelClick'");
     view.setOnClickListener(
       new android.view.View.OnClickListener() {
         @Override public void onClick(
@@ -73,7 +73,7 @@ public class MainActivity$$ViewInjector {
           target.setPasswdPanelClick(p0);
         }
       });
-    view = finder.findRequiredView(source, 2131427453, "method 'watchClick'");
+    view = finder.findRequiredView(source, 2131427454, "method 'watchClick'");
     view.setOnClickListener(
       new android.view.View.OnClickListener() {
         @Override public void onClick(
@@ -82,7 +82,7 @@ public class MainActivity$$ViewInjector {
           target.watchClick(p0);
         }
       });
-    view = finder.findRequiredView(source, 2131427455, "method 'nfcClick'");
+    view = finder.findRequiredView(source, 2131427456, "method 'nfcClick'");
     view.setOnClickListener(
       new android.view.View.OnClickListener() {
         @Override public void onClick(

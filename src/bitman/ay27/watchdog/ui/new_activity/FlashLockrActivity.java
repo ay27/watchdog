@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MotionEvent;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,6 +32,8 @@ public class FlashLockrActivity extends ActionBarActivity implements View.OnClic
     Toolbar flashLockrToolbar;
     @InjectView(R.id.flash_lockr_panel)
     RelativeLayout flashLockrPanel;
+    @InjectView(R.id.flash_lockr_img)
+    WebView flashLockrImg;
 
 
     private boolean disableFlashLock() {
@@ -96,6 +99,7 @@ public class FlashLockrActivity extends ActionBarActivity implements View.OnClic
                 return true;
             }
         });
+
 //        switchButton.setOnCheckedChangeListener(lockrCheckedChanged);
     }
 

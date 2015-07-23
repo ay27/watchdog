@@ -7,11 +7,11 @@ import butterknife.ButterKnife.Finder;
 public class KeyguardKeyboardActivity$$ViewInjector {
   public static void inject(Finder finder, final bitman.ay27.watchdog.ui.activity.KeyguardKeyboardActivity target, Object source) {
     View view;
-    view = finder.findRequiredView(source, 2131427430, "field 'inputEdt'");
+    view = finder.findRequiredView(source, 2131427431, "field 'inputEdt'");
     target.inputEdt = (android.widget.EditText) view;
-    view = finder.findRequiredView(source, 2131427425, "field 'keyboardView'");
+    view = finder.findRequiredView(source, 2131427426, "field 'keyboardView'");
     target.keyboardView = (android.inputmethodservice.KeyboardView) view;
-    view = finder.findRequiredView(source, 2131427428, "method 'changeMode'");
+    view = finder.findRequiredView(source, 2131427429, "method 'changeMode'");
     view.setOnClickListener(
       new android.view.View.OnClickListener() {
         @Override public void onClick(

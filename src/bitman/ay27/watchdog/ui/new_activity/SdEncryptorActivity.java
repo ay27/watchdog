@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.*;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -59,7 +58,8 @@ public class SdEncryptorActivity extends ActionBarActivity {
             }
         }
     };
-
+    private Timer timer;
+    private boolean sdStatus = wctl.isSDCardExist();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,9 +78,6 @@ public class SdEncryptorActivity extends ActionBarActivity {
         startScanSdExistTask();
 
     }
-
-    private Timer timer;
-    private boolean sdStatus = wctl.isSDCardExist();
 
     private void startScanSdExistTask() {
         timer = new Timer();
@@ -161,17 +158,9 @@ public class SdEncryptorActivity extends ActionBarActivity {
                 @Override
                 public void onReceive(Context context, Intent intent) {
                     try {
-                        wctl.disableEncryption();
-                        wctl.unloadBCPT();
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                wctl.loadBCPT();
-                                wctl.enableEncryption(PrefUtils.getSdPasswd(), PrefUtils.getSdEncryptType());
-                                registerReceiver(mountSuccessReceiver, new IntentFilter(Common.ACTION_MOUNT_SUCCESS));
-                                sendBroadcast(new Intent(Common.ACTION_MOUNT));
-                            }
-                        }, 3000);
+                        wctl.formatEncryptionDisk();
+                        registerReceiver(mountSuccessReceiver, new IntentFilter(Common.ACTION_MOUNT_SUCCESS));
+                        sendBroadcast(new Intent(Common.ACTION_MOUNT));
                     } catch (Exception e) {
                         Log.e(TAG, e.toString());
                         Toast.makeText(SdEncryptorActivity.this, R.string.format_failed, Toast.LENGTH_SHORT).show();
@@ -307,10 +296,10 @@ public class SdEncryptorActivity extends ActionBarActivity {
         statusCode += wctl.isBcptLoaded() ? 10 : 0;
         statusCode += wctl.isSDCardExist() ? 100 : 0;
 
-        Log.i(TAG, "status code : "+statusCode);
+        Log.i(TAG, "status code : " + statusCode);
 
         switch (statusCode) {
-            case 000:
+            case 0:
                 noSdCard();
                 sdEncryptorSdStatus.setText(R.string.sd_no_sd_card);
                 sdEncryptorSdStatus.setTextColor(getResources().getColor(R.color.red_1));
@@ -318,13 +307,13 @@ public class SdEncryptorActivity extends ActionBarActivity {
                 setFormatPanel(false);
                 PrefUtils.setSdState(1);
                 break;
-            case 001:
+            case 1:
                 planC();
                 break;
-            case 010:
+            case 10:
                 planB();
                 break;
-            case 011:
+            case 11:
                 planA();
                 break;
             case 100:
@@ -367,10 +356,18 @@ public class SdEncryptorActivity extends ActionBarActivity {
     }
 
     private void planA() {
-        wctl.umountSDCardCmd();
-        wctl.disableEncryption();
-        wctl.unloadBCPT();
-        updateSdStatus();
+//        wctl.umountSDCardCmd();
+        BroadcastReceiver unmountReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                wctl.disableEncryption();
+                wctl.unloadBCPT();
+                updateSdStatus();
+                unregisterReceiver(this);
+            }
+        };
+        registerReceiver(unmountReceiver, new IntentFilter(Common.ACTION_UNMOUNT_SUCCESS));
+        sendBroadcast(new Intent(Common.ACTION_UNMOUNT));
     }
 
     private void planB() {

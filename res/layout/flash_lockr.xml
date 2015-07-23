@@ -60,9 +60,9 @@
 
     <include layout="@layout/divider_small" />
 
-    <ImageView android:layout_width="fill_parent" android:layout_height="fill_parent"
+    <WebView android:layout_width="fill_parent" android:layout_height="fill_parent"
             android:layout_gravity="center"
-            android:src="@drawable/shuaji"
-            android:scaleType="center"/>
+            android:scaleType="center"
+            android:id="@+id/flash_lockr_img"/>
 
 </LinearLayout>

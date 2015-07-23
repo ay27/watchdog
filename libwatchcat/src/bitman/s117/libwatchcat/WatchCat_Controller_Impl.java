@@ -493,6 +493,12 @@ public class WatchCat_Controller_Impl implements WatchCat_Controller {
             throw new IllegalStateException("fail when invoke \"" + cmd + "\".");
         if (invoker.getExitno() != 0)
             throw new IllegalStateException("mkfs fail, format undone");
+        cmd = "sync";
+        invoker.setCmd(cmd, true);
+        if (invoker.run() != 0)
+            throw new IllegalStateException("fail when invoke \"" + cmd + "\".");
+        if (invoker.getExitno() != 0)
+            throw new IllegalStateException("sync fail, format may undone");
     }
 
     @Override
