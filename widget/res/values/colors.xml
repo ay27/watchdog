@@ -10,5 +10,9 @@
     <color name="bbutton_primary_pressed_edge">#ff285e8e</color>
     <color name="bbutton_primary_disabled">#a5428bca</color>
     <color name="bbutton_primary_disabled_edge">#a5357ebd</color>
+    <color name="black">#000000</color>
+    <color name="red">#ffd9534f</color>
+
+    <color name="gray">#777777</color>
 
 </resources>

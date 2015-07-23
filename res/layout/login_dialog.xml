@@ -17,7 +17,7 @@
                      android:text="登录"
                      android:gravity="center"
                      android:id="@+id/login_dialog_radio_login"
-                     android:background="@drawable/transparent_item_bg"
+                     android:background="@drawable/transparent_item_bg_blue_1"
                      android:textColor="@color/black_color_selector"/>
         <RadioButton android:layout_width="fill_parent" android:layout_height="fill_parent"
                      android:layout_weight="1"
@@ -25,7 +25,7 @@
                      android:text="注册"
                      android:gravity="center"
                      android:id="@+id/login_dialog_radio_sign_up"
-                     android:background="@drawable/transparent_item_bg"
+                     android:background="@drawable/transparent_item_bg_blue_1"
                      android:textColor="@color/black_color_selector"/>
     </RadioGroup>
 

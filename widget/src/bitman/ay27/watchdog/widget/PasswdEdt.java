@@ -1,6 +1,9 @@
 package bitman.ay27.watchdog.widget;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.*;
@@ -28,7 +31,6 @@ public class PasswdEdt extends LinearLayout {
     public PasswdEdt(Context context) {
         super(context);
     }
-
 
     public PasswdEdt(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -61,6 +63,7 @@ public class PasswdEdt extends LinearLayout {
 
         return output;
     }
+
 
     public void setPasswdLength(int passwdLength) {
         editTexts = new ArrayList<>(passwdLength);
@@ -110,12 +113,25 @@ public class PasswdEdt extends LinearLayout {
 
         editPos = 0;
         editTexts.get(0).requestFocus();
+        if (isDisturb && disturbs[0]) {
+            enableFocusEdit(editTexts.get(0), true);
+        }
 
         invalidate();
     }
 
+    private void enableFocusEdit(EditText editText, boolean value) {
+        if (value) {
+            editText.setTextColor(Color.BLACK);
+        } else {
+            editText.setTextColor(getResources().getColor(R.color.gray));
+        }
+    }
+
     private EditText generateEdt(boolean randomNum) {
         final EditText editText = (EditText) (LayoutInflater.from(getContext()).inflate(R.layout.one_passwd_edt, null).findViewById(R.id.one_passwd_edt));
+        editText.setEnabled(false);
+        editText.setClickable(false);
         if (randomNum) {
             editText.setText("" + new Random().nextInt(10));
             editText.setInputType(InputType.TYPE_CLASS_TEXT);
@@ -153,6 +169,8 @@ public class PasswdEdt extends LinearLayout {
             passwd += text;
         }
 
+        enableFocusEdit(editTexts.get(editPos), false);
+
         editPos++;
 
         if (editPos == MAX_LENGTH) {
@@ -169,6 +187,7 @@ public class PasswdEdt extends LinearLayout {
         }
 
         editTexts.get(editPos).requestFocus();
+        enableFocusEdit(editTexts.get(editPos), true);
     }
 
     public void cancelEdit() {
@@ -176,8 +195,10 @@ public class PasswdEdt extends LinearLayout {
             for (EditText editText : editTexts) {
                 editText.setText("");
             }
+            enableFocusEdit(editTexts.get(editPos), false);
             editPos = 0;
             passwd = "";
+            enableFocusEdit(editTexts.get(editPos), true);
             return;
         }
 
@@ -185,9 +206,13 @@ public class PasswdEdt extends LinearLayout {
             corrects[i] = true;
         }
 
+        if (editPos == MAX_LENGTH)
+        enableFocusEdit(editTexts.get(editPos-1), false);
+
         editPos = 0;
         passwd = "";
         editTexts.get(0).requestFocus();
+        enableFocusEdit(editTexts.get(editPos), true);
 
         for (int i = 0; i < editTexts.size(); i++) {
             if (!disturbs[i]) {
@@ -202,15 +227,19 @@ public class PasswdEdt extends LinearLayout {
             if (editPos == 0) {
                 return;
             }
+            enableFocusEdit(editTexts.get(editPos), false);
             editPos--;
             editTexts.get(editPos).setText("");
             editTexts.get(editPos).requestFocus();
+            enableFocusEdit(editTexts.get(editPos), true);
 
             return;
         }
         if (editPos == 0) {
             return;
         }
+
+        enableFocusEdit(editTexts.get(editPos), false);
 
         editPos--;
         if (disturbs[editPos]) {
@@ -220,11 +249,16 @@ public class PasswdEdt extends LinearLayout {
         }
 
         editTexts.get(editPos).requestFocus();
+        enableFocusEdit(editTexts.get(editPos), true);
 
     }
 
     public void registerFinishedCallback(PasswdFinishedCallback cb) {
         this.cb = cb;
+    }
+
+    public void unregisterCallback() {
+        this.cb = null;
     }
 
     public static interface PasswdFinishedCallback {

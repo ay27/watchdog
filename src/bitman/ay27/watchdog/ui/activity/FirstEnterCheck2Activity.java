@@ -2,25 +2,27 @@ package bitman.ay27.watchdog.ui.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.inputmethodservice.KeyboardView;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import bitman.ay27.watchdog.R;
 import bitman.ay27.watchdog.db.DbManager;
 import bitman.ay27.watchdog.db.model.KeyguardStatus;
+import bitman.ay27.watchdog.widget.PasswdEdt;
 import bitman.ay27.watchdog.widget.keyboard.KeyboardCallback;
 import bitman.ay27.watchdog.widget.keyboard.KeyboardUtil;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.InjectViews;
 import butterknife.OnClick;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * Proudly to user Intellij IDEA.
@@ -29,27 +31,39 @@ import java.util.List;
 public class FirstEnterCheck2Activity extends Activity {
 
     private static final String TAG = "FirstEnterCheck2";
-    @InjectView(R.id.keyguard_keyboard_input)
-    EditText inputEdt;
-    @InjectView(R.id.keyboard_view)
-    KeyboardView keyboardView;
+    //    @InjectView(R.id.keyguard_keyboard_input)
+//    EditText inputEdt;
+//    @InjectView(R.id.keyboard_view)
+//    KeyboardView keyboardView;
     @InjectView(R.id.keyguard_app_lock)
     TextView keyguardAppLock;
+    @InjectView(R.id.passwd_edt)
+    PasswdEdt passwdEdt;
+    @InjectView(R.id.key_btn_cancel)
+    Button keyBtnCancel;
+    @InjectView(R.id.key_btn_back)
+    Button keyBtnBack;
+
+    @InjectViews({R.id.key_btn_0, R.id.key_btn_1, R.id.key_btn_2, R.id.key_btn_3, R.id.key_btn_4, R.id.key_btn_5, R.id.key_btn_6,
+            R.id.key_btn_7, R.id.key_btn_8, R.id.key_btn_9})
+    Button[] btns;
 
     private KeyguardStatus status;
-    private KeyboardCallback finishCallback = new KeyboardCallback() {
+    private PasswdEdt.PasswdFinishedCallback kbCallback = new PasswdEdt.PasswdFinishedCallback() {
         @Override
-        public void onInputFinished(String passwd) {
-            if (passwd.equals(status.passwd)) {
-                Intent intent = new Intent(FirstEnterCheck2Activity.this, MainActivity.class);
-//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                finish();
-            } else {
-
+        public void onEditFinished(boolean disturbCorrect, String passwd) {
+            if (!disturbCorrect || !passwd.equals(status.passwd)) {
+                Toast.makeText(FirstEnterCheck2Activity.this, R.string.passwd_error, Toast.LENGTH_LONG).show();
+                return;
             }
+            Intent intent = new Intent(FirstEnterCheck2Activity.this, MainActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+
         }
     };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,23 +102,62 @@ public class FirstEnterCheck2Activity extends Activity {
 
 
     private void setupKeyboard() {
-        inputEdt.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_UP) {
-                    int old = inputEdt.getInputType();
-                    inputEdt.setInputType(InputType.TYPE_NULL);
-//                    edt.setFocusable(true);
-                    new KeyboardUtil(FirstEnterCheck2Activity.this, keyboardView, inputEdt, finishCallback).showKeyboard();
-                    inputEdt.setInputType(old);
-                    inputEdt.setSelection(inputEdt.getText().length());
-                } else if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    inputEdt.requestFocus();
+        passwdEdt.setDisturbNum(true);
+        passwdEdt.setPasswdLength(status.passwd.length());
+        passwdEdt.registerFinishedCallback(kbCallback);
+
+        for (Button button : btns) {
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    passwdEdt.edit(((Button) v).getText());
                 }
-                return true;
+            });
+        }
+
+        keyBtnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                passwdEdt.cancelEdit();
             }
         });
-        new KeyboardUtil(this, keyboardView, inputEdt, finishCallback).showKeyboard();
+
+        keyBtnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                passwdEdt.backEdit();
+            }
+        });
+
+        randomKeyboard();
+    }
+
+    private void randomKeyboard() {
+        int[] ints = getRandomSequence(10);
+        for (int i = 0; i < 10; i++) {
+            btns[i].setText(""+ints[i]);
+        }
+    }
+
+    private static int[] getRandomSequence(int total) {
+        int[] sequence = new int[total];
+        int[] output = new int[total];
+
+        for (int i = 0; i < total; i++) {
+            sequence[i] = i;
+        }
+
+        Random random = new Random();
+        int end = total - 1;
+
+        for (int i = 0; i < total; i++) {
+            int num = random.nextInt(end + 1);
+            output[i] = sequence[num];
+            sequence[num] = sequence[end];
+            end--;
+        }
+
+        return output;
     }
 
 }

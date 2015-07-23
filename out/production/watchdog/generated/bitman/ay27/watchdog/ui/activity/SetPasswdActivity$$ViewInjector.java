@@ -11,7 +11,7 @@ public class SetPasswdActivity$$ViewInjector {
     target.toolbar = (android.support.v7.widget.Toolbar) view;
     view = finder.findRequiredView(source, 2131427410, "field 'newPasswdEdt'");
     target.newPasswdEdt = (android.widget.EditText) view;
-    view = finder.findRequiredView(source, 2131427564, "field 'oldPasswdEdt'");
+    view = finder.findRequiredView(source, 2131427563, "field 'oldPasswdEdt'");
     target.oldPasswdEdt = (android.widget.EditText) view;
     view = finder.findRequiredView(source, 2131427411, "field 'confirmEdt'");
     target.confirmEdt = (android.widget.EditText) view;
@@ -27,7 +27,7 @@ public class SetPasswdActivity$$ViewInjector {
       });
     view = finder.findRequiredView(source, 2131427426, "field 'keyboardView'");
     target.keyboardView = (android.inputmethodservice.KeyboardView) view;
-    view = finder.findRequiredView(source, 2131427565, "field 'oldPasswdError'");
+    view = finder.findRequiredView(source, 2131427564, "field 'oldPasswdError'");
     target.oldPasswdError = (android.widget.TextView) view;
     view = finder.findRequiredView(source, 2131427412, "field 'newPasswdError'");
     target.newPasswdError = (android.widget.TextView) view;
