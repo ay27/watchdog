@@ -1,8 +1,10 @@
 package bitman.ay27.watchdog.net;
 
 import android.util.Log;
+import bitman.ay27.watchdog.WatchdogApplication;
 import com.loopj.android.http.*;
 import org.apache.http.Header;
+import org.apache.http.HttpEntity;
 
 /**
  * Created by ay27 on 15-7-8.
@@ -33,6 +35,14 @@ class WatchServerRestClient {
         if (handler == null)
             return client.get(getAbsoluteUrl(url), params, defaultHandler);
         return client.get(getAbsoluteUrl(url), params, handler);
+    }
+
+    public static RequestHandle post(String url, HttpEntity entity, String contentType, AsyncHttpResponseHandler handler) {
+        Log.i(TAG, "post send: " + url + " content: " + entity.toString());
+        if (handler == null) {
+            return client.post(WatchdogApplication.getContext(), getAbsoluteUrl(url), entity, contentType, defaultHandler);
+        }
+        return client.post(WatchdogApplication.getContext(), getAbsoluteUrl(url), entity, contentType, handler);
     }
 
     public static RequestHandle post(String url, RequestParams params, AsyncHttpResponseHandler handler) {

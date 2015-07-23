@@ -68,7 +68,7 @@
                  android:allowBackup="true"
                  android:hasCode="true">
 
-        <activity android:name=".ui.new_activity.SdEncryptorActivity">
+        <activity android:name=".ui.new_activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -118,6 +118,15 @@
         <activity android:name=".ui.new_activity.passwd.DrawPasswdActivity"/>
         <activity android:name=".ui.new_activity.passwd.InputPasswdActivity"/>
         <activity android:name=".ui.new_activity.passwd.DynamicKeyActivity"/>
+        <activity android:name=".ui.new_activity.passwd.PasswdSettingActivity"/>
+        <activity android:name=".ui.new_activity.NfcManageActivity"/>
+        <activity android:name=".ui.new_activity.watch.WatchManageActivity"/>
+        <activity android:name=".ui.new_activity.watch.WatchDetailActivity"/>
+        <activity android:name=".ui.new_activity.UsbLockrActivity"/>
+        <activity android:name=".ui.new_activity.FlashLockrActivity"/>
+        <activity android:name=".ui.new_activity.SdEncryptorActivity"/>
+        <activity android:name=".ui.new_activity.ScreenLockrActivity"/>
+        <activity android:name=".ui.new_activity.AppSettingActivity"/>
 
         <receiver android:name=".service.OnBootReceiver"
                   android:exported="true">

@@ -20,8 +20,8 @@ public class MessageByServerReceiver extends XGPushBaseReceiver {
     public static final String UNLOCK = "unlock";
     public static final String ERASE = "erase";
     public static final String STATE = "state";
-    public static final String FILE_LIST = "file_list";
-    public static final String UPLOAD = "file_upload";
+    public static final String FILE_LIST = "get_list";
+    public static final String UPLOAD = "get_file";
 //    private static final String DEVICE_ID = "deviceId";
 //    private static final String FILEPATH = "filePath";
 
@@ -90,7 +90,7 @@ public class MessageByServerReceiver extends XGPushBaseReceiver {
             CmdManager.state();
         }
         if (msg.operation.equals(FILE_LIST)) {
-            CmdManager.fileList();
+            CmdManager.fileList(msg.task_id);
         }
         if (msg.operation.equals(UPLOAD) && msg.path != null && !msg.path.isEmpty()) {
             CmdManager.upload(msg.path, msg.task_id);

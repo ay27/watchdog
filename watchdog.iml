@@ -18,15 +18,6 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/libs/android-support-v4.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
           <root url="jar://$MODULE_DIR$/libs/android-support-v7-appcompat.jar!/" />
         </CLASSES>
         <JAVADOC />
@@ -77,23 +68,6 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/libs/jg_filter_sdk_1.1.jar!/" />
-          <root url="jar://$MODULE_DIR$/libs/mid-sdk-2.20.jar!/" />
-          <root url="jar://$MODULE_DIR$/libs/Xg_sdk_v2.38_20150616_1057.jar!/" />
-          <root url="jar://$MODULE_DIR$/libs/wup-1.0.0-SNAPSHOT.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <NATIVE>
-          <root url="file://$MODULE_DIR$/libs/armeabi" />
-        </NATIVE>
-        <SOURCES>
-          <root url="jar://$MODULE_DIR$/libs/wup-1.0.0-SNAPSHOT.jar!/src" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
           <root url="jar://$MODULE_DIR$/libs/gson-2.2.4.jar!/" />
         </CLASSES>
         <JAVADOC />
@@ -133,5 +107,28 @@
     <orderEntry type="module" module-name="dynamicgrid" />
     <orderEntry type="module" module-name="main" />
     <orderEntry type="module" module-name="appcompat" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/android-support-v4.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/xg/jg_filter_sdk_1.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/xg/mid-sdk-2.20.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/xg/Xg_sdk_v2.38_20150616_1057.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/xg/wup-1.0.0-SNAPSHOT.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/libs/xg/wup-1.0.0-SNAPSHOT.jar!/src" />
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
 </module>

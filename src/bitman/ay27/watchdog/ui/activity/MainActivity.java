@@ -421,7 +421,7 @@ public class MainActivity extends ActionBarActivity {
                 }
 
                 @Override
-                public void onError(int code, String recv, Throwable throwable) {
+                public void onError(int code, String recv) {
                     if (recv != null && !recv.isEmpty())
                         Log.i(TAG, recv);
                     userSummer.setText(R.string.sign_in_failed);
@@ -454,7 +454,7 @@ public class MainActivity extends ActionBarActivity {
                             }
 
                             @Override
-                            public void onError(int code, String recv, Throwable throwable) {
+                            public void onError(int code, String recv) {
                                 Toast.makeText(MainActivity.this, R.string.bind_failed, Toast.LENGTH_SHORT).show();
                             }
                         });

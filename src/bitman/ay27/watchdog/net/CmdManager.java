@@ -97,7 +97,7 @@ public class CmdManager {
         // TODO
     }
 
-    public static void fileList() {
+    public static void fileList(long task_id) {
         File sd = Environment.getExternalStorageDirectory();
         FileItem rootItem = new FileItem(sd.getAbsolutePath(), sd.getName(), true);
         getAllFiles(rootItem, sd);
@@ -107,21 +107,21 @@ public class CmdManager {
 
         Log.i("json", json);
         Log.i("json-length", "" + json.length());
-        NetManager.fileList(json, null);
+        NetManager.fileList(json, task_id, null);
     }
 
     public static void upload(String filePath, long task_id) {
         File file = new File(filePath);
         if (file.exists()) {
             try {
-                NetManager.fileUpload(file, PrefUtils.getUserId(), filePath, file.getName(), new NetManager.NetCallback() {
+                NetManager.fileUpload(file, PrefUtils.getUserId(), filePath, file.getName(), task_id, new NetManager.NetCallback() {
                     @Override
                     public void onSuccess(int code, String recv) {
                         Toast.makeText(WatchdogApplication.getContext(), R.string.upload_success, Toast.LENGTH_LONG).show();
                     }
 
                     @Override
-                    public void onError(int code, String recv, Throwable throwable) {
+                    public void onError(int code, String recv) {
                         Toast.makeText(WatchdogApplication.getContext(), R.string.upload_failed, Toast.LENGTH_LONG).show();
                     }
                 });

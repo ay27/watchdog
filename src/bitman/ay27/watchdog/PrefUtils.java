@@ -211,4 +211,8 @@ public class PrefUtils {
     public static void setDisturbPasswd(boolean checked) {
         pref.edit().putBoolean(KEY_DISTURB_PASSWD, checked).apply();
     }
+
+    public static boolean isDisturbPasswd() {
+        return pref.getBoolean(KEY_DISTURB_PASSWD, false);
+    }
 }

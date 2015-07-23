@@ -11,6 +11,7 @@ import bitman.ay27.watchdog.utils.Common;
 import bitman.ay27.watchdog.watchlink.DefaultDogWatchCallback;
 import bitman.ay27.watchdog.watchlink.DogWatchService;
 import com.tencent.android.tpush.XGPushManager;
+import com.tencent.android.tpush.service.XGPushService;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -43,6 +44,7 @@ public class WatchdogApplication extends Application {
         setNfcModulePref();
 
         // 在主进程设置信鸽相关的内容
+        startService(new Intent(this, XGPushService.class));
         XGPushManager.registerPush(this, DeviceId);
 
         ServiceManager.getInstance().addService(DogWatchService.class);

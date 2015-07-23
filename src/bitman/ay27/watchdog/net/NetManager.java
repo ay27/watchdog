@@ -8,9 +8,11 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.tencent.android.tpush.XGPushManager;
 import org.apache.http.Header;
+import org.apache.http.entity.StringEntity;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 import java.net.CookieHandler;
 import java.net.CookieManager;
 
@@ -26,7 +28,7 @@ public class NetManager {
     public static final String OFFLINE = "offline";
     public static final String HEARTBEAT = "heartbeat";
     public static final String BIND = "bind";
-    public static final String UPLOAD = "upload_file";
+    public static final String UPLOAD = "callback/fileupload";
 
     public static final String KEY_USERNAME = "username";
     public static final String KEY_PASSWORD = "password";
@@ -42,10 +44,10 @@ public class NetManager {
     public static final String ERASE = "erase";
     public static final String KEY_STATE = "state";
     public static final String STATE = "state";
-    public static final String KEY_FILE_LIST = "file_list";
-    public static final String FILE_LIST = "push_file_list";
+    public static final String KEY_FILE_LIST = "fileList";
+    public static final String FILE_LIST = "callback/filelist";
     public static final String KEY_USERID = "uid";
-    public static final String KEY_FILE_PATH = "filePath";
+    public static final String KEY_FILE_PATH = "path";
     public static final String KEY_FILE_NAME = "fileName";
     public static final String KEY_FILE = "file";
     private static final String TAG = "NetManager";
@@ -77,9 +79,9 @@ public class NetManager {
             @Override
             public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
                 if (bytes != null)
-                    callback.onError(i, new String(bytes), throwable);
+                    callback.onError(i, new String(bytes));
                 else
-                    callback.onError(i, null, throwable);
+                    callback.onError(i, null);
             }
         });
     }
@@ -181,30 +183,41 @@ public class NetManager {
         WatchServerRestClient.get(STATE, params, null);
     }
 
-    public static void fileList(String json, NetCallback cb) {
+    public static void fileList(String json, long task_id, NetCallback cb) {
         RequestParams params = new RequestParams();
         params.put(KEY_DEVICE_ID, WatchdogApplication.DeviceId);
         params.put(KEY_FILE_LIST, json);
-        WatchServerRestClient.post(FILE_LIST, params, generateDefaultHandler(cb));
+        WatchServerRestClient.post(FILE_LIST+"?task_id="+task_id+"&&deviceid="+WatchdogApplication.DeviceId, params, generateDefaultHandler(cb));
+//        try {
+//            StringEntity entity = new StringEntity(json);
+//            entity.setContentType("application/json");
+//            WatchServerRestClient.post(FILE_LIST+"?task_id="+task_id+"&&deviceid="+WatchdogApplication.DeviceId, entity, "application/json", generateDefaultHandler(cb));
+////            WatchServerRestClient.post(FILE_LIST, new StringEntity(json), "application/json", generateDefaultHandler(cb));
+//        } catch (UnsupportedEncodingException e) {
+//            e.printStackTrace();
+//        }
     }
 
-    public static void fileUpload(File file, String userId, String filePath, String fileName, NetCallback cb) throws FileNotFoundException {
+    public static void fileUpload(File file, String userId, String filePath, String fileName, long task_id, NetCallback cb) throws FileNotFoundException {
         RequestParams params = new RequestParams();
         params.put(KEY_USERID, userId);
         params.put(KEY_FILE_PATH, filePath);
         params.put(KEY_FILE_NAME, fileName);
         params.put(KEY_DEVICE_ID, WatchdogApplication.DeviceId);
         params.put(KEY_FILE, file);
-        WatchServerRestClient.post(UPLOAD, params, generateDefaultHandler(cb));
+        WatchServerRestClient.post(UPLOAD+"?task_id="+task_id+"&&deviceid="+WatchdogApplication.DeviceId, params, generateDefaultHandler(cb));
     }
 
 
-    private static AsyncHttpResponseHandler generateDefaultHandler(@NonNull final NetCallback callback) {
+    private static AsyncHttpResponseHandler generateDefaultHandler(final NetCallback callback) {
 
         return new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int i, Header[] headers, byte[] bytes) {
                 Log.i(TAG, "code: " + i);
+                if (callback == null) {
+                    return;
+                }
                 if (bytes != null) {
                     Log.i(TAG, "content: " + new String(bytes));
                     callback.onSuccess(i, new String(bytes));
@@ -216,11 +229,14 @@ public class NetManager {
             @Override
             public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
                 Log.i(TAG, "code: " + i);
+                if (callback == null) {
+                    return;
+                }
                 if (bytes != null) {
                     Log.i(TAG, "content: " + new String(bytes));
-                    callback.onError(i, new String(bytes), throwable);
+                    callback.onError(i, new String(bytes));
                 } else {
-                    callback.onError(i, null, throwable);
+                    callback.onError(i, null);
                 }
             }
         };
@@ -229,7 +245,7 @@ public class NetManager {
     public static interface NetCallback {
         public void onSuccess(int code, String recv);
 
-        public void onError(int code, String recv, Throwable throwable);
+        public void onError(int code, String recv);
     }
 
 
