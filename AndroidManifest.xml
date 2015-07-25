@@ -68,34 +68,35 @@
                  android:allowBackup="true"
                  android:hasCode="true">
 
-        <activity android:name=".ui.new_activity.MainActivity">
+        <activity android:name=".ui.new_activity.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.activity.FirstEnterCheckActivity"
+        <activity android:name=".ui.new_activity.lock.FirstEnterCheckActivity"
                   android:label="@string/app_name"
                 >
         </activity>
 
-        <activity android:name=".ui.activity.FirstEnterCheck2Activity"/>
-        <activity android:name=".ui.activity.MainActivity"/>
+        <activity android:name=".ui.new_activity.lock.FirstEnterCheck2Activity"/>
 
-        <activity android:name=".ui.activity.KeyguardImgActivity"
+        <activity android:name=".ui.new_activity.MainActivity"/>
+
+        <activity android:name=".ui.new_activity.lock.KeyguardImgActivity"
                   android:launchMode="singleTask"
                   android:excludeFromRecents="true"
                   android:exported="true"
                 >
         </activity>
-        <activity android:name=".ui.activity.KeyguardKeyboardActivity"
+        <activity android:name=".ui.new_activity.lock.KeyguardKeyboardActivity"
                   android:launchMode="singleTask"
                   android:excludeFromRecents="true"
                   android:exported="true"
                 />
 
-        <activity android:name=".ui.activity.NfcManageActivity">
+        <activity android:name=".ui.new_activity.NfcManageActivity">
             <intent-filter>
                 <!--<action android:name="android.nfc.action.TECH_DISCOVERED" />-->
                 <action android:name="android.nfc.action.TAG_DISCOVERED"/>
@@ -107,19 +108,19 @@
                     android:name="android.nfc.action.TAG_DISCOVERED"
                     android:resource="@xml/nfc_tech_filter"/>
         </activity>
-        <activity android:name=".ui.activity.SetPasswdActivity"/>
-        <activity android:name=".ui.activity.WatchManageActivity"/>
-        <activity android:name=".ui.activity.SetDrawPasswdActivity"/>
-        <activity android:name=".ui.activity.TestDrawPasswdActivity"/>
-        <activity android:name=".ui.activity.SetWatchActivity"/>
-        <activity android:name=".ui.activity.WatchDetailActivity"/>
+        <!--<activity android:name=".ui.activity.SetPasswdActivity"/>-->
+        <!--<activity android:name=".ui.activity.WatchManageActivity"/>-->
+        <!--<activity android:name=".ui.activity.SetDrawPasswdActivity"/>-->
+        <!--<activity android:name=".ui.activity.TestDrawPasswdActivity"/>-->
+        <!--<activity android:name=".ui.activity.SetWatchActivity"/>-->
+        <!--<activity android:name=".ui.activity.WatchDetailActivity"/>-->
 
         <activity android:name=".ui.new_activity.passwd.ChooseBgImgActivity"/>
         <activity android:name=".ui.new_activity.passwd.DrawPasswdActivity"/>
         <activity android:name=".ui.new_activity.passwd.InputPasswdActivity"/>
         <activity android:name=".ui.new_activity.passwd.DynamicKeyActivity"/>
         <activity android:name=".ui.new_activity.passwd.PasswdSettingActivity"/>
-        <activity android:name=".ui.new_activity.NfcManageActivity"/>
+        <!--<activity android:name=".ui.new_activity.NfcManageActivity"/>-->
         <activity android:name=".ui.new_activity.watch.WatchManageActivity"/>
         <activity android:name=".ui.new_activity.watch.WatchDetailActivity"/>
         <activity android:name=".ui.new_activity.UsbLockrActivity"/>

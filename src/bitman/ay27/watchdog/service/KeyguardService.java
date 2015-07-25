@@ -8,7 +8,7 @@ import android.content.IntentFilter;
 import android.os.IBinder;
 import bitman.ay27.watchdog.db.DbManager;
 import bitman.ay27.watchdog.db.model.ServiceStatus;
-import bitman.ay27.watchdog.ui.KeyguardManager;
+import bitman.ay27.watchdog.ui.new_activity.lock.KeyguardManager;
 
 import java.util.List;
 

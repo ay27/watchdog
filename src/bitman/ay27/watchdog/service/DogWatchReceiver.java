@@ -9,7 +9,7 @@
 //import bitman.ay27.watchdog.R;
 //import bitman.ay27.watchdog.WatchdogApplication;
 //import bitman.ay27.watchdog.net.NetManager;
-//import bitman.ay27.watchdog.ui.KeyguardManager;
+//import bitman.ay27.watchdog.ui.new_activity.lock.KeyguardManager;
 //import bitman.ay27.watchdog.utils.Common;
 //import bitman.ay27.watchdog.watchlink.DogWatchService;
 //
@@ -128,7 +128,7 @@ import bitman.ay27.watchdog.PrefUtils;
 import bitman.ay27.watchdog.R;
 import bitman.ay27.watchdog.WatchdogApplication;
 import bitman.ay27.watchdog.net.NetManager;
-import bitman.ay27.watchdog.ui.KeyguardManager;
+import bitman.ay27.watchdog.ui.new_activity.lock.KeyguardManager;
 import bitman.ay27.watchdog.utils.Common;
 import bitman.ay27.watchdog.watchlink.DogWatchService;
 
