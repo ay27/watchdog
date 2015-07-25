@@ -42,7 +42,7 @@
             </LinearLayout>
 
         </LinearLayout>
-        <com.kyleduo.switchbutton.SwitchButton
+        <android.support.v7.widget.SwitchCompat
                 android:id="@+id/screen_lockr_switch"
                 style="@style/MaterialDesignStyle"
                 android:layout_alignParentEnd="true"

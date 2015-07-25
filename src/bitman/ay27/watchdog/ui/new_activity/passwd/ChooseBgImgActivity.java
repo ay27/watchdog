@@ -3,10 +3,12 @@ package bitman.ay27.watchdog.ui.new_activity.passwd;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -38,6 +40,9 @@ public class ChooseBgImgActivity extends ActionBarActivity {
     Button passwdChooseImgChoose;
     @InjectView(R.id.passwd_choose_img_next)
     Button chooseImgNext;
+    @InjectView(R.id.passwd_choose_img_toolbar)
+    Toolbar toolbar;
+
     private Uri photoUri;
     private String filePath;
     private KeyguardStatus status;
@@ -59,6 +64,10 @@ public class ChooseBgImgActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.passwd_choose_img);
         ButterKnife.inject(this);
+
+        toolbar.setTitle(R.string.choose_bg);
+        toolbar.setTitleTextColor(Color.WHITE);
+        setSupportActionBar(toolbar);
 
         List tmp = DbManager.getInstance().query(KeyguardStatus.class);
         if (tmp == null || tmp.size() == 0) {

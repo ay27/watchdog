@@ -29,6 +29,14 @@
                 android:id="@+id/set_passwd_new_passwd"
                 android:lines="1"/>
     </LinearLayout>
+
+    <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+              android:text="请输入1到8位数字密码"
+              android:gravity="center_horizontal"
+              android:textColor="@color/red_1"
+              android:visibility="gone"
+              android:id="@+id/passwd_error"/>
+
     <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
@@ -88,6 +96,6 @@
             android:paddingRight="16dp"
             />
 
-    <include layout="@layout/keyboard"/>
+    <!--<include layout="@layout/keyboard"/>-->
 
 </LinearLayout>

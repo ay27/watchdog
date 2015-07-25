@@ -1,18 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:semicircle="http://schemas.android.com/apk/res/bitman.ay27.watchdog"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@color/blue_1"
         >
 
-    <bitman.ay27.watchdog.ui.activity.widget.Semicircle android:layout_width="fill_parent"
-                                                        android:layout_height="344dp"
-                                                        android:id="@+id/semicircle"
-                                                        semicircle:r="160dp"
-                                                        android:layout_marginTop="42dp"
+    <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+            android:text="WatchDog"
+            android:textSize="42sp"
+            android:textColor="@color/white"
+            android:padding="16dp"/>
+
+
+    <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+              android:layout_marginTop="80dp"
+              android:padding="16dp"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:text="刷机锁：开启\n\n近身防盗：开启\n\nUSB锁：开启\n\n屏幕锁：开启\n\n"
             />
+
+    <ImageView android:layout_width="160dp" android:layout_height="240dp"
+            android:src="@drawable/dog"
+            android:layout_gravity="end"
+            android:padding="16dp"/>
+
+    <!--<ImageView android:layout_width="200dp" android:layout_height="200dp"-->
+            <!--android:src="@drawable/xx0101"-->
+            <!--android:layout_gravity="right"-->
+            <!--android:scaleType="fitCenter"/>-->
+
+    <!--<bitman.ay27.watchdog.ui.activity.widget.Semicircle android:layout_width="fill_parent"-->
+                                                        <!--android:layout_height="344dp"-->
+                                                        <!--android:id="@+id/semicircle"-->
+                                                        <!--semicircle:r="160dp"-->
+                                                        <!--android:layout_marginTop="42dp"-->
+            <!--/>-->
 
 
     <org.askerov.dynamicgrid.DynamicGridView android:layout_width="fill_parent"

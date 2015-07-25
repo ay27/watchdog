@@ -125,14 +125,20 @@ public class NetManager {
     public static void heartbeat() {
         final RequestParams params = new RequestParams();
         params.put(KEY_DEVICE_ID, WatchdogApplication.DeviceId);
-        LocationManager.getLocation(new LocationManager.GetLocationCallback() {
-            @Override
-            public void onSuccess(double latitude, double longitude) {
-                params.put(KEY_LATI, latitude);
-                params.put(KEY_LONI, longitude);
-                WatchServerRestClient.get(HEARTBEAT, params, null);
-            }
-        });
+//        WatchServerRestClient.get(HEARTBEAT, params, null);
+        if (!PrefUtils.isPhoneSafe() && PrefUtils.isGpsAutoUpload()) {
+            LocationManager.getLocation(new LocationManager.GetLocationCallback() {
+                @Override
+                public void onSuccess(double latitude, double longitude) {
+                    params.put(KEY_LATI, latitude);
+                    params.put(KEY_LONI, longitude);
+                    WatchServerRestClient.get(HEARTBEAT, params, null);
+                }
+            });
+        }
+        else {
+            WatchServerRestClient.get(HEARTBEAT, params, null);
+        }
     }
 
     public static void bind(final NetCallback cb) {

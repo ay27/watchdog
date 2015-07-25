@@ -1,9 +1,11 @@
 package bitman.ay27.watchdog.utils;
 
+import android.util.Log;
 import bitman.ay27.watchdog.WatchdogApplication;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Proudly to user Intellij IDEA.
@@ -54,9 +56,14 @@ public class SuperUserAccess {
     public static boolean runCmd(String cmd) {
         Process process = null;
         DataOutputStream dos = null;
+        InputStream is = null, eis = null;
         int exitValue = 0;
         try {
             process = Runtime.getRuntime().exec("su");
+
+            is = process.getInputStream();
+            eis = process.getErrorStream();
+
             dos = new DataOutputStream(process.getOutputStream());
             dos.writeBytes(cmd + "\n exit\n");
             dos.flush();
@@ -71,6 +78,30 @@ public class SuperUserAccess {
                     e.printStackTrace();
                 }
             }
+
+            byte[] bytes = new byte[1024];
+            if (is!=null) {
+                try {
+                    is.read(bytes);
+                    String str = new String(bytes);
+                    Log.i("is", str);
+                    is.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (eis!=null) {
+                try {
+                    eis.read(bytes);
+                    String str = new String(bytes);
+                    Log.i("eis", str);
+                    eis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
             if (process != null) {
                 exitValue = process.exitValue();
                 process.destroy();

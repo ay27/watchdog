@@ -43,8 +43,6 @@ public class InputPasswdActivity extends ActionBarActivity {
     ImageView setPasswdWhatIsDisturb;
     @InjectView(R.id.set_passwd_ok_btn)
     Button setPasswdOkBtn;
-    @InjectView(R.id.keyboard_view)
-    KeyboardView keyboardView;
 
     private KeyguardStatus status;
 
@@ -60,8 +58,8 @@ public class InputPasswdActivity extends ActionBarActivity {
 
         status = (KeyguardStatus) DbManager.getInstance().query(KeyguardStatus.class).get(0);
 
-        newPasswdEdt.setOnTouchListener(generateListener(newPasswdEdt));
-        confirmEdt.setOnTouchListener(generateListener(confirmEdt));
+//        newPasswdEdt.setOnTouchListener(generateListener(newPasswdEdt));
+//        confirmEdt.setOnTouchListener(generateListener(confirmEdt));
     }
 
     @OnClick(R.id.set_passwd_what_is_disturb)
@@ -87,24 +85,24 @@ public class InputPasswdActivity extends ActionBarActivity {
     }
 
 
-    private View.OnTouchListener generateListener(final EditText edt) {
-        return new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_UP) {
-                    int old = edt.getInputType();
-                    edt.setInputType(InputType.TYPE_NULL);
-//                    edt.setFocusable(true);
-                    new KeyboardUtil(InputPasswdActivity.this, keyboardView, edt, null).showKeyboard();
-                    edt.setInputType(old);
-                    edt.setSelection(edt.getText().length());
-                } else if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    edt.requestFocus();
-                }
-                return true;
-            }
-        };
-    }
+//    private View.OnTouchListener generateListener(final EditText edt) {
+//        return new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                if (event.getAction() == MotionEvent.ACTION_UP) {
+//                    int old = edt.getInputType();
+//                    edt.setInputType(InputType.TYPE_NULL);
+////                    edt.setFocusable(true);
+//                    new KeyboardUtil(InputPasswdActivity.this, keyboardView, edt, null).showKeyboard();
+//                    edt.setInputType(old);
+//                    edt.setSelection(edt.getText().length());
+//                } else if (event.getAction() == MotionEvent.ACTION_DOWN) {
+//                    edt.requestFocus();
+//                }
+//                return true;
+//            }
+//        };
+//    }
 
     private class WhatIsDisturbDialog extends Dialog {
 

@@ -48,7 +48,7 @@
             </LinearLayout>
 
         </LinearLayout>
-        <com.kyleduo.switchbutton.SwitchButton
+        <android.support.v7.widget.SwitchCompat
                 android:id="@+id/flash_lockr_switch"
                 style="@style/MaterialDesignStyle"
                 android:layout_alignParentEnd="true"
@@ -60,9 +60,10 @@
 
     <include layout="@layout/divider_small" />
 
-    <WebView android:layout_width="fill_parent" android:layout_height="fill_parent"
-            android:layout_gravity="center"
-            android:scaleType="center"
-            android:id="@+id/flash_lockr_img"/>
+    <bitman.ay27.watchdog.ui.activity.widget.gif.GifView android:layout_width="fill_parent" android:layout_height="fill_parent"
+               android:layout_gravity="center"
+            android:id="@+id/flash_lockr_gif"
+            android:padding="72dp"/>
+
 
 </LinearLayout>

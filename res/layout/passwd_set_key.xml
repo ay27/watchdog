@@ -21,7 +21,17 @@
                       android:padding="4dp"
                       android:layout_gravity="center_horizontal"
                       android:textColor="@color/black"/>
+
+            <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:text="传统的字符密码有了\n全新的使用方式"
+                      android:gravity="center"
+                      android:padding="4dp"
+                    />
+
             <ImageView android:layout_width="fill_parent" android:layout_height="wrap_content"
+                       android:src="@drawable/normal_passwd"
+                       android:padding="16dp"
+                       android:scaleType="fitCenter"
                     />
         </LinearLayout>
 
@@ -39,8 +49,8 @@
                       android:gravity="center"
                       android:padding="4dp"
                     />
-            <ImageView android:layout_width="fill_parent" android:layout_height="200dp"
-                       android:src="@drawable/random_keyboard"
+            <ImageView android:layout_width="fill_parent" android:layout_height="212dp"
+                       android:src="@drawable/random_kb"
                        android:scaleType="fitCenter"
                        android:padding="16dp"
                     />

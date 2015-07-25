@@ -14,6 +14,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import bitman.ay27.watchdog.PrefUtils;
 import bitman.ay27.watchdog.R;
 import bitman.ay27.watchdog.db.model.KeyguardStatus;
 import bitman.ay27.watchdog.utils.Common;
@@ -121,7 +122,7 @@ public class KeyguardKeyboardActivity extends Activity {
     }
 
     private void setupKeyboard() {
-        passwdEdt.setDisturbNum(true);
+        passwdEdt.setDisturbNum(PrefUtils.isDisturbPasswd());
         passwdEdt.setPasswdLength(status.passwd.length());
         passwdEdt.registerFinishedCallback(kbCallback);
 

@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.internal.widget.TintCheckBox;
+import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -30,7 +31,7 @@ public class UsbLockrActivity extends ActionBarActivity {
     @InjectView(R.id.usb_lockr_status)
     TextView usbLockrStatus;
     @InjectView(R.id.usb_lockr_switch)
-    SwitchButton switchButton;
+    SwitchCompat switchButton;
     @InjectView(R.id.usb_lockr_panel)
     RelativeLayout usbLockrPanel;
     @InjectView(R.id.usb_lockr_check)

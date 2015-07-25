@@ -1,8 +1,6 @@
 package bitman.ay27.watchdog.widget;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
-import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.text.InputType;
 import android.util.AttributeSet;
@@ -173,12 +171,14 @@ public class PasswdEdt extends LinearLayout {
 
         editPos++;
 
-        if (editPos == MAX_LENGTH) {
+        if ((!isDisturb && editPos == passwdLength) || (isDisturb && editPos == MAX_LENGTH)) {
             boolean flag = true;
-            for (boolean correct : corrects) {
-                if (!correct) {
-                    flag = false;
-                    break;
+            if (corrects != null) {
+                for (boolean correct : corrects) {
+                    if (!correct) {
+                        flag = false;
+                        break;
+                    }
                 }
             }
             cb.onEditFinished(flag, passwd);
@@ -195,6 +195,9 @@ public class PasswdEdt extends LinearLayout {
             for (EditText editText : editTexts) {
                 editText.setText("");
             }
+            if (editPos == passwdLength) {
+                editPos--;
+            }
             enableFocusEdit(editTexts.get(editPos), false);
             editPos = 0;
             passwd = "";
@@ -207,7 +210,7 @@ public class PasswdEdt extends LinearLayout {
         }
 
         if (editPos == MAX_LENGTH)
-        enableFocusEdit(editTexts.get(editPos-1), false);
+            enableFocusEdit(editTexts.get(editPos - 1), false);
 
         editPos = 0;
         passwd = "";

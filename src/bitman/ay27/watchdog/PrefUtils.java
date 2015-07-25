@@ -33,6 +33,8 @@ public class PrefUtils {
     public static final String KEY_PHONE_SAFETY = "phone_safety";
     public static final String KEY_AUTO_CLOSE_USB = "auto_close_usb";
     public static final String KEY_DISTURB_PASSWD = "disturb_passwd";
+    public static final String KEY_APP_LOCKR_ENABLE = "app_lockr_enable";
+    public static final String KEY_AUTO_UPLOAD_GPS = "auto_upload_gps";
 
     private static Context context = WatchdogApplication.getContext();
     private static SharedPreferences pref = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
@@ -214,5 +216,21 @@ public class PrefUtils {
 
     public static boolean isDisturbPasswd() {
         return pref.getBoolean(KEY_DISTURB_PASSWD, false);
+    }
+
+    public static boolean isAppLockrEnable() {
+        return pref.getBoolean(KEY_APP_LOCKR_ENABLE, false);
+    }
+
+    public static boolean isGpsAutoUpload() {
+        return pref.getBoolean(KEY_AUTO_UPLOAD_GPS, false);
+    }
+
+    public static void setAppLockrEnable(boolean value) {
+        pref.edit().putBoolean(KEY_APP_LOCKR_ENABLE, value).apply();
+    }
+
+    public static void setAutoUploadGps(boolean value) {
+        pref.edit().putBoolean(KEY_AUTO_UPLOAD_GPS, value).apply();
     }
 }

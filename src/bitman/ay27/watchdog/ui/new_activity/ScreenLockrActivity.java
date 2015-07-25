@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -35,7 +36,7 @@ public class ScreenLockrActivity extends ActionBarActivity implements View.OnCli
     @InjectView(R.id.screen_lockr_status)
     TextView screenLockrStatus;
     @InjectView(R.id.screen_lockr_switch)
-    SwitchButton screenLockrSwitch;
+    SwitchCompat screenLockrSwitch;
     @InjectView(R.id.screen_lockr_panel)
     RelativeLayout screenLockrPanel;
     @InjectView(R.id.screen_lockr_toolbar)

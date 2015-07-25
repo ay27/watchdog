@@ -103,6 +103,10 @@ public class DogWatchServiceManager {
                     cb.onBindFailed();
                     return;
                 }
+                if (service.getClass().getSimpleName().equals("BinderProxy")) {
+                    cb.onDisconnected();
+                    return;
+                }
 
                 cb.onBindSuccess(((DogWatchService.LocalBinder) service).getService());
             }

@@ -43,10 +43,10 @@ public class MainActivity extends Activity {
     @InjectView(R.id.main__gridview)
     DynamicGridView gridView;
 
-    @InjectView(R.id.semicircle)
-    Semicircle semicircle;
+//    @InjectView(R.id.semicircle)
+//    Semicircle semicircle;
 
-    private List<String> names = Arrays.asList("云端服务", "近身防盗", "DogWatch", "USB锁", "刷机锁", "SD卡加密", "屏幕锁", "密码设置", "应用设置");
+    private List<String> names = Arrays.asList("云端服务", "近身防盗", "DogWatch", "USB锁", "刷机锁", "屏幕锁", "SD卡加密", "密码设置", "应用设置");
     private List<Integer> drawables = Arrays.asList(
             R.drawable.ic_perm_identity_grey600,
             R.drawable.ic_nfc_grey600_48dp,
@@ -54,8 +54,8 @@ public class MainActivity extends Activity {
 
             R.drawable.ic_usb_grey600_48dp,
             R.drawable.shuaji,
-            R.drawable.ic_sd_card_grey600_48dp,
             R.drawable.ic_screen_lock_portrait_grey600_48dp,
+            R.drawable.ic_sd_card_grey600_48dp,
             R.drawable.ic_vpn_key_black_48dp,
             R.drawable.ic_settings_grey600_48dp);
 
@@ -64,14 +64,6 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_);
         ButterKnife.inject(this);
-
-        boolean[] enables = new boolean[7];
-        for (int i = 0; i < 7; i++) {
-            enables[i] = true;
-        }
-        enables[2] = false;
-        enables[6] = false;
-        semicircle.setEnable(enables);
 
         ArrayList<Item> items = new ArrayList<Item>();
         for (int i = 0; i < 9; i++) {
@@ -123,10 +115,10 @@ public class MainActivity extends Activity {
                         intent.setClass(MainActivity.this, FlashLockrActivity.class);
                         break;
                     case 5:
-                        intent.setClass(MainActivity.this, SdEncryptorActivity.class);
+                        intent.setClass(MainActivity.this, ScreenLockrActivity.class);
                         break;
                     case 6:
-                        intent.setClass(MainActivity.this, ScreenLockrActivity.class);
+                        intent.setClass(MainActivity.this, SdEncryptorActivity.class);
                         break;
                     case 7:
                         intent.setClass(MainActivity.this, PasswdSettingActivity.class);

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <include layout="@layout/toolbar"
+            android:id="@+id/app_setting_toolbar"/>
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:clickable="true"
+                    android:id="@+id/app_setting_app_lockr_panel"
+                    android:background="@drawable/transparent_item_bg">
+        <LinearLayout android:layout_width="270dp" android:layout_height="wrap_content"
+                      style="@style/PreferencePanel"
+                      android:layout_alignParentTop="true"
+                      android:layout_alignParentStart="true"
+                      android:clickable="false"
+                      android:background="@drawable/transparent_item_bg">
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:text="应用锁"
+                      android:textSize="18sp"
+                      android:layout_margin="4dp"
+                      />
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      style="@style/PreferenceSecondText"
+                      android:text="        由于本应用涉及很多系统安全相关的设置，为了防止他人随意更改，建议开启本应用锁"
+                    />
+
+
+        </LinearLayout>
+        <android.support.v7.widget.SwitchCompat
+                android:id="@+id/app_setting_app_lockr_switch"
+                style="@style/MaterialDesignStyle"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="16dp"
+                android:layout_centerVertical="true"
+                android:clickable="false"
+                />
+    </RelativeLayout>
+
+    <include layout="@layout/divider_small"/>
+
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:clickable="true"
+                    android:id="@+id/app_setting_auto_upload_gps_panel"
+                    android:background="@drawable/transparent_item_bg">
+        <LinearLayout android:layout_width="270dp" android:layout_height="wrap_content"
+                      style="@style/PreferencePanel"
+                      android:layout_alignParentTop="true"
+                      android:layout_alignParentStart="true"
+                      android:clickable="false"
+                      android:background="@drawable/transparent_item_bg">
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:text="自动上传位置信息"
+                      android:textSize="18sp"
+                      android:layout_margin="4dp"
+                      />
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      style="@style/PreferenceSecondText"
+                      android:text="        当设备被盗进入丢失模式后，自动开启位置上传功能，实时上传设备的GPS数据，方便用户找回设备"
+                    />
+
+
+        </LinearLayout>
+        <android.support.v7.widget.SwitchCompat
+                android:id="@+id/app_setting_auto_upload_gps_switch"
+                style="@style/MaterialDesignStyle"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="16dp"
+                android:layout_centerVertical="true"
+                android:clickable="false"
+                />
+    </RelativeLayout>
+
+
+</LinearLayout>

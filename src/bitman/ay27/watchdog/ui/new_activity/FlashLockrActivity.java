@@ -3,20 +3,19 @@ package bitman.ay27.watchdog.ui.new_activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
-import android.view.MotionEvent;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import bitman.ay27.watchdog.PrefUtils;
 import bitman.ay27.watchdog.R;
+import bitman.ay27.watchdog.ui.activity.widget.gif.GifView;
 import bitman.s117.libwatchcat.WatchCat_Controller;
 import bitman.s117.libwatchcat.WatchCat_Controller_Impl;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import com.kyleduo.switchbutton.SwitchButton;
 
 /**
  * Proudly to use Intellij IDEA.
@@ -25,16 +24,17 @@ import com.kyleduo.switchbutton.SwitchButton;
 public class FlashLockrActivity extends ActionBarActivity implements View.OnClickListener {
 
     @InjectView(R.id.flash_lockr_switch)
-    SwitchButton switchButton;
+    SwitchCompat switchButton;
     @InjectView(R.id.flash_lockr_status)
     TextView flashLockrStatus;
     @InjectView(R.id.flash_lockr_toolbar)
     Toolbar flashLockrToolbar;
     @InjectView(R.id.flash_lockr_panel)
     RelativeLayout flashLockrPanel;
-    @InjectView(R.id.flash_lockr_img)
-    WebView flashLockrImg;
-
+    @InjectView(R.id.flash_lockr_gif)
+    GifView gifView;
+    //    GifImageView gifView;
+    private boolean isCheck = false;
 
     private boolean disableFlashLock() {
         WatchCat_Controller wc_ctl = new WatchCat_Controller_Impl();
@@ -75,8 +75,6 @@ public class FlashLockrActivity extends ActionBarActivity implements View.OnClic
         }
     }
 
-    private boolean isCheck = false;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,12 +91,10 @@ public class FlashLockrActivity extends ActionBarActivity implements View.OnClic
         setEnable(isCheck);
 
         flashLockrPanel.setOnClickListener(this);
-        flashLockrPanel.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return true;
-            }
-        });
+
+
+        gifView.setGifImage(R.drawable.revocery);
+
 
 //        switchButton.setOnCheckedChangeListener(lockrCheckedChanged);
     }

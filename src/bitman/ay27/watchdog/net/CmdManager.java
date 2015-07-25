@@ -10,6 +10,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.RingtoneManager;
 import android.os.Environment;
+import android.os.StatFs;
 import android.util.Log;
 import android.widget.Toast;
 import bitman.ay27.watchdog.PrefUtils;
@@ -25,6 +26,8 @@ import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 /**
  * deal with the XGPush message.
@@ -76,21 +79,48 @@ public class CmdManager {
     }
 
     public static void erase() {
-        String rootFiles = getFiles(Environment.getExternalStorageDirectory());
-        SuperUserAccess.runCmd("cd storage/sdcard0/ && rm -rf " + rootFiles);
+//        String rootFiles = getFiles(Environment.getExternalStorageDirectory());
+//        SuperUserAccess.runCmd("cd storage/sdcard0/ && rm -rf " + rootFiles);
+        rmFiles(Environment.getExternalStorageDirectory());
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                writeDirtyFile(Environment.getExternalStorageDirectory());
+//            }
+//        }).start();
         // TODO write the dirty file to external storage
         // TODO format external sd card
         NetManager.erase();
     }
 
-    private static String getFiles(File rootFile) {
-        StringBuilder sb = new StringBuilder();
-        File[] files = rootFile.listFiles();
-        for (File file : files) {
-            sb.append(file.getName());
-            sb.append(" ");
+    private static void writeDirtyFile(File rootFile) {
+        StatFs statFs = new StatFs(rootFile.getPath());
+        byte[] bytes = new byte[statFs.getBlockSize() * 100];
+        for (int i = 0; i < bytes.length; i++) {
+            bytes[i] = 0;
         }
-        return sb.toString();
+        while (statFs.getAvailableBlocksLong()>0) {
+            try {
+                File file = new File(rootFile.getPath(), "" + System.currentTimeMillis());
+                FileOutputStream fos = new FileOutputStream(file);
+                fos.write(bytes);
+                fos.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                return;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private static void rmFiles(File rootFile) {
+        for (File file : rootFile.listFiles()) {
+            if (file.isDirectory()) {
+                rmFiles(file);
+            }
+            file.delete();
+        }
     }
 
     public static void state() {

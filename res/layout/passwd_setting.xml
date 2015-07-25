@@ -5,7 +5,8 @@
               android:layout_height="match_parent"
         >
 
-    <include layout="@layout/toolbar"/>
+    <include layout="@layout/toolbar"
+            android:id="@+id/passwd_setting_toolbar"/>
 
     <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
               android:text="WatchDog使用以下两种解锁方式："
