@@ -15,6 +15,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.Toast;
+import bitman.ay27.watchdog.PrefUtils;
 import bitman.ay27.watchdog.R;
 import bitman.ay27.watchdog.db.DbManager;
 import bitman.ay27.watchdog.db.model.AngleChain;
@@ -102,6 +103,11 @@ public class KeyguardImgActivity extends Activity {
             Toast.makeText(this, "please setup password", Toast.LENGTH_SHORT).show();
             finish();
         }
+
+        if (!PrefUtils.isPhoneSafe()) {
+            changeModeBtn.setVisibility(View.GONE);
+        }
+
 
         final ArrayList<AngleChain> patterns = new ArrayList<AngleChain>();
 
@@ -207,6 +213,15 @@ public class KeyguardImgActivity extends Activity {
                 if (processor.compare()) {
                     processor.updatePattern();
                     manager.updateList(AngleChain.class, patterns);
+
+
+                    if (!PrefUtils.isPhoneSafe()) {
+                        Intent intent = new Intent(KeyguardImgActivity.this, KeyguardKeyboardActivity.class);
+                        intent.putExtra("Status", status);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    }
+
                     finish();
                 }
             }

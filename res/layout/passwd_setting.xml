@@ -53,7 +53,7 @@
                       android:padding="4dp"
                     />
             <ImageView android:layout_width="fill_parent" android:layout_height="200dp"
-                       android:src="@drawable/random_keyboard"
+                       android:src="@drawable/random_kb"
                        android:scaleType="fitCenter"
                        android:padding="16dp"
                     />

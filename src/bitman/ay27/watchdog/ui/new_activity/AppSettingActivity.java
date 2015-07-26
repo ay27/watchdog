@@ -28,9 +28,20 @@ public class AppSettingActivity extends ActionBarActivity {
     SwitchCompat autoUploadGpsSwitch;
     @InjectView(R.id.app_setting_auto_upload_gps_panel)
     RelativeLayout autoUploadGpsPanel;
+    @InjectView(R.id.app_setting_auto_open_network_switch)
+    SwitchCompat autoOpenNetworkSwitch;
+    @InjectView(R.id.app_setting_auto_open_network_panel)
+    RelativeLayout autoOpenNetworkPanel;
+    @InjectView(R.id.app_setting_disturb_passwd_switch)
+    SwitchCompat disturbPasswdSwitch;
+    @InjectView(R.id.app_setting_disturb_passwd_panel)
+    RelativeLayout disturbPasswdPanel;
+
 
     private boolean appLockrEnabled;
     private boolean autoUploadGpsEnabled;
+    private boolean autoOpenNetwork;
+    private boolean disturbPasswd;
     private View.OnClickListener appLockrClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -45,6 +56,22 @@ public class AppSettingActivity extends ActionBarActivity {
             autoUploadGpsEnabled = !autoUploadGpsEnabled;
             PrefUtils.setAutoUploadGps(autoUploadGpsEnabled);
             autoUploadGpsSwitch.performClick();
+        }
+    };
+    private View.OnClickListener autoOpenNetworkClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            autoOpenNetwork = !autoOpenNetwork;
+            PrefUtils.setAutoOpenNetwork(autoOpenNetwork);
+            autoOpenNetworkSwitch.performClick();
+        }
+    };
+    private View.OnClickListener disturbPasswdClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            disturbPasswd = !disturbPasswd;
+            PrefUtils.setDisturbPasswd(disturbPasswd);
+            disturbPasswdSwitch.performClick();
         }
     };
 
@@ -68,5 +95,12 @@ public class AppSettingActivity extends ActionBarActivity {
         autoUploadGpsSwitch.setChecked(autoUploadGpsEnabled);
         autoUploadGpsPanel.setOnClickListener(autoUploadGpsClick);
 
+        autoOpenNetwork = PrefUtils.isAutoOpenNetwork();
+        autoOpenNetworkSwitch.setChecked(autoOpenNetwork);
+        autoOpenNetworkPanel.setOnClickListener(autoOpenNetworkClick);
+
+        disturbPasswd = PrefUtils.isDisturbPasswd();
+        disturbPasswdSwitch.setChecked(disturbPasswd);
+        disturbPasswdPanel.setOnClickListener(disturbPasswdClick);
     }
 }

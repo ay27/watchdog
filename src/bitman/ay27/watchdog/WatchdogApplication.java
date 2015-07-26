@@ -2,6 +2,8 @@ package bitman.ay27.watchdog;
 
 import android.app.Application;
 import android.content.*;
+import android.net.ConnectivityManager;
+import android.net.wifi.WifiManager;
 import android.provider.Settings;
 import android.util.Log;
 import bitman.ay27.watchdog.service.DaemonService;
@@ -13,6 +15,9 @@ import bitman.ay27.watchdog.watchlink.DogWatchService;
 import com.tencent.android.tpush.XGPushManager;
 import com.tencent.android.tpush.service.XGPushService;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.HashSet;
 
@@ -43,6 +48,8 @@ public class WatchdogApplication extends Application {
 
         setNfcModulePref();
 
+        openNetwork();
+
         // 在主进程设置信鸽相关的内容
         startService(new Intent(this, XGPushService.class));
         XGPushManager.registerPush(this, DeviceId);
@@ -50,6 +57,18 @@ public class WatchdogApplication extends Application {
         ServiceManager.getInstance().addService(DogWatchService.class);
 
         tryConnectWatch();
+    }
+
+    private void openNetwork() {
+        if (!PrefUtils.isAutoOpenNetwork()) {
+            return;
+        }
+
+        WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+        if (!wifiManager.isWifiEnabled()) {
+            wifiManager.setWifiEnabled(true);
+        }
+//        sendBroadcast(new Intent(Common.ACTION_OPEN_DATA_CONNECT));
     }
 
 

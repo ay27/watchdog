@@ -130,7 +130,12 @@ import bitman.ay27.watchdog.WatchdogApplication;
 import bitman.ay27.watchdog.net.NetManager;
 import bitman.ay27.watchdog.ui.new_activity.lock.KeyguardManager;
 import bitman.ay27.watchdog.utils.Common;
+import bitman.ay27.watchdog.utils.SuperUserAccess;
 import bitman.ay27.watchdog.watchlink.DogWatchService;
+import bitman.s117.libwatchcat.WatchCat_Controller;
+import bitman.s117.libwatchcat.WatchCat_Controller_Impl;
+
+import java.io.IOException;
 
 /**
  * Proudly to use Intellij IDEA.
@@ -192,13 +197,21 @@ public class DogWatchReceiver extends BroadcastReceiver {
             Log.i(TAG, "out of range");
             PrefUtils.setPhoneSafety(false);
             new KeyguardManager(context).launchKeyguard();
-//            SuperUserAccess.runCmd("echo 0 > /sys/devices/virtual/android_usb/android0/enable");
-            // TODO open internet
-            // TODO close flash locker
             NetManager.state("danger");
-            player = MediaPlayer.create(context, R.raw.tag_lost);
-            player.setLooping(true);
-            player.start();
+            if (PrefUtils.isAutoCloseUsb()) {
+                SuperUserAccess.disableUsb();
+            }
+            WatchCat_Controller wc_ctl = new WatchCat_Controller_Impl();
+            try {
+                wc_ctl.lockFlashLock();
+                wc_ctl.loadFsProtector();
+                wc_ctl.enableBootloaderWriteProtect();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+//            player = MediaPlayer.create(context, R.raw.tag_lost);
+//            player.setLooping(true);
+//            player.start();
 
             sendOutOfRangeVibrate();
 
@@ -207,13 +220,13 @@ public class DogWatchReceiver extends BroadcastReceiver {
 //            SuperUserAccess.runCmd("echo 1 > /sys/devices/virtual/android_usb/android0/enable");
             NetManager.state("save");
             PrefUtils.setPhoneSafety(true);
-            if (player.isPlaying()) {
-                player.stop();
-            }
+//            if (player.isPlaying()) {
+//                player.stop();
+//            }
 
             sendReturnRange();
 
-            WatchdogApplication.getContext().sendBroadcast(new Intent(Common.ACTION_KILL_KEYGUARD));
+//            WatchdogApplication.getContext().sendBroadcast(new Intent(Common.ACTION_KILL_KEYGUARD));
         }
     }
 

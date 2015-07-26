@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import bitman.ay27.watchdog.PrefUtils;
+import bitman.ay27.watchdog.ui.new_activity.lock.KeyguardManager;
 import bitman.s117.libwatchcat.WatchCat_Controller;
 import bitman.s117.libwatchcat.WatchCat_Controller_Impl;
 
@@ -41,5 +42,8 @@ public class OnBootReceiver extends BroadcastReceiver {
         Intent newIntent = new Intent(context, DaemonService.class);
 //        newIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startService(newIntent);
+
+        KeyguardManager manager = new KeyguardManager(context);
+        manager.launchKeyguard();
     }
 }

@@ -17,8 +17,8 @@ public class UsbStateReceiver extends BroadcastReceiver {
         if (intent.getAction().equals("android.hardware.usb.action.USB_STATE")) {
             boolean connected = intent.getExtras().getBoolean("connected");
             Log.i("usb state", "connected? " + connected);
-            if (connected && !PrefUtils.isUsbEnable()) {
-                SuperUserAccess.runCmd("echo 0 > /sys/devices/virtual/android_usb/android0/enable");
+            if (connected && PrefUtils.isAutoCloseUsb() && !PrefUtils.isPhoneSafe()) {
+                SuperUserAccess.disableUsb();
                 Log.i("usb state", "close connect");
             }
         }

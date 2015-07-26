@@ -96,6 +96,6 @@
             android:paddingRight="16dp"
             />
 
-    <!--<include layout="@layout/keyboard"/>-->
+    <include layout="@layout/keyboard"/>
 
 </LinearLayout>

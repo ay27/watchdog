@@ -3,6 +3,7 @@ package bitman.ay27.watchdog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import bitman.ay27.watchdog.db.model.NfcCard;
+import bitman.ay27.watchdog.utils.SuperUserAccess;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -17,7 +18,7 @@ public class PrefUtils {
     public static final String KEY_BOOT_LOADER_LOCK = "boot_loader_lock";
     public static final String KEY_KEYGUARD = "keyguard";
     public static final String PREF_NAME = "main_preference";
-    public static final String KEY_USB = "usb_debug";
+//    public static final String KEY_USB = "usb_debug";
     public static final String KEY_SD_STATE = "sd_state";
     public static final String KEY_SD_PASSWD = "sd_passwd";
     public static final String KEY_ENCRYPT_TYPE = "sd_encrypt_type";
@@ -35,6 +36,7 @@ public class PrefUtils {
     public static final String KEY_DISTURB_PASSWD = "disturb_passwd";
     public static final String KEY_APP_LOCKR_ENABLE = "app_lockr_enable";
     public static final String KEY_AUTO_UPLOAD_GPS = "auto_upload_gps";
+    private static final String KEY_AUTO_OPEN_NETWORK = "auto_open_network";
 
     private static Context context = WatchdogApplication.getContext();
     private static SharedPreferences pref = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
@@ -75,12 +77,12 @@ public class PrefUtils {
     }
 
     public static boolean isUsbEnable() {
-        return pref.getBoolean(KEY_USB, true);
+        return SuperUserAccess.isUsbEnable();
     }
 
-    public static void setUsbEnable(boolean enable) {
-        pref.edit().putBoolean(KEY_USB, enable).apply();
-    }
+//    public static void setUsbEnable(boolean enable) {
+//        pref.edit().putBoolean(KEY_USB, enable).apply();
+//    }
 
     public static int getSdState() {
         return pref.getInt(KEY_SD_STATE, 0);
@@ -232,5 +234,13 @@ public class PrefUtils {
 
     public static void setAutoUploadGps(boolean value) {
         pref.edit().putBoolean(KEY_AUTO_UPLOAD_GPS, value).apply();
+    }
+
+    public static boolean isAutoOpenNetwork() {
+        return pref.getBoolean(KEY_AUTO_OPEN_NETWORK, false);
+    }
+
+    public static void setAutoOpenNetwork(boolean value) {
+        pref.edit().putBoolean(KEY_AUTO_OPEN_NETWORK, value).apply();
     }
 }

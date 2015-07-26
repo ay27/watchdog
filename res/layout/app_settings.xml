@@ -80,5 +80,81 @@
                 />
     </RelativeLayout>
 
+    <include layout="@layout/divider_small"/>
+
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:clickable="true"
+                    android:id="@+id/app_setting_auto_open_network_panel"
+                    android:background="@drawable/transparent_item_bg">
+        <LinearLayout android:layout_width="270dp" android:layout_height="wrap_content"
+                      style="@style/PreferencePanel"
+                      android:layout_alignParentTop="true"
+                      android:layout_alignParentStart="true"
+                      android:clickable="false"
+                      android:background="@drawable/transparent_item_bg">
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:text="丢失后自动打开网络连接"
+                      android:textSize="18sp"
+                      android:layout_margin="4dp"
+                    />
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      style="@style/PreferenceSecondText"
+                      android:text="        当设备被盗进入丢失模式后，自动开启网络连接，尽可能与服务器取得联系"
+                    />
+
+
+        </LinearLayout>
+        <android.support.v7.widget.SwitchCompat
+                android:id="@+id/app_setting_auto_open_network_switch"
+                style="@style/MaterialDesignStyle"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="16dp"
+                android:layout_centerVertical="true"
+                android:clickable="false"
+                />
+    </RelativeLayout>
+
+
+    <include layout="@layout/divider_small"/>
+
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    android:clickable="true"
+                    android:id="@+id/app_setting_disturb_passwd_panel"
+                    android:background="@drawable/transparent_item_bg">
+        <LinearLayout android:layout_width="270dp" android:layout_height="wrap_content"
+                      style="@style/PreferencePanel"
+                      android:layout_alignParentTop="true"
+                      android:layout_alignParentStart="true"
+                      android:clickable="false"
+                      android:background="@drawable/transparent_item_bg">
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:text="干扰密码"
+                      android:textSize="18sp"
+                      android:layout_margin="4dp"
+                    />
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      style="@style/PreferenceSecondText"
+                      android:text="        开启后，当使用动态键盘解锁时，会随机插入干扰数字，防止密码被窃取"
+                    />
+
+
+        </LinearLayout>
+        <android.support.v7.widget.SwitchCompat
+                android:id="@+id/app_setting_disturb_passwd_switch"
+                style="@style/MaterialDesignStyle"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="16dp"
+                android:layout_centerVertical="true"
+                android:clickable="false"
+                />
+    </RelativeLayout>
 
 </LinearLayout>

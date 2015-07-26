@@ -80,7 +80,7 @@ public class SuperUserAccess {
             }
 
             byte[] bytes = new byte[1024];
-            if (is!=null) {
+            if (is != null) {
                 try {
                     is.read(bytes);
                     String str = new String(bytes);
@@ -91,7 +91,7 @@ public class SuperUserAccess {
                 }
             }
 
-            if (eis!=null) {
+            if (eis != null) {
                 try {
                     eis.read(bytes);
                     String str = new String(bytes);
@@ -116,5 +116,40 @@ public class SuperUserAccess {
 
     public static boolean enableUsb() {
         return runCmd("echo 1 > /sys/devices/virtual/android_usb/android0/enable");
+    }
+
+    public static boolean isUsbEnable() {
+        Process process = null;
+        DataOutputStream dos = null;
+        InputStream is = null;
+        int exitValue = 0;
+        try {
+            process = Runtime.getRuntime().exec("su");
+
+            is = process.getInputStream();
+
+            dos = new DataOutputStream(process.getOutputStream());
+            dos.writeBytes("cat /sys/devices/virtual/android_usb/android0/enable" + "\n exit\n");
+            dos.flush();
+            process.waitFor();
+        } catch (Exception e) {
+            return false;
+        } finally {
+            byte[] bytes = new byte[10];
+            try {
+                if (dos != null) {
+                    dos.close();
+                }
+
+                if (is != null) {
+                    is.read(bytes);
+                    is.close();
+                }
+                return bytes[0] == 49;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
     }
 }

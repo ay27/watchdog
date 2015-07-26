@@ -8,7 +8,6 @@ import android.support.v7.internal.widget.TintCheckBox;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,7 +17,6 @@ import bitman.ay27.watchdog.utils.Common;
 import bitman.ay27.watchdog.utils.SuperUserAccess;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
-import com.kyleduo.switchbutton.SwitchButton;
 
 /**
  * Proudly to use Intellij IDEA.
@@ -67,7 +65,6 @@ public class UsbLockrActivity extends ActionBarActivity {
                 Toast.makeText(UsbLockrActivity.this, R.string.usb_failed, Toast.LENGTH_SHORT).show();
                 switchButton.setChecked(!isCheck);
             } else {
-                PrefUtils.setUsbEnable(isCheck);
 
                 usbLockrStatus.setText(isCheck ? R.string.usb_lockr_open : R.string.usb_lockr_close);
                 usbLockrStatus.setTextColor(getResources().getColor(isCheck ? R.color.green_1 : R.color.red_1));
@@ -76,6 +73,7 @@ public class UsbLockrActivity extends ActionBarActivity {
             }
         }
     };
+
     private View.OnClickListener autoCloseClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {

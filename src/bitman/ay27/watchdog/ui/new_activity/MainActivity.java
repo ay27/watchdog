@@ -20,9 +20,10 @@ import bitman.ay27.watchdog.net.NetManager;
 import bitman.ay27.watchdog.service.HeartbeatService;
 import bitman.ay27.watchdog.service.ServiceManager;
 import bitman.ay27.watchdog.ui.activity.widget.LoginDialog;
-import bitman.ay27.watchdog.ui.activity.widget.Semicircle;
 import bitman.ay27.watchdog.ui.new_activity.passwd.PasswdSettingActivity;
 import bitman.ay27.watchdog.ui.new_activity.watch.WatchManageActivity;
+import bitman.ay27.watchdog.watchlink.DogWatchService;
+import bitman.ay27.watchdog.watchlink.DogWatchServiceManager;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.google.gson.Gson;
@@ -40,11 +41,24 @@ import java.util.List;
 public class MainActivity extends Activity {
 
     private static final String TAG = "Main_Activity";
+    private static boolean isLogin = false;
     @InjectView(R.id.main__gridview)
     DynamicGridView gridView;
+    @InjectView(R.id.main_status_server)
+    TextView statusServer;
+    @InjectView(R.id.main_status_nfc)
+    TextView statusNfc;
+    @InjectView(R.id.main_status_bt)
+    TextView statusBt;
+    @InjectView(R.id.main_status_usb)
+    TextView statusUsb;
+    @InjectView(R.id.main_status_flash)
+    TextView statusFlash;
 
-//    @InjectView(R.id.semicircle)
+    //    @InjectView(R.id.semicircle)
 //    Semicircle semicircle;
+    @InjectView(R.id.main_status_screen)
+    TextView statusScreen;
 
     private List<String> names = Arrays.asList("云端服务", "近身防盗", "DogWatch", "USB锁", "刷机锁", "屏幕锁", "SD卡加密", "密码设置", "应用设置");
     private List<Integer> drawables = Arrays.asList(
@@ -135,51 +149,113 @@ public class MainActivity extends Activity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        final DogWatchServiceManager manager = DogWatchServiceManager.getInstance();
+        manager.bind(this, new DogWatchServiceManager.BindCallback() {
+            @Override
+            public void onBindSuccess(DogWatchService service) {
+                statusBt.setText(service.getConnectionState() == DogWatchService.STATE_CONNECTED ?
+                        R.string.open : R.string.closed);
+
+                manager.unbind(MainActivity.this, this);
+            }
+
+            @Override
+            public void onBindFailed() {
+                manager.unbind(MainActivity.this, this);
+            }
+
+            @Override
+            public void onDisconnected() {
+                manager.unbind(MainActivity.this, this);
+            }
+        });
+        initStatus();
+
+        tryLogin();
+    }
+
+    private void initStatus() {
+        statusServer.setText(isLogin ? getString(R.string.sign_in_finish) + PrefUtils.getUserName() : getString(R.string.not_sign_in));
+        statusNfc.setText(PrefUtils.getNfcCards().isEmpty() ? R.string.closed : R.string.open);
+        statusUsb.setText(PrefUtils.isAutoCloseUsb() ? R.string.open : R.string.closed);
+        statusFlash.setText(PrefUtils.isBootloaderEnable() ? R.string.open : R.string.closed);
+        statusScreen.setText(PrefUtils.isKeyguardEnable() ? R.string.open : R.string.closed);
+    }
+
+    private void tryLogin() {
+        final String username = PrefUtils.getUserName();
+        if (username.isEmpty()) {
+            return;
+        }
+        NetManager.signIn(username, PrefUtils.getUserPasswd(), new NetManager.NetCallback() {
+            @Override
+            public void onSuccess(int code, String recv) {
+                loginFinish(recv, PrefUtils.getUserName(), PrefUtils.getUserPasswd());
+            }
+
+            @Override
+            public void onError(int code, String recv) {
+                if (recv != null && !recv.isEmpty())
+                    Log.i(TAG, recv);
+            }
+        });
+    }
+
     private void login() {
         new LoginDialog(this, new LoginDialog.Callback() {
             @Override
             public void onSuccess(String content, String username, String password) {
-
-                SignInRecvForm form = null;
-                try {
-
-                    Gson gson = new Gson();
-                    form = gson.fromJson(content, SignInRecvForm.class);
-                    if (form.err != 0) {
-                        Toast.makeText(MainActivity.this, R.string.sign_in_failed, Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                } catch (Exception e) {
-                    Toast.makeText(MainActivity.this, R.string.sign_in_failed, Toast.LENGTH_SHORT).show();
-                    e.printStackTrace();
-                    return;
-                }
-
-//                loginState = 1;
-
-//                userSummer.setText(getString(R.string.sign_in_success) + ": " + username);
-                PrefUtils.setUserName(username);
-                PrefUtils.setUserPasswd(password);
-                PrefUtils.setUserId(Integer.toString(form.user.uid));
-
-                NetManager.online();
-                ServiceManager manager = ServiceManager.getInstance();
-                manager.addService(HeartbeatService.class);
-
-                for (SignInRecvForm.Device device : form.user.devices) {
-                    if (device.deviceid.equals(WatchdogApplication.DeviceId)) {
-//                        loginState = 2;
-                        return;
-                    }
-                }
-
-                bindDevice();
+                loginFinish(content, username, password);
             }
 
             @Override
             public void onFailed() {
+                Toast.makeText(MainActivity.this, R.string.sign_in_failed, Toast.LENGTH_SHORT).show();
             }
         }).show();
+    }
+
+    private void loginFinish(String content, String username, String password) {
+        SignInRecvForm form = null;
+        try {
+
+            Gson gson = new Gson();
+            form = gson.fromJson(content, SignInRecvForm.class);
+            if (form.err != 0) {
+                Toast.makeText(MainActivity.this, R.string.sign_in_failed, Toast.LENGTH_SHORT).show();
+                return;
+            }
+        } catch (Exception e) {
+            Toast.makeText(MainActivity.this, R.string.sign_in_failed, Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+            return;
+        }
+
+//                loginState = 1;
+
+//                userSummer.setText(getString(R.string.sign_in_success) + ": " + username);
+        PrefUtils.setUserName(username);
+        PrefUtils.setUserPasswd(password);
+        PrefUtils.setUserId(Integer.toString(form.user.uid));
+
+        isLogin = true;
+        statusServer.setText(isLogin ? getString(R.string.sign_in_finish) + PrefUtils.getUserName() : getString(R.string.not_sign_in));
+
+        NetManager.online();
+        ServiceManager manager = ServiceManager.getInstance();
+        manager.addService(HeartbeatService.class);
+
+        for (SignInRecvForm.Device device : form.user.devices) {
+            if (device.deviceid.equals(WatchdogApplication.DeviceId)) {
+//                        loginState = 2;
+                return;
+            }
+        }
+
+        bindDevice();
     }
 
     private void bindDevice() {

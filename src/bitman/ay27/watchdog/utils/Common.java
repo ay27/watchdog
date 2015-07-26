@@ -63,6 +63,7 @@ public class Common {
     public static final String ACTION_FORMAT_SUCCESS = "bitman.ay27.watchdog.format_success";
     public static final String ACTION_CHOOSE_MTP = "bitman.ay27.watchdog.choose_mtp";
     public static final String ACTION_PLAY_SOUND = "bitman.ay27.watchdog.play_sound";
+    public static final String ACTION_OPEN_DATA_CONNECT = "bitman.ay27.watchdog.open_data_connect";
 
     // Converting byte[] to hex string, used to convert NFC UUID to String
     public static String byteArrayToHexString(byte[] inarray) {

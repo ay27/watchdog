@@ -110,4 +110,8 @@
     <string name="set_passwd">设置密码</string>
     <string name="choose_bg">选择背景</string>
     <string name="app_setting">应用设置</string>
+    <string name="not_sign_in">未登录</string>
+    <string name="sign_in_finish">已登录</string>
+    <string name="open">开启</string>
+    <string name="closed">关闭</string>
 </resources>

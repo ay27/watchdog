@@ -54,6 +54,10 @@ class Segment {
      */
     public void fitting() {
 
+        if (curve.size() == 0) {
+            return;
+        }
+
         double average_x = 0.0, average_y = 0.0;
         for (RhythmPoint point : curve.getPoints()) {
             average_x += point.x;
@@ -75,7 +79,7 @@ class Segment {
         for (int i = 0; i < curve.size() / 2; i++) {
             this.leftTime += curve.get(i).timestamp;
         }
-        this.leftTime = leftTime / ((double) curve.size() / 2.0);
+        this.leftTime = leftTime / (((double) curve.size()) / 2.0);
         for (int i = curve.size() / 2; i < curve.size(); i++) {
             this.rightTime += curve.get(i).timestamp;
         }

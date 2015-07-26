@@ -3,6 +3,7 @@ package bitman.ay27.watchdog.ui.new_activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import bitman.ay27.watchdog.PrefUtils;
 import bitman.ay27.watchdog.R;
 import bitman.ay27.watchdog.ui.new_activity.lock.FirstEnterCheckActivity;
 
@@ -25,7 +26,13 @@ public class WelcomeActivity extends Activity {
 
 
         Timer time = new Timer();
-        final Intent intent = new Intent(this, FirstEnterCheckActivity.class);
+        final Intent intent;
+        if (PrefUtils.isAppLockrEnable()) {
+             intent = new Intent(this, FirstEnterCheckActivity.class);
+        }
+        else {
+            intent = new Intent(this, MainActivity.class);
+        }
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         TimerTask task = new TimerTask() {
             @Override

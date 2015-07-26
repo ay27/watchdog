@@ -23,9 +23,9 @@
 //import java.util.List;
 //
 ///**
-// * Proudly to user Intellij IDEA.
-// * Created by ay27 on 15/4/7.
-// */
+//* Proudly to user Intellij IDEA.
+//* Created by ay27 on 15/4/7.
+//*/
 //public class SetPasswdActivity extends ActionBarActivity {
 //
 //    @InjectView(R.id.set_passwd_toolbar)

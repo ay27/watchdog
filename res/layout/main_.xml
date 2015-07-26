@@ -1,48 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/blue_1"
+             android:orientation="vertical"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:background="@color/blue_1"
         >
 
     <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
-            android:text="WatchDog"
-            android:textSize="42sp"
-            android:textColor="@color/white"
-            android:padding="16dp"/>
+              android:text="WatchDog"
+              android:textSize="42sp"
+              android:textColor="@color/white"
+              android:padding="16dp"/>
 
 
-    <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
-              android:layout_marginTop="80dp"
-              android:padding="16dp"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            android:text="刷机锁：开启\n\n近身防盗：开启\n\nUSB锁：开启\n\n屏幕锁：开启\n\n"
-            />
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                  android:orientation="vertical">
+        <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:paddingLeft="16dp"
+                      android:layout_marginTop="90dp">
+            <TextView android:layout_width="100dp" android:layout_height="wrap_content"
+                      android:text="云端服务："
+                      android:textColor="@color/white"
+                    />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:textColor="@color/white"
+                      android:text="已登录，ay27"
+                      android:id="@+id/main_status_server"/>
+        </LinearLayout>
+        <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:paddingLeft="16dp"
+                      android:paddingTop="8dp">
+            <TextView android:layout_width="100dp" android:layout_height="wrap_content"
+                      android:text="NFC近身防盗："
+                      android:textColor="@color/white"
+                    />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:textColor="@color/white"
+                      android:text="开启"
+                      android:id="@+id/main_status_nfc"/>
+        </LinearLayout>
+        <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:paddingLeft="16dp"
+                      android:paddingTop="8dp">
+            <TextView android:layout_width="100dp" android:layout_height="wrap_content"
+                      android:text="蓝牙距离报警："
+                      android:textColor="@color/white"
+                    />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:textColor="@color/white"
+                      android:text="开启"
+                      android:id="@+id/main_status_bt"/>
+        </LinearLayout>
+        <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:paddingLeft="16dp"
+                      android:paddingTop="8dp">
+            <TextView android:layout_width="100dp" android:layout_height="wrap_content"
+                      android:text="USB锁："
+                      android:textColor="@color/white"
+                    />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:textColor="@color/white"
+                      android:text="开启"
+                      android:id="@+id/main_status_usb"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:paddingLeft="16dp"
+                      android:paddingTop="8dp">
+            <TextView android:layout_width="100dp" android:layout_height="wrap_content"
+                      android:text="刷机锁："
+                      android:textColor="@color/white"
+                    />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:textColor="@color/white"
+                      android:text="开启"
+                      android:id="@+id/main_status_flash"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:paddingLeft="16dp"
+                      android:paddingTop="8dp">
+            <TextView android:layout_width="100dp" android:layout_height="wrap_content"
+                      android:text="屏幕锁："
+                      android:textColor="@color/white"
+                    />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:textColor="@color/white"
+                      android:text="开启"
+                      android:id="@+id/main_status_screen"/>
+        </LinearLayout>
+    </LinearLayout>
 
     <ImageView android:layout_width="160dp" android:layout_height="240dp"
-            android:src="@drawable/dog"
-            android:layout_gravity="end"
-            android:padding="16dp"/>
-
-    <!--<ImageView android:layout_width="200dp" android:layout_height="200dp"-->
-            <!--android:src="@drawable/xx0101"-->
-            <!--android:layout_gravity="right"-->
-            <!--android:scaleType="fitCenter"/>-->
-
-    <!--<bitman.ay27.watchdog.ui.activity.widget.Semicircle android:layout_width="fill_parent"-->
-                                                        <!--android:layout_height="344dp"-->
-                                                        <!--android:id="@+id/semicircle"-->
-                                                        <!--semicircle:r="160dp"-->
-                                                        <!--android:layout_marginTop="42dp"-->
-            <!--/>-->
+               android:src="@drawable/dog"
+               android:layout_gravity="end"
+               android:padding="16dp"/>
 
 
     <org.askerov.dynamicgrid.DynamicGridView android:layout_width="fill_parent"
                                              android:layout_height="300dp"
-            android:numColumns="3"
-            android:id="@+id/main__gridview"
+                                             android:numColumns="3"
+                                             android:id="@+id/main__gridview"
                                              android:background="#eeeeee"
                                              android:layout_gravity="center_horizontal|bottom"/>
 
