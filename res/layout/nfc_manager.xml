@@ -11,7 +11,7 @@
                   android:gravity="center"
             >
         <Button android:layout_width="fill_parent" android:layout_height="wrap_content"
-                android:text="点击添加新卡"
+                android:text="点击绑定新卡"
                 android:gravity="center"
                 android:textSize="32sp"
                 android:textColor="@color/white"

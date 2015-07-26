@@ -93,7 +93,7 @@
             android:text="注册"
             android:layout_gravity="center"
             android:id="@+id/sign_up_btn"
-            android:background="@drawable/transparent_item_bg"
+            android:background="@drawable/transparent_item_bg_blue_1"
             android:textColor="@color/black_color_selector"
             />
 

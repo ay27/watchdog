@@ -53,7 +53,7 @@
             android:text="登录"
             android:layout_gravity="center"
             android:id="@+id/login_login_btn"
-            android:background="@drawable/transparent_item_bg"
+            android:background="@drawable/transparent_item_bg_blue_1"
             android:textColor="@color/black_color_selector"
             />
 

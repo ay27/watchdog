@@ -107,72 +107,38 @@ public class WatchManageActivity extends Activity {
     };
 
     private Timer timer;
-    private Handler handler = new Handler();
     private DogWatchCallback dogWatchCallback = new DefaultDogWatchCallback() {
         @Override
         public void onPostFinish(final int name, UUID characUUID, final byte[] remoteVal) {
             super.onPostFinish(name, characUUID, remoteVal);
-            handler.postDelayed(new Runnable() {
+            runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-//                    Toast.makeText(WatchManageActivity.this, "on post: " + name + " " + Arrays.toString(remoteVal), Toast.LENGTH_SHORT).show();
+                    //                    Toast.makeText(WatchManageActivity.this, "on post: " + name + " " + Arrays.toString(remoteVal), Toast.LENGTH_SHORT).show();
                     Log.i(TAG, "on post: " + name + " " + Arrays.toString(remoteVal));
 
                     if (name == DogWatchService.CHARA_TIME_UTC && pd != null && pd.isShowing()) {
                         pd.cancel();
                     }
                 }
-            }, 20);
+            });
         }
 
         @Override
         public void onPostFail(final String reason) {
             super.onPostFail(reason);
-            handler.postDelayed(new Runnable() {
+            runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     Toast.makeText(WatchManageActivity.this, reason, Toast.LENGTH_SHORT).show();
                 }
-            }, 20);
-        }
-
-        @Override
-        public void onGetFinish(final int name, UUID characUUID, final byte[] remoteVal) {
-            super.onGetFinish(name, characUUID, remoteVal);
-//            handler.postDelayed(new Runnable() {
-//                @Override
-//                public void run() {
-//                    Toast.makeText(WatchManageActivity.this, "on get: " + name + " " + Arrays.toString(remoteVal), Toast.LENGTH_SHORT).show();
-//                }
-//            }, 20);
-        }
-
-        @Override
-        public void onGetFail(final String reason) {
-            super.onGetFail(reason);
-//            handler.postDelayed(new Runnable() {
-//                @Override
-//                public void run() {
-//                    Toast.makeText(WatchManageActivity.this, reason, Toast.LENGTH_SHORT).show();
-//                }
-//            }, 20);
-        }
-
-        @Override
-        public void onDisconnectFail(final String reason) {
-            super.onDisconnectFail(reason);
-//            handler.postDelayed(new Runnable() {
-//                @Override
-//                public void run() {
-//                    Toast.makeText(WatchManageActivity.this, "disconnect failed " + reason, Toast.LENGTH_SHORT).show();
-//                }
-//            }, 20);
+            });
         }
 
         @Override
         public void onDisconnected() {
             super.onDisconnected();
-            handler.postDelayed(new Runnable() {
+            runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     setSettingEnable(false);
@@ -182,33 +148,32 @@ public class WatchManageActivity extends Activity {
 
 //                    Toast.makeText(WatchManageActivity.this, "disconnect", Toast.LENGTH_SHORT).show();
                 }
-            }, 20);
+            });
         }
 
         @Override
         public void onConnectedFail(final String reason) {
             super.onConnectedFail(reason);
-            handler.postDelayed(new Runnable() {
+            runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     Toast.makeText(WatchManageActivity.this, reason, Toast.LENGTH_SHORT).show();
                 }
-            }, 20);
+            });
         }
 
         @Override
         public void onConnected(final String address, boolean isAutoConnEnable) {
             super.onConnected(address, isAutoConnEnable);
-            handler.postDelayed(new Runnable() {
+            runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     setSettingEnable(true);
                     PrefUtils.setBLEAddr(address);
                     setUpDistView();
                     correctTime();
-//                    correctTimePanel.performClick();
                 }
-            }, 20);
+            });
         }
     };
 
@@ -228,9 +193,9 @@ public class WatchManageActivity extends Activity {
         @Override
         public void onBindSuccess(DogWatchService service) {
 
-            if (service.getConnectionState() != DogWatchService.STATE_CONNECTED) {
+            if (service.getConnectionState() == DogWatchService.STATE_CONNECTED) {
 //                Toast.makeText(WatchManageActivity.this, R.string.bt_device_lost, Toast.LENGTH_SHORT).show();
-                setSettingEnable(false);
+                setSettingEnable(true);
             }
 
             dogWatchService = service;
@@ -262,10 +227,11 @@ public class WatchManageActivity extends Activity {
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
+                final double dist = dogWatchService.calcAccuracy();
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        currentDistanceTxv.setText("" + String.format("%.02f", dogWatchService.calcAccuracy()) + getString(R.string.distance_unit));
+                        currentDistanceTxv.setText("" + String.format("%.02f", dist) + getString(R.string.distance_unit));
                     }
                 });
             }

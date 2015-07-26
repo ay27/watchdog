@@ -53,6 +53,7 @@ public class KeyguardImgActivity extends Activity {
             finish();
         }
     };
+    private boolean isSafe = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,9 +105,10 @@ public class KeyguardImgActivity extends Activity {
             finish();
         }
 
-        if (!PrefUtils.isPhoneSafe()) {
+        if (!(isSafe = PrefUtils.isPhoneSafe())) {
             changeModeBtn.setVisibility(View.GONE);
         }
+
 
 
         final ArrayList<AngleChain> patterns = new ArrayList<AngleChain>();
@@ -215,7 +217,7 @@ public class KeyguardImgActivity extends Activity {
                     manager.updateList(AngleChain.class, patterns);
 
 
-                    if (!PrefUtils.isPhoneSafe()) {
+                    if (!isSafe) {
                         Intent intent = new Intent(KeyguardImgActivity.this, KeyguardKeyboardActivity.class);
                         intent.putExtra("Status", status);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

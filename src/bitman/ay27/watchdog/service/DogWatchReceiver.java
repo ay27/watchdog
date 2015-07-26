@@ -122,6 +122,7 @@ package bitman.ay27.watchdog.service;
 
 import android.content.*;
 import android.media.MediaPlayer;
+import android.net.wifi.WifiManager;
 import android.os.IBinder;
 import android.util.Log;
 import bitman.ay27.watchdog.PrefUtils;
@@ -200,6 +201,12 @@ public class DogWatchReceiver extends BroadcastReceiver {
             NetManager.state("danger");
             if (PrefUtils.isAutoCloseUsb()) {
                 SuperUserAccess.disableUsb();
+            }
+            if (PrefUtils.isAutoOpenNetwork()) {
+                WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+                if (!wifiManager.isWifiEnabled()) {
+                    wifiManager.setWifiEnabled(true);
+                }
             }
             WatchCat_Controller wc_ctl = new WatchCat_Controller_Impl();
             try {
