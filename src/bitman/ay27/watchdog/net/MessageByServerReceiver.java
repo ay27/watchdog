@@ -49,7 +49,7 @@ public class MessageByServerReceiver extends XGPushBaseReceiver {
     public void onTextMessage(Context context, XGPushTextMessage xgPushTextMessage) {
         String cmd = xgPushTextMessage.getContent();
         Log.i("Send by WatchServer", cmd);
-        Toast.makeText(context, cmd, Toast.LENGTH_LONG).show();
+//        Toast.makeText(context, cmd, Toast.LENGTH_LONG).show();
 
 //        String msg.operation = cmd.substring(0, cmd.indexOf('{'));
 //        String content = cmd.substring(cmd.indexOf('{')+1, cmd.lastIndexOf('}'));

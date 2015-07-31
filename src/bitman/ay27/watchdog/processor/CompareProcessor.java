@@ -11,8 +11,8 @@ import java.util.ArrayList;
  */
 class CompareProcessor {
 
-    public static final double ANGLE_CHAIN_THRESHOLD1 = Math.tan(Math.PI / 6.0);
-    public static final double ANGLE_CHAIN_THRESHOLD2 = Math.tan(Math.PI / 3.0);
+    public static final double ANGLE_CHAIN_THRESHOLD1 = Math.tan(Math.PI / 9.0);
+    public static final double ANGLE_CHAIN_THRESHOLD2 = Math.tan(Math.PI / 6.0);
     public static final double CHAIN_MATCHING_TOLERANCE = 8.0;
     private static final String TAG = "CompareProcessor";
     /**
@@ -50,10 +50,17 @@ class CompareProcessor {
      * @return
      */
     public boolean comp() {
-        boolean result = comp_start_point(chain1.start_point, chain2.start_point);
+        boolean result = comp_point(chain1.start_point, chain2.start_point);
         Log.i(TAG, "comp start point : " + result);
         if (!result)
             return false;
+
+        result = comp_point(chain1.end_point, chain2.end_point);
+        Log.i(TAG, "comp end point : "+result);
+        if (!result) {
+            return false;
+        }
+
 
         result = comp_segment_param(chain1.num_of_segments, chain1.segment_length, chain2.num_of_segments, chain2.segment_length);
         Log.i(TAG, "comp segment param : " + result);
@@ -154,12 +161,12 @@ class CompareProcessor {
 
     private boolean comp_segment_param(int num_of_segments1, double segment_length1, int num_of_segments2, double segment_length2) {
         Log.i(TAG, "num : " + num_of_segments1 + " " + num_of_segments2 + "   length : " + segment_length1 + " " + segment_length2);
-        return //((Math.abs(segment_length1 - segment_length2) - SEGMENT_LENGTH_THRESHOLD <= Utils.PRECISION_THRESHOLD)
-                //&&
-                (num_of_segments1 == num_of_segments2);
+        return ((Math.abs(segment_length1 - segment_length2) - SEGMENT_LENGTH_THRESHOLD <= Utils.PRECISION_THRESHOLD)
+                &&
+                (num_of_segments1 == num_of_segments2));
     }
 
-    private boolean comp_start_point(RhythmPoint p1, RhythmPoint p2) {
+    private boolean comp_point(RhythmPoint p1, RhythmPoint p2) {
         Log.i(TAG, "start point : " + p1.x + "," + p1.y + " " + p2.x + "," + p2.y);
         return (Utils.get_distance(p1, p2) - START_POSITION_THRESHOLD <= Utils.PRECISION_THRESHOLD)
                 &&

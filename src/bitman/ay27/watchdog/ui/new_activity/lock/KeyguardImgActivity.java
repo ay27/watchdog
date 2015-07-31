@@ -171,44 +171,50 @@ public class KeyguardImgActivity extends Activity {
 
             @Override
             public void onActionDown() {
-                Animation animation = AnimationUtils.loadAnimation(KeyguardImgActivity.this, R.anim.abc_fade_out);
-                animation.setAnimationListener(new Animation.AnimationListener() {
-                    @Override
-                    public void onAnimationStart(Animation animation) {
 
-                    }
+                if (isSafe) {
 
-                    @Override
-                    public void onAnimationEnd(Animation animation) {
-                        changeModeBtn.setVisibility(View.GONE);
-                    }
+                    Animation animation = AnimationUtils.loadAnimation(KeyguardImgActivity.this, R.anim.abc_fade_out);
+                    animation.setAnimationListener(new Animation.AnimationListener() {
+                        @Override
+                        public void onAnimationStart(Animation animation) {
 
-                    @Override
-                    public void onAnimationRepeat(Animation animation) {
+                        }
 
-                    }
-                });
-                changeModeBtn.startAnimation(animation);
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                            changeModeBtn.setVisibility(View.GONE);
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
+
+                        }
+                    });
+                    changeModeBtn.startAnimation(animation);
+                }
             }
 
             @Override
             public void onActionUp(ArrayList<Curve> rawCurves) {
-                Animation fadein = AnimationUtils.loadAnimation(KeyguardImgActivity.this, R.anim.abc_fade_in);
-                fadein.setAnimationListener(new Animation.AnimationListener() {
-                    @Override
-                    public void onAnimationStart(Animation animation) {
-                    }
+                if (isSafe) {
+                    Animation fadein = AnimationUtils.loadAnimation(KeyguardImgActivity.this, R.anim.abc_fade_in);
+                    fadein.setAnimationListener(new Animation.AnimationListener() {
+                        @Override
+                        public void onAnimationStart(Animation animation) {
+                        }
 
-                    @Override
-                    public void onAnimationEnd(Animation animation) {
-                        changeModeBtn.setVisibility(View.VISIBLE);
-                    }
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                            changeModeBtn.setVisibility(View.VISIBLE);
+                        }
 
-                    @Override
-                    public void onAnimationRepeat(Animation animation) {
-                    }
-                });
-                changeModeBtn.startAnimation(fadein);
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
+                        }
+                    });
+                    changeModeBtn.startAnimation(fadein);
+                }
 
 
                 AngleChainProcessor processor = new AngleChainProcessor(patterns, rawCurves);

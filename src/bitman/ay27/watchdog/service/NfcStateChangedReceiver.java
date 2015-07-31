@@ -92,7 +92,29 @@ import java.util.List;
 public class NfcStateChangedReceiver extends BroadcastReceiver {
 
     private static final String TAG = "NfcFoundReceiver";
+    private DogWatchService dogWatchService;
+    private ServiceConnection conn = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            dogWatchService = ((DogWatchService.LocalBinder) service).getService();
+            if (dogWatchService == null || dogWatchService.getConnectionState() != DogWatchService.STATE_CONNECTED) {
+                return;
+            }
 
+            if (PrefUtils.isCheckWatchDist() && dogWatchService.calcAccuracy() > 2.0) {
+                dogWatchService.post(DogWatchService.CHARA_VIBRATE_TRIGGER, new byte[]{DogWatchService.VIBRATE_NFC});
+            } else if (!PrefUtils.isCheckWatchDist()) {
+                dogWatchService.post(DogWatchService.CHARA_VIBRATE_TRIGGER, new byte[]{DogWatchService.VIBRATE_NFC});
+            }
+
+            WatchdogApplication.getContext().unbindService(this);
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            WatchdogApplication.getContext().unbindService(this);
+        }
+    };
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -131,25 +153,6 @@ public class NfcStateChangedReceiver extends BroadcastReceiver {
 //            context.sendBroadcast(i);
         }
     }
-
-
-    private DogWatchService dogWatchService;
-    private ServiceConnection conn = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            dogWatchService = ((DogWatchService.LocalBinder)service).getService();
-            if (dogWatchService == null || dogWatchService.getConnectionState()!=DogWatchService.STATE_CONNECTED) {
-                return;
-            }
-            dogWatchService.post(DogWatchService.CHARA_VIBRATE_TRIGGER, new byte[]{DogWatchService.VIBRATE_NFC});
-            WatchdogApplication.getContext().unbindService(this);
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            WatchdogApplication.getContext().unbindService(this);
-        }
-    };
 
     private void sendNfcVibrate() {
         WatchdogApplication.getContext().bindService(new Intent(WatchdogApplication.getContext(), DogWatchService.class), conn, Context.BIND_AUTO_CREATE);

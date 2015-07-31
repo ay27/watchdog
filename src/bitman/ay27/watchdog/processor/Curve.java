@@ -46,6 +46,13 @@ public class Curve {
         return points.get(0);
     }
 
+    public RhythmPoint last() {
+        if (points == null || points.size() == 0) {
+            return null;
+        }
+        return points.get(points.size()-1);
+    }
+
     public RhythmPoint get(int index) {
         if (points == null || points.size() <= index)
             return null;

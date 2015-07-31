@@ -7,6 +7,7 @@ import android.net.wifi.WifiManager;
 import android.provider.Settings;
 import android.util.Log;
 import bitman.ay27.watchdog.service.DaemonService;
+import bitman.ay27.watchdog.service.HeartbeatService;
 import bitman.ay27.watchdog.watchlink.DogWatchServiceManager;
 import bitman.ay27.watchdog.service.ServiceManager;
 import bitman.ay27.watchdog.utils.Common;
@@ -57,6 +58,8 @@ public class WatchdogApplication extends Application {
         ServiceManager.getInstance().addService(DogWatchService.class);
 
         tryConnectWatch();
+
+        ServiceManager.getInstance().removeService(HeartbeatService.class);
     }
 
     private void openNetwork() {

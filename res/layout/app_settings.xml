@@ -128,6 +128,81 @@
                         />
             </RelativeLayout>
 
+            <include layout="@layout/divider_small"/>
+
+            <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                            android:paddingTop="16dp"
+                            android:paddingBottom="16dp"
+                            android:clickable="true"
+                            android:id="@+id/app_setting_sim_panel"
+                            android:background="@drawable/transparent_item_bg">
+                <LinearLayout android:layout_width="270dp" android:layout_height="wrap_content"
+                              style="@style/PreferencePanel"
+                              android:layout_alignParentTop="true"
+                              android:layout_alignParentStart="true"
+                              android:clickable="false"
+                              android:background="@drawable/transparent_item_bg">
+
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                              android:text="SIM卡换卡报警"
+                              android:textSize="18sp"
+                              android:layout_margin="4dp"
+                            />
+
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                              style="@style/PreferenceSecondText"
+                              android:text="        开启后，当尝试更换SIM卡时，手机会自动锁死"
+                            />
+
+
+                </LinearLayout>
+                <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/app_setting_sim_switch"
+                        style="@style/MaterialDesignStyle"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="16dp"
+                        android:layout_centerVertical="true"
+                        android:clickable="false"
+                        />
+            </RelativeLayout>
+
+            <include layout="@layout/divider_small"/>
+
+            <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content"
+                            android:paddingTop="16dp"
+                            android:paddingBottom="16dp"
+                            android:clickable="true"
+                            android:id="@+id/app_setting_smart_nfc_panel"
+                            android:background="@drawable/transparent_item_bg">
+                <LinearLayout android:layout_width="270dp" android:layout_height="wrap_content"
+                              style="@style/PreferencePanel"
+                              android:layout_alignParentTop="true"
+                              android:layout_alignParentStart="true"
+                              android:clickable="false"
+                              android:background="@drawable/transparent_item_bg">
+
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                              android:text="智能近身报警"
+                              android:textSize="18sp"
+                              android:layout_margin="4dp"
+                            />
+
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                              style="@style/PreferenceSecondText"
+                              android:text="        开启后，当使用穿戴了智能手表的手去拿口袋中的手机时，不会触发NFC近身报警功能"
+                            />
+
+                </LinearLayout>
+                <android.support.v7.widget.SwitchCompat
+                        android:id="@+id/app_setting_smart_nfc_switch"
+                        style="@style/MaterialDesignStyle"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="16dp"
+                        android:layout_centerVertical="true"
+                        android:clickable="false"
+                        />
+            </RelativeLayout>
+
 
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                       android:text="密码"
@@ -171,7 +246,7 @@
                         />
             </RelativeLayout>
 
-            <include layout="@layout/divider_small" />
+            <include layout="@layout/divider_small"/>
 
             <LinearLayout android:layout_width="fill_parent" android:layout_height="110dp"
                           style="@style/PreferencePanel"

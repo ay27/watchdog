@@ -36,12 +36,23 @@ public class AppSettingActivity extends ActionBarActivity {
     SwitchCompat disturbPasswdSwitch;
     @InjectView(R.id.app_setting_disturb_passwd_panel)
     RelativeLayout disturbPasswdPanel;
+    @InjectView(R.id.app_setting_sim_switch)
+    SwitchCompat simSwitch;
+    @InjectView(R.id.app_setting_sim_panel)
+    RelativeLayout simPanel;
+    @InjectView(R.id.app_setting_smart_nfc_switch)
+    SwitchCompat smartNfcSwitch;
+    @InjectView(R.id.app_setting_smart_nfc_panel)
+    RelativeLayout smartNfcPanel;
 
 
+    private boolean simLockr;
     private boolean appLockrEnabled;
     private boolean autoUploadGpsEnabled;
     private boolean autoOpenNetwork;
     private boolean disturbPasswd;
+    private boolean smartNfc;
+
     private View.OnClickListener appLockrClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -74,6 +85,22 @@ public class AppSettingActivity extends ActionBarActivity {
             disturbPasswdSwitch.performClick();
         }
     };
+    private View.OnClickListener simClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            simLockr = !simLockr;
+            PrefUtils.setSimLockr(simLockr);
+            simSwitch.performClick();
+        }
+    };
+    private View.OnClickListener smartNfcClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            smartNfc = !smartNfc;
+            PrefUtils.setCheckWatchDist(smartNfc);
+            smartNfcSwitch.performClick();
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,5 +129,14 @@ public class AppSettingActivity extends ActionBarActivity {
         disturbPasswd = PrefUtils.isDisturbPasswd();
         disturbPasswdSwitch.setChecked(disturbPasswd);
         disturbPasswdPanel.setOnClickListener(disturbPasswdClick);
+
+        simLockr = PrefUtils.isSimLock();
+        simSwitch.setChecked(simLockr);
+        simPanel.setOnClickListener(simClick);
+
+        smartNfc = PrefUtils.isCheckWatchDist();
+        smartNfcSwitch.setChecked(smartNfc);
+        smartNfcPanel.setOnClickListener(smartNfcClick);
+
     }
 }

@@ -32,9 +32,9 @@ import java.io.IOException;
  */
 public class CmdManager {
     private static final String TAG = "CmdManager";
-    private static MediaPlayer alarmPlayer = MediaPlayer.create(WatchdogApplication.getContext(), RingtoneManager.getActualDefaultRingtoneUri(WatchdogApplication.getContext(), RingtoneManager.TYPE_ALARM));
-    private static int oldVolume;
-    private static AudioManager mAudioManager = (AudioManager) WatchdogApplication.getContext().getSystemService(Context.AUDIO_SERVICE);
+    private static MediaPlayer alarmPlayer;
+//    private static int oldVolume;
+//    private static AudioManager mAudioManager = (AudioManager) WatchdogApplication.getContext().getSystemService(Context.AUDIO_SERVICE);
 
     public static void gps() {
         LocationManager.getLocation(new LocationManager.GetLocationCallback() {
@@ -46,19 +46,23 @@ public class CmdManager {
     }
 
     public static void alarm() {
-        oldVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+//        oldVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+//        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 
+        alarmPlayer = MediaPlayer.create(WatchdogApplication.getContext(), RingtoneManager.getActualDefaultRingtoneUri(WatchdogApplication.getContext(), RingtoneManager.TYPE_ALARM));
         alarmPlayer.setLooping(true);
         alarmPlayer.start();
         NetManager.alarm();
     }
 
     public static void disalarm() {
-        if (alarmPlayer.isPlaying())
+        if (alarmPlayer!= null && alarmPlayer.isPlaying()) {
             alarmPlayer.stop();
+            alarmPlayer.release();
+            alarmPlayer = null;
+        }
 
-        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, oldVolume, 0);
+//        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, oldVolume, 0);
 
         NetManager.disalarm();
 

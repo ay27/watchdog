@@ -37,6 +37,8 @@ public class PrefUtils {
     public static final String KEY_APP_LOCKR_ENABLE = "app_lockr_enable";
     public static final String KEY_AUTO_UPLOAD_GPS = "auto_upload_gps";
     private static final String KEY_AUTO_OPEN_NETWORK = "auto_open_network";
+    private static final String KEY_SIM_LOCKR = "sim_lockr";
+    private static final String KEY_IS_CHECK_WATCH_DIST = "is_check_watch_dist";
 
     private static Context context = WatchdogApplication.getContext();
     private static SharedPreferences pref = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
@@ -242,5 +244,21 @@ public class PrefUtils {
 
     public static void setAutoOpenNetwork(boolean value) {
         pref.edit().putBoolean(KEY_AUTO_OPEN_NETWORK, value).apply();
+    }
+
+    public static boolean isSimLock() {
+        return pref.getBoolean(KEY_SIM_LOCKR, false);
+    }
+
+    public static void setSimLockr(boolean value) {
+        pref.edit().putBoolean(KEY_SIM_LOCKR, value).apply();
+    }
+
+    public static boolean isCheckWatchDist() {
+        return pref.getBoolean(KEY_IS_CHECK_WATCH_DIST, false);
+    }
+
+    public static void setCheckWatchDist(boolean value) {
+        pref.edit().putBoolean(KEY_IS_CHECK_WATCH_DIST, value).apply();
     }
 }

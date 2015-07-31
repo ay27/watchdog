@@ -71,7 +71,7 @@ class Utils {
             return null;
         }
 
-        AngleChain chain = new AngleChain(curve.first(), mid, num_of_segments);
+        AngleChain chain = new AngleChain(curve.first(), curve.last(), mid, num_of_segments);
         for (Segment segment : segments) {
             chain.add_sgm(segment.getA(), segment.getLeftTime());
         }

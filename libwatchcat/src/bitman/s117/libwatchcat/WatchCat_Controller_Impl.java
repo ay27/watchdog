@@ -27,7 +27,7 @@ public class WatchCat_Controller_Impl implements WatchCat_Controller {
     public static final String CMD_WC_CTL_CRYPT_TAG_TARGET = "__TARGET__";
     public static final String CMD_WC_CTL_CRYPT_TAG_CPTKEY = "__CPTKEY__";
     public static final String CMD_WC_CTL_CRYPT_TAG_NAME = "__NAME__";
-    public static final String CMD_WC_CTL_CRYPT_TAG_CRYPT_ALGR = "__CRYPTALGR__";
+    public static final String CMD_WC_CTL_CRYPT_TAG_CRYPT_ALGR= "__CRYPTALGR__";
     public static final String CMD_WC_CTL_CRYPT_TARGET_PATH_PERFIX = "/dev/block/";
     public static final String CMD_WC_CTL_CRYPT_MAPPED_NAME_PERFIX = "c_";
     public static final String CMD_WC_CTL_CRYPT = "wc_ctl crypt " + CMD_WC_CTL_CRYPT_TAG_TARGET + " " + CMD_WC_CTL_CRYPT_TAG_CPTKEY + " " + CMD_WC_CTL_CRYPT_TAG_NAME + " " + CMD_WC_CTL_CRYPT_TAG_CRYPT_ALGR;
@@ -208,7 +208,7 @@ public class WatchCat_Controller_Impl implements WatchCat_Controller {
             return null;
     }
 
-    protected static String getFirstCryptedDeviceName() {
+    protected static String getFirstCryptedDeviceName(){
         CmdLineInvoker invoker = new CmdLineInvoker(CMD_DMSETUP_LS, true);
         if (invoker.run() != 0)
             throw new IllegalStateException("fail when invoke \"" + CMD_DMSETUP_LS + "\".");
@@ -219,6 +219,7 @@ public class WatchCat_Controller_Impl implements WatchCat_Controller {
         else
             return null;
     }
+
 
 
     @Override
@@ -424,7 +425,7 @@ public class WatchCat_Controller_Impl implements WatchCat_Controller {
 
     // AES - mode=0, BLOWFISL - mode=1
     @Override
-    public void enableEncryption(String cipher, int mode) {
+    public void enableEncryption(String cipher, int mode){
         CmdLineInvoker invoker;
         if (!isBcptLoaded())
             throw new IllegalStateException("BCPT module haven't load");
@@ -439,20 +440,20 @@ public class WatchCat_Controller_Impl implements WatchCat_Controller {
             throw new IllegalStateException("no original block device detected");
         } else if (devList.length >= 1) {
             firstDevName = extractDeviceName(devList[0].getName());
-            for (int i = 1; i < devList.length; i++) {
-                if (!firstDevName.equals(devList[i]))
+            for(int i = 1;i < devList.length;i++){
+                if(!firstDevName.equals(extractDeviceName(devList[i].getName())))
                     throw new IllegalStateException("multiple original block device, you need specify which one");
             }
-        } else {
+        } else{
             throw new IllegalStateException("unexpected status happened when fetch device info, detail: devList.length == " + devList.length +
                     ", please feedback the issue to our.");
         }
 
         String cmd = CMD_WC_CTL_CRYPT.
-                replace(CMD_WC_CTL_CRYPT_TAG_TARGET, devList[0].getAbsolutePath()).
+                replace(CMD_WC_CTL_CRYPT_TAG_TARGET, devList[0].getParentFile().getAbsolutePath() + "/" + firstDevName).
                 replace(CMD_WC_CTL_CRYPT_TAG_CPTKEY, bytesToHexString(MD5(cipher))).
                 replace(CMD_WC_CTL_CRYPT_TAG_NAME, CMD_WC_CTL_CRYPT_MAPPED_NAME_PERFIX + firstDevName);
-        if (mode == 0) {
+        if(mode == 0){
             cmd = cmd.replace(CMD_WC_CTL_CRYPT_TAG_CRYPT_ALGR, "aes");
         } else {
             cmd = cmd.replace(CMD_WC_CTL_CRYPT_TAG_CRYPT_ALGR, "blowfish");
@@ -485,7 +486,7 @@ public class WatchCat_Controller_Impl implements WatchCat_Controller {
     public void formatEncryptionDisk() {
         CmdLineInvoker invoker;
         String cmd = CMD_MKFS_EXFAT.replace(CMD_MKFS_EXFAT_TAG_TARGET, PATH_MAPPED_DEV_DIR + getFirstCryptedDeviceName());
-        if (!queryEncryption())
+        if(!queryEncryption())
             throw new IllegalStateException("no encryption mirror exist");
 
         invoker = new CmdLineInvoker(cmd, true);
@@ -493,22 +494,16 @@ public class WatchCat_Controller_Impl implements WatchCat_Controller {
             throw new IllegalStateException("fail when invoke \"" + cmd + "\".");
         if (invoker.getExitno() != 0)
             throw new IllegalStateException("mkfs fail, format undone");
-        cmd = "sync";
-        invoker.setCmd(cmd, true);
-        if (invoker.run() != 0)
-            throw new IllegalStateException("fail when invoke \"" + cmd + "\".");
-        if (invoker.getExitno() != 0)
-            throw new IllegalStateException("sync fail, format may undone");
     }
 
     @Override
-    public boolean isSDCardExist() {
+    public boolean isSDCardExist(){
         File[] devList = findFileUnderDir("/dev/block", "sd*");
         return devList.length != 0;
     }
 
     @Override
-    public void umountSDCardCmd() {
+    public void umountSDCardCmd(){
         CmdLineInvoker invoker = new CmdLineInvoker(CMD_UMOUNT_USBDISK_STORAGE, true);
         if (invoker.run() != 0)
             throw new IllegalStateException("fail when invoke \"" + CMD_UMOUNT_USBDISK_STORAGE + "\".");
