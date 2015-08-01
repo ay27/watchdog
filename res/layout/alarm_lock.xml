@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+        android:background="#3B3B3B">
+
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="应急模式已启动"
+                android:id="@+id/textView2"
+                android:layout_marginTop="160dp" android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/white"
+                android:textSize="32sp"/>
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Warning！"
+                android:id="@+id/textView3" android:layout_alignParentTop="true" android:layout_centerHorizontal="true"
+                android:layout_marginTop="64dp"
+                android:textColor="@color/white"
+                android:textSize="36sp"/>
+
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="36dp"
+                android:textSize="48dp"
+                android:text="解锁"
+                android:textColor="@color/item_bg_green"
+                android:id="@+id/alarm_lock_btn" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true"
+                android:layout_marginBottom="127dp"
+                android:background="@drawable/transparent_item_bg_green"/>
+    </RelativeLayout>
+
+</LinearLayout>

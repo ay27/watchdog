@@ -227,6 +227,7 @@ public class KeyguardImgActivity extends Activity {
                         Intent intent = new Intent(KeyguardImgActivity.this, KeyguardKeyboardActivity.class);
                         intent.putExtra("Status", status);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                         startActivity(intent);
                     }
 
@@ -244,6 +245,7 @@ public class KeyguardImgActivity extends Activity {
         Intent intent = new Intent(this, KeyguardKeyboardActivity.class);
         intent.putExtra("Status", status);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         startActivity(intent);
         this.finish();
     }

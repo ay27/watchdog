@@ -114,4 +114,6 @@
     <string name="sign_in_finish">已登录</string>
     <string name="open">开启</string>
     <string name="closed">关闭</string>
+    <string name="set_alarm_time">请设置静止时间</string>
+    <string name="set_ok">设置成功</string>
 </resources>

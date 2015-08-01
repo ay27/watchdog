@@ -225,7 +225,7 @@ public class DogWatchReceiver extends BroadcastReceiver {
         } else if (action.equals(DogWatchService.ACTION_REP_RSSI_RETURN_RANGE)) {
             Log.i(TAG, "return range");
 //            SuperUserAccess.runCmd("echo 1 > /sys/devices/virtual/android_usb/android0/enable");
-            NetManager.state("save");
+            NetManager.state("safe");
             PrefUtils.setPhoneSafety(true);
 //            if (player.isPlaying()) {
 //                player.stop();

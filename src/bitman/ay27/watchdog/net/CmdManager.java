@@ -19,6 +19,7 @@ import bitman.ay27.watchdog.WatchdogApplication;
 import bitman.ay27.watchdog.model.FileItem;
 import bitman.ay27.watchdog.ui.new_activity.lock.KeyguardManager;
 import bitman.ay27.watchdog.utils.Common;
+import bitman.ay27.watchdog.watchlink.DogWatchService;
 import com.google.gson.Gson;
 
 import java.io.File;
@@ -34,7 +35,7 @@ public class CmdManager {
     private static final String TAG = "CmdManager";
     private static MediaPlayer alarmPlayer;
 //    private static int oldVolume;
-//    private static AudioManager mAudioManager = (AudioManager) WatchdogApplication.getContext().getSystemService(Context.AUDIO_SERVICE);
+    private static AudioManager mAudioManager = (AudioManager) WatchdogApplication.getContext().getSystemService(Context.AUDIO_SERVICE);
 
     public static void gps() {
         LocationManager.getLocation(new LocationManager.GetLocationCallback() {
@@ -47,7 +48,7 @@ public class CmdManager {
 
     public static void alarm() {
 //        oldVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-//        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
+        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
 
         alarmPlayer = MediaPlayer.create(WatchdogApplication.getContext(), RingtoneManager.getActualDefaultRingtoneUri(WatchdogApplication.getContext(), RingtoneManager.TYPE_ALARM));
         alarmPlayer.setLooping(true);
@@ -69,9 +70,10 @@ public class CmdManager {
     }
 
     public static void lock() {
-        KeyguardManager manager = new KeyguardManager(WatchdogApplication.getContext());
-        manager.launchKeyguard();
-        NetManager.lock();
+        WatchdogApplication.getContext().sendBroadcast(new Intent(DogWatchService.ACTION_REP_RSSI_OUT_OF_RANGE));
+//        KeyguardManager manager = new KeyguardManager(WatchdogApplication.getContext());
+//        manager.launchKeyguard();
+//        NetManager.lock();
     }
 
     public static void unlock() {

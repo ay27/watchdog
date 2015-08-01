@@ -3,6 +3,7 @@ package bitman.ay27.watchdog.ui.new_activity.lock;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import bitman.ay27.watchdog.PrefUtils;
 import bitman.ay27.watchdog.db.DbManager;
 import bitman.ay27.watchdog.db.model.KeyguardStatus;
 
@@ -33,14 +34,25 @@ public class KeyguardManager {
             Log.e(TAG, "without status, can not launch keyguard");
             return;
         }
+
+        if (!PrefUtils.isPhoneSafe()) {
+            Intent intent = new Intent(context, LockAlarmActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            context.startActivity(intent);
+            return;
+        }
+
         if (status.unlockType == KeyguardStatus.PasswdType.keyboard) {
             Intent intent = new Intent(context, KeyguardKeyboardActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             context.startActivity(intent);
         } else {
             Intent intent = new Intent(context, KeyguardImgActivity.class);
             intent.putExtra("Status", status);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             context.startActivity(intent);
         }
     }

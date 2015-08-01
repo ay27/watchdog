@@ -1,14 +1,21 @@
 package bitman.ay27.watchdog.ui.new_activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 import bitman.ay27.watchdog.PrefUtils;
 import bitman.ay27.watchdog.R;
+import bitman.ay27.watchdog.service.SensorService;
+import bitman.ay27.watchdog.service.ServiceManager;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
@@ -44,6 +51,10 @@ public class AppSettingActivity extends ActionBarActivity {
     SwitchCompat smartNfcSwitch;
     @InjectView(R.id.app_setting_smart_nfc_panel)
     RelativeLayout smartNfcPanel;
+    @InjectView(R.id.app_setting_move_alarm_switch)
+    SwitchCompat moveAlarmSwitch;
+    @InjectView(R.id.app_setting_move_alarm_panel)
+    RelativeLayout moveAlarmPanel;
 
 
     private boolean simLockr;
@@ -52,6 +63,7 @@ public class AppSettingActivity extends ActionBarActivity {
     private boolean autoOpenNetwork;
     private boolean disturbPasswd;
     private boolean smartNfc;
+    private boolean moveAlarm;
 
     private View.OnClickListener appLockrClick = new View.OnClickListener() {
         @Override
@@ -102,6 +114,34 @@ public class AppSettingActivity extends ActionBarActivity {
         }
     };
 
+    private View.OnClickListener moveClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            moveAlarm = !moveAlarm;
+            PrefUtils.setMoveAlarm(moveAlarm);
+            moveAlarmSwitch.performClick();
+
+            final EditText text = new EditText(AppSettingActivity.this);
+            text.setText(""+10);
+            text.setInputType(InputType.TYPE_CLASS_NUMBER);
+            if (!moveAlarm) {
+                ServiceManager.getInstance().removeService(SensorService.class);
+                return;
+            }
+            new AlertDialog.Builder(AppSettingActivity.this)
+                    .setMessage(R.string.set_alarm_time)
+                    .setView(text)
+                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ServiceManager.getInstance().addService(SensorService.class);
+                            PrefUtils.setMoveAlarmTime(Long.decode(text.getText().toString())*1000);
+                            Toast.makeText(AppSettingActivity.this, R.string.set_ok, Toast.LENGTH_LONG).show();
+                        }
+                    }).create().show();
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -137,6 +177,10 @@ public class AppSettingActivity extends ActionBarActivity {
         smartNfc = PrefUtils.isCheckWatchDist();
         smartNfcSwitch.setChecked(smartNfc);
         smartNfcPanel.setOnClickListener(smartNfcClick);
+
+        moveAlarm = PrefUtils.isMoveAlarm();
+        moveAlarmSwitch.setChecked(moveAlarm);
+        moveAlarmPanel.setOnClickListener(moveClick);
 
     }
 }

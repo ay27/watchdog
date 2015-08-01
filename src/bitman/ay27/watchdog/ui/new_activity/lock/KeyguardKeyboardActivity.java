@@ -59,6 +59,9 @@ public class KeyguardKeyboardActivity extends Activity {
     private BroadcastReceiver killKeyguardReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+            if (!PrefUtils.isPhoneSafe()) {
+                PrefUtils.setPhoneSafety(true);
+            }
             finish();
         }
     };
@@ -69,6 +72,9 @@ public class KeyguardKeyboardActivity extends Activity {
                 return;
             }
             if (passwd.equals(status.passwd)) {
+                if (!PrefUtils.isPhoneSafe()) {
+                    PrefUtils.setPhoneSafety(true);
+                }
                 finish();
             }
         }
@@ -122,6 +128,7 @@ public class KeyguardKeyboardActivity extends Activity {
         Intent intent = new Intent(this, KeyguardImgActivity.class);
         intent.putExtra("Status", status);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         startActivity(intent);
         this.finish();
     }

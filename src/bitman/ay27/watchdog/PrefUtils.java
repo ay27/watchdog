@@ -39,6 +39,8 @@ public class PrefUtils {
     private static final String KEY_AUTO_OPEN_NETWORK = "auto_open_network";
     private static final String KEY_SIM_LOCKR = "sim_lockr";
     private static final String KEY_IS_CHECK_WATCH_DIST = "is_check_watch_dist";
+    private static final String KEY_MOVE_ALARM = "move_alarm";
+    private static final String KEY_MOVE_ALARM_TIME = "move_alarm_time";
 
     private static Context context = WatchdogApplication.getContext();
     private static SharedPreferences pref = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
@@ -260,5 +262,21 @@ public class PrefUtils {
 
     public static void setCheckWatchDist(boolean value) {
         pref.edit().putBoolean(KEY_IS_CHECK_WATCH_DIST, value).apply();
+    }
+
+    public static long getMoveAlarmTime() {
+        return pref.getLong(KEY_MOVE_ALARM_TIME, 0);
+    }
+
+    public static boolean isMoveAlarm() {
+        return pref.getBoolean(KEY_MOVE_ALARM, false);
+    }
+
+    public static void setMoveAlarm(boolean value) {
+        pref.edit().putBoolean(KEY_MOVE_ALARM, value).apply();
+    }
+
+    public static void setMoveAlarmTime(Long decode) {
+        pref.edit().putLong(KEY_MOVE_ALARM_TIME, decode).apply();
     }
 }
