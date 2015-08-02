@@ -11,6 +11,7 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.Toast;
 import bitman.ay27.watchdog.PrefUtils;
 import bitman.ay27.watchdog.R;
@@ -55,6 +56,8 @@ public class AppSettingActivity extends ActionBarActivity {
     SwitchCompat moveAlarmSwitch;
     @InjectView(R.id.app_setting_move_alarm_panel)
     RelativeLayout moveAlarmPanel;
+    @InjectView(R.id.seekBar)
+    SeekBar seekBar;
 
 
     private boolean simLockr;
@@ -122,7 +125,7 @@ public class AppSettingActivity extends ActionBarActivity {
             moveAlarmSwitch.performClick();
 
             final EditText text = new EditText(AppSettingActivity.this);
-            text.setText(""+10);
+            text.setText("" + 10);
             text.setInputType(InputType.TYPE_CLASS_NUMBER);
             if (!moveAlarm) {
                 ServiceManager.getInstance().removeService(SensorService.class);
@@ -135,10 +138,26 @@ public class AppSettingActivity extends ActionBarActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             ServiceManager.getInstance().addService(SensorService.class);
-                            PrefUtils.setMoveAlarmTime(Long.decode(text.getText().toString())*1000);
+                            PrefUtils.setMoveAlarmTime(Long.decode(text.getText().toString()) * 1000);
                             Toast.makeText(AppSettingActivity.this, R.string.set_ok, Toast.LENGTH_LONG).show();
                         }
                     }).create().show();
+        }
+    };
+    private SeekBar.OnSeekBarChangeListener seekChangedListener = new SeekBar.OnSeekBarChangeListener() {
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            PrefUtils.setImgPasswdThreshold(progress);
+        }
+
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+
+        }
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+
         }
     };
 
@@ -182,5 +201,8 @@ public class AppSettingActivity extends ActionBarActivity {
         moveAlarmSwitch.setChecked(moveAlarm);
         moveAlarmPanel.setOnClickListener(moveClick);
 
+
+        seekBar.setProgress((int) PrefUtils.getImgPasswdThreshold());
+        seekBar.setOnSeekBarChangeListener(seekChangedListener);
     }
 }

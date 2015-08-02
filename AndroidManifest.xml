@@ -130,7 +130,8 @@
         <activity android:name=".ui.new_activity.ScreenLockrActivity"/>
         <activity android:name=".ui.new_activity.AppSettingActivity"/>
 
-        <activity android:name=".ui.new_activity.lock.LockAlarmActivity"/>
+        <activity android:name=".ui.new_activity.lock.LockAlarmActivity"
+                />
 
         <receiver android:name=".service.OnBootReceiver"
                   android:exported="true">

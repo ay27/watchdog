@@ -109,6 +109,11 @@ public class KeyguardImgActivity extends Activity {
             changeModeBtn.setVisibility(View.GONE);
         }
 
+        if (getIntent().getBooleanExtra("Danger", false)) {
+            isSafe = false;
+            changeModeBtn.setVisibility(View.GONE);
+        }
+
 
 
         final ArrayList<AngleChain> patterns = new ArrayList<AngleChain>();

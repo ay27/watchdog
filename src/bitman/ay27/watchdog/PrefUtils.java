@@ -41,6 +41,7 @@ public class PrefUtils {
     private static final String KEY_IS_CHECK_WATCH_DIST = "is_check_watch_dist";
     private static final String KEY_MOVE_ALARM = "move_alarm";
     private static final String KEY_MOVE_ALARM_TIME = "move_alarm_time";
+    private static final String KEY_IMG_PASSWD_THRESHOLD = "img_passwd_threshold";
 
     private static Context context = WatchdogApplication.getContext();
     private static SharedPreferences pref = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
@@ -278,5 +279,13 @@ public class PrefUtils {
 
     public static void setMoveAlarmTime(Long decode) {
         pref.edit().putLong(KEY_MOVE_ALARM_TIME, decode).apply();
+    }
+
+    public static void setImgPasswdThreshold(int progress) {
+        pref.edit().putInt(KEY_IMG_PASSWD_THRESHOLD, progress).apply();
+    }
+
+    public static double getImgPasswdThreshold() {
+        return (double)pref.getInt(KEY_IMG_PASSWD_THRESHOLD, 0);
     }
 }

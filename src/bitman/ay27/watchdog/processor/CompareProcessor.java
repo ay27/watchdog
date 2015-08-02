@@ -1,6 +1,7 @@
 package bitman.ay27.watchdog.processor;
 
 import android.util.Log;
+import bitman.ay27.watchdog.PrefUtils;
 import bitman.ay27.watchdog.db.model.AngleChain;
 
 import java.util.ArrayList;
@@ -11,26 +12,26 @@ import java.util.ArrayList;
  */
 class CompareProcessor {
 
-    public static final double ANGLE_CHAIN_THRESHOLD1 = Math.tan(Math.PI / 9.0);
-    public static final double ANGLE_CHAIN_THRESHOLD2 = Math.tan(Math.PI / 6.0);
-    public static final double CHAIN_MATCHING_TOLERANCE = 8.0;
-    private static final String TAG = "CompareProcessor";
+    public final double ANGLE_CHAIN_THRESHOLD1 = Math.tan(Math.PI / (9.0 + PrefUtils.getImgPasswdThreshold() * 10.0 / 100.0));
+    public final double ANGLE_CHAIN_THRESHOLD2 = Math.tan(Math.PI / (6.0 + PrefUtils.getImgPasswdThreshold() * 10.0 / 100.0));
+    public final double CHAIN_MATCHING_TOLERANCE = 11.0 - PrefUtils.getImgPasswdThreshold() * 6.0 / 100.0;
+    private final String TAG = "CompareProcessor";
     /**
      * 起点位置误差100px
      */
-    private static final double START_POSITION_THRESHOLD = 100.0;
+    private final double START_POSITION_THRESHOLD = 100.0 - PrefUtils.getImgPasswdThreshold() * 60.0 / 100.0;
     /**
      * 每个直线段的时间误差500ms
      */
-    private static final double TIME_THRESHOLD = 1000.0;
+    private final double TIME_THRESHOLD = 500.0 - PrefUtils.getImgPasswdThreshold() * 200.0 / 100.0;
     /**
      * 每个直线段长度误差20px
      */
-    private static final double SEGMENT_LENGTH_THRESHOLD = 20.0;
+    private final double SEGMENT_LENGTH_THRESHOLD = 20.0 - PrefUtils.getImgPasswdThreshold() * 10.0 / 100.0;
     /**
      * 每段直线的夹角误差+-60度，即+-Pi/3
      */
-    private static final double ANGLE_THRESHOLD = Math.tan(Math.PI / 3.0);
+    private final double ANGLE_THRESHOLD = Math.tan(Math.PI / 3.0);
     /**
      * 待比较的两个曲线
      */
@@ -56,7 +57,7 @@ class CompareProcessor {
             return false;
 
         result = comp_point(chain1.end_point, chain2.end_point);
-        Log.i(TAG, "comp end point : "+result);
+        Log.i(TAG, "comp end point : " + result);
         if (!result) {
             return false;
         }
@@ -92,11 +93,11 @@ class CompareProcessor {
 
         for (int i = 0; i < angles1.size(); i++) {
             double angle_tmp = angles1.get(i) - angles2.get(i);
-            if (Math.abs(angle_tmp) - ANGLE_CHAIN_THRESHOLD1 <= Utils.PRECISION_THRESHOLD) {
+            if (angle_tmp - ANGLE_CHAIN_THRESHOLD1 <= Utils.PRECISION_THRESHOLD) {
                 if (angle_tmp < Utils.PRECISION_THRESHOLD) {
                     deviationTolerance -= 1.0;
                 } else deviationTolerance += 1.0;
-            } else if (Math.abs(angle_tmp) - ANGLE_CHAIN_THRESHOLD2 <= Utils.PRECISION_THRESHOLD) {
+            } else if (angle_tmp - ANGLE_CHAIN_THRESHOLD2 <= Utils.PRECISION_THRESHOLD) {
                 if (angle_tmp < Utils.PRECISION_THRESHOLD) {
                     deviationTolerance -= 2.0;
                 } else deviationTolerance += 2.0;

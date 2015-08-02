@@ -1,7 +1,10 @@
 package bitman.ay27.watchdog.ui.new_activity.lock;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +14,7 @@ import android.widget.Button;
 import bitman.ay27.watchdog.R;
 import bitman.ay27.watchdog.db.DbManager;
 import bitman.ay27.watchdog.db.model.KeyguardStatus;
+import bitman.ay27.watchdog.utils.Common;
 import butterknife.ButterKnife;
 
 import java.util.List;
@@ -39,6 +43,7 @@ public class LockAlarmActivity extends Activity {
 
             intent.putExtra("Status", status);
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            intent.putExtra("Danger", true);
             startActivity(intent);
 
             wm.removeViewImmediate(view);
@@ -60,8 +65,23 @@ public class LockAlarmActivity extends Activity {
         addStaticView(view);
 
         lockBtn.setOnClickListener(lockBtnClick);
+
+        registerReceiver(killKeyguardReceiver, new IntentFilter(Common.ACTION_KILL_KEYGUARD));
     }
 
+    private BroadcastReceiver killKeyguardReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            wm.removeViewImmediate(view);
+            finish();
+        }
+    };
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(killKeyguardReceiver);
+    }
 
     private void addStaticView(View view) {
         WindowManager.LayoutParams wmParams = new WindowManager.LayoutParams();
