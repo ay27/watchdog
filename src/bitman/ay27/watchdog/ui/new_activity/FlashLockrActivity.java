@@ -31,8 +31,8 @@ public class FlashLockrActivity extends ActionBarActivity implements View.OnClic
     Toolbar flashLockrToolbar;
     @InjectView(R.id.flash_lockr_panel)
     RelativeLayout flashLockrPanel;
-    @InjectView(R.id.flash_lockr_gif)
-    GifView gifView;
+//    @InjectView(R.id.flash_lockr_gif)
+//    GifView gifView;
     //    GifImageView gifView;
     private boolean isCheck = false;
 
@@ -93,10 +93,21 @@ public class FlashLockrActivity extends ActionBarActivity implements View.OnClic
         flashLockrPanel.setOnClickListener(this);
 
 
-        gifView.setGifImage(R.drawable.revocery);
 
 
 //        switchButton.setOnCheckedChangeListener(lockrCheckedChanged);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+//        gifView.setGifImage(R.drawable.revocery);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+//        gifView.destroy();
     }
 
     @Override

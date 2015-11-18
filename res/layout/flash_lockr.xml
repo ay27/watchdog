@@ -60,10 +60,10 @@
 
     <include layout="@layout/divider_small" />
 
-    <bitman.ay27.watchdog.ui.activity.widget.gif.GifView android:layout_width="fill_parent" android:layout_height="fill_parent"
+    <ImageView android:layout_width="fill_parent" android:layout_height="fill_parent"
                android:layout_gravity="center"
-            android:id="@+id/flash_lockr_gif"
-            android:padding="72dp"/>
+            android:padding="72dp"
+            android:src="@drawable/flash_lockr"/>
 
 
 </LinearLayout>

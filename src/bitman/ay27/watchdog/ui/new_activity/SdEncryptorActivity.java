@@ -73,7 +73,11 @@ public class SdEncryptorActivity extends ActionBarActivity {
 
 //        PrefUtils.registerListener(sdStatusChangedListener);
 
-        updateSdStatus();
+        try {
+            updateSdStatus();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         startScanSdExistTask();
 
